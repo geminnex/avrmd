@@ -1,0 +1,341 @@
+[
+  {
+    "slug": "assessment",
+    "name": "Assessment",
+    "kind": "method",
+    "definition": "Measuring performance against a defined standard."
+  },
+  {
+    "slug": "clinical-implementation",
+    "name": "Clinical implementation",
+    "kind": "method",
+    "definition": "Putting a validated intervention into routine practice."
+  },
+  {
+    "slug": "clinical-judgment",
+    "name": "Clinical judgment",
+    "kind": "method",
+    "definition": "Practising assessment and decision-making rather than manual technique."
+  },
+  {
+    "slug": "clinical-simulation",
+    "name": "Clinical simulation",
+    "kind": "method",
+    "definition": "Rehearsing a whole clinical scenario, including decisions and team response."
+  },
+  {
+    "slug": "communication",
+    "name": "Communication",
+    "kind": "method",
+    "definition": "Practising clinical conversation and information exchange."
+  },
+  {
+    "slug": "hardware-platform",
+    "name": "Hardware platform",
+    "kind": "method",
+    "definition": "Acting as the device other software is delivered on."
+  },
+  {
+    "slug": "home-care",
+    "name": "Home care",
+    "kind": "method",
+    "definition": "Use by a patient at home rather than in a clinical setting."
+  },
+  {
+    "slug": "just-in-time-practice",
+    "name": "Just-in-time practice",
+    "kind": "method",
+    "definition": "A short rehearsal immediately before performing the real procedure."
+  },
+  {
+    "slug": "motor-learning",
+    "name": "Motor learning",
+    "kind": "method",
+    "definition": "Acquiring and refining movement through structured practice."
+  },
+  {
+    "slug": "networking",
+    "name": "Networking",
+    "kind": "method",
+    "definition": "Meeting peers and building professional connections."
+  },
+  {
+    "slug": "patient-communication",
+    "name": "Patient communication",
+    "kind": "method",
+    "definition": "Explaining a condition or procedure to a patient or family."
+  },
+  {
+    "slug": "planning",
+    "name": "Planning",
+    "kind": "method",
+    "definition": "Preparing an intervention in advance of performing it."
+  },
+  {
+    "slug": "product-training",
+    "name": "Product training",
+    "kind": "method",
+    "definition": "Training clinicians on a specific device or product."
+  },
+  {
+    "slug": "progress-monitoring",
+    "name": "Progress monitoring",
+    "kind": "method",
+    "definition": "Tracking measurable change over a course of treatment."
+  },
+  {
+    "slug": "regulatory-reference",
+    "name": "Regulatory reference",
+    "kind": "method",
+    "definition": "Consulting an official regulatory record."
+  },
+  {
+    "slug": "remote-assistance",
+    "name": "Remote assistance",
+    "kind": "method",
+    "definition": "A remote expert guiding someone on site."
+  },
+  {
+    "slug": "remote-care",
+    "name": "Remote care",
+    "kind": "method",
+    "definition": "Delivering care or supervision at a distance."
+  },
+  {
+    "slug": "research",
+    "name": "Research",
+    "kind": "method",
+    "definition": "Investigation intended to produce generalisable knowledge."
+  },
+  {
+    "slug": "research-exchange",
+    "name": "Research exchange",
+    "kind": "method",
+    "definition": "Sharing findings between research groups."
+  },
+  {
+    "slug": "skills-training",
+    "name": "Skills training",
+    "kind": "method",
+    "definition": "Repeated practice of a procedure or technique to build competence."
+  },
+  {
+    "slug": "team-training",
+    "name": "Team training",
+    "kind": "method",
+    "definition": "Practising coordination, handover, and communication between clinicians."
+  },
+  {
+    "slug": "technology-scouting",
+    "name": "Technology scouting",
+    "kind": "method",
+    "definition": "Surveying the field for emerging capability."
+  },
+  {
+    "slug": "therapy-support",
+    "name": "Therapy support",
+    "kind": "method",
+    "definition": "Delivering or supporting a therapeutic intervention."
+  },
+  {
+    "slug": "training",
+    "name": "Training",
+    "kind": "method",
+    "definition": "General instruction and practice."
+  },
+  {
+    "slug": "visualization",
+    "name": "Visualization",
+    "kind": "method",
+    "definition": "Making structures or data visible and inspectable in three dimensions."
+  },
+  {
+    "slug": "ar",
+    "name": "AR",
+    "kind": "modality",
+    "definition": "Digital content overlaid on the real world, leaving the surroundings visible."
+  },
+  {
+    "slug": "haptics",
+    "name": "Haptics",
+    "kind": "modality",
+    "definition": "Force or tactile feedback that lets the user feel resistance, texture, or contact."
+  },
+  {
+    "slug": "mr",
+    "name": "MR",
+    "kind": "modality",
+    "definition": "Digital and physical content that occupy the same space and can interact with each other."
+  },
+  {
+    "slug": "screen-based",
+    "name": "Screen-based",
+    "kind": "modality",
+    "definition": "Immersive content delivered on an ordinary monitor rather than a headset, often for throughput or accessibility."
+  },
+  {
+    "slug": "vr",
+    "name": "VR",
+    "kind": "modality",
+    "definition": "Fully virtual environments viewed in a headset, replacing the user's view of the room."
+  },
+  {
+    "slug": "behavioral-health",
+    "name": "Behavioral health",
+    "kind": "specialty",
+    "definition": "Mental health and behavioural intervention, including anxiety and exposure work."
+  },
+  {
+    "slug": "clinical-research",
+    "name": "Clinical research",
+    "kind": "specialty",
+    "definition": "Structured investigation of clinical questions."
+  },
+  {
+    "slug": "cross-specialty",
+    "name": "Cross-specialty",
+    "kind": "specialty",
+    "definition": "Applies across clinical disciplines rather than to one specialty."
+  },
+  {
+    "slug": "dentistry",
+    "name": "Dentistry",
+    "kind": "specialty",
+    "definition": "Dental and oral procedures and training."
+  },
+  {
+    "slug": "emergency-care",
+    "name": "Emergency care",
+    "kind": "specialty",
+    "definition": "Acute and emergency clinical response."
+  },
+  {
+    "slug": "human-factors",
+    "name": "Human factors",
+    "kind": "specialty",
+    "definition": "How people interact with systems, devices, and each other under clinical conditions."
+  },
+  {
+    "slug": "medical-devices",
+    "name": "Medical devices",
+    "kind": "specialty",
+    "definition": "Regulated instruments and equipment used in care."
+  },
+  {
+    "slug": "medical-education",
+    "name": "Medical education",
+    "kind": "specialty",
+    "definition": "Teaching and assessment of clinical knowledge and skills."
+  },
+  {
+    "slug": "medical-imaging",
+    "name": "Medical imaging",
+    "kind": "specialty",
+    "definition": "Acquisition and processing of clinical images such as CT and MRI."
+  },
+  {
+    "slug": "military-medicine",
+    "name": "Military medicine",
+    "kind": "specialty",
+    "definition": "Care delivered in military and field settings."
+  },
+  {
+    "slug": "neurosurgery",
+    "name": "Neurosurgery",
+    "kind": "specialty",
+    "definition": "Surgery of the brain, spine, and nervous system."
+  },
+  {
+    "slug": "nursing",
+    "name": "Nursing",
+    "kind": "specialty",
+    "definition": "Nursing practice, education, and clinical skills."
+  },
+  {
+    "slug": "orthopedics",
+    "name": "Orthopedics",
+    "kind": "specialty",
+    "definition": "Musculoskeletal surgery and care."
+  },
+  {
+    "slug": "pain-management",
+    "name": "Pain management",
+    "kind": "specialty",
+    "definition": "Assessment and treatment of acute and chronic pain."
+  },
+  {
+    "slug": "radiology",
+    "name": "Radiology",
+    "kind": "specialty",
+    "definition": "Medical imaging and image interpretation."
+  },
+  {
+    "slug": "rehabilitation",
+    "name": "Rehabilitation",
+    "kind": "specialty",
+    "definition": "Restoring function and movement after injury, surgery, or illness."
+  },
+  {
+    "slug": "spine-surgery",
+    "name": "Spine surgery",
+    "kind": "specialty",
+    "definition": "Surgical treatment of spinal conditions."
+  },
+  {
+    "slug": "surgery",
+    "name": "Surgery",
+    "kind": "specialty",
+    "definition": "Operative practice across surgical disciplines."
+  },
+  {
+    "slug": "3d-reconstruction",
+    "name": "3D reconstruction",
+    "kind": "technology",
+    "definition": "Turning medical images such as CT or MRI into interactive three-dimensional models.",
+    "aliases": [
+      "interactive 3D models",
+      "3D models"
+    ]
+  },
+  {
+    "slug": "eye-tracking",
+    "name": "Eye tracking",
+    "kind": "technology",
+    "definition": "Sensors that follow where the user is looking, used for interaction and for attention measurement."
+  },
+  {
+    "slug": "inside-out-tracking",
+    "name": "Inside-out tracking",
+    "kind": "technology",
+    "definition": "Position tracking from cameras on the headset itself, with no external sensors to install."
+  },
+  {
+    "slug": "learning-analytics",
+    "name": "Learning analytics",
+    "kind": "technology",
+    "definition": "Capturing performance data across learners to show progress and gaps.",
+    "aliases": [
+      "learning analytics",
+      "learning insights"
+    ]
+  },
+  {
+    "slug": "multiplayer",
+    "name": "Multiplayer",
+    "kind": "technology",
+    "definition": "Several people present in the same virtual session at once, from different locations.",
+    "aliases": [
+      "multiplayer simulation"
+    ]
+  },
+  {
+    "slug": "passthrough",
+    "name": "Passthrough",
+    "kind": "technology",
+    "definition": "Cameras that show the real room inside a headset, enabling mixed reality on an otherwise opaque device.",
+    "aliases": [
+      "full-colour passthrough",
+      "colour passthrough"
+    ]
+  }
+]

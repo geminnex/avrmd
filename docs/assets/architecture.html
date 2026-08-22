@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>AVRMD — Architecture</title>
+<style>
+  :root {
+    --surface-1:      #fcfcfb;
+    --page:           #f9f9f7;
+    --text-primary:   #0b0b0b;
+    --text-secondary: #52514e;
+    --muted:          #898781;
+    --grid:           #e1e0d9;
+    --border:         rgba(11,11,11,0.10);
+
+    /* categorical, fixed order, validated for adjacent CVD + normal-vision separation */
+    --c-static:   #2a78d6; /* blue    — build-time / prerendered */
+    --c-dynamic:  #eb6834; /* orange  — request-time on the server */
+    --c-client:   #1baf7a; /* aqua    — runs in the visitor's browser */
+    --c-data:     #eda100; /* yellow  — flat JSON files */
+    --c-external: #e87ba4; /* magenta — outside the app: network / scheduled job */
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 40px 32px 60px;
+    background: var(--page);
+    color: var(--text-primary);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+
+  h1 {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 4px;
+    letter-spacing: -0.01em;
+  }
+  .subtitle {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin: 0 0 22px;
+  }
+
+  /* ---- legend ---- */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 28px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12.5px;
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+  .swatch {
+    width: 11px;
+    height: 11px;
+    border-radius: 3px;
+    flex: 0 0 auto;
+  }
+  .legend-item small {
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  /* ---- layer scaffolding ---- */
+  .layer {
+    position: relative;
+    margin: 0 0 6px;
+  }
+  .layer-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .connector {
+    display: flex;
+    justify-content: center;
+    padding: 2px 0;
+  }
+  .connector svg { display: block; }
+
+  .row {
+    display: flex;
+    gap: 14px;
+    align-items: stretch;
+  }
+  .col { flex: 1 1 0; min-width: 0; }
+
+  /* ---- cards ---- */
+  .panel {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .panel-title {
+    font-size: 13.5px;
+    font-weight: 800;
+    margin: 0 0 3px;
+  }
+  .panel-note {
+    font-size: 11.5px;
+    color: var(--text-secondary);
+    margin: 0 0 12px;
+    line-height: 1.5;
+  }
+
+  .node {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    background: var(--page);
+    border: 1px solid var(--grid);
+    border-left: 3px solid var(--kind, var(--muted));
+    border-radius: 8px;
+    padding: 8px 10px;
+    margin-bottom: 7px;
+  }
+  .node:last-child { margin-bottom: 0; }
+  .node strong {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+  .node span.file {
+    display: block;
+    font-size: 11px;
+    color: var(--muted);
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    margin-top: 1px;
+  }
+  .node.dashed {
+    border-style: dashed;
+    opacity: 0.68;
+  }
+  .node-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    padding: 2px 7px;
+    border-radius: 999px;
+    margin-left: 6px;
+    vertical-align: 1px;
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .side-flow {
+    background: var(--surface-1);
+    border: 1px dashed var(--c-external);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+
+  .footnote {
+    margin-top: 30px;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+    border-top: 1px solid var(--grid);
+    padding-top: 16px;
+  }
+  .footnote strong { color: var(--text-secondary); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>AVRMD — request path &amp; data flow</h1>
+  <p class="subtitle">No database in the request path: pages render from flat JSON, checked into <code>data/</code>, refreshed by a daily job that runs outside the web app.</p>
+
+  <div class="legend">
+    <div class="legend-item"><span class="swatch" style="background:var(--c-static)"></span>Static / build-time <small>— prerendered HTML</small></div>
+    <div class="legend-item"><span class="swatch" style="background:var(--c-dynamic)"></span>Dynamic / server <small>— runs per request</small></div>
+    <div class="legend-item"><span class="swatch" style="background:var(--c-client)"></span>Client-side <small>— runs in the browser</small></div>
+    <div class="legend-item"><span class="swatch" style="background:var(--c-data)"></span>Data files <small>— flat JSON</small></div>
+    <div class="legend-item"><span class="swatch" style="background:var(--c-external)"></span>External <small>— network / scheduled job</small></div>
+  </div>
+
+  <!-- Visitor -->
+  <div class="layer">
+    <div class="row">
+      <div class="col panel" style="text-align:center;">
+        <div class="panel-title">Visitor</div>
+        <div class="panel-note" style="margin:0;">Browser at avrmd.cyalin.com</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector"><svg width="16" height="20"><line x1="8" y1="0" x2="8" y2="14" stroke="#c3c2b7" stroke-width="2"/><polygon points="8,20 3,12 13,12" fill="#c3c2b7"/></svg></div>
+
+  <!-- Edge -->
+  <div class="layer">
+    <div class="row">
+      <div class="col panel" style="text-align:center;">
+        <div class="panel-title">Caddy — edge &amp; TLS</div>
+        <div class="panel-note" style="margin:0;">Terminates HTTPS, reverse-proxies to <code>127.0.0.1:3005</code></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector"><svg width="16" height="20"><line x1="8" y1="0" x2="8" y2="14" stroke="#c3c2b7" stroke-width="2"/><polygon points="8,20 3,12 13,12" fill="#c3c2b7"/></svg></div>
+
+  <!-- App server -->
+  <div class="layer">
+    <div class="layer-label">avrmd.service — Next.js standalone build, systemd-managed (:3005)</div>
+    <div class="grid-3">
+
+      <div class="panel">
+        <div class="panel-title">App Router — prerendered<span class="badge" style="background:#cde2fb;color:#0d366b;">STATIC</span></div>
+        <div class="panel-note">Built once; served as plain HTML.</div>
+        <div class="node-list">
+          <div class="node" style="--kind:var(--c-static)"><span><strong>Home, Topics, About, For&nbsp;organizations, Participate, Community, Gear, AI, Sign-in</strong><span class="file">app/*/page.tsx</span></span></div>
+          <div class="node" style="--kind:var(--c-static)"><span><strong>18 record pages</strong><span class="file">app/entities/[slug] — generateStaticParams</span></span></div>
+          <div class="node" style="--kind:var(--c-static)"><span><strong>6 topic hubs</strong><span class="file">app/topics/[slug] — generateStaticParams</span></span></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">App Router — per request<span class="badge" style="background:#fbe0ce;color:#7a2f00;">DYNAMIC</span></div>
+        <div class="panel-note">Re-render on every hit; read live search params or disk state.</div>
+        <div class="node-list">
+          <div class="node" style="--kind:var(--c-dynamic)"><span><strong>/explore, /resources</strong><span class="file">read searchParams</span></span></div>
+          <div class="node" style="--kind:var(--c-dynamic)"><span><strong>/workspace</strong><span class="file">export const dynamic = "force-dynamic" — reads discovery queue from disk</span></span></div>
+          <div class="node" style="--kind:var(--c-dynamic)"><span><strong>/api/assist</strong><span class="file">app/api/assist/route.ts</span></span></div>
+          <div class="node" style="--kind:var(--c-dynamic)"><span><strong>/api/intake</strong><span class="file">app/api/intake/route.ts — validates only, stores nothing</span></span></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Hydrated in the browser<span class="badge" style="background:#c9f0e0;color:#0a5c3f;">CLIENT</span></div>
+        <div class="panel-note">Only 6 of 17 components ship JS — everything else is server-rendered.</div>
+        <div class="node-list">
+          <div class="node" style="--kind:var(--c-client)"><span><strong>AiAssistant</strong><span class="file">components/ai-assistant.tsx — floating panel, local retrieval</span></span></div>
+          <div class="node" style="--kind:var(--c-client)"><span><strong>CatalogExplorer</strong><span class="file">components/catalog-explorer.tsx — filters, URL-synced</span></span></div>
+          <div class="node" style="--kind:var(--c-client)"><span><strong>MobileMenu, WorkflowForm, FollowButton</strong><span class="file">components/*.tsx</span></span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="connector"><svg width="16" height="20"><line x1="8" y1="0" x2="8" y2="14" stroke="#c3c2b7" stroke-width="2"/><polygon points="8,20 3,12 13,12" fill="#c3c2b7"/></svg></div>
+
+  <!-- Domain layer -->
+  <div class="layer">
+    <div class="layer-label">Domain layer — pure TypeScript, no React, independently tested</div>
+    <div class="panel">
+      <div class="panel-note" style="margin-bottom:10px;">Pages and routes call these; nothing below imports React. 44 vitest cases sit alongside these files.</div>
+      <div class="grid-3">
+        <div class="node-list">
+          <div class="node" style="--kind:var(--c-static)"><span><strong>catalog.ts</strong><span class="file">reads catalog.json, search + filters</span></span></div>
+          <div class="node" style="--kind:var(--c-static)"><span><strong>topics.ts</strong><span class="file">derives 6 hubs by set-intersection</span></span></div>
+          <div class="node" style="--kind:var(--c-static)"><span><strong>community.ts / resources.ts</strong><span class="file">seeded threads · related sites</span></span></div>
+        </div>
+        <div class="node-list">
+          <div class="node" style="--kind:var(--c-static)"><span><strong>ads.ts</strong><span class="file">getActiveAds — status/date/context filter</span></span></div>
+          <div class="node" style="--kind:var(--c-static)"><span><strong>workflows.ts</strong><span class="file">Zod contract for the 6 intake forms</span></span></div>
+          <div class="node" style="--kind:var(--c-static)"><span><strong>catalog-schema.ts</strong><span class="file">Zod contract for a catalog record</span></span></div>
+        </div>
+        <div class="node-list">
+          <div class="node" style="--kind:var(--c-dynamic)"><span><strong>assistant/engine.ts</strong><span class="file">deterministic scoring — runs client &amp; server</span></span></div>
+          <div class="node" style="--kind:var(--c-dynamic)"><span><strong>assistant/vocab.ts</strong><span class="file">phrase → catalog-vocabulary synonym table</span></span></div>
+          <div class="node dashed"><span><strong>lib/db/*</strong> <span class="file" style="display:inline;">— written, imported nowhere</span><span class="file">Drizzle schema for the future Postgres swap</span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector"><svg width="16" height="20"><line x1="8" y1="0" x2="8" y2="14" stroke="#c3c2b7" stroke-width="2"/><polygon points="8,20 3,12 13,12" fill="#c3c2b7"/></svg></div>
+
+  <!-- Data layer + side flow -->
+  <div class="layer">
+    <div class="layer-label">Data — flat JSON on disk, no database</div>
+    <div class="row" style="align-items:stretch;">
+
+      <div class="col panel" style="flex:1.3;">
+        <div class="panel-title">data/*.json</div>
+        <div class="panel-note">Read at build time by static pages, at request time by /workspace.</div>
+        <div class="grid-2">
+          <div class="node-list">
+            <div class="node" style="--kind:var(--c-data)"><span><strong>catalog.json</strong><span class="file">18 records — versioned source of truth</span></span></div>
+            <div class="node" style="--kind:var(--c-data)"><span><strong>resources.json</strong><span class="file">20 related websites</span></span></div>
+            <div class="node" style="--kind:var(--c-data)"><span><strong>sources.json</strong><span class="file">allowlisted discovery sources</span></span></div>
+          </div>
+          <div class="node-list">
+            <div class="node" style="--kind:var(--c-data)"><span><strong>candidates.json</strong><span class="file">pending discoveries — gitignored</span></span></div>
+            <div class="node" style="--kind:var(--c-data)"><span><strong>seen.json</strong><span class="file">dedupe fingerprints — gitignored</span></span></div>
+            <div class="node" style="--kind:var(--c-data)"><span><strong>discovery-log.json</strong><span class="file">last-run summary — gitignored</span></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col side-flow" style="flex:1;">
+        <div class="panel-title">Daily discovery <span class="badge" style="background:#f9d9e6;color:#8a1f4d;">EXTERNAL, SCHEDULED</span></div>
+        <div class="panel-note">Runs outside the web app entirely — writes candidates, never publishes them.</div>
+        <div class="node-list">
+          <div class="node" style="--kind:var(--c-external)"><span><strong>avrmd-discover.timer</strong><span class="file">systemd, daily</span></span></div>
+          <div class="node" style="--kind:var(--c-external)"><span><strong>scripts/discover.mjs</strong><span class="file">→ PubMed, Europe&nbsp;PMC, openFDA, ClinicalTrials.gov</span></span></div>
+          <div class="node dashed"><span><strong>scripts/approve-candidate.mjs</strong><span class="file">human-run — writes catalog.json only on approval</span></span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- OpenRouter fallback -->
+  <div class="layer" style="margin-top:22px;">
+    <div class="row">
+      <div class="col panel side-flow" style="text-align:left;">
+        <div class="panel-title">/api/assist → OpenRouter <span class="badge" style="background:#f9d9e6;color:#8a1f4d;">EXTERNAL, OPTIONAL</span></div>
+        <div class="panel-note" style="margin:0;">The <strong>only</strong> outbound call in the request path — and only when the local match is weak <em>and</em> a key is configured. 2.5s timeout, no retry, no paid fallback. It returns catalog-vocabulary filters, never answer text; the same local engine re-runs with them. With no key set, this box is simply never reached.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footnote">
+    <strong>Read order:</strong> a visitor's request never crosses more than the App Router and the domain layer — the data layer is files, not a service, so there is nothing to keep warm and nothing between visitor and page that can go down independently. The discovery job and OpenRouter are the only two paths that leave the server, and both are additive: the site is fully functional with the timer disabled and no API key set.
+  </div>
+
+</div>
+</body>
+</html>

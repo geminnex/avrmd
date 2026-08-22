@@ -1,0 +1,43 @@
+[
+  {
+    "id": "pubmed-medical-xr",
+    "kind": "pubmed",
+    "label": "PubMed",
+    "entityKindHint": "evidence",
+    "rightsBasis": "NCBI E-utilities public metadata API; citation metadata only.",
+    "query": "(\"virtual reality\"[Title/Abstract] OR \"augmented reality\"[Title/Abstract] OR \"mixed reality\"[Title/Abstract]) AND (surgery OR rehabilitation OR nursing OR education OR pain)",
+    "recentDays": 30,
+    "limit": 15,
+    "enabled": true
+  },
+  {
+    "id": "europepmc-medical-xr",
+    "kind": "europepmc",
+    "label": "Europe PMC",
+    "entityKindHint": "evidence",
+    "rightsBasis": "Europe PMC REST API; open metadata.",
+    "query": "(\"virtual reality\" OR \"augmented reality\") AND (surgery OR rehabilitation OR simulation) AND (OPEN_ACCESS:y)",
+    "limit": 15,
+    "enabled": true
+  },
+  {
+    "id": "openfda-510k-xr",
+    "kind": "openfda",
+    "label": "FDA 510(k) clearances",
+    "entityKindHint": "evidence",
+    "rightsBasis": "openFDA public domain US government data.",
+    "query": "device_name:(reality+OR+immersive)",
+    "limit": 15,
+    "enabled": true
+  },
+  {
+    "id": "clinicaltrials-xr",
+    "kind": "clinicaltrials",
+    "label": "ClinicalTrials.gov",
+    "entityKindHint": "project",
+    "rightsBasis": "ClinicalTrials.gov API v2; public registry metadata.",
+    "query": "virtual reality OR augmented reality",
+    "limit": 15,
+    "enabled": true
+  }
+]

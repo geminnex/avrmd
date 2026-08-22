@@ -1,0 +1,117 @@
+[
+  {
+    "from": "relievrx-k243417",
+    "to": "relievrx",
+    "type": "evidence-for"
+  },
+  {
+    "from": "vr-skills-therapy-review",
+    "to": "relievrx",
+    "type": "evidence-for"
+  },
+  {
+    "from": "osso-vr",
+    "to": "fundamental-xr",
+    "type": "comparable-to"
+  },
+  {
+    "from": "precisionos",
+    "to": "osso-vr",
+    "type": "comparable-to"
+  },
+  {
+    "from": "oxford-medical-simulation",
+    "to": "simx",
+    "type": "comparable-to"
+  },
+  {
+    "from": "xrhealth",
+    "to": "relievrx",
+    "type": "comparable-to"
+  },
+  {
+    "from": "united-xr-europe-2026",
+    "to": "medxr-2026",
+    "type": "comparable-to"
+  },
+  {
+    "from": "relievrx",
+    "to": "home-therapy-adherence",
+    "type": "addresses"
+  },
+  {
+    "from": "xrhealth",
+    "to": "home-therapy-adherence",
+    "type": "addresses"
+  },
+  {
+    "from": "xrhealth",
+    "to": "remote-rehab-supervision",
+    "type": "addresses"
+  },
+  {
+    "from": "oxford-medical-simulation",
+    "to": "simulation-throughput",
+    "type": "addresses"
+  },
+  {
+    "from": "oxford-medical-simulation",
+    "to": "curriculum-fit",
+    "type": "addresses"
+  },
+  {
+    "from": "simx",
+    "to": "rare-emergency-rehearsal",
+    "type": "addresses"
+  },
+  {
+    "from": "simx",
+    "to": "simulation-realism",
+    "type": "addresses"
+  },
+  {
+    "from": "osso-vr",
+    "to": "manual-skill-without-theatre",
+    "type": "addresses"
+  },
+  {
+    "from": "osso-vr",
+    "to": "skill-assessment-objectivity",
+    "type": "addresses"
+  },
+  {
+    "from": "precisionos",
+    "to": "manual-skill-without-theatre",
+    "type": "addresses"
+  },
+  {
+    "from": "precisionos",
+    "to": "skill-assessment-objectivity",
+    "type": "addresses"
+  },
+  {
+    "from": "fundamental-xr",
+    "to": "manual-skill-without-theatre",
+    "type": "addresses"
+  },
+  {
+    "from": "surgical-theater-xr",
+    "to": "imaging-to-3d-turnaround",
+    "type": "addresses"
+  },
+  {
+    "from": "surgical-theater-xr",
+    "to": "intraoperative-navigation",
+    "type": "addresses"
+  },
+  {
+    "from": "healthcare-biorobotics-lab",
+    "to": "stroke-motor-recovery",
+    "type": "addresses"
+  },
+  {
+    "from": "healthcare-biorobotics-lab",
+    "to": "lab-to-practice-motor-learning",
+    "type": "addresses"
+  }
+]

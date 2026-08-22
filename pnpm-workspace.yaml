@@ -1,0 +1,18 @@
+packages:
+  - "."
+
+storeDir: .pnpm-store
+confirmModulesPurge: false
+
+patchedDependencies:
+  "@opennextjs/cloudflare@1.19.11": patches/@opennextjs__cloudflare@1.19.11.patch
+
+allowBuilds:
+  esbuild: true
+  sharp: true
+  workerd: true
+
+onlyBuiltDependencies:
+  - esbuild
+  - sharp
+  - workerd

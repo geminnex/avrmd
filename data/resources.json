@@ -1,0 +1,162 @@
+[
+  {
+    "slug": "journal-of-medical-extended-reality",
+    "name": "Journal of Medical Extended Reality",
+    "url": "https://www.liebertpub.com/journal/jmxr",
+    "category": "research",
+    "scope": "medical",
+    "description": "Peer-reviewed journal dedicated to extended reality in clinical practice, education, and research."
+  },
+  {
+    "slug": "frontiers-in-virtual-reality",
+    "name": "Frontiers in Virtual Reality",
+    "url": "https://www.frontiersin.org/journals/virtual-reality",
+    "category": "research",
+    "scope": "medical",
+    "description": "Open-access journal covering virtual reality research, including a medicine and healthcare section."
+  },
+  {
+    "slug": "jmir-serious-games",
+    "name": "JMIR Serious Games",
+    "url": "https://games.jmir.org/",
+    "category": "research",
+    "scope": "medical",
+    "description": "Peer-reviewed open-access journal on games, gamification, and immersive technology for health."
+  },
+  {
+    "slug": "ieee-vr",
+    "name": "IEEE VR",
+    "url": "https://ieeevr.org/",
+    "category": "conferences",
+    "scope": "general-xr",
+    "description": "The long-running IEEE conference on virtual reality and 3D user interfaces."
+  },
+  {
+    "slug": "ieee-ismar",
+    "name": "IEEE ISMAR",
+    "url": "https://www.ismar.net/",
+    "category": "conferences",
+    "scope": "general-xr",
+    "description": "International Symposium on Mixed and Augmented Reality, the main academic venue for AR and MR."
+  },
+  {
+    "slug": "miccai",
+    "name": "MICCAI",
+    "url": "https://www.miccai.org/",
+    "category": "conferences",
+    "scope": "medical",
+    "description": "Medical Image Computing and Computer Assisted Intervention society, relevant to surgical planning and visualization."
+  },
+  {
+    "slug": "amia",
+    "name": "AMIA",
+    "url": "https://amia.org/",
+    "category": "bodies",
+    "scope": "medical",
+    "description": "American Medical Informatics Association, covering clinical informatics standards and practice."
+  },
+  {
+    "slug": "society-for-simulation-in-healthcare",
+    "name": "Society for Simulation in Healthcare",
+    "url": "https://www.ssih.org/",
+    "category": "bodies",
+    "scope": "medical",
+    "description": "Professional society for healthcare simulation, including accreditation and educator certification."
+  },
+  {
+    "slug": "himss",
+    "name": "HIMSS",
+    "url": "https://www.himss.org/",
+    "category": "bodies",
+    "scope": "medical",
+    "description": "Health information and technology society covering digital health adoption and policy."
+  },
+  {
+    "slug": "fda-ar-vr-medical-devices",
+    "name": "FDA — AR and VR medical devices",
+    "url": "https://www.fda.gov/medical-devices/digital-health-center-excellence/augmented-reality-and-virtual-reality-medical-devices",
+    "category": "bodies",
+    "scope": "medical",
+    "description": "The US regulator's overview of augmented and virtual reality medical devices, with a list of authorised devices."
+  },
+  {
+    "slug": "immersive-learning-research-network",
+    "name": "Immersive Learning Research Network",
+    "url": "https://www.immersivelrn.org/",
+    "category": "learning",
+    "scope": "general-xr",
+    "description": "Research network and annual conference focused on immersive learning across disciplines."
+  },
+  {
+    "slug": "road-to-vr",
+    "name": "Road to VR",
+    "url": "https://www.roadtovr.com/",
+    "category": "news",
+    "scope": "general-xr",
+    "description": "Industry news and analysis covering VR and AR hardware, software, and platform shifts."
+  },
+  {
+    "slug": "uploadvr",
+    "name": "UploadVR",
+    "url": "https://www.uploadvr.com/",
+    "category": "news",
+    "scope": "general-xr",
+    "description": "Daily coverage of virtual and mixed reality headsets, software, and industry developments."
+  },
+  {
+    "slug": "vrscout",
+    "name": "VRScout",
+    "url": "https://vrscout.com/",
+    "category": "news",
+    "scope": "general-xr",
+    "description": "Immersive technology news covering applications across entertainment, enterprise, and healthcare."
+  },
+  {
+    "slug": "auganix",
+    "name": "Auganix",
+    "url": "https://www.auganix.org/",
+    "category": "news",
+    "scope": "general-xr",
+    "description": "AR, VR, and spatial computing industry news with a business and enterprise focus."
+  },
+  {
+    "slug": "ar-insider",
+    "name": "AR Insider",
+    "url": "https://arinsider.co/",
+    "category": "news",
+    "scope": "general-xr",
+    "description": "Analysis and market data on spatial computing, augmented reality, and adjacent sectors."
+  },
+  {
+    "slug": "awe",
+    "name": "AWE — Augmented World Expo",
+    "url": "https://www.awexr.com/",
+    "category": "conferences",
+    "scope": "general-xr",
+    "description": "Long-running XR industry conference and expo series held across several regions."
+  },
+  {
+    "slug": "khronos-openxr",
+    "name": "Khronos Group — OpenXR",
+    "url": "https://www.khronos.org/openxr/",
+    "category": "bodies",
+    "scope": "general-xr",
+    "description": "The open standard for XR runtimes and devices, which underpins cross-headset portability."
+  },
+  {
+    "slug": "vr-ar-association",
+    "name": "VR/AR Association",
+    "url": "https://www.thevrara.com/",
+    "category": "bodies",
+    "scope": "general-xr",
+    "description": "International industry association with regional chapters and a healthcare committee."
+  },
+  {
+    "slug": "siggraph",
+    "name": "ACM SIGGRAPH",
+    "url": "https://www.siggraph.org/",
+    "category": "conferences",
+    "scope": "general-xr",
+    "description": "Computer graphics and interactive techniques community, where much XR display research appears."
+  }
+]

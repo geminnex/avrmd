@@ -1,0 +1,20 @@
+node_modules
+.next
+.open-next
+.wrangler
+out
+dist
+coverage
+.env
+.env.local
+.pnpm-store
+*.log
+*.tsbuildinfo
+site-build.tgz
+
+# Discovery runtime state. data/catalog.json, resources.json and sources.json
+# are the versioned sources of truth; these three are regenerated daily.
+data/candidates.json
+data/signals.json
+data/seen.json
+data/discovery-log.json

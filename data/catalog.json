@@ -1,0 +1,1098 @@
+[
+  {
+    "id": "org-appliedvr",
+    "slug": "appliedvr",
+    "name": "AppliedVR",
+    "kind": "organization",
+    "typeLabel": "Healthcare technology company",
+    "summary": "Developer of immersive therapeutics, including the prescription-use RelieVRx system for chronic lower-back pain.",
+    "modalities": [
+      "VR"
+    ],
+    "specialties": [
+      "Pain management",
+      "Behavioral health"
+    ],
+    "useCases": [
+      "Therapy support",
+      "Home care"
+    ],
+    "geography": "United States",
+    "stage": "Commercial",
+    "reviewStatus": "source-reviewed",
+    "claimStatus": "unclaimed",
+    "aiAssisted": false,
+    "lastReviewed": "2026-07-23",
+    "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf24/K243417.pdf",
+    "sourceLabel": "FDA 510(k) summary K243417",
+    "sourceNote": "Manufacturer identity and device context checked against an FDA record.",
+    "accent": "coral",
+    "featured": true,
+    "relatedSlugs": [
+      "relievrx",
+      "relievrx-k243417"
+    ]
+  },
+  {
+    "id": "org-osso",
+    "slug": "osso-vr",
+    "name": "Osso VR",
+    "kind": "organization",
+    "typeLabel": "Immersive training company",
+    "summary": "Healthcare procedural-skills training platform offering VR scenarios, assessment, collaboration, and learning-management tools.",
+    "modalities": [
+      "VR"
+    ],
+    "specialties": [
+      "Nursing",
+      "Surgery",
+      "Medical education"
+    ],
+    "useCases": [
+      "Skills training",
+      "Assessment",
+      "Team training"
+    ],
+    "geography": "United States",
+    "stage": "Commercial",
+    "reviewStatus": "source-reviewed",
+    "claimStatus": "unclaimed",
+    "aiAssisted": false,
+    "lastReviewed": "2026-07-23",
+    "sourceUrl": "https://www.ossovr.com/",
+    "sourceLabel": "Osso VR official website",
+    "sourceNote": "Product scope summarized from the official platform description.",
+    "accent": "teal",
+    "featured": true,
+    "relatedSlugs": [
+      "precisionos",
+      "fundamental-xr"
+    ]
+  },
+  {
+    "id": "sol-precisionos",
+    "slug": "precisionos",
+    "name": "PrecisionOS",
+    "kind": "solution",
+    "typeLabel": "Surgical training platform",
+    "owner": "PrecisionOS",
+    "summary": "A VR and mobile training platform focused on surgical skills, case practice, feedback, and institution-level learning insights.",
+    "modalities": [
+      "VR"
+    ],
+    "specialties": [
+      "Orthopedics",
+      "Surgery",
+      "Dentistry"
+    ],
+    "useCases": [
+      "Skills training",
+      "Assessment",
+      "Just-in-time practice"
+    ],
+    "geography": "Canada / Global",
+    "stage": "Commercial",
+    "reviewStatus": "source-reviewed",
+    "claimStatus": "unclaimed",
+    "aiAssisted": false,
+    "lastReviewed": "2026-07-23",
+    "sourceUrl": "https://www.precisionostech.com/individuals/",
+    "sourceLabel": "PrecisionOS official website",
+    "sourceNote": "Capabilities summarized from the current official product page.",
+    "accent": "blue",
+    "featured": true,
+    "relatedSlugs": [
+      "osso-vr",
+      "fundamental-xr"
+    ]
+  },
+  {
+    "id": "org-fundamental",
+    "slug": "fundamental-xr",
+    "name": "Fundamental XR",
+    "kind": "organization",
+    "typeLabel": "Immersive learning company",
+    "summary": "Developer of immersive training experiences spanning virtual and mixed reality for clinical and procedural learning.",
+    "modalities": [
+      "VR",
+      "MR"
+    ],
+    "specialties": [
+      "Surgery",
+      "Medical devices",
+      "Medical education"
+    ],
+    "useCases": [
+      "Skills training",
+      "Product training",
+      "Remote assistance"
+    ],
+    "geography": "United Kingdom / Global",
+    "stage": "Commercial",
+    "reviewStatus": "source-reviewed",
+    "claimStatus": "unclaimed",
+    "aiAssisted": false,
+    "lastReviewed": "2026-07-23",
+    "sourceUrl": "https://www.fundamentalxr.com/",
+    "sourceLabel": "Fundamental XR official website",
+    "sourceNote": "Modality and use-case scope summarized from the official company site.",
+    "accent": "violet",
+    "featured": true,
+    "relatedSlugs": [
+      "osso-vr",
+      "precisionos"
+    ]
+  },
+  {
+    "id": "sol-oms",
+    "slug": "oxford-medical-simulation",
+    "name": "Oxford Medical Simulation",
+    "kind": "solution",
+    "typeLabel": "Clinical simulation platform",
+    "owner": "Oxford Medical Simulation",
+    "summary": "Healthcare-first clinical simulation delivered through VR headsets or standard screens, with customizable scenarios and learning analytics.",
+    "modalities": [
+      "VR",
+      "Screen-based"
+    ],
+    "specialties": [
+      "Nursing",
+      "Emergency care",
+      "Medical education"
+    ],
+    "useCases": [
+      "Clinical judgment",
+      "Communication",
+      "Team training"
+    ],
+    "geography": "United Kingdom / Global",
+    "stage": "Commercial",
+    "reviewStatus": "source-reviewed",
+    "claimStatus": "unclaimed",
+    "aiAssisted": false,
+    "lastReviewed": "2026-07-23",
+    "sourceUrl": "https://oxfordmedicalsimulation.com/en-gb/platform/",
+    "sourceLabel": "Oxford Medical Simulation official platform page",
+    "sourceNote": "Delivery modes and education functions checked against the official platform page.",
+    "accent": "gold",
+    "featured": true,
+    "relatedSlugs": [
+      "simx",
+      "healthcare-biorobotics-lab"
+    ]
+  },
+  {
+    "id": "sol-simx",
+    "slug": "simx",
+    "name": "SimX",
+    "kind": "solution",
+    "typeLabel": "Virtual-patient simulation",
+    "owner": "SimX",
+    "summary": "Immersive virtual-patient encounters for clinical teams, with multiplayer simulation and configurable scenarios across care environments.",
+    "modalities": [
+      "VR"
+    ],
+    "specialties": [
+      "Emergency care",
+      "Nursing",
+      "Military medicine"
+    ],
+    "useCases": [
+      "Clinical simulation",
+      "Team training",
+      "Assessment"
+    ],
+    "geography": "United States / Global",
+    "stage": "Commercial",
+    "reviewStatus": "source-reviewed",
+    "claimStatus": "unclaimed",
+    "aiAssisted": false,
+    "lastReviewed": "2026-07-23",
+    "sourceUrl": "https://www.simxvr.com/",
+    "sourceLabel": "SimX official website",
+    "sourceNote": "Scenario, multiplayer, and audience details summarized from the official site.",
+    "accent": "coral",
+    "featured": true,
+    "relatedSlugs": [
+      "oxford-medical-simulation"
+    ]
+  },
+  {
+    "id": "sol-surgical-theater",
+    "slug": "surgical-theater-xr",
+    "name": "Surgical Theater XR",
+    "kind": "solution",
+    "typeLabel": "Surgical visualization platform",
+    "owner": "Surgical Theater",
+    "summary": "Transforms medical imaging into interactive 3D models for surgical planning, rehearsal, patient engagement, and intraoperative XR visualization.",
+    "modalities": [
+      "AR",
+      "VR"
+    ],
+    "specialties": [
+      "Neurosurgery",
+      "Spine surgery",
+      "Radiology"
+    ],
+    "useCases": [
+      "Planning",
+      "Visualization",
+      "Patient communication"
+    ],
+    "geography": "United States / Global",
+    "stage": "Commercial",
+    "reviewStatus": "source-reviewed",
+    "claimStatus": "unclaimed",
+    "aiAssisted": false,
+    "lastReviewed": "2026-07-23",
+    "sourceUrl": "https://surgicaltheater.com/",
+    "sourceLabel": "Surgical Theater official website",
+    "sourceNote": "Use cases summarized from the official product overview.",
+    "accent": "blue",
+    "featured": true,
+    "relatedSlugs": [
+      "healthcare-biorobotics-lab"
+    ]
+  },
+  {
+    "id": "sol-xrhealth",
+    "slug": "xrhealth",
+    "name": "XRHealth",
+    "kind": "solution",
+    "typeLabel": "XR care platform",
+    "owner": "XRHealth",
+    "summary": "An XR healthcare platform connecting immersive applications with clinician workflows and remote therapeutic services.",
+    "modalities": [
+      "VR"
+    ],
+    "specialties": [
+      "Rehabilitation",
+      "Behavioral health",
+      "Remote care"
+    ],
+    "useCases": [
+      "Therapy support",
+      "Remote care",
+      "Progress monitoring"
+    ],
+    "geography": "Global",
+    "stage": "Commercial",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "unclaimed",
+    "aiAssisted": false,
+    "lastReviewed": "2026-07-23",
+    "sourceUrl": "https://www.xr.health/",
+    "sourceLabel": "XRHealth official website",
+    "sourceNote": "High-level platform description only; individual applications require separate review.",
+    "accent": "teal",
+    "relatedSlugs": [
+      "relievrx"
+    ]
+  },
+  {
+    "id": "sol-relievrx",
+    "slug": "relievrx",
+    "name": "RelieVRx",
+    "kind": "solution",
+    "typeLabel": "Prescription VR system",
+    "owner": "AppliedVR",
+    "summary": "A prescription-use immersive VR system providing adjunctive, skills-based treatment for adults with chronic lower-back pain.",
+    "modalities": [
+      "VR"
+    ],
+    "specialties": [
+      "Pain management"
+    ],
+    "useCases": [
+      "Therapy support",
+      "Home care"
+    ],
+    "geography": "United States",
+    "stage": "Commercial medical device",
+    "reviewStatus": "source-reviewed",
+    "claimStatus": "unclaimed",
+    "aiAssisted": false,
+    "lastReviewed": "2026-07-23",
+    "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf24/K243417.pdf",
+    "sourceLabel": "FDA 510(k) summary K243417",
+    "sourceNote": "Description is limited to the official indication and device summary.",
+    "accent": "violet",
+    "featured": true,
+    "regulatoryNote": "United States: FDA Class II device record K243417. Regulatory status is region- and date-specific.",
+    "relatedSlugs": [
+      "appliedvr",
+      "relievrx-k243417",
+      "vr-skills-therapy-review"
+    ]
+  },
+  {
+    "id": "evidence-k243417",
+    "slug": "relievrx-k243417",
+    "name": "RelieVRx FDA 510(k) Summary \u2014 K243417",
+    "kind": "evidence",
+    "typeLabel": "Regulatory record",
+    "summary": "FDA summary describing RelieVRx, its intended use, device classification, and relationship to the predicate device.",
+    "modalities": [
+      "VR"
+    ],
+    "specialties": [
+      "Pain management"
+    ],
+    "useCases": [
+      "Regulatory reference",
+      "Therapy support"
+    ],
+    "geography": "United States",
+    "stage": "Public record",
+    "reviewStatus": "source-reviewed",
+    "claimStatus": "not-claimable",
+    "aiAssisted": false,
+    "lastReviewed": "2026-07-23",
+    "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf24/K243417.pdf",
+    "sourceLabel": "U.S. Food and Drug Administration",
+    "sourceNote": "Citation metadata and short AVRMD summary; source document is not republished.",
+    "accent": "gold",
+    "relatedSlugs": [
+      "relievrx",
+      "appliedvr"
+    ]
+  },
+  {
+    "id": "evidence-clbp-review",
+    "slug": "vr-skills-therapy-review",
+    "name": "VR-delivered skills-based therapy for chronic lower-back pain",
+    "kind": "evidence",
+    "typeLabel": "Peer-reviewed article",
+    "summary": "A 2025 article tracing development, authorization, and implementation considerations for a VR-delivered chronic lower-back-pain program.",
+    "modalities": [
+      "VR"
+    ],
+    "specialties": [
+      "Pain management",
+      "Behavioral health"
+    ],
+    "useCases": [
+      "Research",
+      "Clinical implementation"
+    ],
+    "geography": "Global",
+    "stage": "Published",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "not-claimable",
+    "aiAssisted": false,
+    "lastReviewed": "2026-07-23",
+    "sourceUrl": "https://www.frontiersin.org/journals/virtual-reality/articles/10.3389/frvir.2025.1613188/full",
+    "sourceLabel": "Frontiers in Virtual Reality",
+    "sourceNote": "Citation and original AVRMD summary; article text is not stored.",
+    "accent": "violet",
+    "relatedSlugs": [
+      "relievrx",
+      "appliedvr"
+    ]
+  },
+  {
+    "id": "project-hbl",
+    "slug": "healthcare-biorobotics-lab",
+    "name": "Healthcare Biorobotics Lab: VR/AR, haptics and motor learning",
+    "kind": "project",
+    "typeLabel": "University research program",
+    "owner": "University of Oxford",
+    "summary": "Research exploring XR devices, haptics, motor learning, sensorimotor coordination, and medical-training applications.",
+    "modalities": [
+      "VR",
+      "AR",
+      "Haptics"
+    ],
+    "specialties": [
+      "Rehabilitation",
+      "Medical education",
+      "Human factors"
+    ],
+    "useCases": [
+      "Research",
+      "Motor learning",
+      "Training"
+    ],
+    "geography": "United Kingdom",
+    "stage": "Active research",
+    "reviewStatus": "source-reviewed",
+    "claimStatus": "unclaimed",
+    "aiAssisted": false,
+    "lastReviewed": "2026-07-23",
+    "sourceUrl": "https://eng.ox.ac.uk/hbl/vrar-haptics-and-motor-learning",
+    "sourceLabel": "University of Oxford",
+    "sourceNote": "Research themes summarized from the university page.",
+    "accent": "teal",
+    "relatedSlugs": [
+      "oxford-medical-simulation",
+      "surgical-theater-xr"
+    ]
+  },
+  {
+    "id": "event-unitedxr",
+    "slug": "united-xr-europe-2026",
+    "name": "United XR Europe 2026",
+    "kind": "event",
+    "typeLabel": "XR conference and expo",
+    "summary": "A European XR industry conference and expo. AVRMD tracks it as a broad ecosystem event rather than a medical-only conference.",
+    "modalities": [
+      "VR",
+      "AR",
+      "MR"
+    ],
+    "specialties": [
+      "Cross-specialty"
+    ],
+    "useCases": [
+      "Networking",
+      "Technology scouting"
+    ],
+    "geography": "Europe",
+    "stage": "Upcoming",
+    "reviewStatus": "source-reviewed",
+    "claimStatus": "unclaimed",
+    "aiAssisted": false,
+    "lastReviewed": "2026-07-23",
+    "sourceUrl": "https://www.awexr.com/eu-2026",
+    "sourceLabel": "United XR Europe official event page",
+    "sourceNote": "Dates and event scope checked against the organizer page.",
+    "accent": "coral",
+    "eventDate": "2026-12-07",
+    "relatedSlugs": [
+      "medxr-2026"
+    ]
+  },
+  {
+    "id": "event-medxr",
+    "slug": "medxr-2026",
+    "name": "MedXR 2026",
+    "kind": "event",
+    "typeLabel": "Academic workshop",
+    "summary": "An IEEE COMPSAC workshop focused on AR, VR, XR, AI-driven immersive visualization, medical imaging, and clinical applications.",
+    "modalities": [
+      "VR",
+      "AR"
+    ],
+    "specialties": [
+      "Medical imaging",
+      "Clinical research"
+    ],
+    "useCases": [
+      "Research exchange",
+      "Visualization"
+    ],
+    "geography": "Global",
+    "stage": "2026 event",
+    "reviewStatus": "source-reviewed",
+    "claimStatus": "unclaimed",
+    "aiAssisted": false,
+    "lastReviewed": "2026-07-23",
+    "sourceUrl": "https://ieeecompsac.computer.org/2026/medxr/",
+    "sourceLabel": "IEEE COMPSAC MedXR 2026",
+    "sourceNote": "Scope summarized from the official workshop page.",
+    "accent": "blue",
+    "relatedSlugs": [
+      "united-xr-europe-2026",
+      "healthcare-biorobotics-lab"
+    ]
+  },
+  {
+    "id": "gear-quest-3",
+    "slug": "meta-quest-3",
+    "name": "Meta Quest 3",
+    "kind": "solution",
+    "typeLabel": "Standalone VR/MR headset",
+    "owner": "Meta",
+    "summary": "A standalone virtual and mixed reality headset with full-colour passthrough and inside-out tracking, requiring no external sensors or tethered computer.",
+    "modalities": [
+      "VR",
+      "MR"
+    ],
+    "specialties": [
+      "Cross-specialty"
+    ],
+    "useCases": [
+      "Hardware platform"
+    ],
+    "geography": "Global",
+    "stage": "Consumer hardware",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "unclaimed",
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-20",
+    "sourceUrl": "https://www.meta.com/quest/quest-3/",
+    "sourceLabel": "Meta Quest 3 official product page",
+    "sourceNote": "Device description summarised from the official product page. AVRMD tracks general-purpose XR hardware because medical XR software is deployed on it.",
+    "accent": "blue",
+    "regulatoryNote": "General-purpose XR hardware. Not a medical device and not cleared or approved for diagnosis or treatment. Regulatory status attaches to the medical software or system deployed on the headset, never to the headset itself.",
+    "relatedSlugs": [],
+    "subtype": "hardware"
+  },
+  {
+    "id": "gear-vision-pro",
+    "slug": "apple-vision-pro",
+    "name": "Apple Vision Pro",
+    "kind": "solution",
+    "typeLabel": "Spatial computer",
+    "owner": "Apple",
+    "summary": "A head-worn spatial computer blending digital content with the wearer's surroundings, controlled by eye, hand, and voice input.",
+    "modalities": [
+      "MR",
+      "AR"
+    ],
+    "specialties": [
+      "Cross-specialty"
+    ],
+    "useCases": [
+      "Hardware platform"
+    ],
+    "geography": "Global",
+    "stage": "Commercial hardware",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "unclaimed",
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-20",
+    "sourceUrl": "https://www.apple.com/apple-vision-pro/",
+    "sourceLabel": "Apple Vision Pro official product page",
+    "sourceNote": "Device description summarised from the official product page. AVRMD tracks general-purpose XR hardware because medical XR software is deployed on it.",
+    "accent": "violet",
+    "regulatoryNote": "General-purpose XR hardware. Not a medical device and not cleared or approved for diagnosis or treatment. Regulatory status attaches to the medical software or system deployed on the headset, never to the headset itself.",
+    "relatedSlugs": [],
+    "subtype": "hardware"
+  },
+  {
+    "id": "gear-vive-focus-vision",
+    "slug": "htc-vive-focus-vision",
+    "name": "HTC VIVE Focus Vision",
+    "kind": "solution",
+    "typeLabel": "Enterprise VR headset",
+    "owner": "HTC",
+    "summary": "A standalone enterprise virtual reality headset with eye tracking and colour passthrough, positioned for organisational training and simulation deployments.",
+    "modalities": [
+      "VR",
+      "MR"
+    ],
+    "specialties": [
+      "Cross-specialty"
+    ],
+    "useCases": [
+      "Hardware platform"
+    ],
+    "geography": "Global",
+    "stage": "Enterprise hardware",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "unclaimed",
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-20",
+    "sourceUrl": "https://www.vive.com/us/product/vive-focus-vision/overview/",
+    "sourceLabel": "HTC VIVE Focus Vision official product page",
+    "sourceNote": "Device description summarised from the official product page. AVRMD tracks general-purpose XR hardware because medical XR software is deployed on it.",
+    "accent": "teal",
+    "regulatoryNote": "General-purpose XR hardware. Not a medical device and not cleared or approved for diagnosis or treatment. Regulatory status attaches to the medical software or system deployed on the headset, never to the headset itself.",
+    "relatedSlugs": [],
+    "subtype": "hardware"
+  },
+  {
+    "id": "gear-varjo-xr-4",
+    "slug": "varjo-xr-4",
+    "name": "Varjo XR-4",
+    "kind": "solution",
+    "typeLabel": "High-fidelity XR headset",
+    "owner": "Varjo",
+    "summary": "A professional mixed reality headset built for high visual fidelity, aimed at simulation, training, and engineering work where display detail matters.",
+    "modalities": [
+      "VR",
+      "MR"
+    ],
+    "specialties": [
+      "Cross-specialty"
+    ],
+    "useCases": [
+      "Hardware platform"
+    ],
+    "geography": "Global",
+    "stage": "Professional hardware",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "unclaimed",
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-20",
+    "sourceUrl": "https://varjo.com/products/xr-4/",
+    "sourceLabel": "Varjo XR-4 official product page",
+    "sourceNote": "Device description summarised from the official product page. AVRMD tracks general-purpose XR hardware because medical XR software is deployed on it.",
+    "accent": "gold",
+    "regulatoryNote": "General-purpose XR hardware. Not a medical device and not cleared or approved for diagnosis or treatment. Regulatory status attaches to the medical software or system deployed on the headset, never to the headset itself.",
+    "relatedSlugs": [],
+    "subtype": "hardware"
+  },
+  {
+    "id": "problem-procedural-pain-in-children",
+    "slug": "procedural-pain-in-children",
+    "name": "Pain and fear during procedures in children",
+    "kind": "problem",
+    "typeLabel": "Clinical problem",
+    "summary": "Children undergoing short but painful procedures experience distress that sedation cannot always address, and fear compounds the pain itself.",
+    "modalities": [
+      "VR"
+    ],
+    "specialties": [
+      "Pain management",
+      "Nursing"
+    ],
+    "useCases": [
+      "Therapy support"
+    ],
+    "geography": "Global",
+    "stage": "Active challenge",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "not-claimable",
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-20",
+    "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/42612321/",
+    "sourceLabel": "Journal of Pediatric Nursing",
+    "sourceNote": "Cited study compares distraction during closed reduction in children. The problem statement is AVRMD's framing; the cited work documents the challenge.",
+    "accent": "violet",
+    "topicSlug": "pain-management",
+    "relatedSlugs": []
+  },
+  {
+    "id": "problem-acute-crisis-pain",
+    "slug": "acute-crisis-pain",
+    "name": "Severe acute pain where drug options are limited",
+    "kind": "problem",
+    "typeLabel": "Clinical problem",
+    "summary": "In crises such as vaso-occlusive episodes, pain is severe and escalating analgesia carries its own risks, leaving a gap for non-pharmacological adjuncts.",
+    "modalities": [
+      "VR"
+    ],
+    "specialties": [
+      "Pain management"
+    ],
+    "useCases": [
+      "Therapy support"
+    ],
+    "geography": "Global",
+    "stage": "Active challenge",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "not-claimable",
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-20",
+    "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/42613024/",
+    "sourceLabel": "British Journal of Haematology",
+    "sourceNote": "Cited study examines headset use during severe crisis pain. The problem statement is AVRMD's framing; the cited work documents the challenge.",
+    "accent": "violet",
+    "topicSlug": "pain-management",
+    "relatedSlugs": []
+  },
+  {
+    "id": "problem-home-therapy-adherence",
+    "slug": "home-therapy-adherence",
+    "name": "Keeping patients engaged in home-based programmes",
+    "kind": "problem",
+    "typeLabel": "Clinical problem",
+    "summary": "Multi-week self-directed therapy works only if patients keep going after the first fortnight, and drop-off is the usual outcome.",
+    "modalities": [
+      "VR"
+    ],
+    "specialties": [
+      "Pain management",
+      "Behavioral health"
+    ],
+    "useCases": [
+      "Therapy support",
+      "Home care"
+    ],
+    "geography": "Global",
+    "stage": "Active challenge",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "not-claimable",
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-20",
+    "sourceUrl": "https://www.frontiersin.org/journals/virtual-reality/articles/10.3389/frvir.2025.1613188/full",
+    "sourceLabel": "Frontiers in Virtual Reality",
+    "sourceNote": "Cited review traces implementation considerations for a home-delivered programme. The problem statement is AVRMD's framing; the cited work documents the challenge.",
+    "accent": "violet",
+    "topicSlug": "pain-management",
+    "relatedSlugs": []
+  },
+  {
+    "id": "problem-simulation-throughput",
+    "slug": "simulation-throughput",
+    "name": "Running simulation at cohort scale",
+    "kind": "problem",
+    "typeLabel": "Clinical problem",
+    "summary": "A scenario that works for six learners rarely survives contact with a cohort of three hundred, once headset supply, cleaning, and timetabling are counted.",
+    "modalities": [
+      "VR",
+      "Screen-based"
+    ],
+    "specialties": [
+      "Medical education",
+      "Emergency care"
+    ],
+    "useCases": [
+      "Clinical simulation",
+      "Team training"
+    ],
+    "geography": "Global",
+    "stage": "Active challenge",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "not-claimable",
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-20",
+    "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/42617034/",
+    "sourceLabel": "Medical Teacher",
+    "sourceNote": "Cited work discusses implications for health professions education at scale. The problem statement is AVRMD's framing; the cited work documents the challenge.",
+    "accent": "coral",
+    "topicSlug": "clinical-simulation",
+    "relatedSlugs": []
+  },
+  {
+    "id": "problem-simulation-realism",
+    "slug": "simulation-realism",
+    "name": "How much realism a scenario actually needs",
+    "kind": "problem",
+    "typeLabel": "Clinical problem",
+    "summary": "Higher fidelity costs more and is assumed to teach better, but which cues change behaviour \u2014 and which are decoration \u2014 is rarely tested.",
+    "modalities": [
+      "VR"
+    ],
+    "specialties": [
+      "Medical education",
+      "Human factors"
+    ],
+    "useCases": [
+      "Clinical simulation",
+      "Assessment"
+    ],
+    "geography": "Global",
+    "stage": "Active challenge",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "not-claimable",
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-20",
+    "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/42617058/",
+    "sourceLabel": "JMIR Medical Education",
+    "sourceNote": "Cited controlled trial isolates one sensory cue and measures its effect on safety behaviour. The problem statement is AVRMD's framing; the cited work documents the challenge.",
+    "accent": "coral",
+    "topicSlug": "clinical-simulation",
+    "relatedSlugs": []
+  },
+  {
+    "id": "problem-rare-emergency-rehearsal",
+    "slug": "rare-emergency-rehearsal",
+    "name": "Rehearsing emergencies too rare to schedule",
+    "kind": "problem",
+    "typeLabel": "Clinical problem",
+    "summary": "The events that most need practice \u2014 outbreaks, mass casualties, rare deteriorations \u2014 are precisely the ones a rota cannot produce on demand.",
+    "modalities": [
+      "VR"
+    ],
+    "specialties": [
+      "Nursing",
+      "Emergency care"
+    ],
+    "useCases": [
+      "Clinical simulation",
+      "Team training"
+    ],
+    "geography": "Global",
+    "stage": "Active challenge",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "not-claimable",
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-20",
+    "sourceUrl": "https://doi.org/10.1080/17482631.2026.2647088",
+    "sourceLabel": "International Journal of Qualitative Studies on Health and Well-being",
+    "sourceNote": "Cited study explores nurses' experience of simulated infectious-disease response. The problem statement is AVRMD's framing; the cited work documents the challenge.",
+    "accent": "coral",
+    "topicSlug": "clinical-simulation",
+    "relatedSlugs": []
+  },
+  {
+    "id": "problem-manual-skill-without-theatre",
+    "slug": "manual-skill-without-theatre",
+    "name": "Building manual skill without theatre or cadaver access",
+    "kind": "problem",
+    "typeLabel": "Clinical problem",
+    "summary": "Procedural competence needs repetition, but theatre time, cadaveric material, and supervision are all scarce and unevenly distributed.",
+    "modalities": [
+      "AR",
+      "VR"
+    ],
+    "specialties": [
+      "Surgery",
+      "Dentistry",
+      "Medical education"
+    ],
+    "useCases": [
+      "Skills training",
+      "Just-in-time practice"
+    ],
+    "geography": "Global",
+    "stage": "Active challenge",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "not-claimable",
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-20",
+    "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/42615539/",
+    "sourceLabel": "Journal of Visualized Experiments",
+    "sourceNote": "Cited work describes an assisted system for teaching a manual shaping skill. The problem statement is AVRMD's framing; the cited work documents the challenge.",
+    "accent": "blue",
+    "topicSlug": "surgical-training",
+    "relatedSlugs": []
+  },
+  {
+    "id": "problem-skill-assessment-objectivity",
+    "slug": "skill-assessment-objectivity",
+    "name": "Assessing technique without a supervisor in the room",
+    "kind": "problem",
+    "typeLabel": "Clinical problem",
+    "summary": "Competence is still largely judged by observation, which is expensive, inconsistent between assessors, and hard to schedule.",
+    "modalities": [
+      "VR"
+    ],
+    "specialties": [
+      "Medical education",
+      "Surgery",
+      "Nursing"
+    ],
+    "useCases": [
+      "Assessment",
+      "Skills training"
+    ],
+    "geography": "Global",
+    "stage": "Active challenge",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "not-claimable",
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-20",
+    "sourceUrl": "https://doi.org/10.1016/j.ijnsa.2026.100595",
+    "sourceLabel": "International Journal of Nursing Studies Advances",
+    "sourceNote": "Cited cohort study measures learning curves for a clinical skill. The problem statement is AVRMD's framing; the cited work documents the challenge.",
+    "accent": "blue",
+    "topicSlug": "surgical-training",
+    "relatedSlugs": []
+  },
+  {
+    "id": "problem-stroke-motor-recovery",
+    "slug": "stroke-motor-recovery",
+    "name": "Regaining arm function after stroke",
+    "kind": "problem",
+    "typeLabel": "Clinical problem",
+    "summary": "Recovery needs many repetitions of movement that is difficult, tiring, and unrewarding to perform, so adherence and intensity both suffer.",
+    "modalities": [
+      "VR"
+    ],
+    "specialties": [
+      "Rehabilitation"
+    ],
+    "useCases": [
+      "Motor learning",
+      "Therapy support"
+    ],
+    "geography": "Global",
+    "stage": "Active challenge",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "not-claimable",
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-20",
+    "sourceUrl": "https://clinicaltrials.gov/study/NCT07772284",
+    "sourceLabel": "ClinicalTrials.gov",
+    "sourceNote": "Cited trial studies repetitive simulation circuit training for post-stroke arm weakness. The problem statement is AVRMD's framing; the cited work documents the challenge.",
+    "accent": "teal",
+    "topicSlug": "rehabilitation",
+    "relatedSlugs": []
+  },
+  {
+    "id": "problem-lab-to-practice-motor-learning",
+    "slug": "lab-to-practice-motor-learning",
+    "name": "Translating motor-learning research into therapy",
+    "kind": "problem",
+    "typeLabel": "Clinical problem",
+    "summary": "Findings about how movement is relearned are well established in the laboratory and slow to reach the treatment room.",
+    "modalities": [
+      "VR",
+      "Haptics"
+    ],
+    "specialties": [
+      "Rehabilitation",
+      "Clinical research"
+    ],
+    "useCases": [
+      "Motor learning",
+      "Research"
+    ],
+    "geography": "Global",
+    "stage": "Active challenge",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "not-claimable",
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-20",
+    "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/42613619/",
+    "sourceLabel": "Journal of NeuroEngineering and Rehabilitation",
+    "sourceNote": "Cited paper proposes a network-oriented approach to neurorehabilitation after stroke. The problem statement is AVRMD's framing; the cited work documents the challenge.",
+    "accent": "teal",
+    "topicSlug": "rehabilitation",
+    "relatedSlugs": []
+  },
+  {
+    "id": "problem-remote-rehab-supervision",
+    "slug": "remote-rehab-supervision",
+    "name": "Supervising therapy that happens at home",
+    "kind": "problem",
+    "typeLabel": "Clinical problem",
+    "summary": "Moving therapy into the home removes travel but also removes the clinician, leaving technique uncorrected and progress unmeasured.",
+    "modalities": [
+      "MR",
+      "VR"
+    ],
+    "specialties": [
+      "Rehabilitation",
+      "Remote care"
+    ],
+    "useCases": [
+      "Remote care",
+      "Progress monitoring"
+    ],
+    "geography": "Global",
+    "stage": "Active challenge",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "not-claimable",
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-20",
+    "sourceUrl": "https://clinicaltrials.gov/study/NCT06936059",
+    "sourceLabel": "ClinicalTrials.gov",
+    "sourceNote": "Cited trial evaluates a mixed-reality rehabilitation programme delivered outside the clinic. The problem statement is AVRMD's framing; the cited work documents the challenge.",
+    "accent": "teal",
+    "topicSlug": "rehabilitation",
+    "relatedSlugs": []
+  },
+  {
+    "id": "problem-curriculum-fit",
+    "slug": "curriculum-fit",
+    "name": "Fitting immersive sessions into a full curriculum",
+    "kind": "problem",
+    "typeLabel": "Clinical problem",
+    "summary": "Every proposal adds teaching to a saturated timetable; the harder question is what comes out, and how that is defended to faculty.",
+    "modalities": [
+      "VR",
+      "Screen-based"
+    ],
+    "specialties": [
+      "Medical education"
+    ],
+    "useCases": [
+      "Training",
+      "Clinical implementation"
+    ],
+    "geography": "Global",
+    "stage": "Active challenge",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "not-claimable",
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-20",
+    "sourceUrl": "https://doi.org/10.1080/10872981.2026.2656830",
+    "sourceLabel": "Medical Education Online",
+    "sourceNote": "Cited synthesis reviews active-learning approaches in health professions education. The problem statement is AVRMD's framing; the cited work documents the challenge.",
+    "accent": "gold",
+    "topicSlug": "medical-education",
+    "relatedSlugs": []
+  },
+  {
+    "id": "problem-scalable-first-aid-training",
+    "slug": "scalable-first-aid-training",
+    "name": "Training psychological first aid at scale",
+    "kind": "problem",
+    "typeLabel": "Clinical problem",
+    "summary": "Demand for responders spikes exactly when trainers are least available, and conventional courses do not scale to meet it.",
+    "modalities": [
+      "VR"
+    ],
+    "specialties": [
+      "Medical education",
+      "Behavioral health"
+    ],
+    "useCases": [
+      "Training",
+      "Clinical simulation"
+    ],
+    "geography": "Global",
+    "stage": "Active challenge",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "not-claimable",
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-20",
+    "sourceUrl": "https://doi.org/10.1080/20008066.2026.2616976",
+    "sourceLabel": "European Journal of Psychotraumatology",
+    "sourceNote": "Cited work explores scalable delivery of psychological first aid training. The problem statement is AVRMD's framing; the cited work documents the challenge.",
+    "accent": "gold",
+    "topicSlug": "medical-education",
+    "relatedSlugs": []
+  },
+  {
+    "id": "problem-intraoperative-navigation",
+    "slug": "intraoperative-navigation",
+    "name": "Keeping the plan visible during the operation",
+    "kind": "problem",
+    "typeLabel": "Clinical problem",
+    "summary": "A plan built from imaging has to be carried into theatre and aligned with the patient on the table, where attention and sterile field both constrain how it can be shown.",
+    "modalities": [
+      "MR",
+      "AR"
+    ],
+    "specialties": [
+      "Neurosurgery",
+      "Spine surgery",
+      "Radiology"
+    ],
+    "useCases": [
+      "Planning",
+      "Visualization"
+    ],
+    "geography": "Global",
+    "stage": "Active challenge",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "not-claimable",
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-20",
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K242569",
+    "sourceLabel": "US Food and Drug Administration",
+    "sourceNote": "Cited clearance record describes a mixed-reality spine navigation device. The problem statement is AVRMD's framing; the cited work documents the challenge.",
+    "accent": "blue",
+    "topicSlug": "surgical-planning",
+    "relatedSlugs": []
+  },
+  {
+    "id": "problem-imaging-to-3d-turnaround",
+    "slug": "imaging-to-3d-turnaround",
+    "name": "Turning imaging into a usable model in time",
+    "kind": "problem",
+    "typeLabel": "Clinical problem",
+    "summary": "Interactive three-dimensional models are compelling in demonstration; producing one for an urgent case depends on segmentation staffing, not software.",
+    "modalities": [
+      "MR",
+      "AR"
+    ],
+    "specialties": [
+      "Radiology",
+      "Medical imaging",
+      "Neurosurgery"
+    ],
+    "useCases": [
+      "Visualization",
+      "Planning"
+    ],
+    "geography": "Global",
+    "stage": "Active challenge",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "not-claimable",
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-20",
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K252091",
+    "sourceLabel": "US Food and Drug Administration",
+    "sourceNote": "Cited clearance record describes a surgical visualization viewer. The problem statement is AVRMD's framing; the cited work documents the challenge.",
+    "accent": "blue",
+    "topicSlug": "surgical-planning",
+    "relatedSlugs": []
+  }
+]
