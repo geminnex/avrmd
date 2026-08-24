@@ -32,25 +32,12 @@ export async function createPost(params: {
   return post;
 }
 
-/**
- * One query per feed page: author, media, and counts joined together rather
- * than N+1'd per post.
- */
-export async function listRecentPosts(limit = 25) {
-  const database = getDatabase();
+type PostRow = { post: typeof posts.$inferSelect; authorHandle: string | null; authorDisplayName: string | null };
 
-  const rows = await database
-    .select({
-      post: posts,
-      authorHandle: users.handle,
-      authorDisplayName: users.displayName,
-    })
-    .from(posts)
-    .innerJoin(users, eq(posts.authorId, users.id))
-    .orderBy(desc(posts.createdAt))
-    .limit(limit);
-
+/** Shared by every listing that needs media + like/comment counts, so each stays a fixed handful of queries rather than N+1. */
+async function enrichPosts(rows: PostRow[]) {
   if (rows.length === 0) return [];
+  const database = getDatabase();
 
   const postIds = rows.map((row) => row.post.id);
   const media = await database.select().from(postMedia).where(inArray(postMedia.postId, postIds));
@@ -79,6 +66,21 @@ export async function listRecentPosts(limit = 25) {
   }));
 }
 
+export async function listRecentPosts(limit = 25) {
+  const rows = await getDatabase()
+    .select({
+      post: posts,
+      authorHandle: users.handle,
+      authorDisplayName: users.displayName,
+    })
+    .from(posts)
+    .innerJoin(users, eq(posts.authorId, users.id))
+    .orderBy(desc(posts.createdAt))
+    .limit(limit);
+
+  return enrichPosts(rows);
+}
+
 export async function getPost(id: string) {
   const database = getDatabase();
   const [row] = await database
@@ -94,13 +96,27 @@ export async function getPost(id: string) {
   return { ...row.post, authorHandle: row.authorHandle, authorDisplayName: row.authorDisplayName, media };
 }
 
-export async function listPostsByEntity(entitySlug: string) {
-  return getDatabase()
+export async function listPostsByEntity(entitySlug: string, kind?: PostKind) {
+  const conditions = kind
+    ? and(eq(posts.entitySlug, entitySlug), eq(posts.kind, kind))
+    : eq(posts.entitySlug, entitySlug);
+
+  const rows = await getDatabase()
     .select({ post: posts, authorHandle: users.handle, authorDisplayName: users.displayName })
     .from(posts)
     .innerJoin(users, eq(posts.authorId, users.id))
-    .where(eq(posts.entitySlug, entitySlug))
+    .where(conditions)
     .orderBy(desc(posts.createdAt));
+
+  return enrichPosts(rows);
+}
+
+/** Flattened media across every post on an entity, newest first. */
+export async function listMediaForEntity(entitySlug: string) {
+  const entityPosts = await listPostsByEntity(entitySlug);
+  return entityPosts.flatMap((post) =>
+    post.media.map((item) => ({ ...item, postId: post.id, createdAt: post.createdAt })),
+  );
 }
 
 export async function likePost(postId: string, userId: string) {

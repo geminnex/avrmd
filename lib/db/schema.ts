@@ -407,11 +407,17 @@ export const ownershipClaims = pgTable(
   (table) => [index("ownership_claims_status_idx").on(table.status, table.createdAt)],
 );
 
+/**
+ * Never populated before this change (0 rows) — retargeted from an
+ * `entities` table FK to a catalog slug for the same reason `follows`,
+ * `posts`, and `organization_memberships` all made the same switch: the
+ * catalog lives in flat JSON, not in the `entities` table below.
+ */
 export const communityThreads = pgTable(
   "community_threads",
   {
     id: uuid("id").defaultRandom().primaryKey(),
-    entityId: uuid("entity_id").references(() => entities.id, { onDelete: "cascade" }),
+    entitySlug: text("entity_slug").notNull(),
     authorId: uuid("author_id")
       .notNull()
       .references(() => users.id, { onDelete: "cascade" }),
@@ -421,7 +427,7 @@ export const communityThreads = pgTable(
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
   },
-  (table) => [index("community_threads_entity_idx").on(table.entityId, table.updatedAt)],
+  (table) => [index("community_threads_entity_idx").on(table.entitySlug, table.updatedAt)],
 );
 
 export const communityPosts = pgTable(

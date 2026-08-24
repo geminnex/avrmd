@@ -23,6 +23,7 @@ function rateLimited(key: string) {
 const bodySchema = z.object({
   body: z.string().trim().min(1).max(3000),
   entitySlug: z.string().trim().max(180).optional(),
+  kind: z.enum(["update", "blog"]).optional(),
   media: z
     .array(z.object({ url: z.string().url(), mimeType: z.string() }))
     .max(4)
@@ -62,11 +63,17 @@ export async function POST(request: Request) {
     );
   }
 
+  if (parsed.data.kind === "blog" && !parsed.data.entitySlug) {
+    return NextResponse.json(
+      { ok: false, message: "A blog post must belong to a record." },
+      { status: 422 },
+    );
+  }
+
   if (parsed.data.entitySlug) {
     // Posting as a group requires real standing, checked server-side — never
-    // just hidden in the UI. There is no path yet that creates a membership
-    // row (claiming is still a preview form), so this branch is exercised
-    // only once claims are real, but the guard is correct from day one.
+    // just hidden in the UI. Standing comes from scripts/grant-membership.mjs
+    // today, ahead of a full claim-review workflow.
     if (!getEntity(parsed.data.entitySlug)) {
       return NextResponse.json({ ok: false, message: "Unknown record." }, { status: 404 });
     }
@@ -83,6 +90,7 @@ export async function POST(request: Request) {
     authorId: user.id,
     body: parsed.data.body,
     entitySlug: parsed.data.entitySlug,
+    kind: parsed.data.kind,
     mediaUrls: parsed.data.media,
   });
 

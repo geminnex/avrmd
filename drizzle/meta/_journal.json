@@ -29,6 +29,20 @@
       "when": 1787245233557,
       "tag": "0003_acoustic_carlie_cooper",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1787423677623,
+      "tag": "0004_community_threads_entity_slug",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1787424139633,
+      "tag": "0005_organization_memberships_entity_slug",
+      "breakpoints": true
     }
   ]
 }

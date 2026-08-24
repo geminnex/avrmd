@@ -6,7 +6,15 @@ import { ArrowRight, ImagePlus, LoaderCircle, ShieldAlert, X } from "lucide-reac
 
 type UploadedImage = { url: string; mimeType: string; previewName: string };
 
-export function PostComposer() {
+type PostComposerProps = {
+  entitySlug?: string;
+  kind?: "update" | "blog";
+  placeholder?: string;
+  /** Group panels manage their own local list rather than a full page refresh. */
+  onPosted?: () => void;
+};
+
+export function PostComposer({ entitySlug, kind, placeholder, onPosted }: PostComposerProps) {
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [body, setBody] = useState("");
@@ -52,6 +60,8 @@ export function PostComposer() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           body: body.trim(),
+          entitySlug,
+          kind,
           media: image ? [{ url: image.url, mimeType: image.mimeType }] : undefined,
         }),
       });
@@ -69,7 +79,8 @@ export function PostComposer() {
 
       setBody("");
       setImage(null);
-      router.refresh();
+      if (onPosted) onPosted();
+      else router.refresh();
     } finally {
       setPosting(false);
     }
@@ -80,7 +91,7 @@ export function PostComposer() {
       <textarea
         maxLength={3000}
         onChange={(event) => setBody(event.target.value)}
-        placeholder="Share an update with medical XR professionals…"
+        placeholder={placeholder ?? "Share an update with medical XR professionals…"}
         rows={3}
         value={body}
       />

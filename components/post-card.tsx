@@ -5,7 +5,9 @@ import { LikeButton } from "./like-button";
 export type PostCardData = {
   id: string;
   body: string;
-  createdAt: Date;
+  // A real Date from a server component's direct DB read; an ISO string once
+  // this crosses a client-side fetch's JSON boundary (see EntityGroupPanel).
+  createdAt: Date | string;
   entitySlug: string | null;
   authorHandle: string | null;
   authorDisplayName: string | null;
@@ -15,8 +17,8 @@ export type PostCardData = {
   initialLiked?: boolean;
 };
 
-function timeAgo(date: Date) {
-  const hours = Math.round((Date.now() - date.getTime()) / 3_600_000);
+function timeAgo(date: Date | string) {
+  const hours = Math.round((Date.now() - new Date(date).getTime()) / 3_600_000);
   if (hours < 1) return "just now";
   if (hours < 24) return `${hours}h ago`;
   const days = Math.round(hours / 24);
