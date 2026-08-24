@@ -31,6 +31,11 @@
     "relatedSlugs": [
       "relievrx",
       "relievrx-k243417"
+    ],
+    "stages": [
+      "validation",
+      "regulatory",
+      "commercialization"
     ]
   },
   {
@@ -67,6 +72,11 @@
     "relatedSlugs": [
       "precisionos",
       "fundamental-xr"
+    ],
+    "stages": [
+      "implementation",
+      "validation",
+      "commercialization"
     ]
   },
   {
@@ -104,6 +114,11 @@
     "relatedSlugs": [
       "osso-vr",
       "fundamental-xr"
+    ],
+    "stages": [
+      "implementation",
+      "validation",
+      "commercialization"
     ]
   },
   {
@@ -141,6 +156,11 @@
     "relatedSlugs": [
       "osso-vr",
       "precisionos"
+    ],
+    "stages": [
+      "design",
+      "implementation",
+      "commercialization"
     ]
   },
   {
@@ -179,6 +199,10 @@
     "relatedSlugs": [
       "simx",
       "healthcare-biorobotics-lab"
+    ],
+    "stages": [
+      "implementation",
+      "commercialization"
     ]
   },
   {
@@ -215,6 +239,10 @@
     "featured": true,
     "relatedSlugs": [
       "oxford-medical-simulation"
+    ],
+    "stages": [
+      "implementation",
+      "commercialization"
     ]
   },
   {
@@ -252,6 +280,11 @@
     "featured": true,
     "relatedSlugs": [
       "healthcare-biorobotics-lab"
+    ],
+    "stages": [
+      "implementation",
+      "regulatory",
+      "commercialization"
     ]
   },
   {
@@ -287,6 +320,10 @@
     "accent": "teal",
     "relatedSlugs": [
       "relievrx"
+    ],
+    "stages": [
+      "implementation",
+      "commercialization"
     ]
   },
   {
@@ -323,6 +360,11 @@
       "appliedvr",
       "relievrx-k243417",
       "vr-skills-therapy-review"
+    ],
+    "stages": [
+      "validation",
+      "regulatory",
+      "commercialization"
     ]
   },
   {
@@ -355,6 +397,9 @@
     "relatedSlugs": [
       "relievrx",
       "appliedvr"
+    ],
+    "stages": [
+      "regulatory"
     ]
   },
   {
@@ -388,6 +433,10 @@
     "relatedSlugs": [
       "relievrx",
       "appliedvr"
+    ],
+    "stages": [
+      "research",
+      "validation"
     ]
   },
   {
@@ -426,6 +475,10 @@
     "relatedSlugs": [
       "oxford-medical-simulation",
       "surgical-theater-xr"
+    ],
+    "stages": [
+      "research",
+      "technology"
     ]
   },
   {
@@ -460,6 +513,10 @@
     "eventDate": "2026-12-07",
     "relatedSlugs": [
       "medxr-2026"
+    ],
+    "stages": [
+      "technology",
+      "commercialization"
     ]
   },
   {
@@ -494,6 +551,10 @@
     "relatedSlugs": [
       "united-xr-europe-2026",
       "healthcare-biorobotics-lab"
+    ],
+    "stages": [
+      "research",
+      "technology"
     ]
   },
   {
@@ -526,7 +587,10 @@
     "accent": "blue",
     "regulatoryNote": "General-purpose XR hardware. Not a medical device and not cleared or approved for diagnosis or treatment. Regulatory status attaches to the medical software or system deployed on the headset, never to the headset itself.",
     "relatedSlugs": [],
-    "subtype": "hardware"
+    "subtype": "hardware",
+    "stages": [
+      "technology"
+    ]
   },
   {
     "id": "gear-vision-pro",
@@ -558,7 +622,10 @@
     "accent": "violet",
     "regulatoryNote": "General-purpose XR hardware. Not a medical device and not cleared or approved for diagnosis or treatment. Regulatory status attaches to the medical software or system deployed on the headset, never to the headset itself.",
     "relatedSlugs": [],
-    "subtype": "hardware"
+    "subtype": "hardware",
+    "stages": [
+      "technology"
+    ]
   },
   {
     "id": "gear-vive-focus-vision",
@@ -590,7 +657,10 @@
     "accent": "teal",
     "regulatoryNote": "General-purpose XR hardware. Not a medical device and not cleared or approved for diagnosis or treatment. Regulatory status attaches to the medical software or system deployed on the headset, never to the headset itself.",
     "relatedSlugs": [],
-    "subtype": "hardware"
+    "subtype": "hardware",
+    "stages": [
+      "technology"
+    ]
   },
   {
     "id": "gear-varjo-xr-4",
@@ -622,7 +692,10 @@
     "accent": "gold",
     "regulatoryNote": "General-purpose XR hardware. Not a medical device and not cleared or approved for diagnosis or treatment. Regulatory status attaches to the medical software or system deployed on the headset, never to the headset itself.",
     "relatedSlugs": [],
-    "subtype": "hardware"
+    "subtype": "hardware",
+    "stages": [
+      "technology"
+    ]
   },
   {
     "id": "problem-procedural-pain-in-children",
@@ -652,7 +725,11 @@
     "sourceNote": "Cited study compares distraction during closed reduction in children. The problem statement is AVRMD's framing; the cited work documents the challenge.",
     "accent": "violet",
     "topicSlug": "pain-management",
-    "relatedSlugs": []
+    "relatedSlugs": [],
+    "stages": [
+      "validation",
+      "implementation"
+    ]
   },
   {
     "id": "problem-acute-crisis-pain",
@@ -681,7 +758,11 @@
     "sourceNote": "Cited study examines headset use during severe crisis pain. The problem statement is AVRMD's framing; the cited work documents the challenge.",
     "accent": "violet",
     "topicSlug": "pain-management",
-    "relatedSlugs": []
+    "relatedSlugs": [],
+    "stages": [
+      "validation",
+      "implementation"
+    ]
   },
   {
     "id": "problem-home-therapy-adherence",
@@ -712,7 +793,11 @@
     "sourceNote": "Cited review traces implementation considerations for a home-delivered programme. The problem statement is AVRMD's framing; the cited work documents the challenge.",
     "accent": "violet",
     "topicSlug": "pain-management",
-    "relatedSlugs": []
+    "relatedSlugs": [],
+    "stages": [
+      "design",
+      "implementation"
+    ]
   },
   {
     "id": "problem-simulation-throughput",
@@ -744,7 +829,11 @@
     "sourceNote": "Cited work discusses implications for health professions education at scale. The problem statement is AVRMD's framing; the cited work documents the challenge.",
     "accent": "coral",
     "topicSlug": "clinical-simulation",
-    "relatedSlugs": []
+    "relatedSlugs": [],
+    "stages": [
+      "implementation",
+      "commercialization"
+    ]
   },
   {
     "id": "problem-simulation-realism",
@@ -775,7 +864,11 @@
     "sourceNote": "Cited controlled trial isolates one sensory cue and measures its effect on safety behaviour. The problem statement is AVRMD's framing; the cited work documents the challenge.",
     "accent": "coral",
     "topicSlug": "clinical-simulation",
-    "relatedSlugs": []
+    "relatedSlugs": [],
+    "stages": [
+      "design",
+      "validation"
+    ]
   },
   {
     "id": "problem-rare-emergency-rehearsal",
@@ -806,7 +899,11 @@
     "sourceNote": "Cited study explores nurses' experience of simulated infectious-disease response. The problem statement is AVRMD's framing; the cited work documents the challenge.",
     "accent": "coral",
     "topicSlug": "clinical-simulation",
-    "relatedSlugs": []
+    "relatedSlugs": [],
+    "stages": [
+      "design",
+      "implementation"
+    ]
   },
   {
     "id": "problem-manual-skill-without-theatre",
@@ -839,7 +936,11 @@
     "sourceNote": "Cited work describes an assisted system for teaching a manual shaping skill. The problem statement is AVRMD's framing; the cited work documents the challenge.",
     "accent": "blue",
     "topicSlug": "surgical-training",
-    "relatedSlugs": []
+    "relatedSlugs": [],
+    "stages": [
+      "implementation",
+      "commercialization"
+    ]
   },
   {
     "id": "problem-skill-assessment-objectivity",
@@ -871,7 +972,11 @@
     "sourceNote": "Cited cohort study measures learning curves for a clinical skill. The problem statement is AVRMD's framing; the cited work documents the challenge.",
     "accent": "blue",
     "topicSlug": "surgical-training",
-    "relatedSlugs": []
+    "relatedSlugs": [],
+    "stages": [
+      "validation",
+      "design"
+    ]
   },
   {
     "id": "problem-stroke-motor-recovery",
@@ -901,7 +1006,11 @@
     "sourceNote": "Cited trial studies repetitive simulation circuit training for post-stroke arm weakness. The problem statement is AVRMD's framing; the cited work documents the challenge.",
     "accent": "teal",
     "topicSlug": "rehabilitation",
-    "relatedSlugs": []
+    "relatedSlugs": [],
+    "stages": [
+      "validation",
+      "implementation"
+    ]
   },
   {
     "id": "problem-lab-to-practice-motor-learning",
@@ -933,7 +1042,11 @@
     "sourceNote": "Cited paper proposes a network-oriented approach to neurorehabilitation after stroke. The problem statement is AVRMD's framing; the cited work documents the challenge.",
     "accent": "teal",
     "topicSlug": "rehabilitation",
-    "relatedSlugs": []
+    "relatedSlugs": [],
+    "stages": [
+      "research",
+      "validation"
+    ]
   },
   {
     "id": "problem-remote-rehab-supervision",
@@ -965,7 +1078,11 @@
     "sourceNote": "Cited trial evaluates a mixed-reality rehabilitation programme delivered outside the clinic. The problem statement is AVRMD's framing; the cited work documents the challenge.",
     "accent": "teal",
     "topicSlug": "rehabilitation",
-    "relatedSlugs": []
+    "relatedSlugs": [],
+    "stages": [
+      "design",
+      "implementation"
+    ]
   },
   {
     "id": "problem-curriculum-fit",
@@ -996,7 +1113,11 @@
     "sourceNote": "Cited synthesis reviews active-learning approaches in health professions education. The problem statement is AVRMD's framing; the cited work documents the challenge.",
     "accent": "gold",
     "topicSlug": "medical-education",
-    "relatedSlugs": []
+    "relatedSlugs": [],
+    "stages": [
+      "implementation",
+      "commercialization"
+    ]
   },
   {
     "id": "problem-scalable-first-aid-training",
@@ -1027,7 +1148,11 @@
     "sourceNote": "Cited work explores scalable delivery of psychological first aid training. The problem statement is AVRMD's framing; the cited work documents the challenge.",
     "accent": "gold",
     "topicSlug": "medical-education",
-    "relatedSlugs": []
+    "relatedSlugs": [],
+    "stages": [
+      "design",
+      "commercialization"
+    ]
   },
   {
     "id": "problem-intraoperative-navigation",
@@ -1060,7 +1185,11 @@
     "sourceNote": "Cited clearance record describes a mixed-reality spine navigation device. The problem statement is AVRMD's framing; the cited work documents the challenge.",
     "accent": "blue",
     "topicSlug": "surgical-planning",
-    "relatedSlugs": []
+    "relatedSlugs": [],
+    "stages": [
+      "technology",
+      "regulatory"
+    ]
   },
   {
     "id": "problem-imaging-to-3d-turnaround",
@@ -1093,7 +1222,11 @@
     "sourceNote": "Cited clearance record describes a surgical visualization viewer. The problem statement is AVRMD's framing; the cited work documents the challenge.",
     "accent": "blue",
     "topicSlug": "surgical-planning",
-    "relatedSlugs": []
+    "relatedSlugs": [],
+    "stages": [
+      "implementation",
+      "technology"
+    ]
   },
   {
     "id": "org-sentiar",
@@ -1675,6 +1808,176 @@
     ],
     "aiAssisted": false,
     "lastReviewed": "2026-08-24",
+    "relatedSlugs": []
+  },
+  {
+    "id": "problem-ar-registration-accuracy",
+    "slug": "ar-registration-accuracy",
+    "name": "Aligning a 3D model to the patient on the table",
+    "kind": "problem",
+    "typeLabel": "Technical problem",
+    "summary": "An augmented overlay is only useful if it sits exactly where the anatomy is. Registration has to survive patient movement, soft-tissue shift, and a surgeon's changing viewpoint, and the error budget is millimetres.",
+    "modalities": [
+      "AR",
+      "MR"
+    ],
+    "specialties": [
+      "Cross-specialty"
+    ],
+    "useCases": [
+      "Visualization",
+      "Planning"
+    ],
+    "geography": "Global",
+    "stage": "Open problem",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "not-claimable",
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-24",
+    "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12296264/",
+    "sourceLabel": "Cureus \u2014 AR in Spine Surgery: a narrative review",
+    "sourceNote": "Cited review covers clinical accuracy, workflow efficiency, and the barriers still limiting adoption. The problem statement is AVRMD's framing; the cited work documents the difficulty.",
+    "accent": "blue",
+    "stages": [
+      "technology",
+      "validation"
+    ],
+    "relatedSlugs": []
+  },
+  {
+    "id": "problem-haptic-tissue-fidelity",
+    "slug": "haptic-tissue-fidelity",
+    "name": "Recreating what tissue actually feels like",
+    "kind": "problem",
+    "typeLabel": "Technical problem",
+    "summary": "Visual realism has advanced far faster than touch. Without convincing resistance and texture, a simulator teaches the sequence of a procedure but not the feel of it, which is much of the skill.",
+    "modalities": [
+      "VR",
+      "Haptics"
+    ],
+    "specialties": [
+      "Cross-specialty"
+    ],
+    "useCases": [
+      "Skills training"
+    ],
+    "geography": "Global",
+    "stage": "Open problem",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "not-claimable",
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-24",
+    "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10806798/",
+    "sourceLabel": "Smart haptic gloves for VR surgery simulation (pilot study)",
+    "sourceNote": "Cited pilot study evaluates haptic gloves for neurosurgical drain training and discusses the fidelity gap. The problem statement is AVRMD's framing; the cited work documents the difficulty.",
+    "accent": "coral",
+    "stages": [
+      "technology",
+      "design"
+    ],
+    "relatedSlugs": []
+  },
+  {
+    "id": "problem-latency-and-fine-motor-precision",
+    "slug": "latency-and-fine-motor-precision",
+    "name": "Latency quietly degrades fine motor precision",
+    "kind": "problem",
+    "typeLabel": "Technical problem",
+    "summary": "Delay between hand and image is tolerable when watching, but not when operating. Small amounts of lag measurably reduce precision and raise cognitive load, and the effect compounds the longer someone works.",
+    "modalities": [
+      "VR",
+      "Haptics"
+    ],
+    "specialties": [
+      "Cross-specialty"
+    ],
+    "useCases": [
+      "Skills training",
+      "Assessment"
+    ],
+    "geography": "Global",
+    "stage": "Open problem",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "not-claimable",
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-24",
+    "sourceUrl": "https://www.nature.com/articles/s41598-025-18862-6",
+    "sourceLabel": "Scientific Reports \u2014 visual-haptic latency and fine motor performance",
+    "sourceNote": "Cited study measures how haptic feedback and visual-haptic latency affect performance on a laparoscopic task. The problem statement is AVRMD's framing; the cited work documents the difficulty.",
+    "accent": "violet",
+    "stages": [
+      "technology",
+      "implementation"
+    ],
+    "relatedSlugs": []
+  },
+  {
+    "id": "problem-measurement-validity-in-xr",
+    "slug": "measurement-validity-in-xr",
+    "name": "Knowing whether an in-headset score means anything",
+    "kind": "problem",
+    "typeLabel": "Technical problem",
+    "summary": "Headsets record rich data \u2014 gaze, movement, timing \u2014 and it is tempting to treat it as assessment. Establishing that those numbers correspond to real clinical ability is a separate and harder task.",
+    "modalities": [
+      "VR",
+      "AR"
+    ],
+    "specialties": [
+      "Cross-specialty"
+    ],
+    "useCases": [
+      "Assessment",
+      "Research"
+    ],
+    "geography": "Global",
+    "stage": "Open problem",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "not-claimable",
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-24",
+    "sourceUrl": "https://arxiv.org/pdf/2501.08237",
+    "sourceLabel": "arXiv \u2014 Cognitive Assessment and Training in Extended Reality",
+    "sourceNote": "Cited survey reviews multimodal XR assessment systems, clinical utility, and open challenges. The problem statement is AVRMD's framing; the cited work documents the difficulty.",
+    "accent": "teal",
+    "stages": [
+      "validation",
+      "research"
+    ],
+    "relatedSlugs": []
+  },
+  {
+    "id": "problem-cross-headset-portability",
+    "slug": "cross-headset-portability",
+    "name": "Building once and running on every headset",
+    "kind": "problem",
+    "typeLabel": "Technical problem",
+    "summary": "Hardware turns over faster than clinical software can be revalidated. Without a portable target, each new device risks a rebuild \u2014 a serious cost when the software is a regulated medical product.",
+    "modalities": [
+      "VR",
+      "AR",
+      "MR"
+    ],
+    "specialties": [
+      "Cross-specialty"
+    ],
+    "useCases": [
+      "Hardware platform"
+    ],
+    "geography": "Global",
+    "stage": "Open problem",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "not-claimable",
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-24",
+    "sourceUrl": "https://www.khronos.org/openxr/",
+    "sourceLabel": "Khronos Group \u2014 OpenXR",
+    "sourceNote": "The OpenXR standard exists specifically to address cross-device fragmentation; the specification page sets out the scope of that problem. The problem statement is AVRMD's framing; the cited work documents the difficulty.",
+    "accent": "gold",
+    "stages": [
+      "technology",
+      "implementation",
+      "manufacturing"
+    ],
     "relatedSlugs": []
   }
 ]

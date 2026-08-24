@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight, CalendarDays, MapPin } from "lucide-react";
+import { entityHref } from "@/lib/catalog";
 import type { CatalogEntity } from "@/lib/catalog-types";
 import { TrustBadges } from "./trust-badges";
 
@@ -17,7 +18,7 @@ export function EntityCard({ entity }: { entity: CatalogEntity }) {
         </span>
       </div>
       <div>
-        <Link className="entity-name" href={`/entities/${entity.slug}`}>
+        <Link className="entity-name" href={entityHref(entity)}>
           {entity.name}
           <ArrowUpRight size={17} />
         </Link>

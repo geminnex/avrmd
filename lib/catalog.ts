@@ -37,6 +37,14 @@ export const useCases = Array.from(
   new Set(catalog.flatMap((entity) => entity.useCases)),
 ).sort();
 
+/**
+ * Where a record's page lives. Problems have their own route, so linking to
+ * /entities/<slug> for them 404s — this keeps that rule in one place.
+ */
+export function entityHref(entity: Pick<CatalogEntity, "kind" | "slug">) {
+  return entity.kind === "problem" ? `/problems/${entity.slug}` : `/entities/${entity.slug}`;
+}
+
 export function getEntity(slug: string) {
   return catalog.find((entity) => entity.slug === slug);
 }
@@ -95,12 +103,14 @@ export function searchCatalog(
   kind: CatalogFilterKind = "all",
   modality = "all",
   specialty = "all",
+  stage = "all",
 ) {
   const normalized = query.trim().toLowerCase();
 
   return catalog.filter((entity) => {
     const modalityMatch = modality === "all" || entity.modalities.includes(modality);
     const specialtyMatch = specialty === "all" || entity.specialties.includes(specialty);
+    const stageMatch = stage === "all" || Boolean(entity.stages?.includes(stage as never));
     const searchable = [
       entity.name,
       entity.typeLabel,
@@ -118,6 +128,7 @@ export function searchCatalog(
       matchesKind(entity, kind) &&
       modalityMatch &&
       specialtyMatch &&
+      stageMatch &&
       (!normalized || searchable.includes(normalized))
     );
   });

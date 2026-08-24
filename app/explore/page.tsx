@@ -9,7 +9,13 @@ export const metadata: Metadata = {
 };
 
 type ExplorePageProps = {
-  searchParams: Promise<{ kind?: string; q?: string; modality?: string; specialty?: string }>;
+  searchParams: Promise<{
+    kind?: string;
+    q?: string;
+    modality?: string;
+    specialty?: string;
+    stage?: string;
+  }>;
 };
 
 export default async function ExplorePage({ searchParams }: ExplorePageProps) {
@@ -40,6 +46,7 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
           initialModality={params.modality ?? "all"}
           initialQuery={params.q ?? ""}
           initialSpecialty={params.specialty ?? "all"}
+          initialStage={params.stage ?? "all"}
           syncUrl
         />
       </div>

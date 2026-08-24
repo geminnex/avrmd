@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Search, Sparkles, X } from "lucide-react";
 import { ask, type AssistantAnswer } from "@/lib/assistant/engine";
+import { entityHref } from "@/lib/catalog";
 import { assistantOpenEvent } from "./assistant-events";
 
 const starters = [
@@ -13,7 +14,10 @@ const starters = [
   "Evidence for pain management",
 ];
 
-type Result = AssistantAnswer & { assisted?: boolean };
+type Result = Omit<AssistantAnswer, "entities"> & {
+  assisted?: boolean;
+  entities: { slug: string; href: string; name: string; typeLabel: string; summary: string }[];
+};
 
 export function AiAssistant() {
   const [open, setOpen] = useState(false);
@@ -28,9 +32,19 @@ export function AiAssistant() {
     if (!trimmed) return;
 
     // The local engine answers immediately and offline; the request below only
-    // helps when the wording is unusual.
+    // helps when the wording is unusual. Both paths are normalised to the same
+    // shape so a result always carries the right link for its record type.
     const local = ask(trimmed);
-    setResult(local);
+    setResult({
+      ...local,
+      entities: local.entities.map((entity) => ({
+        slug: entity.slug,
+        href: entityHref(entity),
+        name: entity.name,
+        typeLabel: entity.typeLabel,
+        summary: entity.summary,
+      })),
+    });
 
     if (local.kind !== "none") return;
 
@@ -171,7 +185,7 @@ export function AiAssistant() {
                 {result.entities.map((entity) => (
                   <Link
                     className="assistant-result"
-                    href={`/entities/${entity.slug}`}
+                    href={entity.href}
                     key={entity.slug}
                     onClick={() => setOpen(false)}
                   >

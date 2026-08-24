@@ -1,47 +1,115 @@
-# Implementation Roadmap
+# AVRMD 實作 Checklist
 
-See `IMPLEMENTATION_STATUS.md` for the current deployed surface and explicit
-infrastructure boundary.
+> ⚠️ **鐵則：網站上的一切都是英文。** UI 文字、按鈕、頁面標題、記錄內容、錯誤訊息、Email 一律英文。中文只用於討論與本 `docs/` 資料夾。
 
-## Milestone 1 — Public foundation
+目標：**online, always-on conference** — 隨時可來看 posters、talks、exhibitions，並在走廊遇到能幫上忙的人。
+完整脈絡見 [產品願景](PRODUCT_VISION.md)｜市場依據見 [市場研究](MARKET_STUDY.md)
 
-- Repository, documentation, hosting configuration, and local infrastructure.
-- Clinical-futurist responsive design system.
-- Typed catalog, taxonomy, relationships, search, filters, and canonical entity pages.
-- Reviewed demonstration records and trust labels.
-- Static deployment with no private data or external service dependency.
+---
 
-## Milestone 2 — Durable catalog
+## Phase 0 — 先入庫 ✅ 已完成
 
-- Complete PostgreSQL/Drizzle repository integration and migration operations.
-- Editorial administration, submissions, revisions, sources, provenance, and import jobs.
-- At least 120 real-metadata records with source and rights review.
+- [x] 檢查機密外洩（`.env` 未被追蹤、無硬編碼密碼）
+- [x] Commit：Groups 功能（論壇／Blog／媒體）
+- [x] Commit：目錄擴充至 49 筆 + 8 階段 schema + 兩份文件
+- [x] 推上 GitHub（`geminnex/avrmd`）
 
-## Milestone 3 — Membership and ownership
+---
 
-- Magic-link accounts, profiles, saved collections, follows, and notifications.
-- Domain-plus-review claims, organization teams, official updates, and private inquiries.
+## Phase 1 — 階段維度（研討會的「議程」）
 
-## Milestone 4 — Community and moderation
+讓「我卡在哪一關」成為可瀏覽、可篩選的第二軸。
 
-- Item/topic-scoped discussions and Q&A.
-- Reporting, moderation queues, appeals, sanctions, and audit history.
+**資料**
+- [ ] 補齊其餘 33 筆記錄的 `stages`（目前 49 筆中只有 16 筆有）
+- [ ] 放寬 `problem` 記錄：臨床問題掛主題、技術問題掛階段（兩者擇一）
+- [ ] 更新 `lib/topics.test.ts` 覆蓋守衛以支援技術問題
+- [ ] 新增 6–8 筆技術問題（研發障礙，軟硬體），每筆附真實論文來源
+  - [ ] 手部追蹤精度（精細手術動作）
+  - [ ] 觸覺回饋擬真度（組織手感）
+  - [ ] AR 對位誤差（疊合病人解剖）
+  - [ ] 延遲與暈動症
+  - [ ] 無菌區的硬體限制
+  - [ ] DICOM → 即時 3D 的效能瓶頸
+  - [ ] 跨頭盔移植成本（OpenXR 生態破碎）
 
-## Milestone 5 — Promotion
+**介面（全英文）**
+- [ ] `/stages` — 八階段總覽
+- [ ] `/stages/[slug]` — 階段指引頁（question + description + 該階段記錄 + 技術問題）
+- [ ] `/explore` 加入 stage 篩選
+- [ ] 記錄頁加階段 chips → 連往 `/stages/[slug]`
 
-- Advertiser dashboard, campaign review, quotation/invoice status, scheduling, placements, and reporting.
+---
 
-## Milestone 6 — AI throughout
+## Phase 2 — Talks（研討會的「講座」）
 
-- OpenRouter gateway, job queue, allowlisted connectors, structured extraction, and editorial review.
-- Grounded public discovery, owner/member drafting, moderation triage, and aggregate analytics.
-- Evaluation suite for citation integrity, medical-safety refusals, provenance, and unavailable-model fallbacks.
+- [ ] `data/talks.json` — 收錄真實公開演講（curated，標明講者出處）
+- [ ] `lib/talks.ts` — 雙來源合併（curated JSON + 會員投稿 Postgres）
+- [ ] `talks` 資料表 + migration
+- [ ] `/talks` — 可依 tag 篩選（沿用 59 facets + 8 階段 + 臨床主題，**不新增分類系統**）
+- [ ] **首頁隨機輪播 talks 當頭條**
+- [ ] `POST /api/talks` — 會員投稿（含 rate limit）
+- [ ] 視覺上與「經審閱記錄」明確區分（沿用 `.resource-card` 虛線）
 
-## Launch gates
+---
 
-- WCAG 2.2 AA.
-- Working backup/restore and account export/deletion.
-- Security and role-boundary review.
-- Copyright and medical-safety policy review by counsel.
-- Zero autonomous publication and zero hidden paid AI fallback.
-- Every published catalog field has a valid origin and review state.
+## Phase 3 — 個人頁與成員目錄（「參加者名冊」）
+
+- [ ] `users` 表擴充：`roles`、`stages`、`canHelpWith`、`lookingFor`、`topicInterests`、`affiliationSlug`
+- [ ] `/settings/profile` 擴充編輯欄位
+- [ ] `/members/[handle]` 顯示角色、階段、可協助事項
+- [ ] `/members` 成員目錄 — 依角色／階段／專長篩選（這就是「找夥伴」）
+
+---
+
+## Phase 4 — 問答與路由（「走廊交流」）⭐ 回訪動力最強
+
+- [ ] `questions`、`answers`、`notifications` 三張表
+- [ ] `/ask` — 發問並標記主題／階段／技術
+- [ ] `/questions`、`/questions/[id]`
+- [ ] **路由**：發問時比對 `canHelpWith` → 寫入通知
+- [ ] Header 通知鈴鐺（client island，勿破壞靜態產生）
+- [ ] ⛔ Email 通知**卡在你提供正式 SMTP 憑證**（目前只有本機 Mailpit）
+
+---
+
+## Phase 5 — 直播課與公告（「工作坊」）
+
+- [ ] `live_sessions` 表：主持人、標題、時間、連結、tags、名額
+- [ ] 會員排課介面
+- [ ] 系統公告：排定時公告、開始前通知
+- [ ] 出現在首頁 feed 與對應階段頁
+
+---
+
+## Phase 6 — 專案（認領 + 自建）
+
+- [ ] 認領既有研究計畫（機制已完成，用 `organization_memberships`）
+- [ ] `member_projects` 表：標題、目標、階段、招募角色、成員
+- [ ] 「徵求夥伴」列表，與 `/opportunities` 整合
+
+---
+
+## 每階段完成前必做（固定驗證流程）
+
+- [ ] `tsc --noEmit` 通過
+- [ ] `vitest run` 全過
+- [ ] 新增的外部連結**實際 curl 確認回 200**
+- [ ] `next build` — **確認 `/entities/[slug]`、`/topics/[slug]` 仍是靜態（`●`）**
+- [ ] Playwright 實際操作 + 看截圖（不只看 API 回應）
+- [ ] 部署後線上抽查
+- [ ] 清除測試資料
+- [ ] **檢查所有新增 UI 文字都是英文**
+- [ ] Commit + push
+
+---
+
+## 已知風險
+
+| 風險 | 對策 |
+|---|---|
+| **靜態產生迴歸**（已發生兩次） | 任何讀 cookie／DB 的動作一律用 client island，每次都檢查 build 輸出 |
+| **冷啟動** | Phase 1–2 是內容型（零使用者也有用）；Phase 3–6 才是社群型。順序刻意如此 |
+| **空狀態** | 每個社群功能都要有誠實空狀態，不做假資料 |
+| **語言混淆** | 對話中文、網站英文，每階段驗證都要檢查 |
+| **醫材廣告法規** | 開始收費推廣前須諮詢律師（見市場研究第七節） |

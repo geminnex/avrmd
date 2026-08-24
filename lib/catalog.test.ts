@@ -68,11 +68,13 @@ describe("catalog", () => {
     }
   });
 
-  it("uses only valid pipeline stages", () => {
+  it("places every record on the pipeline", () => {
+    // Stages are a browse dimension, so a record without one is invisible
+    // on that axis. No exceptions.
     for (const entity of catalog) {
-      if (!entity.stages) continue;
-      expect(entity.stages.length, entity.slug).toBeGreaterThan(0);
-      for (const stage of entity.stages) {
+      expect(entity.stages, entity.slug).toBeDefined();
+      expect(entity.stages!.length, entity.slug).toBeGreaterThan(0);
+      for (const stage of entity.stages!) {
         expect(pipelineStages, entity.slug).toContain(stage);
       }
     }

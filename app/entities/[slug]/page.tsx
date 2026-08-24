@@ -29,6 +29,7 @@ import {
   kindLabels,
 } from "@/lib/catalog";
 import { getTopicsForEntity } from "@/lib/topics";
+import { getStagesForEntity } from "@/lib/stages";
 
 type EntityPageProps = {
   params: Promise<{ slug: string }>;
@@ -60,6 +61,7 @@ export default async function EntityPage({ params }: EntityPageProps) {
   const relatedGroups = getRelatedEntitiesByKind(entity);
   const ownerEntity = getOwnerEntity(entity);
   const entityTopics = getTopicsForEntity(entity);
+  const entityStages = getStagesForEntity(entity);
 
   return (
     <div className="entity-page">
@@ -82,6 +84,16 @@ export default async function EntityPage({ params }: EntityPageProps) {
                   {entityTopics.map((topic) => (
                     <Link href={`/topics/${topic.slug}`} key={topic.slug}>
                       {topic.shortName}
+                    </Link>
+                  ))}
+                </div>
+              )}
+              {entityStages.length > 0 && (
+                <div className="entity-stage-row">
+                  <span>Stage</span>
+                  {entityStages.map((stage) => (
+                    <Link href={`/stages/${stage.slug}`} key={stage.slug}>
+                      {stage.name}
                     </Link>
                   ))}
                 </div>
@@ -178,7 +190,7 @@ export default async function EntityPage({ params }: EntityPageProps) {
               <div>
                 <BookOpenCheck size={18} />
                 <span>
-                  <small>Stage</small>
+                  <small>Maturity</small>
                   <strong>{entity.stage}</strong>
                 </span>
               </div>

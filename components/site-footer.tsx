@@ -23,6 +23,7 @@ export function SiteFooter() {
         </div>
         <div>
           <h3>Directory</h3>
+          <Link href="/stages">Stages</Link>
           <Link href="/explore">All records</Link>
           <Link href="/explore?kind=organization">Organizations</Link>
           <Link href="/explore?kind=solution">Solutions</Link>

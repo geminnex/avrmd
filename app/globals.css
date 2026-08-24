@@ -5227,3 +5227,207 @@ button {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* ---------- Pipeline stages ---------- */
+
+.stages-body,
+.stage-body {
+  padding: 46px 0 80px;
+}
+
+.stage-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+}
+
+.stage-card {
+  align-items: center;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  display: flex;
+  gap: 18px;
+  padding: 18px 20px;
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+.stage-card:hover {
+  border-color: var(--teal);
+  transform: translateX(2px);
+}
+.stage-number {
+  align-items: center;
+  background: var(--surface);
+  border-radius: 50%;
+  color: var(--muted);
+  display: flex;
+  flex: 0 0 auto;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 800;
+  height: 38px;
+  justify-content: center;
+  width: 38px;
+}
+.stage-card:hover .stage-number {
+  background: var(--teal-pale);
+  color: var(--teal-dark);
+}
+.stage-card-body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.stage-card-body strong {
+  color: var(--ink);
+  font-size: 16.5px;
+}
+.stage-card-body em {
+  color: var(--teal-dark);
+  font-size: 13.5px;
+  font-style: normal;
+  font-weight: 650;
+}
+.stage-card-body small {
+  color: var(--ink-soft);
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+.stage-card-count {
+  background: var(--surface);
+  border-radius: 999px;
+  color: var(--ink-soft);
+  flex: 0 0 auto;
+  font-size: 12.5px;
+  font-weight: 800;
+  padding: 4px 11px;
+}
+.stage-card-arrow {
+  color: var(--muted);
+  flex: 0 0 auto;
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+.stage-card:hover .stage-card-arrow {
+  opacity: 1;
+}
+
+.stage-question {
+  color: #65d8c0 !important;
+  font-size: 18px !important;
+  font-weight: 650;
+  margin-top: 14px;
+}
+
+.stage-section {
+  margin-bottom: 44px;
+}
+.stage-section .entity-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.stage-nav {
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  padding-top: 22px;
+}
+.stage-nav a {
+  align-items: center;
+  color: var(--teal-dark);
+  display: inline-flex;
+  font-size: 14px;
+  font-weight: 700;
+  gap: 7px;
+}
+
+.entity-stage-row {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+.entity-stage-row > span {
+  color: #9fbcc2;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+.entity-stage-row a {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  color: #dcebed;
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 5px 12px;
+}
+.entity-stage-row a:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+@media (max-width: 1060px) {
+  .stage-section .entity-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 820px) {
+  .stage-section .entity-grid {
+    grid-template-columns: 1fr;
+  }
+  .stage-card {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+}
+
+/* ---------- Problem pages ---------- */
+
+.problem-body {
+  padding: 46px 0 80px;
+}
+.problem-body .detail-section {
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 34px;
+  padding-bottom: 34px;
+}
+.problem-body .detail-section:last-child {
+  border-bottom: 0;
+}
+.problem-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 18px;
+}
+.problem-empty {
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.7;
+  margin-top: 12px;
+  max-width: 62ch;
+}
+.problem-empty a {
+  color: var(--teal-dark);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.entity-stage-row > span svg {
+  vertical-align: -1px;
+}
+
+@media (max-width: 1060px) {
+  .problem-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 820px) {
+  .problem-grid {
+    grid-template-columns: 1fr;
+  }
+}

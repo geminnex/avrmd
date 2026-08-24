@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { modalities, specialties, useCases } from "@/lib/catalog";
+import { entityHref, modalities, specialties, useCases } from "@/lib/catalog";
 import { entityKinds } from "@/lib/catalog-types";
 import {
   answer,
@@ -146,6 +146,7 @@ export async function POST(request: Request) {
     })),
     entities: result.entities.map((entity) => ({
       slug: entity.slug,
+      href: entityHref(entity),
       name: entity.name,
       typeLabel: entity.typeLabel,
       summary: entity.summary,

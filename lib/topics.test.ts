@@ -53,15 +53,25 @@ describe("topics", () => {
   it("covers every clinical record", () => {
     const uncovered = catalog
       .filter((entity) => getTopicsForEntity(entity).length === 0)
+      // Technical problems are anchored to a pipeline stage instead of a
+      // clinical topic — they apply across medicine, not within one area.
+      .filter((entity) => !(entity.kind === "problem" && !entity.topicSlug))
       .map((entity) => entity.slug)
       .filter((slug) => !uncoveredByDesign.has(slug));
     expect(uncovered).toEqual([]);
   });
 
-  it("places every problem in the topic hub it declares", () => {
+  it("anchors every problem to a clinical topic or a pipeline stage", () => {
+    // Clinical problems hang off a topic ("pain management"); technical
+    // problems hang off a stage ("technology") because they are not
+    // specific to any one area of medicine.
     for (const problem of catalog.filter((entity) => entity.kind === "problem")) {
-      expect(problem.topicSlug, problem.slug).toBeDefined();
-      expect(getTopic(problem.topicSlug!), problem.slug).toBeDefined();
+      if (problem.topicSlug) {
+        expect(getTopic(problem.topicSlug), problem.slug).toBeDefined();
+      } else {
+        expect(problem.stages?.length, `${problem.slug} needs a topic or a stage`)
+          .toBeGreaterThan(0);
+      }
     }
   });
 

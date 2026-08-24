@@ -16,6 +16,7 @@ export function SiteHeader() {
         <nav className="desktop-nav" aria-label="Primary navigation">
           <Link href="/network">Network</Link>
           <Link href="/topics">Topics</Link>
+          <Link href="/stages">Stages</Link>
           <Link href="/explore">Directory</Link>
           <Link href="/community">Community</Link>
           <Link href="/for-organizations">For organizations</Link>

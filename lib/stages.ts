@@ -1,4 +1,5 @@
-import type { PipelineStage } from "./catalog-types";
+import { catalog } from "./catalog";
+import type { CatalogEntity, EntityKind, PipelineStage } from "./catalog-types";
 
 export type Stage = {
   slug: PipelineStage;
@@ -82,3 +83,35 @@ export function getStage(slug: string) {
 export const stageLabels: Record<PipelineStage, string> = Object.fromEntries(
   stages.map((stage) => [stage.slug, stage.name]),
 ) as Record<PipelineStage, string>;
+
+export function getStageEntities(slug: PipelineStage) {
+  return catalog.filter((entity) => entity.stages?.includes(slug));
+}
+
+const stageKindOrder: EntityKind[] = [
+  "problem",
+  "solution",
+  "organization",
+  "evidence",
+  "project",
+  "event",
+  "group",
+];
+
+export function getStageEntitiesByKind(slug: PipelineStage) {
+  const entities = getStageEntities(slug);
+  return stageKindOrder
+    .map((kind) => ({ kind, items: entities.filter((entity) => entity.kind === kind) }))
+    .filter((group) => group.items.length > 0);
+}
+
+/** Technical problems: anchored to a stage rather than a clinical topic. */
+export function getTechnicalProblems(slug: PipelineStage) {
+  return getStageEntities(slug).filter(
+    (entity) => entity.kind === "problem" && !entity.topicSlug,
+  );
+}
+
+export function getStagesForEntity(entity: CatalogEntity) {
+  return stages.filter((stage) => entity.stages?.includes(stage.slug));
+}

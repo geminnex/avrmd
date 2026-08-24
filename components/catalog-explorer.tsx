@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Filter, Search, SlidersHorizontal, Stethoscope, X } from "lucide-react";
+import { Filter, Route, Search, SlidersHorizontal, Stethoscope, X } from "lucide-react";
 import {
   filterKindLabels,
   modalities,
@@ -11,6 +11,7 @@ import {
   type CatalogFilterKind,
 } from "@/lib/catalog";
 import { entityKinds } from "@/lib/catalog-types";
+import { stages } from "@/lib/stages";
 import { AdSlot } from "./ad-slot";
 import { EntityCard } from "./entity-card";
 
@@ -21,6 +22,7 @@ type CatalogExplorerProps = {
   initialQuery?: string;
   initialModality?: string;
   initialSpecialty?: string;
+  initialStage?: string;
   limit?: number;
   heading?: string;
   syncUrl?: boolean;
@@ -31,6 +33,7 @@ export function CatalogExplorer({
   initialQuery = "",
   initialModality = "all",
   initialSpecialty = "all",
+  initialStage = "all",
   limit,
   heading = "Explore the network",
   syncUrl = false,
@@ -40,6 +43,7 @@ export function CatalogExplorer({
   const [kind, setKind] = useState<CatalogFilterKind>(initialKind);
   const [modality, setModality] = useState(initialModality);
   const [specialty, setSpecialty] = useState(initialSpecialty);
+  const [stage, setStage] = useState(initialStage);
 
   // Header links like /explore?kind=event change searchParams without
   // remounting this client component, so mirror those props into state.
@@ -49,6 +53,9 @@ export function CatalogExplorer({
   useEffect(() => {
     setModality(initialModality);
   }, [initialModality]);
+  useEffect(() => {
+    setStage(initialStage);
+  }, [initialStage]);
 
   // Keep the URL shareable/bookmarkable; debounced so typing stays smooth.
   useEffect(() => {
@@ -59,16 +66,17 @@ export function CatalogExplorer({
       if (kind !== "all") params.set("kind", kind);
       if (modality !== "all") params.set("modality", modality);
       if (specialty !== "all") params.set("specialty", specialty);
+      if (stage !== "all") params.set("stage", stage);
       const search = params.toString();
       router.replace(search ? `/explore?${search}` : "/explore", { scroll: false });
     }, 250);
     return () => clearTimeout(handle);
-  }, [kind, modality, query, router, specialty, syncUrl]);
+  }, [kind, modality, query, router, specialty, stage, syncUrl]);
 
   const results = useMemo(() => {
-    const filtered = searchCatalog(query, kind, modality, specialty);
+    const filtered = searchCatalog(query, kind, modality, specialty, stage);
     return limit ? filtered.slice(0, limit) : filtered;
-  }, [kind, limit, modality, query, specialty]);
+  }, [kind, limit, modality, query, specialty, stage]);
 
   return (
     <section className="catalog-section">
@@ -137,6 +145,18 @@ export function CatalogExplorer({
             ))}
           </select>
         </label>
+        <label className="select-control">
+          <Route size={16} />
+          <span className="sr-only">Pipeline stage</span>
+          <select onChange={(event) => setStage(event.target.value)} value={stage}>
+            <option value="all">All stages</option>
+            {stages.map((item) => (
+              <option key={item.slug} value={item.slug}>
+                {item.name}
+              </option>
+            ))}
+          </select>
+        </label>
       </div>
 
       <div className="result-line">
@@ -165,6 +185,7 @@ export function CatalogExplorer({
               setKind("all");
               setModality("all");
               setSpecialty("all");
+              setStage("all");
             }}
             type="button"
           >

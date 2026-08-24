@@ -16,6 +16,7 @@ const sections = [
     links: [
       ...topics.map((topic) => ({ href: `/topics/${topic.slug}`, label: topic.shortName })),
       { href: "/topics", label: "All topics" },
+      { href: "/stages", label: "Stages — where are you stuck?" },
     ],
   },
   {
