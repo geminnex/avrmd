@@ -1094,5 +1094,587 @@
     "accent": "blue",
     "topicSlug": "surgical-planning",
     "relatedSlugs": []
+  },
+  {
+    "id": "org-sentiar",
+    "slug": "sentiar",
+    "name": "SentiAR",
+    "kind": "organization",
+    "typeLabel": "Medical AR company",
+    "summary": "Developer of augmented and mixed reality visualisation for cardiac electrophysiology, including an FDA-cleared platform that renders real-time catheter data as a hands-free 3D hologram.",
+    "modalities": [
+      "AR",
+      "MR"
+    ],
+    "specialties": [
+      "Cardiology",
+      "Electrophysiology"
+    ],
+    "useCases": [
+      "Visualization",
+      "Planning"
+    ],
+    "geography": "United States",
+    "stage": "Commercial",
+    "reviewStatus": "source-reviewed",
+    "claimStatus": "unclaimed",
+    "sourceUrl": "https://www.sentiar.com/",
+    "sourceLabel": "SentiAR official website",
+    "sourceNote": "Products, clinical focus, and FDA-cleared status summarised from the official site.",
+    "accent": "blue",
+    "stages": [
+      "implementation",
+      "regulatory",
+      "commercialization"
+    ],
+    "regulatoryNote": "United States: the company states its CommandEP platform is FDA-cleared. Regulatory status is region- and date-specific.",
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-24",
+    "relatedSlugs": []
+  },
+  {
+    "id": "org-oxford-vr",
+    "slug": "oxford-vr",
+    "name": "Oxford VR",
+    "kind": "organization",
+    "typeLabel": "Immersive therapeutics company",
+    "summary": "Developer of VR-delivered psychological treatments guided by a virtual coach, targeting conditions ranging from anxiety to psychosis.",
+    "modalities": [
+      "VR"
+    ],
+    "specialties": [
+      "Behavioral health"
+    ],
+    "useCases": [
+      "Therapy support"
+    ],
+    "geography": "United Kingdom",
+    "stage": "Commercial",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "unclaimed",
+    "sourceUrl": "https://oxfordvr.org/",
+    "sourceLabel": "Oxford VR official website",
+    "sourceNote": "Treatment approach and clinical scope summarised from the official site.",
+    "accent": "violet",
+    "stages": [
+      "validation",
+      "implementation",
+      "commercialization"
+    ],
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-24",
+    "relatedSlugs": []
+  },
+  {
+    "id": "org-floreo",
+    "slug": "floreo",
+    "name": "Floreo",
+    "kind": "organization",
+    "typeLabel": "Immersive therapy company",
+    "summary": "VR therapy platform delivering structured social and communication practice for neurodiverse learners, delivered on headsets, phones, or a browser.",
+    "modalities": [
+      "VR"
+    ],
+    "specialties": [
+      "Behavioral health",
+      "Neurodiversity"
+    ],
+    "useCases": [
+      "Therapy support",
+      "Skills training"
+    ],
+    "geography": "United States",
+    "stage": "Commercial",
+    "reviewStatus": "source-reviewed",
+    "claimStatus": "unclaimed",
+    "sourceUrl": "https://floreovr.com/",
+    "sourceLabel": "Floreo official website",
+    "sourceNote": "Platform description and FDA Breakthrough Device Designation summarised from the official site.",
+    "accent": "teal",
+    "stages": [
+      "validation",
+      "regulatory",
+      "commercialization"
+    ],
+    "regulatoryNote": "United States: the company states it holds FDA Breakthrough Device Designation, which is a review pathway and not a clearance or approval.",
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-24",
+    "relatedSlugs": []
+  },
+  {
+    "id": "org-karuna-labs",
+    "slug": "karuna-labs",
+    "name": "Karuna Labs",
+    "kind": "organization",
+    "typeLabel": "Immersive therapeutics company",
+    "summary": "Provider of a twelve-week chronic pain programme combining virtual reality with personalised behavioural coaching, aimed at restoring function.",
+    "modalities": [
+      "VR"
+    ],
+    "specialties": [
+      "Pain management",
+      "Rehabilitation"
+    ],
+    "useCases": [
+      "Therapy support",
+      "Home care"
+    ],
+    "geography": "United States",
+    "stage": "Commercial",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "unclaimed",
+    "sourceUrl": "https://karunalabs.com/",
+    "sourceLabel": "Karuna Labs official website",
+    "sourceNote": "Programme structure and clinical scope summarised from the official site.",
+    "accent": "violet",
+    "stages": [
+      "implementation",
+      "commercialization"
+    ],
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-24",
+    "relatedSlugs": []
+  },
+  {
+    "id": "org-voxel-man",
+    "slug": "voxel-man",
+    "name": "VOXEL-MAN",
+    "kind": "organization",
+    "typeLabel": "Surgical simulator manufacturer",
+    "summary": "Manufacturer of virtual surgical simulators with haptic feedback for ear, sinus, and dental procedures, intended to reduce reliance on human specimens for training.",
+    "modalities": [
+      "VR",
+      "Haptics"
+    ],
+    "specialties": [
+      "Otolaryngology",
+      "Dentistry",
+      "Medical education"
+    ],
+    "useCases": [
+      "Skills training",
+      "Assessment"
+    ],
+    "geography": "Germany",
+    "stage": "Commercial",
+    "reviewStatus": "source-reviewed",
+    "claimStatus": "unclaimed",
+    "sourceUrl": "https://www.voxel-man.com/",
+    "sourceLabel": "VOXEL-MAN official website",
+    "sourceNote": "Product range and clinical specialties summarised from the official site.",
+    "accent": "gold",
+    "stages": [
+      "implementation",
+      "manufacturing",
+      "commercialization"
+    ],
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-24",
+    "relatedSlugs": []
+  },
+  {
+    "id": "org-firsthand",
+    "slug": "firsthand-technology",
+    "name": "firsthand Technology",
+    "kind": "organization",
+    "typeLabel": "Immersive therapeutics company",
+    "summary": "Developer of biosensor-enabled VR environments for procedural and chronic pain, including a biofeedback experience driven by heart-rate monitoring.",
+    "modalities": [
+      "VR"
+    ],
+    "specialties": [
+      "Pain management",
+      "Behavioral health"
+    ],
+    "useCases": [
+      "Therapy support",
+      "Progress monitoring"
+    ],
+    "geography": "United States",
+    "stage": "Commercial",
+    "reviewStatus": "source-reviewed",
+    "claimStatus": "unclaimed",
+    "sourceUrl": "https://firsthand.com/",
+    "sourceLabel": "firsthand Technology official website",
+    "sourceNote": "Products and cited study outcomes summarised from the official site; study claims are the company's own.",
+    "accent": "coral",
+    "stages": [
+      "validation",
+      "implementation",
+      "commercialization"
+    ],
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-24",
+    "relatedSlugs": []
+  },
+  {
+    "id": "org-mindmaze",
+    "slug": "mindmaze-therapeutics",
+    "name": "MindMaze Therapeutics",
+    "kind": "organization",
+    "typeLabel": "Neurotherapeutics company",
+    "summary": "Developer of neurorehabilitation systems combining immersive software, smart peripherals, and motion analytics for recovery after stroke and other neurological conditions.",
+    "modalities": [
+      "VR",
+      "Screen-based"
+    ],
+    "specialties": [
+      "Rehabilitation",
+      "Neurology"
+    ],
+    "useCases": [
+      "Motor learning",
+      "Progress monitoring",
+      "Therapy support"
+    ],
+    "geography": "Switzerland",
+    "stage": "Commercial",
+    "reviewStatus": "source-reviewed",
+    "claimStatus": "unclaimed",
+    "sourceUrl": "https://www.mindmazetherapeutics.com/",
+    "sourceLabel": "MindMaze Therapeutics official website",
+    "sourceNote": "Product portfolio and clinical scope summarised from the official site.",
+    "accent": "teal",
+    "stages": [
+      "implementation",
+      "validation",
+      "commercialization"
+    ],
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-24",
+    "relatedSlugs": []
+  },
+  {
+    "id": "org-surgical-science",
+    "slug": "surgical-science",
+    "name": "Surgical Science",
+    "kind": "organization",
+    "typeLabel": "Medical simulation company",
+    "summary": "Medical simulation company supplying surgical and ultrasound training simulators, and the acquirer of Intelligent Ultrasound's simulation business in 2025.",
+    "modalities": [
+      "VR",
+      "Haptics"
+    ],
+    "specialties": [
+      "Surgery",
+      "Medical education",
+      "Radiology"
+    ],
+    "useCases": [
+      "Skills training",
+      "Assessment"
+    ],
+    "geography": "Sweden",
+    "stage": "Commercial",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "unclaimed",
+    "sourceUrl": "https://surgicalscience.com/",
+    "sourceLabel": "Surgical Science official website",
+    "sourceNote": "Company scope summarised from the official site; the 2025 acquisition is documented separately.",
+    "accent": "blue",
+    "stages": [
+      "implementation",
+      "manufacturing",
+      "commercialization"
+    ],
+    "relatedSlugs": [
+      "intelligent-ultrasound"
+    ],
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-24"
+  },
+  {
+    "id": "org-intelligent-ultrasound",
+    "slug": "intelligent-ultrasound",
+    "name": "Intelligent Ultrasound",
+    "kind": "organization",
+    "typeLabel": "Ultrasound simulation and AI company",
+    "summary": "Developer of ultrasound training simulators and clinical image-recognition software. The company was split and sold: its clinical AI business to GE HealthCare in 2024, its simulation business to Surgical Science in 2025.",
+    "modalities": [
+      "Screen-based",
+      "Haptics"
+    ],
+    "specialties": [
+      "Radiology",
+      "Medical education"
+    ],
+    "useCases": [
+      "Skills training",
+      "Assessment"
+    ],
+    "geography": "United Kingdom",
+    "stage": "Acquired",
+    "reviewStatus": "source-reviewed",
+    "claimStatus": "not-claimable",
+    "operatingStatus": "acquired",
+    "sourceUrl": "https://www.gehealthcare.com/en-us/about/newsroom/press-releases/ge-healthcare-announces-agreement-to-acquire-clinical-artificial-intelligence-business-from-intelligent-ultrasound",
+    "sourceLabel": "GE HealthCare press release",
+    "sourceNote": "Acquisition of the clinical AI business documented in GE HealthCare's own announcement. The simulation business was separately acquired by Surgical Science in 2025. Retained as a historical record.",
+    "accent": "gold",
+    "stages": [
+      "implementation",
+      "commercialization"
+    ],
+    "relatedSlugs": [
+      "surgical-science"
+    ],
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-24"
+  },
+  {
+    "id": "org-limbix",
+    "slug": "limbix",
+    "name": "Limbix",
+    "kind": "organization",
+    "typeLabel": "Digital therapeutics company",
+    "summary": "Developer of evidence-based digital therapeutics for adolescent mental health, including the SparkRx programme. Acquired by Big Health in July 2023.",
+    "modalities": [
+      "VR",
+      "Screen-based"
+    ],
+    "specialties": [
+      "Behavioral health"
+    ],
+    "useCases": [
+      "Therapy support",
+      "Home care"
+    ],
+    "geography": "United States",
+    "stage": "Acquired",
+    "reviewStatus": "source-reviewed",
+    "claimStatus": "not-claimable",
+    "operatingStatus": "acquired",
+    "sourceUrl": "https://www.bighealth.com/news/big-health-acquires-limbix-and-expands-into-adolescent-mental-health",
+    "sourceLabel": "Big Health press release",
+    "sourceNote": "Acquisition documented in the acquirer's own announcement, July 2023. Retained as a historical record; the SparkRx product continued under Big Health.",
+    "accent": "violet",
+    "stages": [
+      "validation",
+      "commercialization"
+    ],
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-24",
+    "relatedSlugs": []
+  },
+  {
+    "id": "org-vhil",
+    "slug": "stanford-vhil",
+    "name": "Stanford Virtual Human Interaction Lab",
+    "kind": "organization",
+    "typeLabel": "University research laboratory",
+    "summary": "Stanford University laboratory studying the psychological and behavioural effects of virtual and augmented reality, founded in 2003.",
+    "modalities": [
+      "VR",
+      "AR"
+    ],
+    "specialties": [
+      "Human factors",
+      "Behavioral health",
+      "Clinical research"
+    ],
+    "useCases": [
+      "Research",
+      "Assessment"
+    ],
+    "geography": "United States",
+    "stage": "Active research",
+    "reviewStatus": "source-reviewed",
+    "claimStatus": "unclaimed",
+    "sourceUrl": "https://vhil.stanford.edu/",
+    "sourceLabel": "Stanford VHIL official site",
+    "sourceNote": "Research focus and founding year summarised from the laboratory's own site.",
+    "accent": "teal",
+    "stages": [
+      "research"
+    ],
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-24",
+    "relatedSlugs": []
+  },
+  {
+    "id": "sol-3d-slicer",
+    "slug": "3d-slicer",
+    "name": "3D Slicer",
+    "kind": "solution",
+    "typeLabel": "Open-source medical imaging platform",
+    "owner": "3D Slicer community",
+    "summary": "Free, open-source software for visualisation, segmentation, registration, and analysis of medical images, with extensions for viewing and interacting with scenes in virtual reality.",
+    "modalities": [
+      "VR",
+      "Screen-based"
+    ],
+    "specialties": [
+      "Radiology",
+      "Medical imaging",
+      "Neurosurgery"
+    ],
+    "useCases": [
+      "Visualization",
+      "Planning",
+      "Research"
+    ],
+    "geography": "Global",
+    "stage": "Open source",
+    "reviewStatus": "source-reviewed",
+    "claimStatus": "unclaimed",
+    "subtype": "software",
+    "sourceUrl": "https://www.slicer.org/",
+    "sourceLabel": "3D Slicer official site",
+    "sourceNote": "Capabilities, licence, and VR extension support summarised from the project's own documentation.",
+    "accent": "blue",
+    "stages": [
+      "technology",
+      "implementation",
+      "research"
+    ],
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-24",
+    "relatedSlugs": []
+  },
+  {
+    "id": "sol-sofa",
+    "slug": "sofa-framework",
+    "name": "SOFA Framework",
+    "kind": "solution",
+    "typeLabel": "Open-source simulation framework",
+    "owner": "SOFA Consortium",
+    "summary": "Open-source framework for real-time physics simulation, widely used as the engine underneath medical simulation and surgical training research.",
+    "modalities": [
+      "VR",
+      "Haptics"
+    ],
+    "specialties": [
+      "Surgery",
+      "Medical education",
+      "Clinical research"
+    ],
+    "useCases": [
+      "Research",
+      "Skills training"
+    ],
+    "geography": "Global",
+    "stage": "Open source",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "unclaimed",
+    "subtype": "software",
+    "sourceUrl": "https://www.sofa-framework.org/",
+    "sourceLabel": "SOFA Framework official site",
+    "sourceNote": "Scope summarised from the project's own site.",
+    "accent": "teal",
+    "stages": [
+      "technology",
+      "implementation",
+      "research"
+    ],
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-24",
+    "relatedSlugs": []
+  },
+  {
+    "id": "gear-magic-leap-2",
+    "slug": "magic-leap-2",
+    "name": "Magic Leap 2",
+    "kind": "solution",
+    "typeLabel": "Enterprise AR headset",
+    "owner": "Magic Leap",
+    "summary": "A see-through augmented reality headset with dimming technology, marketed for enterprise use including healthcare and surgical visualisation settings.",
+    "modalities": [
+      "AR",
+      "MR"
+    ],
+    "specialties": [
+      "Cross-specialty"
+    ],
+    "useCases": [
+      "Hardware platform"
+    ],
+    "geography": "Global",
+    "stage": "Enterprise hardware",
+    "reviewStatus": "metadata-reviewed",
+    "claimStatus": "unclaimed",
+    "subtype": "hardware",
+    "sourceUrl": "https://www.magicleap.com/",
+    "sourceLabel": "Magic Leap official website",
+    "sourceNote": "Device description summarised from the official product site. AVRMD tracks general-purpose XR hardware because medical XR software is deployed on it.",
+    "accent": "violet",
+    "stages": [
+      "technology"
+    ],
+    "regulatoryNote": "General-purpose enterprise hardware. Not a medical device and not cleared or approved for diagnosis or treatment. Regulatory status attaches to the medical software deployed on the headset, never to the headset itself.",
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-24",
+    "relatedSlugs": []
+  },
+  {
+    "id": "event-ieee-vr-2027",
+    "slug": "ieee-vr-2027",
+    "name": "IEEE VR 2027",
+    "kind": "event",
+    "typeLabel": "Academic conference",
+    "summary": "The IEEE Conference on Virtual Reality and 3D User Interfaces, described by its organisers as the premier international venue for advances in virtual, augmented, and mixed reality. Hosts the XR Health workshop track.",
+    "modalities": [
+      "VR",
+      "AR",
+      "MR"
+    ],
+    "specialties": [
+      "Clinical research",
+      "Human factors"
+    ],
+    "useCases": [
+      "Research exchange",
+      "Networking"
+    ],
+    "geography": "Melbourne, Australia",
+    "stage": "Upcoming",
+    "eventDate": "2027-02-27",
+    "reviewStatus": "source-reviewed",
+    "claimStatus": "unclaimed",
+    "sourceUrl": "https://ieeevr.org/2027/",
+    "sourceLabel": "IEEE VR 2027 official site",
+    "sourceNote": "Dates and location checked against the official conference site.",
+    "accent": "blue",
+    "stages": [
+      "research"
+    ],
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-24",
+    "relatedSlugs": []
+  },
+  {
+    "id": "event-ismar-2026",
+    "slug": "ismar-2026",
+    "name": "IEEE ISMAR 2026",
+    "kind": "event",
+    "typeLabel": "Academic conference",
+    "summary": "The International Symposium on Mixed and Augmented Reality, the leading academic venue for AR and MR research, organised by IEEE and ACM SIGCHI.",
+    "modalities": [
+      "AR",
+      "MR"
+    ],
+    "specialties": [
+      "Clinical research",
+      "Medical imaging"
+    ],
+    "useCases": [
+      "Research exchange",
+      "Networking"
+    ],
+    "geography": "Bari, Italy",
+    "stage": "Upcoming",
+    "eventDate": "2026-10-04",
+    "reviewStatus": "source-reviewed",
+    "claimStatus": "unclaimed",
+    "sourceUrl": "https://www.ismar.net/",
+    "sourceLabel": "ISMAR official site",
+    "sourceNote": "Dates and location checked against the official symposium site.",
+    "accent": "violet",
+    "stages": [
+      "research",
+      "technology"
+    ],
+    "aiAssisted": false,
+    "lastReviewed": "2026-08-24",
+    "relatedSlugs": []
   }
 ]

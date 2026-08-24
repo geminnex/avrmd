@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { catalog, getEntity, getGear, getOwnerEntity, searchCatalog } from "./catalog";
 import { catalogSchema } from "./catalog-schema";
+import { pipelineStages } from "./catalog-types";
 
 describe("catalog", () => {
   it("validates the data file against the record schema", () => {
@@ -56,6 +57,34 @@ describe("catalog", () => {
     // can act on.
     for (const entity of catalog) {
       expect(entity.modalities, entity.slug).not.toContain("XR");
+    }
+  });
+
+  it("only sets operatingStatus on records known to no longer operate independently", () => {
+    for (const entity of catalog) {
+      if (entity.operatingStatus) {
+        expect(["acquired", "discontinued"], entity.slug).toContain(entity.operatingStatus);
+      }
+    }
+  });
+
+  it("uses only valid pipeline stages", () => {
+    for (const entity of catalog) {
+      if (!entity.stages) continue;
+      expect(entity.stages.length, entity.slug).toBeGreaterThan(0);
+      for (const stage of entity.stages) {
+        expect(pipelineStages, entity.slug).toContain(stage);
+      }
+    }
+  });
+
+  it("explains why a record is marked acquired or discontinued", () => {
+    // An operating-status badge is a claim about a real company; the source
+    // note has to say what it is based on.
+    for (const entity of catalog) {
+      if (!entity.operatingStatus) continue;
+      expect(entity.sourceNote.length, entity.slug).toBeGreaterThan(40);
+      expect(entity.claimStatus, entity.slug).toBe("not-claimable");
     }
   });
 

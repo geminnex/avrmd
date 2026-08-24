@@ -8,9 +8,15 @@ import {
   topics,
 } from "./topics";
 
-/** Records intentionally outside every clinical topic. */
+/**
+ * Records intentionally outside every clinical topic: broad XR-industry
+ * events that serve the whole field rather than one clinical area, and
+ * general-purpose hardware. Tagging these with a clinical specialty just to
+ * satisfy this guard would be dishonest labelling.
+ */
 const uncoveredByDesign = new Set([
   "united-xr-europe-2026",
+  "ieee-vr-2027",
   ...catalog.filter((entity) => entity.subtype === "hardware").map((entity) => entity.slug),
 ]);
 

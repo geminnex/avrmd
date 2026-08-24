@@ -896,6 +896,11 @@ button {
   color: #6650b5;
 }
 
+.trust-badge.operating-status {
+  background: #f1efe9;
+  color: #7a7362;
+}
+
 .empty-state {
   align-items: center;
   background: var(--surface);
@@ -5112,5 +5117,113 @@ button {
 @media (max-width: 1060px) {
   .desktop-nav {
     gap: 22px;
+  }
+}
+
+/* ---------- Entity group panel: forum, blog, media ---------- */
+
+.group-panel-loading {
+  align-items: center;
+  color: var(--muted);
+  display: flex;
+  height: 80px;
+  justify-content: center;
+}
+
+.entity-group-panel {
+  margin-top: 6px;
+}
+
+.group-panel-tabs {
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  gap: 4px;
+  margin-bottom: 20px;
+}
+.group-panel-tabs button {
+  align-items: center;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  color: var(--muted);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 700;
+  gap: 6px;
+  margin-bottom: -1px;
+  padding: 9px 4px 11px;
+}
+.group-panel-tabs button + button {
+  margin-left: 18px;
+}
+.group-panel-tabs button.active {
+  border-bottom-color: var(--teal);
+  color: var(--ink);
+}
+
+.group-panel-body .post-composer {
+  margin-bottom: 16px;
+}
+.group-panel-body .post-list {
+  gap: 10px;
+}
+
+.new-thread-form {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.new-thread-form input {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--ink);
+  flex: 1;
+  font-family: inherit;
+  font-size: 14px;
+  padding: 10px 14px;
+}
+.new-thread-form button {
+  align-items: center;
+  background: var(--navy);
+  border: 0;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  flex: 0 0 auto;
+  height: 38px;
+  justify-content: center;
+  width: 42px;
+}
+.new-thread-form button:disabled {
+  opacity: 0.5;
+}
+
+.group-empty {
+  color: var(--muted);
+  font-size: 13.5px;
+  padding: 10px 0;
+}
+
+.group-media-grid {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(3, 1fr);
+}
+.group-media-grid img {
+  aspect-ratio: 1;
+  border-radius: 10px;
+  display: block;
+  object-fit: cover;
+  width: 100%;
+}
+
+@media (max-width: 560px) {
+  .group-media-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

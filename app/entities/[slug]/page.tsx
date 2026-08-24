@@ -17,6 +17,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { EntityCard } from "@/components/entity-card";
+import { EntityGroupPanel } from "@/components/entity-group-panel";
 import { FollowButton } from "@/components/follow-button";
 import { TrustBadges } from "@/components/trust-badges";
 import { WorkflowForm } from "@/components/workflow-form";
@@ -122,6 +123,7 @@ export default async function EntityPage({ params }: EntityPageProps) {
             <a href="#overview">Overview</a>
             <a href="#sources">Sources</a>
             <a href="#community">Q&A</a>
+            <a href="#group">Group</a>
             {relatedGroups.length > 0 && <a href="#related">Connected records</a>}
           </nav>
 
@@ -272,6 +274,12 @@ export default async function EntityPage({ params }: EntityPageProps) {
               followingType="entity"
               label="Follow this record"
             />
+          </section>
+
+          <section className="detail-section" id="group">
+            <span className="eyebrow">Forum, blog, and media</span>
+            <h2>This record's group</h2>
+            <EntityGroupPanel slug={entity.slug} />
           </section>
 
           {entity.claimStatus === "claimed" && (

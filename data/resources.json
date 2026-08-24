@@ -73,7 +73,7 @@
   },
   {
     "slug": "fda-ar-vr-medical-devices",
-    "name": "FDA — AR and VR medical devices",
+    "name": "FDA \u2014 AR and VR medical devices",
     "url": "https://www.fda.gov/medical-devices/digital-health-center-excellence/augmented-reality-and-virtual-reality-medical-devices",
     "category": "bodies",
     "scope": "medical",
@@ -129,7 +129,7 @@
   },
   {
     "slug": "awe",
-    "name": "AWE — Augmented World Expo",
+    "name": "AWE \u2014 Augmented World Expo",
     "url": "https://www.awexr.com/",
     "category": "conferences",
     "scope": "general-xr",
@@ -137,7 +137,7 @@
   },
   {
     "slug": "khronos-openxr",
-    "name": "Khronos Group — OpenXR",
+    "name": "Khronos Group \u2014 OpenXR",
     "url": "https://www.khronos.org/openxr/",
     "category": "bodies",
     "scope": "general-xr",
@@ -158,5 +158,93 @@
     "category": "conferences",
     "scope": "general-xr",
     "description": "Computer graphics and interactive techniques community, where much XR display research appears."
+  },
+  {
+    "slug": "pubmed",
+    "name": "PubMed",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/",
+    "category": "research",
+    "scope": "medical",
+    "description": "The US National Library of Medicine's index of biomedical literature, and one of the sources AVRMD's daily check polls."
+  },
+  {
+    "slug": "clinicaltrials-gov",
+    "name": "ClinicalTrials.gov",
+    "url": "https://clinicaltrials.gov/",
+    "category": "research",
+    "scope": "medical",
+    "description": "The US registry of clinical studies, where XR trials are registered before results are published."
+  },
+  {
+    "slug": "npj-digital-medicine",
+    "name": "npj Digital Medicine",
+    "url": "https://www.nature.com/npjdigitalmed",
+    "category": "research",
+    "scope": "medical",
+    "description": "Nature Portfolio journal covering digital health interventions, including immersive and sensor-based therapeutics."
+  },
+  {
+    "slug": "jmir",
+    "name": "JMIR Publications",
+    "url": "https://www.jmir.org/",
+    "category": "research",
+    "scope": "medical",
+    "description": "Open-access publisher of digital health research, including several journals that regularly carry XR studies."
+  },
+  {
+    "slug": "rsna",
+    "name": "RSNA",
+    "url": "https://www.rsna.org/",
+    "category": "bodies",
+    "scope": "medical",
+    "description": "Radiological Society of North America, a major venue for medical imaging research including 3D and immersive visualisation."
+  },
+  {
+    "slug": "dtx-alliance",
+    "name": "Digital Therapeutics Alliance",
+    "url": "https://dtxalliance.org/",
+    "category": "bodies",
+    "scope": "medical",
+    "description": "Industry body defining standards and evidence expectations for digital therapeutics, including prescription immersive products."
+  },
+  {
+    "slug": "open-fda",
+    "name": "openFDA",
+    "url": "https://open.fda.gov/",
+    "category": "bodies",
+    "scope": "medical",
+    "description": "The FDA's public API for device clearances and related records; the source behind AVRMD's regulatory signals."
+  },
+  {
+    "slug": "laval-virtual",
+    "name": "Laval Virtual",
+    "url": "https://www.laval-virtual.com/",
+    "category": "conferences",
+    "scope": "general-xr",
+    "description": "Long-running European immersive technology event with a recurring healthcare track."
+  },
+  {
+    "slug": "medvr",
+    "name": "MedVR",
+    "url": "https://medvr.io/",
+    "category": "learning",
+    "scope": "medical",
+    "description": "Community and accelerator programme for medical XR innovators, connecting hospitals, medical schools, and developers."
+  },
+  {
+    "slug": "reality-atlas",
+    "name": "Reality Atlas",
+    "url": "https://www.reality-atlas.com/",
+    "category": "news",
+    "scope": "general-xr",
+    "description": "Public directory of the wider XR industry covering headsets, apps, agencies, events, funding, and jobs."
+  },
+  {
+    "slug": "vrforhealth",
+    "name": "VRforHealth",
+    "url": "https://vrforhealth.com/",
+    "category": "news",
+    "scope": "medical",
+    "description": "Editorial resource on therapeutic virtual reality, publishing curated videos and articles on clinical applications."
   }
 ]

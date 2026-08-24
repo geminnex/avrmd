@@ -77,6 +77,13 @@ describe("assistant engine", () => {
     const vague = interpret("something that helps people walk again");
     const refined = withFilters(vague, { specialties: ["Rehabilitation"] });
     const result = answer(refined);
-    expect(result.entities.map((entity) => entity.slug)).toContain("xrhealth");
+
+    // Asserts the behaviour (the filter narrows to rehabilitation records)
+    // rather than one specific slug, which would break every time the
+    // catalog grows and re-ranks.
+    expect(result.entities.length).toBeGreaterThan(0);
+    expect(
+      result.entities.every((entity) => entity.specialties.includes("Rehabilitation")),
+    ).toBe(true);
   });
 });

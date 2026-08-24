@@ -8,6 +8,7 @@ import resourceData from "../data/resources.json";
 export const resourceCategories = [
   "news",
   "research",
+  "books",
   "conferences",
   "bodies",
   "learning",
@@ -32,6 +33,7 @@ export const resources = resourceData as Resource[];
 export const resourceCategoryLabels: Record<ResourceCategory, string> = {
   news: "News and industry analysis",
   research: "Journals and research venues",
+  books: "Books",
   conferences: "Conferences and academic venues",
   bodies: "Standards, societies, and regulators",
   learning: "Learning and community networks",

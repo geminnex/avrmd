@@ -1,5 +1,10 @@
 import { z } from "zod";
-import { entityKinds, solutionSubtypes } from "./catalog-types";
+import {
+  entityKinds,
+  operatingStatuses,
+  pipelineStages,
+  solutionSubtypes,
+} from "./catalog-types";
 
 /**
  * Validates records written into data/catalog.json. Used by the discovery and
@@ -35,6 +40,8 @@ export const catalogEntitySchema = z.object({
   relatedSlugs: z.array(z.string()),
   subtype: z.enum(solutionSubtypes).optional(),
   topicSlug: z.string().optional(),
+  operatingStatus: z.enum(operatingStatuses).optional(),
+  stages: z.array(z.enum(pipelineStages)).min(1).optional(),
 });
 
 export const catalogSchema = z.array(catalogEntitySchema);

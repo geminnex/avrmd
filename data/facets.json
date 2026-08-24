@@ -186,6 +186,12 @@
     "definition": "Mental health and behavioural intervention, including anxiety and exposure work."
   },
   {
+    "slug": "cardiology",
+    "name": "Cardiology",
+    "kind": "specialty",
+    "definition": "Diagnosis and treatment of heart and vascular conditions."
+  },
+  {
     "slug": "clinical-research",
     "name": "Clinical research",
     "kind": "specialty",
@@ -202,6 +208,12 @@
     "name": "Dentistry",
     "kind": "specialty",
     "definition": "Dental and oral procedures and training."
+  },
+  {
+    "slug": "electrophysiology",
+    "name": "Electrophysiology",
+    "kind": "specialty",
+    "definition": "Study and treatment of the heart's electrical activity, including catheter ablation for arrhythmias."
   },
   {
     "slug": "emergency-care",
@@ -240,6 +252,18 @@
     "definition": "Care delivered in military and field settings."
   },
   {
+    "slug": "neurodiversity",
+    "name": "Neurodiversity",
+    "kind": "specialty",
+    "definition": "Support for autistic people and others whose cognition differs from the typical, including social and communication skills practice."
+  },
+  {
+    "slug": "neurology",
+    "name": "Neurology",
+    "kind": "specialty",
+    "definition": "Conditions of the brain, spinal cord, and nervous system, including stroke and neurodegenerative disease."
+  },
+  {
     "slug": "neurosurgery",
     "name": "Neurosurgery",
     "kind": "specialty",
@@ -256,6 +280,12 @@
     "name": "Orthopedics",
     "kind": "specialty",
     "definition": "Musculoskeletal surgery and care."
+  },
+  {
+    "slug": "otolaryngology",
+    "name": "Otolaryngology",
+    "kind": "specialty",
+    "definition": "Ear, nose, and throat medicine and surgery, including endoscopic sinus and temporal bone procedures."
   },
   {
     "slug": "pain-management",

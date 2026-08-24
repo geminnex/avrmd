@@ -42,6 +42,13 @@ pnpm db:migrate
 
 ## Documentation
 
+Start here:
+
+- [Product vision](docs/PRODUCT_VISION.md) — where this is going, and why
+- [Market study](docs/MARKET_STUDY.md) — comparable sites, business models, risks
+
+Reference:
+
 - [Product specification](docs/PRODUCT_SPEC.md)
 - [Information architecture](docs/INFORMATION_ARCHITECTURE.md)
 - [Technical architecture](docs/ARCHITECTURE.md)

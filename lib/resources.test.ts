@@ -3,6 +3,7 @@ import { catalog } from "./catalog";
 import {
   getResourcesByCategory,
   resourceCategories,
+  resourceCategoryLabels,
   resources,
 } from "./resources";
 
@@ -34,6 +35,13 @@ describe("related websites", () => {
     const catalogSlugs = new Set(catalog.map((entity) => entity.slug));
     for (const item of resources) {
       expect(catalogSlugs.has(item.slug), item.slug).toBe(false);
+    }
+  });
+
+  it("has a label for every category, including the newly added books", () => {
+    expect(resourceCategories).toContain("books");
+    for (const category of resourceCategories) {
+      expect(resourceCategoryLabels[category], category).toBeTruthy();
     }
   });
 

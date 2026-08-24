@@ -1,9 +1,20 @@
-import { BadgeCheck, Bot, CircleDot, ShieldCheck } from "lucide-react";
+import { Archive, BadgeCheck, Bot, CircleDot, ShieldCheck } from "lucide-react";
 import type { CatalogEntity } from "@/lib/catalog-types";
+
+const operatingStatusLabels = {
+  acquired: "Acquired",
+  discontinued: "No longer operating",
+};
 
 export function TrustBadges({ entity }: { entity: CatalogEntity }) {
   return (
     <div className="trust-row" aria-label="Record trust signals">
+      {entity.operatingStatus && (
+        <span className="trust-badge operating-status">
+          <Archive size={13} />
+          {operatingStatusLabels[entity.operatingStatus]}
+        </span>
+      )}
       {entity.reviewStatus === "source-reviewed" ? (
         <span className="trust-badge reviewed">
           <ShieldCheck size={13} />
