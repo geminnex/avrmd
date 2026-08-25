@@ -9,6 +9,7 @@ import {
   ExternalLink,
   MessageCircleQuestion,
   MessagesSquare,
+  Mic,
   Newspaper,
   Search,
   ShieldCheck,
@@ -16,10 +17,12 @@ import {
 import { AdSlot } from "@/components/ad-slot";
 import { SampleBadge } from "@/components/sample-badge";
 import { TopicCard } from "@/components/topic-card";
-import { catalog, kindLabels } from "@/lib/catalog";
+import { catalog, entityHref, kindLabels } from "@/lib/catalog";
 import { getFeed, type FeedItem } from "@/lib/feed";
 import { getOpenOpportunities, opportunityKindLabels } from "@/lib/opportunities";
 import { signalCategoryLabels } from "@/lib/signals";
+import { getAllTalks, pickShowcaseTalks } from "@/lib/talks";
+import { stageLabels } from "@/lib/stages";
 import { getThread } from "@/lib/community";
 import { topics } from "@/lib/topics";
 
@@ -57,7 +60,7 @@ function FeedRow({ item }: { item: FeedItem }) {
   if (item.kind === "record") {
     const entity = item.data;
     return (
-      <Link className="feed-row" href={`/entities/${entity.slug}`}>
+      <Link className="feed-row" href={entityHref(entity)}>
         <span className="feed-tag tag-record">Added · {kindLabels[entity.kind]}</span>
         <span className="feed-row-body">
           <strong>{entity.name}</strong>
@@ -101,13 +104,16 @@ function FeedRow({ item }: { item: FeedItem }) {
   );
 }
 
-export default function HomePage() {
+export default async function HomePage() {
   const feed = getFeed(20);
   const upcomingEvents = catalog
     .filter((entity) => entity.kind === "event" && entity.eventDate)
     .sort((a, b) => (a.eventDate ?? "").localeCompare(b.eventDate ?? ""))
     .slice(0, 3);
   const openOpportunities = getOpenOpportunities();
+  // Re-drawn on every visit (this page is force-dynamic), so the talk track
+  // surfaces something different each time rather than the same three.
+  const showcaseTalks = pickShowcaseTalks(await getAllTalks(), 3);
   const spotlightThread = getThread("what-the-relievrx-clearance-covers");
 
   return (
@@ -127,6 +133,47 @@ export default function HomePage() {
             />
             <button type="submit">Search</button>
           </form>
+        </div>
+      </section>
+
+      <section className="shell talk-showcase">
+        <div className="talk-showcase-head">
+          <span className="eyebrow">
+            <Mic size={15} />
+            From the talk track
+          </span>
+          <Link className="primary-link" href="/talks">
+            All talks
+            <ArrowRight size={15} />
+          </Link>
+        </div>
+        <div className="talk-showcase-grid">
+          {showcaseTalks.map((talk) => (
+            <a
+              className="talk-card"
+              href={talk.url}
+              key={talk.slug}
+              rel="noopener"
+              target="_blank"
+            >
+              <span className="talk-card-head">
+                <Mic size={15} />
+                <ExternalLink size={15} />
+              </span>
+              <strong>{talk.title}</strong>
+              {talk.speakers.length > 0 && (
+                <small className="talk-speakers">{talk.speakers.join(", ")}</small>
+              )}
+              <span className="talk-tags">
+                {talk.stages?.slice(0, 2).map((stage) => (
+                  <span className="chip" key={stage}>
+                    {stageLabels[stage]}
+                  </span>
+                ))}
+              </span>
+              <small className="talk-host">{talk.hostLabel}</small>
+            </a>
+          ))}
         </div>
       </section>
 

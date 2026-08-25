@@ -205,6 +205,41 @@ export const postComments = pgTable(
   (table) => [index("post_comments_post_idx").on(table.postId, table.createdAt)],
 );
 
+export const talkStatus = pgEnum("talk_status", ["visible", "hidden"]);
+
+/**
+ * Member-submitted talks. Curated talks live in `data/talks.json`; both are
+ * external links rendered side by side, distinguished by their source label.
+ * Tags are stored as text arrays because they reference the file-based
+ * vocabulary (topics, stages, facets), which Postgres has no table for.
+ */
+export const talks = pgTable(
+  "talks",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    submittedBy: uuid("submitted_by")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    slug: text("slug").notNull(),
+    title: text("title").notNull(),
+    speakers: jsonb("speakers").$type<string[]>().notNull().default([]),
+    url: text("url").notNull(),
+    hostLabel: text("host_label").notNull(),
+    topicSlugs: jsonb("topic_slugs").$type<string[]>().notNull().default([]),
+    stages: jsonb("stages").$type<string[]>().notNull().default([]),
+    facets: jsonb("facets").$type<string[]>().notNull().default([]),
+    // Submissions are live on arrival; `hidden` is the takedown path until a
+    // moderation queue exists.
+    status: talkStatus("status").notNull().default("visible"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    uniqueIndex("talks_slug_idx").on(table.slug),
+    index("talks_status_idx").on(table.status, table.createdAt),
+    index("talks_submitter_idx").on(table.submittedBy),
+  ],
+);
+
 export const entities = pgTable(
   "entities",
   {

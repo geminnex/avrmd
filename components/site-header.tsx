@@ -17,9 +17,9 @@ export function SiteHeader() {
           <Link href="/network">Network</Link>
           <Link href="/topics">Topics</Link>
           <Link href="/stages">Stages</Link>
+          <Link href="/talks">Talks</Link>
           <Link href="/explore">Directory</Link>
           <Link href="/community">Community</Link>
-          <Link href="/for-organizations">For organizations</Link>
         </nav>
         <div className="header-actions">
           <AssistantTrigger />

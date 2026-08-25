@@ -44,15 +44,17 @@
 
 ---
 
-## Phase 2 — Talks（研討會的「講座」）
+## Phase 2 — Talks（研討會的「講座」）✅ 已完成
 
-- [ ] `data/talks.json` — 收錄真實公開演講（curated，標明講者出處）
-- [ ] `lib/talks.ts` — 雙來源合併（curated JSON + 會員投稿 Postgres）
-- [ ] `talks` 資料表 + migration
-- [ ] `/talks` — 可依 tag 篩選（沿用 59 facets + 8 階段 + 臨床主題，**不新增分類系統**）
-- [ ] **首頁隨機輪播 talks 當頭條**
-- [ ] `POST /api/talks` — 會員投稿（含 rate limit）
-- [ ] 視覺上與「經審閱記錄」明確區分（沿用 `.resource-card` 虛線）
+- [x] `data/talks.json` — 收錄 54 場真實公開演講（MedVR Online Talks，逐筆個別網址，54/54 curl 回 200）
+- [x] `lib/talks.ts` — 雙來源合併（curated JSON + 會員投稿 Postgres）；DB 掛掉時仍能只出 curated
+- [x] `talks` 資料表 + migration（`drizzle/0006_member_talks.sql`，已套用）
+- [x] `/talks` — 可依 tag 篩選（沿用 59 facets + 8 階段 + 臨床主題，**未新增分類系統**）
+- [x] **首頁隨機輪播 talks 當頭條**（force-dynamic，每次到訪重抽）
+- [x] `POST /api/talks` — 會員投稿（rate limit、tag 必須在既有詞彙內、重複網址 409）
+- [x] `TalkSubmitForm` client island — 不破壞靜態產生
+- [x] 視覺上與「經審閱記錄」明確區分（虛線 `.talk-card`）
+- [x] **額外**：Header 導覽移除 For organizations（七項擠到換行；footer／mobile／首頁 CTA 仍可到）
 
 ---
 

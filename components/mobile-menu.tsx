@@ -9,7 +9,10 @@ import { topics } from "@/lib/topics";
 const sections = [
   {
     heading: "Network",
-    links: [{ href: "/network", label: "Updates from members" }],
+    links: [
+      { href: "/network", label: "Updates from members" },
+      { href: "/talks", label: "Talks" },
+    ],
   },
   {
     heading: "Clinical topics",

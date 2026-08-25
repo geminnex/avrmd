@@ -1,0 +1,949 @@
+[
+  {
+    "slug": "avatar-therapy",
+    "title": "Healing Minds with Technology: The Impact of VR Avatar Therapy in Mental Health",
+    "speakers": [
+      "Farah Shiraz"
+    ],
+    "url": "https://medvr.io/online-talks/avatar-therapy",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "topicSlugs": [
+      "pain-management"
+    ],
+    "stages": [
+      "validation"
+    ],
+    "facets": [
+      "Behavioral health",
+      "Therapy support"
+    ]
+  },
+  {
+    "slug": "getting-real-clean-training-infection-control",
+    "title": "Getting Real Clean: Immersive, Interactive, and Gamified Training for Infection Control",
+    "speakers": [
+      "Erica S. Shenoy",
+      "Michelle Jerry",
+      "Vianelly García",
+      "Andrea Greenfield"
+    ],
+    "url": "https://medvr.io/online-talks/getting-real-clean-training-infection-control",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "topicSlugs": [
+      "medical-education"
+    ],
+    "stages": [
+      "design",
+      "implementation"
+    ],
+    "facets": [
+      "Medical education",
+      "Skills training"
+    ]
+  },
+  {
+    "slug": "apple-vision-pro-design-sprint-info-session",
+    "title": "Apple Vision Pro Design Sprint Information Session",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/apple-vision-pro-design-sprint-info-session",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "stages": [
+      "technology"
+    ],
+    "facets": [
+      "Cross-specialty"
+    ]
+  },
+  {
+    "slug": "revolutionizing-ear-reconstruction-3d-printing-ar",
+    "title": "Revolutionizing Ear Reconstruction with 3D Printing and Augmented Reality",
+    "speakers": [
+      "Alicia Pose Díez de la Lastra"
+    ],
+    "url": "https://medvr.io/online-talks/revolutionizing-ear-reconstruction-3d-printing-ar",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "topicSlugs": [
+      "surgical-planning",
+      "surgical-training"
+    ],
+    "stages": [
+      "implementation",
+      "technology"
+    ],
+    "facets": [
+      "Medical imaging",
+      "Skills training",
+      "Surgery",
+      "Visualization"
+    ]
+  },
+  {
+    "slug": "ethical-considerations-healthcare-ai-xr",
+    "title": "Ethical Considerations of Healthcare AI And XR Technology",
+    "speakers": [
+      "Walter Greenleaf"
+    ],
+    "url": "https://medvr.io/online-talks/ethical-considerations-healthcare-ai-xr",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "stages": [
+      "technology"
+    ],
+    "facets": [
+      "Cross-specialty"
+    ]
+  },
+  {
+    "slug": "vr-training-to-advance-cultural-competency",
+    "title": "VR Training Program to Advance Cultural Competency and Communication",
+    "speakers": [
+      "Charee M. Thompson",
+      "Joseph Maurice"
+    ],
+    "url": "https://medvr.io/online-talks/vr-training-to-advance-cultural-competency",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "topicSlugs": [
+      "medical-education"
+    ],
+    "stages": [
+      "design",
+      "implementation"
+    ],
+    "facets": [
+      "Medical education",
+      "Skills training"
+    ]
+  },
+  {
+    "slug": "regulatory-considerations-for-medical-xr",
+    "title": "Regulatory Considerations for Medical XR Across Multiple Specialties",
+    "speakers": [
+      "Laurence Coyne",
+      "Chris Harner",
+      "Lisa Kinnard",
+      "Alex Beylin"
+    ],
+    "url": "https://medvr.io/online-talks/regulatory-considerations-for-medical-xr",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "stages": [
+      "regulatory"
+    ],
+    "facets": [
+      "Cross-specialty"
+    ]
+  },
+  {
+    "slug": "cranial-surgery-ar-vr",
+    "title": "Cranial Surgery 100 Cases: VR Rehearsal/AR Guidance and Its Learning Curve",
+    "speakers": [
+      "Walter Jean",
+      "Jeffrey Jacobson"
+    ],
+    "url": "https://medvr.io/online-talks/cranial-surgery-ar-vr",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "topicSlugs": [
+      "surgical-training"
+    ],
+    "stages": [
+      "implementation"
+    ],
+    "facets": [
+      "Skills training",
+      "Surgery"
+    ]
+  },
+  {
+    "slug": "xr-surgical-training",
+    "title": "XR in Surgical Training, Scientific Evaluation and Global Health Applications",
+    "speakers": [
+      "Jag Dhanda",
+      "Tim Fabrice Tientcheu",
+      "Anurag Mishra"
+    ],
+    "url": "https://medvr.io/online-talks/xr-surgical-training",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "topicSlugs": [
+      "surgical-training"
+    ],
+    "stages": [
+      "implementation"
+    ],
+    "facets": [
+      "Skills training",
+      "Surgery"
+    ]
+  },
+  {
+    "slug": "center-for-medical-innovations-xr",
+    "title": "Center for Medical Innovations in Extended Reality (MIXR)",
+    "speakers": [
+      "Amitabh Varshney",
+      "Sarah Murthi",
+      "Rishindra Reddy"
+    ],
+    "url": "https://medvr.io/online-talks/center-for-medical-innovations-xr",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "stages": [
+      "technology"
+    ],
+    "facets": [
+      "Cross-specialty"
+    ]
+  },
+  {
+    "slug": "medical-extended-reality-electrophysiology",
+    "title": "Medical Extended Reality for Intra-Procedural Electrophysiology",
+    "speakers": [
+      "Jennifer N. Avari Silva"
+    ],
+    "url": "https://medvr.io/online-talks/medical-extended-reality-electrophysiology",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "topicSlugs": [
+      "surgical-planning"
+    ],
+    "stages": [
+      "implementation"
+    ],
+    "facets": [
+      "Cardiology",
+      "Electrophysiology"
+    ]
+  },
+  {
+    "slug": "spatial-navigation-xr-early-stage-dimentia",
+    "title": "Measuring spatial navigation with XR - a unique window into early stages of dementia?",
+    "speakers": [
+      "Thomas Wolbers"
+    ],
+    "url": "https://medvr.io/online-talks/spatial-navigation-xr-early-stage-dimentia",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "stages": [
+      "research",
+      "validation"
+    ],
+    "facets": [
+      "Assessment",
+      "Neurology"
+    ]
+  },
+  {
+    "slug": "peer-support-vr",
+    "title": "Using Immersive VR Support Groups for Young Cancer Patients",
+    "speakers": [
+      "Asher Marks",
+      "Dror Goldberg"
+    ],
+    "url": "https://medvr.io/online-talks/peer-support-vr",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "stages": [
+      "technology"
+    ],
+    "facets": [
+      "Cross-specialty"
+    ]
+  },
+  {
+    "slug": "vr-diagnostics-neuro",
+    "title": "New VR Diagnostic Options of Neuro-ophthalmologic Brain Disorders",
+    "speakers": [
+      "Mathias Abegg"
+    ],
+    "url": "https://medvr.io/online-talks/vr-diagnostics-neuro",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "stages": [
+      "research",
+      "validation"
+    ],
+    "facets": [
+      "Assessment",
+      "Neurology"
+    ]
+  },
+  {
+    "slug": "vr-ai-biosensing-technology",
+    "title": "Virtual Reality Technology, AI, and Biosensing - Converging to Transform Mental Healthcare",
+    "speakers": [
+      "Walter Greenleaf"
+    ],
+    "url": "https://medvr.io/online-talks/vr-ai-biosensing-technology",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "topicSlugs": [
+      "pain-management"
+    ],
+    "stages": [
+      "validation"
+    ],
+    "facets": [
+      "Behavioral health",
+      "Therapy support"
+    ]
+  },
+  {
+    "slug": "ar-spatial-neglect",
+    "title": "Augmented Reality for the treatment of Post Stroke Spatial Neglect",
+    "speakers": [
+      "Britta Stammler"
+    ],
+    "url": "https://medvr.io/online-talks/ar-spatial-neglect",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "topicSlugs": [
+      "rehabilitation"
+    ],
+    "stages": [
+      "validation"
+    ],
+    "facets": [
+      "Motor learning",
+      "Rehabilitation"
+    ]
+  },
+  {
+    "slug": "fda-osel-advanced-evaluations-methods",
+    "title": "FDA OSEL Medical Extended Reality Program: Advancing evaluation methods and regulatory science tools",
+    "speakers": [
+      "Ryan Beams",
+      "Chumin Zhao",
+      "Miguel Lago"
+    ],
+    "url": "https://medvr.io/online-talks/fda-osel-advanced-evaluations-methods",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "stages": [
+      "regulatory"
+    ],
+    "facets": [
+      "Cross-specialty"
+    ]
+  },
+  {
+    "slug": "low-cost-ar-goggles-enabling-cancer-surgery",
+    "title": "Low-cost augmented reality goggles enable precision fluorescence-guided cancer surgery",
+    "speakers": [
+      "Leonid Shmuylovich"
+    ],
+    "url": "https://medvr.io/online-talks/low-cost-ar-goggles-enabling-cancer-surgery",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "topicSlugs": [
+      "surgical-planning",
+      "surgical-training"
+    ],
+    "stages": [
+      "implementation",
+      "technology"
+    ],
+    "facets": [
+      "Medical imaging",
+      "Skills training",
+      "Surgery",
+      "Visualization"
+    ]
+  },
+  {
+    "slug": "mr-collab-training",
+    "title": "Applications of Mixed Reality in Clinical Collaborations and Training the Next Generation of Physicians",
+    "speakers": [
+      "Mark S. Cohen"
+    ],
+    "url": "https://medvr.io/online-talks/mr-collab-training",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "topicSlugs": [
+      "medical-education"
+    ],
+    "stages": [
+      "design",
+      "implementation"
+    ],
+    "facets": [
+      "Medical education",
+      "Skills training"
+    ]
+  },
+  {
+    "slug": "mxr-platform-choice",
+    "title": "Medical XR (MXR): How to Choose a Platform to Build a Development System that Fits Clinical Needs!",
+    "speakers": [
+      "Rik Shorten",
+      "Wanda Rodriguez"
+    ],
+    "url": "https://medvr.io/online-talks/mxr-platform-choice",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "stages": [
+      "design",
+      "technology"
+    ],
+    "facets": [
+      "Cross-specialty"
+    ]
+  },
+  {
+    "slug": "telepresence-surgical-training",
+    "title": "Telepresence for Surgical Assistance and Training using eXtended Reality",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/telepresence-surgical-training",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "topicSlugs": [
+      "surgical-training"
+    ],
+    "stages": [
+      "implementation"
+    ],
+    "facets": [
+      "Skills training",
+      "Surgery"
+    ]
+  },
+  {
+    "slug": "ar-orthopaedic-training",
+    "title": "The use of augmented reality in orthopaedic training. A double-blinded randomized controlled trial",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/ar-orthopaedic-training",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "topicSlugs": [
+      "medical-education"
+    ],
+    "stages": [
+      "design",
+      "implementation"
+    ],
+    "facets": [
+      "Medical education",
+      "Skills training"
+    ]
+  },
+  {
+    "slug": "avatar-treat-schizophrenic",
+    "title": "Creating a Virtual Reality (VR) Avatar Experience to Treat Patients with Schizophrenic Auditory Hallucinations in a Randomized Con",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/avatar-treat-schizophrenic",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "topicSlugs": [
+      "pain-management"
+    ],
+    "stages": [
+      "validation"
+    ],
+    "facets": [
+      "Behavioral health",
+      "Therapy support"
+    ]
+  },
+  {
+    "slug": "medical-ar-clinical-practice",
+    "title": "Translation of Medical AR Research into Clinical Practice",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/medical-ar-clinical-practice",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "stages": [
+      "technology"
+    ],
+    "facets": [
+      "Cross-specialty"
+    ]
+  },
+  {
+    "slug": "deficit-social-interactions",
+    "title": "Immersive VR for Treating Deficits with Social Interactions",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/upcoming/deficit-social-interactions",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "topicSlugs": [
+      "pain-management"
+    ],
+    "stages": [
+      "validation"
+    ],
+    "facets": [
+      "Behavioral health",
+      "Therapy support"
+    ]
+  },
+  {
+    "slug": "fusing-virtual-real",
+    "title": "Fusing the Virtual and Real Worlds to Understand Neurological Function",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/upcoming/fusing-virtual-real",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "stages": [
+      "research",
+      "validation"
+    ],
+    "facets": [
+      "Assessment",
+      "Neurology"
+    ]
+  },
+  {
+    "slug": "doctors-who-code",
+    "title": "Doctors Who Code AR and VR",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/featured/doctors-who-code",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "stages": [
+      "technology"
+    ],
+    "facets": [
+      "Cross-specialty"
+    ]
+  },
+  {
+    "slug": "vha-journey",
+    "title": "Veterans Health Administration's Immersive Journey from One to 160 XR User and Research Sites",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/featured/vha-journey",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "stages": [
+      "commercialization"
+    ],
+    "facets": [
+      "Cross-specialty"
+    ]
+  },
+  {
+    "slug": "combat-mentoring",
+    "title": "Mixed Reality Mentoring of Combat Casualty Care Related Procedures in a Re-perfused Cadaver Model",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/featured/combat-mentoring",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "topicSlugs": [
+      "medical-education"
+    ],
+    "stages": [
+      "design",
+      "implementation"
+    ],
+    "facets": [
+      "Medical education",
+      "Skills training"
+    ]
+  },
+  {
+    "slug": "vr-commercial-barriers",
+    "title": "The Barriers to Commercializing VR Products in the Healthcare Market",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/featured/vr-commercial-barriers",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "stages": [
+      "commercialization"
+    ],
+    "facets": [
+      "Cross-specialty"
+    ]
+  },
+  {
+    "slug": "therapeutic-vr",
+    "title": "Wellness and Therapeutic VR",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/featured/therapeutic-vr",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "topicSlugs": [
+      "pain-management"
+    ],
+    "stages": [
+      "validation"
+    ],
+    "facets": [
+      "Behavioral health",
+      "Therapy support"
+    ]
+  },
+  {
+    "slug": "fda-update",
+    "title": "FDA Update: AR/VR Regulatory Science and Related Special Considerations",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/featured/fda-update",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "stages": [
+      "regulatory"
+    ],
+    "facets": [
+      "Cross-specialty"
+    ]
+  },
+  {
+    "slug": "successful-medical-xr-products",
+    "title": "Successful Medical XR Products – Wisdom in the Voice of Customer",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/featured/successful-medical-xr-products",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "stages": [
+      "commercialization"
+    ],
+    "facets": [
+      "Cross-specialty"
+    ]
+  },
+  {
+    "slug": "the-road-to-the-medical-verse",
+    "title": "The Road to The Medical Verse: From Concept to Reality",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/featured/the-road-to-the-medical-verse",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "stages": [
+      "technology"
+    ],
+    "facets": [
+      "Cross-specialty"
+    ]
+  },
+  {
+    "slug": "the-future-of-anesthesia-education",
+    "title": "Virtual Reality: The Future of Anesthesia Education",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/featured/the-future-of-anesthesia-education",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "topicSlugs": [
+      "medical-education"
+    ],
+    "stages": [
+      "design",
+      "implementation"
+    ],
+    "facets": [
+      "Medical education",
+      "Skills training"
+    ]
+  },
+  {
+    "slug": "fda-osel-mxr-research",
+    "title": "FDA OSEL Medical Extended Reality Research Program",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/featured/fda-osel-mxr-research",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "stages": [
+      "regulatory"
+    ],
+    "facets": [
+      "Cross-specialty"
+    ]
+  },
+  {
+    "slug": "the-future-of-surgical-training",
+    "title": "The Future of Surgical Training",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/featured/the-future-of-surgical-training",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "topicSlugs": [
+      "surgical-training"
+    ],
+    "stages": [
+      "implementation"
+    ],
+    "facets": [
+      "Skills training",
+      "Surgery"
+    ]
+  },
+  {
+    "slug": "vrx-therapeutics",
+    "title": "Exploring the Virtual Reality Therapeutics (VRx) Pathway",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/featured/vrx-therapeutics",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "stages": [
+      "technology"
+    ],
+    "facets": [
+      "Cross-specialty"
+    ]
+  },
+  {
+    "slug": "xr-for-am-surgery",
+    "title": "From Patient engagement to OR - XR for arteriovenous malformation surgery",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/featured/xr-for-am-surgery",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "topicSlugs": [
+      "surgical-training"
+    ],
+    "stages": [
+      "implementation"
+    ],
+    "facets": [
+      "Skills training",
+      "Surgery"
+    ]
+  },
+  {
+    "slug": "validating-vr-using-biometrics",
+    "title": "Validating VR’s value using biometrics for research, content creation, and VR training",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/featured/validating-vr-using-biometrics",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "stages": [
+      "technology"
+    ],
+    "facets": [
+      "Cross-specialty"
+    ]
+  },
+  {
+    "slug": "matrix-mod-vr-pain",
+    "title": "Modifying the Matrix: Virtual Reality, Perception and Pain",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/featured/matrix-mod-vr-pain",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "topicSlugs": [
+      "pain-management"
+    ],
+    "stages": [
+      "validation"
+    ],
+    "facets": [
+      "Pain management",
+      "Therapy support"
+    ]
+  },
+  {
+    "slug": "brainlab-from-gaming-medical",
+    "title": "Mixed Reality: Our journey of moving a gaming technology to medical assistance",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/featured/brainlab-from-gaming-medical",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "stages": [
+      "commercialization",
+      "design",
+      "technology"
+    ],
+    "facets": [
+      "Cross-specialty"
+    ]
+  },
+  {
+    "slug": "livestream-video-med-ed",
+    "title": "Livestreaming Video in XR for remote medical education.",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/featured/livestream-video-med-ed",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "topicSlugs": [
+      "medical-education"
+    ],
+    "stages": [
+      "design",
+      "implementation"
+    ],
+    "facets": [
+      "Medical education",
+      "Skills training"
+    ]
+  },
+  {
+    "slug": "living-heart-project",
+    "title": "Living Heart Project – Crowdsourcing the Virtual Twin of the Human Heart",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/featured/living-heart-project",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "topicSlugs": [
+      "surgical-planning"
+    ],
+    "stages": [
+      "technology"
+    ],
+    "facets": [
+      "Medical imaging",
+      "Visualization"
+    ]
+  },
+  {
+    "slug": "from-first-to-full-deployment",
+    "title": "From First Deployments of AR in Operating Rooms to the Full Integration of AR Surgical Solutions",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/featured/from-first-to-full-deployment",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "topicSlugs": [
+      "surgical-training"
+    ],
+    "stages": [
+      "implementation"
+    ],
+    "facets": [
+      "Skills training",
+      "Surgery"
+    ]
+  },
+  {
+    "slug": "interdisciplanary-health-vrar-ed-proto",
+    "title": "The medVR Journey & Roadmap",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/featured/interdisciplanary-health-vrar-ed-proto",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "stages": [
+      "commercialization"
+    ],
+    "facets": [
+      "Cross-specialty"
+    ]
+  },
+  {
+    "slug": "sara-neuro-ortho-procedures",
+    "title": "Surgical Augmented Reality Assistance (SARA) for neurosurgical and orthopedic procedures",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/featured/sara-neuro-ortho-procedures",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "topicSlugs": [
+      "surgical-training"
+    ],
+    "stages": [
+      "implementation"
+    ],
+    "facets": [
+      "Skills training",
+      "Surgery"
+    ]
+  },
+  {
+    "slug": "ar-operating-suite",
+    "title": "AR Operating Suite Experience at the Cleveland Clinic",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/featured/ar-operating-suite",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "topicSlugs": [
+      "surgical-training"
+    ],
+    "stages": [
+      "implementation"
+    ],
+    "facets": [
+      "Skills training",
+      "Surgery"
+    ]
+  },
+  {
+    "slug": "ar-interventional-suite-philips",
+    "title": "Augmented Reality for the Interventional Suite",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/featured/ar-interventional-suite-philips",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "topicSlugs": [
+      "surgical-training"
+    ],
+    "stages": [
+      "implementation"
+    ],
+    "facets": [
+      "Skills training",
+      "Surgery"
+    ]
+  },
+  {
+    "slug": "future-spatial-healthcare",
+    "title": "The Future of Spatial Computing in Healthcare",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/featured/future-spatial-healthcare",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "stages": [
+      "design",
+      "technology"
+    ],
+    "facets": [
+      "Cross-specialty"
+    ]
+  },
+  {
+    "slug": "prototype-to-clinical-study",
+    "title": "The Creative Science of Medical VR: Prototype to Clinical Study",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/featured/prototype-to-clinical-study",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "stages": [
+      "technology"
+    ],
+    "facets": [
+      "Cross-specialty"
+    ]
+  },
+  {
+    "slug": "advances-in-clinical-xr",
+    "title": "Advances in Clinical XR for PTSD, Autism, ADHD, and Beyond",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/featured/advances-in-clinical-xr",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "topicSlugs": [
+      "pain-management"
+    ],
+    "stages": [
+      "validation"
+    ],
+    "facets": [
+      "Behavioral health",
+      "Therapy support"
+    ]
+  },
+  {
+    "slug": "translating-vr-research",
+    "title": "Translating VR Research into Medical Impact",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/featured/translating-vr-research",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "stages": [
+      "technology"
+    ],
+    "facets": [
+      "Cross-specialty"
+    ]
+  },
+  {
+    "slug": "foundations-vrar-med",
+    "title": "Foundations of VR & AR in Medicine",
+    "speakers": [],
+    "url": "https://medvr.io/online-talks/featured/foundations-vrar-med",
+    "hostLabel": "MedVR Online Talks",
+    "source": "curated",
+    "stages": [
+      "technology"
+    ],
+    "facets": [
+      "Cross-specialty"
+    ]
+  }
+]

@@ -31,6 +31,7 @@ export function SiteFooter() {
           <Link href="/gear">Gear and hardware</Link>
           <Link href="/resources">Related websites</Link>
           <Link href="/signals">Signals</Link>
+          <Link href="/talks">Talks</Link>
         </div>
         <div>
           <h3>Take part</h3>

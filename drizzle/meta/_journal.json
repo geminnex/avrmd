@@ -43,6 +43,13 @@
       "when": 1787424139633,
       "tag": "0005_organization_memberships_entity_slug",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1787636250165,
+      "tag": "0006_member_talks",
+      "breakpoints": true
     }
   ]
 }
