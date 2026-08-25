@@ -12,6 +12,7 @@ const sections = [
     links: [
       { href: "/network", label: "Updates from members" },
       { href: "/talks", label: "Talks" },
+      { href: "/members", label: "Member directory" },
     ],
   },
   {

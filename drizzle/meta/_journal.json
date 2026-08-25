@@ -50,6 +50,13 @@
       "when": 1787636250165,
       "tag": "0006_member_talks",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1787637213893,
+      "tag": "0007_member_profile_fields",
+      "breakpoints": true
     }
   ]
 }

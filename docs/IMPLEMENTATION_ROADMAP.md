@@ -58,12 +58,19 @@
 
 ---
 
-## Phase 3 — 個人頁與成員目錄（「參加者名冊」）
+## Phase 3 — 個人頁與成員目錄（「參加者名冊」）✅ 已完成
 
-- [ ] `users` 表擴充：`roles`、`stages`、`canHelpWith`、`lookingFor`、`topicInterests`、`affiliationSlug`
-- [ ] `/settings/profile` 擴充編輯欄位
-- [ ] `/members/[handle]` 顯示角色、階段、可協助事項
-- [ ] `/members` 成員目錄 — 依角色／階段／專長篩選（這就是「找夥伴」）
+- [x] `users` 表擴充：`roles`、`stages`、`canHelpWith`、`lookingFor`、`topicInterests`、`affiliationSlug`（`drizzle/0007_member_profile_fields.sql`，已套用）
+- [x] `lib/member-profile.ts` — 8 種專業角色（與 DB 的 `memberRole` 權限列舉分開）+ 比對／評分邏輯
+- [x] `/settings/profile` 擴充編輯欄位
+- [x] `components/tag-picker.tsx` — 少量選項用 chips，59 個 facets 用可搜尋清單
+- [x] `/members/[handle]` 顯示角色、階段、可協助事項（每個標籤都連回對應頁面）
+- [x] `/members` 成員目錄 — 依角色／階段／專長／臨床主題篩選（這就是「找夥伴」）
+- [x] **隱私**：沒填角色或階段就不列入目錄（填寫本身＝opt-in）
+- [x] API 拒絕不在既有詞彙內的宣告；affiliation 必須是既有 organization 記錄
+- [x] DB 掛掉時目錄顯示誠實的錯誤狀態，不讓整站爆掉
+- [x] **額外**：Header 導覽 `/explore` 改名 Records（與 Members 目錄語意衝突）
+- [x] **額外**：≤1400px 隱藏品牌副標，修正七項導覽壓到 Ask 按鈕
 
 ---
 

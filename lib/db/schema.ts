@@ -54,6 +54,17 @@ export const users = pgTable(
     displayName: text("display_name"),
     bio: text("bio"),
     role: memberRole("role").notNull().default("member"),
+    // Declarations, all drawn from the site's existing vocabularies so a
+    // person is reachable from the same filters as a record. Text arrays
+    // rather than join tables: the vocabularies live in files, not Postgres,
+    // so there is nothing to point a foreign key at. See lib/member-profile.ts.
+    roles: jsonb("roles").$type<string[]>().notNull().default([]),
+    stages: jsonb("stages").$type<string[]>().notNull().default([]),
+    canHelpWith: jsonb("can_help_with").$type<string[]>().notNull().default([]),
+    lookingFor: jsonb("looking_for").$type<string[]>().notNull().default([]),
+    topicInterests: jsonb("topic_interests").$type<string[]>().notNull().default([]),
+    /** A catalog organization slug — loose, like posts.entitySlug. */
+    affiliationSlug: text("affiliation_slug"),
     emailVerifiedAt: timestamp("email_verified_at", { withTimezone: true }),
     profile: jsonb("profile").$type<Record<string, unknown>>().notNull().default({}),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),

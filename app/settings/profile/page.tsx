@@ -1,12 +1,19 @@
 import type { Metadata } from "next";
 import { requireUserOrRedirect } from "@/lib/auth/session";
 import { ProfileSettingsForm } from "@/components/profile-settings-form";
+import { readMemberProfile } from "@/lib/db/repositories/users";
+import { catalog } from "@/lib/catalog";
+import { facetKindLabels, facets } from "@/lib/facets";
+import { professionalRoleLabels, professionalRoles } from "@/lib/member-profile";
+import { stages } from "@/lib/stages";
+import { topics } from "@/lib/topics";
 
 export const metadata: Metadata = { title: "Profile settings" };
 export const dynamic = "force-dynamic";
 
 export default async function ProfileSettingsPage() {
   const user = await requireUserOrRedirect("/sign-in?next=/settings/profile");
+  const profile = readMemberProfile(user);
 
   return (
     <div className="workflow-page">
@@ -23,9 +30,30 @@ export default async function ProfileSettingsPage() {
 
       <section className="shell settings-body">
         <ProfileSettingsForm
+          facetOptions={facets.map((facet) => ({
+            value: facet.name,
+            label: facet.name,
+            group: facetKindLabels[facet.kind],
+          }))}
+          initialAffiliationSlug={profile.affiliationSlug ?? ""}
           initialBio={user.bio ?? ""}
+          initialCanHelpWith={profile.canHelpWith}
           initialDisplayName={user.displayName ?? ""}
           initialHandle={user.handle ?? ""}
+          initialLookingFor={profile.lookingFor}
+          initialRoles={profile.roles}
+          initialStages={profile.stages}
+          initialTopicInterests={profile.topicInterests}
+          organizationOptions={catalog
+            .filter((entity) => entity.kind === "organization")
+            .map((entity) => ({ value: entity.slug, label: entity.name }))
+            .sort((a, b) => a.label.localeCompare(b.label))}
+          roleOptions={professionalRoles.map((role) => ({
+            value: role,
+            label: professionalRoleLabels[role],
+          }))}
+          stageOptions={stages.map((stage) => ({ value: stage.slug, label: stage.name }))}
+          topicOptions={topics.map((topic) => ({ value: topic.slug, label: topic.shortName }))}
         />
       </section>
     </div>

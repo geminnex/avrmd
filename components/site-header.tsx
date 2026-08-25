@@ -15,10 +15,11 @@ export function SiteHeader() {
         </Link>
         <nav className="desktop-nav" aria-label="Primary navigation">
           <Link href="/network">Network</Link>
+          <Link href="/members">Members</Link>
           <Link href="/topics">Topics</Link>
           <Link href="/stages">Stages</Link>
           <Link href="/talks">Talks</Link>
-          <Link href="/explore">Directory</Link>
+          <Link href="/explore">Records</Link>
           <Link href="/community">Community</Link>
         </nav>
         <div className="header-actions">

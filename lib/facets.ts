@@ -33,6 +33,11 @@ export function getFacet(slug: string) {
   return facets.find((facet) => facet.slug === slug);
 }
 
+/** Member declarations store the display name, not the slug. */
+export function getFacetByName(name: string) {
+  return facets.find((facet) => facet.name === name);
+}
+
 /** Every tag value a record carries, across all three vocabularies. */
 function tagValues(entity: CatalogEntity) {
   return [...entity.specialties, ...entity.useCases, ...entity.modalities];

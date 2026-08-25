@@ -3,34 +3,72 @@
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight, CheckCircle2, LoaderCircle, ShieldAlert } from "lucide-react";
+import { TagPicker, type TagOption } from "./tag-picker";
 
 type ProfileSettingsFormProps = {
   initialDisplayName: string;
   initialHandle: string;
   initialBio: string;
+  initialRoles: string[];
+  initialStages: string[];
+  initialCanHelpWith: string[];
+  initialLookingFor: string[];
+  initialTopicInterests: string[];
+  initialAffiliationSlug: string;
+  roleOptions: TagOption[];
+  stageOptions: TagOption[];
+  facetOptions: TagOption[];
+  topicOptions: TagOption[];
+  organizationOptions: { value: string; label: string }[];
 };
 
 export function ProfileSettingsForm({
   initialDisplayName,
   initialHandle,
   initialBio,
+  initialRoles,
+  initialStages,
+  initialCanHelpWith,
+  initialLookingFor,
+  initialTopicInterests,
+  initialAffiliationSlug,
+  roleOptions,
+  stageOptions,
+  facetOptions,
+  topicOptions,
+  organizationOptions,
 }: ProfileSettingsFormProps) {
   const router = useRouter();
+  const [roles, setRoles] = useState(initialRoles);
+  const [stages, setStages] = useState(initialStages);
+  const [canHelpWith, setCanHelpWith] = useState(initialCanHelpWith);
+  const [lookingFor, setLookingFor] = useState(initialLookingFor);
+  const [topicInterests, setTopicInterests] = useState(initialTopicInterests);
   const [state, setState] = useState<
-    { status: "idle" } | { status: "loading" } | { status: "saved" } | { status: "error"; message: string }
+    | { status: "idle" }
+    | { status: "loading" }
+    | { status: "saved" }
+    | { status: "error"; message: string }
   >({ status: "idle" });
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setState({ status: "loading" });
 
-    const data = Object.fromEntries(new FormData(event.currentTarget).entries());
+    const form = Object.fromEntries(new FormData(event.currentTarget).entries());
 
     try {
       const response = await fetch("/api/settings/profile", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          ...form,
+          roles,
+          stages,
+          canHelpWith,
+          lookingFor,
+          topicInterests,
+        }),
       });
       const payload = await response.json();
 
@@ -72,6 +110,76 @@ export function ProfileSettingsForm({
         <span>Bio</span>
         <textarea defaultValue={initialBio} id="bio" maxLength={280} name="bio" rows={4} />
       </label>
+
+      <label className="form-field" htmlFor="affiliationSlug">
+        <span>Where you work</span>
+        <select defaultValue={initialAffiliationSlug} id="affiliationSlug" name="affiliationSlug">
+          <option value="">Not saying</option>
+          {organizationOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+        <small className="form-hint">
+          Organisations already in the catalog. Missing yours? Suggest a record first.
+        </small>
+      </label>
+
+      <div className="profile-declarations">
+        <div className="profile-declarations-intro">
+          <h2>What you do</h2>
+          <p>
+            These put you in the member directory and decide which questions reach you.
+            Leave them empty to stay unlisted.
+          </p>
+        </div>
+
+        <TagPicker
+          help="Pick the hat you wear most. At most four."
+          label="Your role"
+          max={4}
+          onChange={setRoles}
+          options={roleOptions}
+          selected={roles}
+        />
+
+        <TagPicker
+          help="Where in the pipeline you actually work."
+          label="Your stages"
+          max={8}
+          onChange={setStages}
+          options={stageOptions}
+          selected={stages}
+        />
+
+        <TagPicker
+          help="Clinical areas you care about."
+          label="Clinical interests"
+          max={6}
+          onChange={setTopicInterests}
+          options={topicOptions}
+          selected={topicInterests}
+        />
+
+        <TagPicker
+          help="Things you could answer for someone else. This is what the directory searches."
+          label="Can help with"
+          max={10}
+          onChange={setCanHelpWith}
+          options={facetOptions}
+          selected={canHelpWith}
+        />
+
+        <TagPicker
+          help="What you are stuck on yourself. Nobody minds — it is why the directory exists."
+          label="Looking for help with"
+          max={10}
+          onChange={setLookingFor}
+          options={facetOptions}
+          selected={lookingFor}
+        />
+      </div>
 
       {state.status === "error" && (
         <div className="form-message error" role="alert">
