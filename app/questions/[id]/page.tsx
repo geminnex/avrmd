@@ -14,6 +14,7 @@ import { timeAgo } from "@/lib/time";
 import { AcceptAnswerButton } from "@/components/accept-answer-button";
 import { AnswerForm } from "@/components/answer-form";
 import { QuestionTags } from "@/components/question-tags";
+import { ReportButton } from "@/components/report-button";
 import type { PipelineStage } from "@/lib/catalog-types";
 
 export const dynamic = "force-dynamic";
@@ -116,6 +117,7 @@ export default async function QuestionPage({ params, searchParams }: QuestionPag
             </small>
             {question.body && <p className="question-body">{question.body}</p>}
             <QuestionTags tags={question} />
+            {viewer && viewer.id !== question.authorId && <ReportButton id={question.id} type="question" />}
           </article>
 
           <h2 className="answers-heading">
@@ -146,6 +148,7 @@ export default async function QuestionPage({ params, searchParams }: QuestionPag
                   {isAsker && !accepted && (
                     <AcceptAnswerButton answerId={answer.id} questionId={question.id} />
                   )}
+                  {viewer && viewer.id !== answer.author.id && <ReportButton id={answer.id} type="answer" />}
                 </footer>
               </article>
             );

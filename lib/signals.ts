@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { readDataFile } from "./data-file";
 
 /**
@@ -24,9 +25,32 @@ export type Signal = {
   promotedSlug?: string;
 };
 
+type QueueItem = { key: string; triage?: { recommendation?: string } };
+
+let offTopicCache: { source: QueueItem[]; ids: Set<string> } | undefined;
+
+/**
+ * Signals whose candidate AI triage judged off topic (not about XR in
+ * health). They were found by broad searches; showing them would put
+ * unrelated papers in the feed, on the home page and in the assistant.
+ * Ids match the robot's: sha1("signal:" + key).
+ */
+function offTopicSignalIds() {
+  const queue = readDataFile<QueueItem[]>("candidates.json", []);
+  if (offTopicCache?.source === queue) return offTopicCache.ids;
+  const ids = new Set(
+    queue
+      .filter((item) => item.triage?.recommendation === "off_topic")
+      .map((item) => createHash("sha1").update(`signal:${item.key}`).digest("hex").slice(0, 16)),
+  );
+  offTopicCache = { source: queue, ids };
+  return ids;
+}
+
 /** Read per request: the discovery robot rewrites the file every day. */
 export function getSignals() {
-  return readDataFile<Signal[]>("signals.json", []);
+  const hidden = offTopicSignalIds();
+  return readDataFile<Signal[]>("signals.json", []).filter((signal) => !hidden.has(signal.id));
 }
 
 export const signalCategoryLabels: Record<SignalCategory, string> = {

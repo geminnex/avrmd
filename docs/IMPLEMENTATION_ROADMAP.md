@@ -178,13 +178,15 @@ The owner's direction: not complex; don't make people fish in an ocean; the assi
 
 ---
 
-## Phase 9 — Return loop
+## Phase 9 — Return loop ✅ Done (awaiting deploy)
 
-- [ ] Onboarding after first sign-in: role, stage, what you can help with (one screen; skippable)
-- [ ] Email for "someone asked what you can help with", "your question was answered"; per-type settings and one-click unsubscribe
-- [ ] Weekly digest: new FDA devices, papers, trials and questions in the member's stages and topics (AI-summarised, cited)
-- [ ] Moderation basics: report button, hide, a moderator role; talks queued for moderation
-- [ ] Assistant evaluation set (50 real questions with expected sources) run before each prompt or model change
+- [x] Welcome step after the first sign-in (role, stages, can help with, clinical areas; skippable, shown once) — `/welcome`
+- [x] Email for "someone asked what you can help with", "your question was answered", "your answer helped"; per-type settings in profile; signed one-click unsubscribe (RFC 8058 headers + `/unsubscribe` page)
+- [x] Weekly digest (Mondays 08:10 UTC, user timer): questions you could answer, new FDA authorizations, papers and trials closest to the member's profile; skipped when nothing is new, and refuses to send while the live site can't serve the unsubscribe page
+- [x] Off-topic robot hits (per AI triage) hidden from the feed, home page, assistant and digest
+- [x] Moderation basics: report button on questions, answers and posts; editors emailed; Hide / Dismiss in `/workspace`
+- [x] Assistant evaluation set (`lib/assistant/eval.test.ts`, 45 retrieval cases + negative cases); three of four gaps it found fixed (stemming, product→maker, distinctive names); one remains documented
+- [ ] Talk submissions are still live on arrival (reportable via the editors' email); a pre-moderation queue waits for real volume
 
 ---
 

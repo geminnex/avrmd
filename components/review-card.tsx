@@ -192,3 +192,25 @@ export function ContributionActions({ id, status }: { id: string; status: string
     </span>
   );
 }
+
+export function ReportActions({ id }: { id: string }) {
+  const router = useRouter();
+  const [pending, setPending] = useState(false);
+  const act = async (action: "hide" | "dismiss") => {
+    setPending(true);
+    await post(`/api/workspace/reports/${id}`, { action });
+    router.refresh();
+  };
+  return (
+    <span className="review-actions">
+      <button className="review-mini" disabled={pending} onClick={() => act("hide")} type="button">
+        <X size={13} />
+        Hide content
+      </button>
+      <button className="review-mini" disabled={pending} onClick={() => act("dismiss")} type="button">
+        <Check size={13} />
+        Dismiss
+      </button>
+    </span>
+  );
+}

@@ -6,6 +6,7 @@ import { confirmRegisteredEmail, findOrCreateUser } from "@/lib/db/repositories/
 import { createSession } from "@/lib/db/repositories/sessions";
 import { sessionCookieName, sessionCookieOptions } from "@/lib/auth/session";
 import { isCrossSite, safeNextPath } from "@/lib/auth/guards";
+import { afterSignIn } from "@/lib/onboarding";
 
 const perIp = rateLimiter("verify", 20, 15 * 60_000);
 
@@ -45,7 +46,7 @@ export async function POST(request: Request) {
   if (!user) return NextResponse.redirect(`${base}/sign-in?error=expired_link`, 303);
   const { raw, expiresAt } = await createSession(user.id);
 
-  const response = NextResponse.redirect(`${base}${next}`, 303);
+  const response = NextResponse.redirect(`${base}${afterSignIn(user, next)}`, 303);
   response.cookies.set(sessionCookieName, raw, sessionCookieOptions(expiresAt));
   return response;
 }

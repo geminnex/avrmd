@@ -27,6 +27,11 @@ export function mailFrom() {
   return process.env.SMTP_FROM ?? "AVRMD <hello@localhost>";
 }
 
+/** Turns bare https URLs (already escaped) into links, for email footers. */
+function linkify(value: string) {
+  return value.replace(/https:\/\/[^\s<]+/g, (url) => `<a href="${url}" style="color:#087c70">${url}</a>`);
+}
+
 function escapeHtml(value: string) {
   return value.replace(/[&<>"']/g, (char) => `&#${char.charCodeAt(0)};`);
 }
@@ -36,18 +41,42 @@ function escapeHtml(value: string) {
  * missing or the send fails; the failure is logged so a misconfigured
  * provider shows up in the service journal.
  */
-export async function sendMail(message: { to: string; subject: string; lines: string[]; link?: { label: string; url: string }; replyTo?: string }) {
+export async function sendMail(message: {
+  to: string;
+  subject: string;
+  lines: string[];
+  link?: { label: string; url: string };
+  replyTo?: string;
+  headers?: Record<string, string>;
+  footer?: string[];
+}) {
   const transport = createMailTransport();
   if (!transport) return false;
-  const text = [...message.lines, ...(message.link ? ["", `${message.link.label}: ${message.link.url}`] : [])].join("\n");
+  const footer = message.footer ?? [];
+  const text = [
+    ...message.lines,
+    ...(message.link ? ["", `${message.link.label}: ${message.link.url}`] : []),
+    ...(footer.length ? ["", "--", ...footer] : []),
+  ].join("\n");
   const html = [
     ...message.lines.map((line) => (line ? `<p>${escapeHtml(line)}</p>` : "")),
     message.link
       ? `<p><a href="${escapeHtml(message.link.url)}">${escapeHtml(message.link.label)}</a></p><p style="color:#6f8792;font-size:12px">${escapeHtml(message.link.url)}</p>`
       : "",
+    footer.length
+      ? `<hr style="border:0;border-top:1px solid #d9e5e7;margin:20px 0"><p style="color:#6f8792;font-size:12px">${footer.map((line) => linkify(escapeHtml(line))).join("<br>")}</p>`
+      : "",
   ].join("");
   try {
-    await transport.sendMail({ from: mailFrom(), to: message.to, subject: message.subject, text, html, replyTo: message.replyTo });
+    await transport.sendMail({
+      from: mailFrom(),
+      to: message.to,
+      subject: message.subject,
+      text,
+      html,
+      replyTo: message.replyTo,
+      headers: message.headers,
+    });
     return true;
   } catch (error) {
     console.error(`Email "${message.subject}" failed`, error);

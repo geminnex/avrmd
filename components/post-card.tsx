@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { MessageCircle } from "lucide-react";
 import { LikeButton } from "./like-button";
+import { ReportButton } from "./report-button";
 import { timeAgo } from "@/lib/time";
 
 export type PostCardData = {
@@ -72,6 +73,7 @@ export function PostCard({ post, linkToPermalink = true }: { post: PostCardData;
             {post.commentCount > 0 ? post.commentCount : "Comment"}
           </span>
         )}
+        <ReportButton id={post.id} type="post" />
       </footer>
     </article>
   );

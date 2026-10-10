@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { requireUserOrRedirect } from "@/lib/auth/session";
 import { ProfileSettingsForm } from "@/components/profile-settings-form";
 import { DeleteAccountForm } from "@/components/delete-account-form";
+import { EmailPrefsForm } from "@/components/email-prefs-form";
+import { emailKindLabels } from "@/lib/email-prefs";
 import { readMemberProfile } from "@/lib/db/repositories/users";
 import { catalog } from "@/lib/catalog";
 import { facetKindLabels, facets } from "@/lib/facets";
@@ -56,6 +58,7 @@ export default async function ProfileSettingsPage() {
           stageOptions={stages.map((stage) => ({ value: stage.slug, label: stage.name }))}
           topicOptions={topics.map((topic) => ({ value: topic.slug, label: topic.shortName }))}
         />
+        <EmailPrefsForm initial={user.emailPrefs} labels={emailKindLabels} />
         <DeleteAccountForm email={user.email} />
       </section>
     </div>

@@ -71,6 +71,17 @@ export const users = pgTable(
     emailVerifiedAt: timestamp("email_verified_at", { withTimezone: true }),
     /** scrypt hash ("scrypt$N$r$p$salt$hash"); null for Google-only accounts. */
     passwordHash: text("password_hash"),
+    /**
+     * Which emails a member gets. Questions routed to them and answers to
+     * theirs are on by default (declaring "can help with" is the opt-in to
+     * being asked); every email carries a one-click unsubscribe.
+     */
+    emailPrefs: jsonb("email_prefs")
+      .$type<{ questions: boolean; answers: boolean; digest: boolean }>()
+      .notNull()
+      .default({ questions: true, answers: true, digest: true }),
+    /** Set when the welcome step was completed or skipped. */
+    onboardedAt: timestamp("onboarded_at", { withTimezone: true }),
     /** Google's stable account id (`sub`), once someone signs in with Google. */
     googleSub: text("google_sub"),
     profile: jsonb("profile").$type<Record<string, unknown>>().notNull().default({}),
@@ -772,7 +783,8 @@ export const moderationReports = pgTable(
   "moderation_reports",
   {
     id: uuid("id").defaultRandom().primaryKey(),
-    reporterId: uuid("reporter_id").references(() => users.id),
+    // Set null, not cascade: a report outlives the account that filed it.
+    reporterId: uuid("reporter_id").references(() => users.id, { onDelete: "set null" }),
     resourceType: text("resource_type").notNull(),
     resourceId: uuid("resource_id").notNull(),
     reason: text("reason").notNull(),

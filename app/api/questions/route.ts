@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { after, NextResponse } from "next/server";
 import { z } from "zod";
 import { getCurrentUser } from "@/lib/auth/session";
 import {
@@ -114,6 +114,15 @@ export async function POST(request: Request) {
       })),
     );
     routedCount = routed.length;
+    const asker = user.displayName || (user.handle ? `@${user.handle}` : "A member");
+    after(() =>
+      import("@/lib/notify-email").then(({ emailNotifications }) =>
+        emailNotifications(
+          routed.map((match) => ({ userId: match.userId, kind: "question_routed" as const, questionId: question.id, matched: match.helpMatches })),
+          asker,
+        ),
+      ),
+    );
   } catch (error) {
     console.error("Question routing failed", error);
   }

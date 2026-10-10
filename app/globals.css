@@ -7314,3 +7314,96 @@ a.workflow-submit {
     grid-template-columns: 1fr;
   }
 }
+.welcome-form {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+.welcome-actions {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+}
+.sign-in-switch-button {
+  background: none;
+  border: 0;
+  color: var(--teal-dark);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+}
+.email-prefs {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 40px;
+  padding: 22px 24px;
+}
+.email-prefs h2 {
+  font-size: 17px;
+  margin: 0;
+}
+.email-pref {
+  align-items: flex-start;
+  color: var(--ink);
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  gap: 10px;
+  line-height: 1.45;
+}
+.email-pref input {
+  accent-color: var(--teal);
+  margin-top: 3px;
+}
+.email-pref small {
+  color: var(--teal-dark);
+  font-weight: 700;
+}
+.email-prefs > p {
+  color: var(--muted);
+  font-size: 12.5px;
+  margin: 0;
+}
+.report-link {
+  align-items: center;
+  background: none;
+  border: 0;
+  color: var(--muted);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 12px;
+  gap: 4px;
+  padding: 2px 0;
+}
+.report-link:hover {
+  color: #b4412f;
+}
+.report-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 420px;
+}
+.report-form select,
+.report-form input {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font: inherit;
+  font-size: 13px;
+  padding: 6px 8px;
+}
+.report-form > span {
+  display: flex;
+  gap: 10px;
+}
+.report-sent {
+  color: var(--teal-dark);
+  font-size: 12px;
+}
+.report-error {
+  color: #b4412f;
+  font-size: 12px;
+}

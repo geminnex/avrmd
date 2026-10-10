@@ -6,6 +6,7 @@ import { safeNextPath, validateGoogleIdToken } from "@/lib/auth/guards";
 import { sessionCookieName, sessionCookieOptions } from "@/lib/auth/session";
 import { createSession } from "@/lib/db/repositories/sessions";
 import { findOrCreateGoogleUser } from "@/lib/db/repositories/users";
+import { afterSignIn } from "@/lib/onboarding";
 
 function sameValue(a: string, b: string) {
   const left = Buffer.from(a);
@@ -66,7 +67,7 @@ export async function GET(request: Request) {
   const user = await findOrCreateGoogleUser(claims);
   const { raw, expiresAt } = await createSession(user.id);
 
-  const response = NextResponse.redirect(`${base}${safeNextPath(saved.next)}`);
+  const response = NextResponse.redirect(`${base}${afterSignIn(user, safeNextPath(saved.next))}`);
   response.cookies.set(sessionCookieName, raw, sessionCookieOptions(expiresAt));
   response.cookies.set(googleStateCookie, "", { path: "/api/auth/google", maxAge: 0 });
   return response;

@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { after, NextResponse } from "next/server";
 import { rateLimiter } from "@/lib/rate-limit";
 import { z } from "zod";
 import { getCurrentUser } from "@/lib/auth/session";
@@ -56,6 +56,12 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
           answerId: answer.id,
         },
       ]);
+      const asker = user.displayName || (user.handle ? `@${user.handle}` : "A member");
+      after(() =>
+        import("@/lib/notify-email").then(({ emailNotifications }) =>
+          emailNotifications([{ userId: answer.authorId, kind: "answer_accepted", questionId: question.id }], asker),
+        ),
+      );
     } catch (error) {
       console.error("Accept notification failed", error);
     }

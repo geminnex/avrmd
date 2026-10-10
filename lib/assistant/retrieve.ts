@@ -31,20 +31,40 @@ const stopwords = new Set(
   ),
 );
 
-/** Lowercased content words, with a crude plural fold. */
-export function terms(text: string) {
-  return [
-    ...new Set(
-      text
-        .toLowerCase()
-        .split(/[^\p{L}\p{N}]+/u)
-        .filter((word) => word.length >= 3 && !stopwords.has(word))
-        .map((word) => (word.length > 4 && word.endsWith("s") ? word.slice(0, -1) : word)),
-    ),
-  ];
+// Short clinical acronyms that would otherwise fall under the 3-letter minimum.
+const acronyms = new Set(["ct", "pt", "ot", "ed", "er", "3d", "2d", "ui", "ux"]);
+
+// Imaging words that should find records phrased in general terms.
+const synonyms: Record<string, string[]> = {
+  ct: ["imag"],
+  mri: ["imag"],
+  scan: ["imag"],
+  dicom: ["imag"],
+};
+
+/**
+ * A light stem so "surgical" and "surgery", "rehabilitate" and
+ * "rehabilitation", "images" and "imaging" meet. Applied to both the
+ * question and the content, then matched as word prefixes.
+ */
+function stem(word: string) {
+  if (word.length <= 4) return word;
+  for (const suffix of ["ically", "ation", "ical", "ing", "ery", "ies", "ive", "ate", "ed", "al", "es", "s", "e"]) {
+    if (word.endsWith(suffix) && word.length - suffix.length >= 4) return word.slice(0, -suffix.length);
+  }
+  return word;
 }
 
-function score(item: Pick<CorpusItem, "title" | "body">, queryTerms: string[]) {
+/** Lowercased, stemmed content words. */
+export function terms(text: string) {
+  const words = text
+    .toLowerCase()
+    .split(/[^\p{L}\p{N}]+/u)
+    .filter((word) => (word.length >= 3 || acronyms.has(word)) && !stopwords.has(word));
+  return [...new Set(words.flatMap((word) => [stem(word), ...(synonyms[word] ?? [])]))];
+}
+
+function score(item: Pick<CorpusItem, "title" | "body">, queryTerms: string[], distinctive: Set<string>) {
   if (queryTerms.length === 0) return 0;
   const title = ` ${terms(item.title).join(" ")} `;
   const body = ` ${terms(item.body).join(" ")} `;
@@ -58,17 +78,34 @@ function score(item: Pick<CorpusItem, "title" | "body">, queryTerms: string[]) {
     if (inTitle || inBody) matched += 1;
   }
   // Covering more of the question beats repeating one word.
-  return total * (matched / queryTerms.length);
+  let result = total * (matched / queryTerms.length);
+  // A distinctive name in the question (a product or company that appears in
+  // only a few titles) is the strongest signal there is: "Is Smileyscope
+  // cleared…" must find Smileyscope even if nothing else in it matches.
+  if (queryTerms.some((term) => distinctive.has(term) && title.includes(` ${term}`))) result += 4;
+  return result;
 }
 
 export function buildCorpus(extra: { talks?: Talk[]; questions?: QuestionDoc[] } = {}) {
   const items: Omit<CorpusItem, "id">[] = [];
 
+  // An organization is also found by its products' names ("Who makes RelieVRx?").
+  const productsOf = new Map<string, string[]>();
+  for (const entity of catalog) {
+    if (entity.owner) productsOf.set(entity.owner, [...(productsOf.get(entity.owner) ?? []), entity.name]);
+  }
   for (const entity of catalog) {
     items.push({
       type: "record",
       title: entity.name,
-      body: [entity.typeLabel, entity.summary, ...entity.specialties, ...entity.useCases, entity.owner ?? ""].join(" "),
+      body: [
+        entity.typeLabel,
+        entity.summary,
+        ...entity.specialties,
+        ...entity.useCases,
+        entity.owner ?? "",
+        ...(entity.kind === "organization" ? (productsOf.get(entity.name) ?? []).map((name) => `makes ${name}`) : []),
+      ].join(" "),
       href: entityHref(entity),
       external: false,
       meta: `AVRMD record · ${entity.typeLabel}`,
@@ -165,12 +202,16 @@ export function retrieve(
   options: { limit?: number; pinned?: Omit<CorpusItem, "id">[] } = {},
 ): CorpusItem[] {
   const queryTerms = terms(query);
+  // Terms that appear in very few titles: names of products and companies.
+  const titleFrequency = new Map<string, number>();
+  for (const item of corpus) for (const term of terms(item.title)) titleFrequency.set(term, (titleFrequency.get(term) ?? 0) + 1);
+  const distinctive = new Set(queryTerms.filter((term) => term.length >= 5 && (titleFrequency.get(term) ?? 0) <= 3));
   const used: Record<string, number> = {};
   const picked: Omit<CorpusItem, "id">[] = [...(options.pinned ?? [])];
   const seen = new Set(picked.map((item) => item.href));
 
   const ranked = corpus
-    .map((item) => ({ item, score: score(item, queryTerms) }))
+    .map((item) => ({ item, score: score(item, queryTerms, distinctive) }))
     .filter((entry) => entry.score >= 1)
     .sort((a, b) => b.score - a.score);
 

@@ -10,12 +10,21 @@ import { initialFields } from "@/lib/review";
 import { readQueue } from "@/lib/review-store";
 import { stages } from "@/lib/stages";
 import { timeAgo } from "@/lib/time";
-import { ContributionActions, RestoreButton, ReviewCard } from "@/components/review-card";
+import { ContributionActions, ReportActions, RestoreButton, ReviewCard } from "@/components/review-card";
 
 export const metadata: Metadata = { title: "Editorial workspace", robots: { index: false } };
 export const dynamic = "force-dynamic";
 
 type Contribution = Awaited<ReturnType<typeof import("@/lib/db/repositories/contributions").listContributions>>[number];
+
+async function loadReports() {
+  try {
+    const { listOpenReports, reportReasons } = await import("@/lib/db/repositories/reports");
+    return { reports: await listOpenReports(), reasons: reportReasons as Record<string, string> };
+  } catch {
+    return { reports: [], reasons: {} as Record<string, string> };
+  }
+}
 
 async function loadContributions(): Promise<Contribution[]> {
   try {
@@ -47,6 +56,7 @@ export default async function WorkspacePage() {
     .sort((a, b) => (b.decidedAt ?? "").localeCompare(a.decidedAt ?? ""));
   const approved = queue.filter((item) => item.status === "approved");
   const contributions = await loadContributions();
+  const { reports, reasons } = await loadReports();
   const openContributions = contributions.filter((row) => row.contribution.status === "submitted");
 
   const vocab = {
@@ -99,6 +109,36 @@ export default async function WorkspacePage() {
             <span>Last robot run</span>
           </div>
         </div>
+
+        <section className="review-section" id="reports">
+          <h2>
+            Reports <span>{reports.length}</span>
+          </h2>
+          {reports.length === 0 ? (
+            <p className="queue-empty">No open reports.</p>
+          ) : (
+            <ul className="contribution-list">
+              {reports.map(({ report, target }) => (
+                <li className="open" key={report.id}>
+                  <span>
+                    <small>
+                      {report.resourceType} · {reasons[report.reason] ?? report.reason} · {timeAgo(report.createdAt)}
+                    </small>
+                    {target ? (
+                      <a href={target.href} rel="noopener" target="_blank">
+                        <strong>{target.text.slice(0, 160)}</strong>
+                      </a>
+                    ) : (
+                      <strong>(already removed)</strong>
+                    )}
+                    {report.details && <em>&ldquo;{report.details}&rdquo;</em>}
+                  </span>
+                  <ReportActions id={report.id} />
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
 
         <section className="review-section">
           <h2>Contributions</h2>

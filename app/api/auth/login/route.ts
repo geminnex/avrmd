@@ -5,6 +5,7 @@ import { clientIp, signedInJson, siteUrl } from "@/lib/auth/flow";
 import { burnPasswordCheck, verifyPassword } from "@/lib/auth/password";
 import { rateLimiter } from "@/lib/rate-limit";
 import { getUserByEmail } from "@/lib/db/repositories/users";
+import { afterSignIn } from "@/lib/onboarding";
 import { createVerificationToken } from "@/lib/db/repositories/verification-tokens";
 import { sendConfirmEmail } from "@/lib/mail";
 
@@ -49,5 +50,5 @@ export async function POST(request: Request) {
     );
   }
 
-  return signedInJson(user.id, safeNextPath(parsed.data.next));
+  return signedInJson(user.id, afterSignIn(user, safeNextPath(parsed.data.next)));
 }
