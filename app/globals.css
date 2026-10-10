@@ -3727,7 +3727,7 @@ button {
   max-height: min(640px, calc(100vh - 130px));
   position: fixed;
   right: 26px;
-  width: 396px;
+  width: 440px;
   z-index: 60;
 }
 .assistant-head {
@@ -6548,4 +6548,110 @@ button {
   .clearance-date {
     order: -2;
   }
+}
+
+/* ---------- Assistant answers ---------- */
+
+.assistant-answer {
+  color: var(--ink);
+  font-size: 14.5px;
+  line-height: 1.6;
+  margin: 0;
+  white-space: pre-wrap;
+}
+.assistant-cite {
+  background: var(--teal-pale);
+  border-radius: 5px;
+  color: var(--teal-dark);
+  font-size: 10.5px;
+  font-weight: 800;
+  margin: 0 1px;
+  padding: 1px 5px;
+  position: relative;
+  top: -2px;
+}
+.assistant-cite:hover {
+  background: var(--teal);
+  color: white;
+}
+.assistant-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.assistant-actions a {
+  align-items: center;
+  background: #eaf8f4;
+  border: 1px solid #c6e9df;
+  border-radius: 10px;
+  color: var(--teal-dark);
+  display: flex;
+  font-size: 13.5px;
+  font-weight: 750;
+  gap: 8px;
+  justify-content: space-between;
+  padding: 9px 12px;
+}
+.assistant-actions a:hover {
+  border-color: var(--teal);
+}
+.assistant-sources {
+  counter-reset: source;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.assistant-sources li {
+  counter-increment: source;
+  scroll-margin-top: 12px;
+}
+.assistant-sources a {
+  align-items: flex-start;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  padding: 9px 11px;
+}
+.assistant-sources a::before {
+  color: var(--teal-dark);
+  content: counter(source);
+  font-size: 11px;
+  font-weight: 800;
+  margin-top: 1px;
+  min-width: 12px;
+}
+.assistant-sources a:hover {
+  background: var(--surface);
+  border-color: var(--teal);
+}
+.assistant-sources a > span {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.assistant-sources small {
+  color: var(--muted);
+  font-size: 11px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.assistant-sources strong {
+  color: var(--ink);
+  font-size: 13.5px;
+  line-height: 1.4;
+}
+.assistant-sources a > svg {
+  color: var(--muted);
+  flex-shrink: 0;
+}
+.assistant-followups button {
+  text-align: left;
 }

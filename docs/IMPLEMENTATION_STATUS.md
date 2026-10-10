@@ -22,11 +22,10 @@ people tracking the medical XR industry.
   vocabulary and coverage tests guarding against silent drift.
 - Directory search and filters (record type, modality, clinical specialty, gear), with
   shareable URLs.
-- The Ask AVRMD assistant: a floating panel whose retrieval runs locally in the browser
-  against the catalog. It composes answers from stored fields, never generates claims, and
-  says plainly when nothing matches. OpenRouter is used only to restate an unusual query
-  in catalog vocabulary, never to write an answer, with no paid fallback; with no key
-  configured the assistant works exactly as it does with one.
+- Ask AVRMD: server-side retrieval across records, FDA AR/VR devices, signals, talks, stage
+  and topic guides and member questions; a model (via OpenRouter) writes a short answer that
+  cites only those sources and picks next steps the site generated. Falls back to
+  retrieval-only when no model or budget is available. See `docs/AI_GOVERNANCE.md`.
 - A daily discovery job (`avrmd-discover.timer`) polling PubMed, Europe PMC, openFDA
   510(k), and ClinicalTrials.gov. It deduplicates against the catalog and proposes
   candidates only — publication requires `scripts/approve-candidate.mjs`.

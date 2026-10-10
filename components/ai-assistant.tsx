@@ -1,87 +1,149 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Search, Sparkles, X } from "lucide-react";
-import { ask, type AssistantAnswer } from "@/lib/assistant/engine";
+import { usePathname } from "next/navigation";
+import { ArrowRight, ArrowUpRight, LoaderCircle, Search, Sparkles, X } from "lucide-react";
+import { ask } from "@/lib/assistant/engine";
 import { entityHref } from "@/lib/catalog";
 import { assistantOpenEvent } from "./assistant-events";
 
-const starters = [
-  "VR for chronic back pain",
-  "Surgical training platforms",
-  "Which headset should we buy?",
-  "Evidence for pain management",
-];
-
-type Result = Omit<AssistantAnswer, "entities"> & {
-  assisted?: boolean;
-  entities: { slug: string; href: string; name: string; typeLabel: string; summary: string }[];
+type Source = {
+  id: string;
+  type: string;
+  title: string;
+  href: string;
+  external: boolean;
+  meta: string;
+};
+type Action = { id: string; label: string; href: string };
+type Result = {
+  question: string;
+  mode: "ai" | "basic" | "offline";
+  answer: string;
+  sources: Source[];
+  actions: Action[];
+  followups: string[];
 };
 
+const typeLabels: Record<string, string> = {
+  record: "AVRMD record",
+  fda: "FDA",
+  signal: "Paper / trial / news",
+  talk: "Talk",
+  stage: "Stage guide",
+  topic: "Topic",
+  website: "Website",
+  question: "Member question",
+};
+
+/** Suggestions that fit the page the reader is on. */
+function startersFor(path: string) {
+  if (path.startsWith("/stages/")) {
+    return ["What is still hard at this stage?", "Who can help at this stage?", "Which talks cover this stage?"];
+  }
+  if (path.startsWith("/entities/")) {
+    return ["What evidence is there for this?", "What are the alternatives?", "Is this FDA authorized?"];
+  }
+  if (path.startsWith("/topics/")) {
+    return ["What does recent research say here?", "Which products are used for this?", "Who can I ask about this?"];
+  }
+  if (path.startsWith("/clearances")) {
+    return ["Which AR systems are cleared for spine surgery?", "What VR devices are cleared for pain?"];
+  }
+  return [
+    "VR for pediatric procedural pain",
+    "Which AR systems are FDA cleared for spine surgery?",
+    "How do I start VR surgical training at my hospital?",
+    "What is hard about AR registration accuracy?",
+  ];
+}
+
+/** Turns "[s2]" markers into numbered links to the listed sources. */
+function AnswerText({ text, sources }: { text: string; sources: Source[] }) {
+  const order = new Map(sources.map((source, index) => [source.id, index + 1]));
+  const parts = text.split(/(\[s\d+\])/g);
+  return (
+    <p className="assistant-answer">
+      {parts.map((part, index) => {
+        const id = part.match(/^\[(s\d+)\]$/)?.[1];
+        if (!id) return <Fragment key={index}>{part}</Fragment>;
+        const number = order.get(id);
+        if (!number) return null;
+        return (
+          <a className="assistant-cite" href={`#assistant-source-${id}`} key={index}>
+            {number}
+          </a>
+        );
+      })}
+    </p>
+  );
+}
+
 export function AiAssistant() {
+  const pathname = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [result, setResult] = useState<Result | null>(null);
   const [pending, setPending] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-  const panelRef = useRef<HTMLDivElement>(null);
 
-  const run = useCallback(async (value: string) => {
-    const trimmed = value.trim();
-    if (!trimmed) return;
-
-    // The local engine answers immediately and offline; the request below only
-    // helps when the wording is unusual. Both paths are normalised to the same
-    // shape so a result always carries the right link for its record type.
-    const local = ask(trimmed);
-    setResult({
-      ...local,
-      entities: local.entities.map((entity) => ({
-        slug: entity.slug,
-        href: entityHref(entity),
-        name: entity.name,
-        typeLabel: entity.typeLabel,
-        summary: entity.summary,
-      })),
-    });
-
-    if (local.kind !== "none") return;
-
-    setPending(true);
-    try {
-      const response = await fetch("/api/assist", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ q: trimmed }),
-      });
-      if (!response.ok) return;
-      const payload = await response.json();
-      if (payload?.ok && payload.kind !== "none") {
-        setResult({
-          kind: payload.kind,
-          lead: payload.lead,
-          links: payload.links ?? [],
-          topics: [],
-          entities: payload.entities ?? [],
-          assisted: payload.assisted,
+  const run = useCallback(
+    async (value: string) => {
+      const trimmed = value.trim();
+      if (!trimmed) return;
+      setQuery(trimmed);
+      setPending(true);
+      try {
+        const response = await fetch("/api/assist", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ q: trimmed, path: pathname }),
         });
+        const payload = await response.json();
+        if (!response.ok || !payload?.ok) throw new Error(payload?.message ?? "failed");
+        // Number sources in the order the answer first cites them, and drop
+        // any step that leads back to the page the reader is already on.
+        const firstCited = (id: string) => {
+          const at = (payload.answer as string).indexOf(`[${id}]`);
+          return at === -1 ? Number.MAX_SAFE_INTEGER : at;
+        };
+        setResult({
+          question: trimmed,
+          ...payload,
+          sources: [...(payload.sources as Source[])].sort((a, b) => firstCited(a.id) - firstCited(b.id)),
+          actions: (payload.actions as Action[]).filter((action) => action.href !== pathname),
+        });
+      } catch {
+        // The server is unreachable: answer from the catalog bundled in the page.
+        const local = ask(trimmed);
+        setResult({
+          question: trimmed,
+          mode: "offline",
+          answer: local.lead,
+          sources: local.entities.map((entity, index) => ({
+            id: `s${index + 1}`,
+            type: "record",
+            title: entity.name,
+            href: entityHref(entity),
+            external: false,
+            meta: entity.typeLabel,
+          })),
+          actions: local.links.map((link, index) => ({ id: `l${index}`, ...link })),
+          followups: [],
+        });
+      } finally {
+        setPending(false);
       }
-    } catch {
-      // Local answer already stands.
-    } finally {
-      setPending(false);
-    }
-  }, []);
+    },
+    [pathname],
+  );
 
   useEffect(() => {
     function onOpen(event: Event) {
       setOpen(true);
       const prefill = (event as CustomEvent<string | undefined>).detail;
-      if (prefill) {
-        setQuery(prefill);
-        void run(prefill);
-      }
+      if (prefill) void run(prefill);
     }
     window.addEventListener(assistantOpenEvent, onOpen);
     return () => window.removeEventListener(assistantOpenEvent, onOpen);
@@ -106,6 +168,8 @@ export function AiAssistant() {
     if (open) inputRef.current?.focus();
   }, [open]);
 
+  const close = () => setOpen(false);
+
   return (
     <>
       <button
@@ -119,19 +183,13 @@ export function AiAssistant() {
       </button>
 
       {open && (
-        <div
-          aria-label="Ask AVRMD"
-          aria-modal="false"
-          className="assistant-panel"
-          ref={panelRef}
-          role="dialog"
-        >
+        <div aria-label="Ask AVRMD" aria-modal="false" className="assistant-panel" role="dialog">
           <header className="assistant-head">
             <span>
               <Sparkles size={16} />
               Ask AVRMD
             </span>
-            <button aria-label="Close" onClick={() => setOpen(false)} type="button">
+            <button aria-label="Close" onClick={close} type="button">
               <X size={17} />
             </button>
           </header>
@@ -151,25 +209,21 @@ export function AiAssistant() {
               ref={inputRef}
               value={query}
             />
-            <button type="submit">
-              <ArrowRight size={16} />
+            <button aria-label="Ask" disabled={pending} type="submit">
+              {pending ? <LoaderCircle className="spin" size={16} /> : <ArrowRight size={16} />}
             </button>
           </form>
 
-          <div className="assistant-body">
-            {!result && (
+          <div aria-busy={pending} aria-live="polite" className="assistant-body">
+            {!result && !pending && (
               <>
-                <p className="assistant-hint">Try one of these:</p>
+                <p className="assistant-hint">
+                  Ask anything about medical VR, AR or MR. Answers cite AVRMD&apos;s records, FDA
+                  data, recent papers, talks and member questions.
+                </p>
                 <div className="assistant-starters">
-                  {starters.map((starter) => (
-                    <button
-                      key={starter}
-                      onClick={() => {
-                        setQuery(starter);
-                        void run(starter);
-                      }}
-                      type="button"
-                    >
+                  {startersFor(pathname).map((starter) => (
+                    <button key={starter} onClick={() => void run(starter)} type="button">
                       {starter}
                     </button>
                   ))}
@@ -177,34 +231,60 @@ export function AiAssistant() {
               </>
             )}
 
-            {result && (
+            {pending && <p className="assistant-hint">Looking through AVRMD…</p>}
+
+            {result && !pending && (
               <>
-                <p className="assistant-lead">{result.lead}</p>
-                {pending && <p className="assistant-hint">Checking other phrasings…</p>}
+                <AnswerText sources={result.sources} text={result.answer} />
 
-                {result.entities.map((entity) => (
-                  <Link
-                    className="assistant-result"
-                    href={entity.href}
-                    key={entity.slug}
-                    onClick={() => setOpen(false)}
-                  >
-                    <span>
-                      <small>{entity.typeLabel}</small>
-                      <strong>{entity.name}</strong>
-                      <em>{entity.summary}</em>
-                    </span>
-                    <ArrowUpRight size={16} />
-                  </Link>
-                ))}
-
-                {result.links.length > 0 && (
-                  <div className="assistant-links">
-                    {result.links.map((link) => (
-                      <Link href={link.href} key={link.href} onClick={() => setOpen(false)}>
-                        {link.label}
+                {result.actions.length > 0 && (
+                  <div className="assistant-actions">
+                    {result.actions.map((action) => (
+                      <Link href={action.href} key={action.id} onClick={close}>
+                        {action.label}
                         <ArrowRight size={14} />
                       </Link>
+                    ))}
+                  </div>
+                )}
+
+                {result.sources.length > 0 && (
+                  <ol className="assistant-sources">
+                    {result.sources.map((source) => {
+                      const inner = (
+                        <>
+                          <span>
+                            <small>
+                              {typeLabels[source.type] ?? source.type} · {source.meta}
+                            </small>
+                            <strong>{source.title}</strong>
+                          </span>
+                          <ArrowUpRight size={15} />
+                        </>
+                      );
+                      return (
+                        <li id={`assistant-source-${source.id}`} key={source.id}>
+                          {source.external ? (
+                            <a href={source.href} rel="noopener" target="_blank">
+                              {inner}
+                            </a>
+                          ) : (
+                            <Link href={source.href} onClick={close}>
+                              {inner}
+                            </Link>
+                          )}
+                        </li>
+                      );
+                    })}
+                  </ol>
+                )}
+
+                {result.followups.length > 0 && (
+                  <div className="assistant-starters assistant-followups">
+                    {result.followups.map((followup) => (
+                      <button key={followup} onClick={() => void run(followup)} type="button">
+                        {followup}
+                      </button>
                     ))}
                   </div>
                 )}
@@ -213,8 +293,10 @@ export function AiAssistant() {
           </div>
 
           <footer className="assistant-foot">
-            Answers come only from AVRMD records — never medical advice.{" "}
-            <Link href="/about#ai" onClick={() => setOpen(false)}>
+            {result?.mode === "ai"
+              ? "Written by AI from the sources listed — check them before relying on it. Not medical advice."
+              : "Answers come only from AVRMD sources — never medical advice."}{" "}
+            <Link href="/about#ai" onClick={close}>
               How this works
             </Link>
           </footer>
