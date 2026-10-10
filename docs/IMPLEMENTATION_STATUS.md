@@ -1,52 +1,69 @@
 # AVRMD Implementation Status
 
-Updated: 2026-08-20
+Updated: 2026-10-10, after the [full review](REVIEW_2026-10-10.md). This page describes
+what the code does today. The plan is in [IMPLEMENTATION_ROADMAP.md](IMPLEMENTATION_ROADMAP.md).
 
-## Structure
+## Live and working
 
-The site is organised around three pillars, reflected in the primary navigation:
+**Content (read-only, real data)**
+- 54 source-linked catalog records: organizations, solutions, evidence, events, a project, and clinical and technical problems.
+- 6 clinical topic hubs and 8 pipeline-stage guides, generated from the catalog and guarded by vocabulary and coverage tests.
+- `/clearances`: the FDA's list of authorized AR/VR medical devices (120 devices, 70 companies), refreshed daily. Records with FDA entries show them on their page.
+- `/signals`: about 400 auto-discovered papers, trials and news items, labelled as unreviewed.
+- `/talks`: 54 curated recorded talks, plus member submissions.
+- `/gear`, `/resources`, `/explore` with filters.
 
-- **Database** — clinical topic hubs (primary) and the record-type directory (secondary),
-  plus gear/hardware and a curated list of related websites.
-- **Community** — discussion scoped to the same clinical topics.
-- **For organizations** — free ownership claims and clearly labelled promotion.
+**Accounts and community (persisting)**
+- Passwordless email sign-in through Purelymail; database sessions. Magic links are never shown on screen in production.
+- Member profiles (role, stages, can-help-with, looking-for, interests, affiliation) and a member directory listing only members who declared something.
+- Questions and answers. A new question notifies members whose can-help-with matches its tags (at most 8 per question, at most 5 per member per day). The asker can mark the answer that helped.
+- In-app notifications with a header bell.
+- Network posts, comments, likes and image uploads; organization groups (forum, blog, media) for claimed records.
 
-Two homepage doorways serve the two audiences: professionals with a clinical problem, and
-people tracking the medical XR industry.
+**Ask AVRMD (assistant)**
+- Server-side retrieval over records, FDA devices, signals, talks, stage and topic guides, websites and member questions.
+- A model (OpenRouter, Claude Haiku 5.5) writes a short answer that cites only those sources and picks next steps the site generated. It falls back to retrieval-only without a key, budget or working model.
+- Usage is recorded in `ai_jobs`/`ai_runs` without the question text. See `AI_GOVERNANCE.md`.
+- ⚠️ In production it is **retrieval-only until `/etc/avrmd.env` stops overriding the key** (Phase 5, owner action).
 
-## Working now
+**Daily discovery robot** (`avrmd-discover.timer`)
+- 10 sources: the FDA AR/VR device list, openFDA 510(k), PubMed, Europe PMC, ClinicalTrials.gov, arXiv, JMIR XR, JMIR Serious Games, Frontiers in VR, Auganix.
+- Writes signals and review candidates. Publication into the catalog still requires `scripts/approve-candidate.mjs`.
 
-- 18 source-linked records, including four general-purpose XR headsets tracked as gear
-  and explicitly marked as not medical devices.
-- Six clinical topic hubs, generated from the catalog by set-intersection selectors with
-  vocabulary and coverage tests guarding against silent drift.
-- Directory search and filters (record type, modality, clinical specialty, gear), with
-  shareable URLs.
-- Ask AVRMD: server-side retrieval across records, FDA AR/VR devices, signals, talks, stage
-  and topic guides and member questions; a model (via OpenRouter) writes a short answer that
-  cites only those sources and picks next steps the site generated. Falls back to
-  retrieval-only when no model or budget is available. See `docs/AI_GOVERNANCE.md`.
-- A daily discovery job (`avrmd-discover.timer`) polling PubMed, Europe PMC, openFDA
-  510(k), and ClinicalTrials.gov. It deduplicates against the catalog and proposes
-  candidates only — publication requires `scripts/approve-candidate.mjs`.
-- The workspace, showing that real discovery queue rather than sample metrics.
-- A promotion mechanism with fixed, labelled slots, a house placeholder when nothing is
-  booked, and code-enforced guardrails (never on evidence records, never reordering).
+## Not working, or promising more than it does
 
-## Not connected yet
+| Surface | Reality | Plan |
+|---|---|---|
+| Claim a record, suggest a record, promotion request, AI research form | Validate and then **discard** the input (`/api/intake` → `validated_preview`) | Phase 5 |
+| `/community` | Sample threads only | Phase 7 (remove / redirect) |
+| `/opportunities` | Empty data file | Phase 7 (hide) |
+| `/workspace` | Shows 761 pending candidates; no way to act | Phase 8 (review screen) |
+| `/about` → "What is live today" | Out of date in both directions | Phase 5 |
+| Email notifications and digests | Not built (SMTP works) | Phase 9 |
+| Privacy policy, terms, takedown, account deletion | Missing | Phase 5 |
+| `robots.txt`, `sitemap.xml`, analytics | Missing | Phase 7 |
+| Backups | **None** for Postgres or robot data | Phase 5 |
 
-Accounts and sign-in, community posting, owner inquiry delivery, campaign scheduling and
-invoicing, and browser-based approval of discovered candidates. Every intake form still
-validates its contract and then stops without storing, emailing, charging, or publishing.
+## Known security issues (all medium or lower)
 
-Pages that show example content label it as a sample, and `/about#status` is the single
-place that explains the boundary.
+There are no critical or high findings. Six medium issues are open: missing security
+headers, a publicly listable media bucket, handles derived from email, post media
+accepting any URL, weak rate limits, and a racy magic-link GET. Details and fixes are in
+the review §2, and all are scheduled in Phase 5.
 
-## Verification
+## Docs known to be out of date
 
-- TypeScript compiles clean; 42 tests pass across catalog, topics, community, resources,
-  assistant, ads, and workflow suites.
-- Next.js production build passes; all routes return 200 and `/advertise` permanently
-  redirects to `/for-organizations`.
-- The assistant returns catalog results with no OpenRouter key configured.
-- Desktop and mobile visual review completed.
+- `ARCHITECTURE.md` claims Auth.js, async jobs, Postgres full-text search, startup env validation and a Sites deploy; none exist.
+- `INFORMATION_ARCHITECTURE.md` describes a four-item navigation; the header has seven.
+
+Both are rewritten in Phase 8, once the data model settles.
+
+## Usage (2026-10-10)
+
+1 account · 0 member profiles · 0 questions · 0 member talks · 0 posts · 761 candidates pending review.
+
+## Verification at this update
+
+- `tsc --noEmit` is clean and 107 tests pass across 16 files.
+- The production build passes, and entity, topic, stage and problem pages are static.
+- Live checks for every public route: all return 200, except `/network`, which sends signed-out visitors to the sign-in page (307).

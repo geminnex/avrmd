@@ -2,8 +2,8 @@
 
 > ⚠️ **Iron rule: everything on the site and in `docs/` is English.** UI text, buttons, page titles, record content, error messages, and emails are all English. Chinese is only used in conversation.
 
-Goal: an **online, always-on conference** — come see posters, talks, and exhibitions any time, and meet people in the hallway who can help.
-For the full context see [Product Vision](PRODUCT_VISION.md) | For the market basis see [Market Study](MARKET_STUDY.md)
+North star: **the largest, most complete medical XR community**, where clinicians, researchers, engineers, device makers, manufacturers and business people find direction, resources and help; ending in an AVRMD annual meeting. The way there is an **online, always-on conference**, kept simple and **assistant-first**.
+Context: [Product Vision](PRODUCT_VISION.md) · [Market Study](MARKET_STUDY.md) · **[Full review 2026-10-10](REVIEW_2026-10-10.md)**, which drives Phases 5–11 below.
 
 ---
 
@@ -92,20 +92,111 @@ Make "which gate am I stuck at" a browsable, filterable second axis.
 
 ---
 
-## Phase 5 — Live classes and announcements (the "workshops")
+## Interim work (2026-10-10) ✅ Done
 
-- [ ] `live_sessions` table: host, title, time, link, tags, capacity
-- [ ] Member scheduling UI
-- [ ] System announcements: announce when scheduled, notify before start
-- [ ] Appear in the homepage feed and on the matching stage page
+- [x] Production email through Purelymail; magic links never shown on screen in production
+- [x] Daily robot: FDA AR/VR device list (`/clearances`, 120 devices), arXiv, JMIR XR, JMIR Serious Games, Frontiers in VR, Auganix, alongside PubMed, Europe PMC, openFDA, ClinicalTrials.gov — 10 sources
+- [x] Robot output read at request time, so each run reaches the live site without a deploy
+- [x] Ask AVRMD answers from site sources with citations and site-generated next steps (OpenRouter, Claude Haiku 5.5, daily cap, retrieval-only fallback)
+- [x] All docs in English
 
 ---
 
-## Phase 6 — Projects (claimed + created)
+## Phase 5 — Trust and safety (stop promising what the site doesn't do)
 
-- [ ] Claim existing research projects (mechanism done, using `organization_memberships`)
-- [ ] `member_projects` table: title, goal, stage, roles recruiting, members
-- [ ] "Looking for partners" list, integrated with `/opportunities`
+Nothing new is built until the site stops discarding input and the security mediums are closed.
+
+**Owner actions (need sudo)**
+- [ ] Remove the `OPENROUTER_*` lines from `/etc/avrmd.env` and restart (the live assistant is retrieval-only until then)
+- [ ] Add the sudoers rule allowing `systemctl restart avrmd.service`, so deploys don't wait on a person
+- [ ] Decide where off-site backups go (another host, S3-compatible bucket, or Google Drive)
+
+**Forms and claims**
+- [ ] One real **Contribute** flow replacing the four discarding forms: claim a record, suggest a record or correction, promotion enquiry. It stores to Postgres (`catalog_submissions`, `ownership_claims`) and emails the editors.
+- [ ] Until each one is real, remove its calls to action from the home page, footer and record pages
+- [ ] Rewrite `/about` "What is live today" from the code, not from memory; no superlatives, live counts instead
+- [ ] Fix copy that promises review queues or replies that don't exist (`/for-organizations`, `/participate`, `/opportunities`)
+
+**Security (from the review)**
+- [ ] M1 Security headers in `next.config.ts`: CSP, HSTS, `frame-ancestors 'none'`, nosniff, Referrer-Policy, Permissions-Policy
+- [ ] M2 Media bucket: GetObject only, no anonymous listing; upload keys without user ids
+- [ ] M3 Neutral generated handles (never from the email address); reserved handles
+- [ ] M4 Post media restricted to the member's own uploads
+- [ ] M6 Magic link: a confirm page that POSTs; atomic `UPDATE … RETURNING` consumption
+- [ ] L1 Validate ids everywhere: a malformed id is a 404, never a 500
+- [ ] L3 Origin check on state-changing routes (sign-out included)
+
+**Legal and data**
+- [ ] Privacy policy, terms of use, copyright contact and takedown procedure (required by `TRUST_SAFETY_IP.md` before launch)
+- [ ] Account deletion from settings
+- [ ] Nightly `pg_dump` plus `data/` snapshot, kept 14 days locally and copied off the host; a tested restore
+
+---
+
+## Phase 6 — Operations (deploys that can't break the live site)
+
+- [ ] Deploy script: build into a new release directory, health-check it, switch, restart, keep the last 3 for rollback
+- [ ] Remove the dead Cloudflare/OpenNext `postbuild` path and `output: "standalone"`
+- [ ] Robot: atomic writes (temp file + rename), robot data moved out of the git tree, `OnFailure=` alert by email
+- [ ] One rate limiter backed by Postgres for sign-in, posting and the assistant; a per-visitor assistant quota under the global cap
+- [ ] Validate env at startup and log which file each setting came from (two silent misconfigurations so far)
+- [ ] `error.tsx`, DB-down handling on `/posts/[id]`, `/members/[handle]`, `/network`; structured server logs for failures
+- [ ] Uptime and freshness check (site up, robot ran in the last 26 hours) with an email alert
+- [ ] Pin dependency versions (no `latest`); unify the duplicated helpers
+
+---
+
+## Phase 7 — Simplify, assistant first
+
+The owner's direction: not complex; don't make people fish in an ocean; the assistant brings in the right link or feature at the right moment.
+
+- [ ] Home page: one ask box with role chips (clinician, researcher, engineer, industry) above a short "what's new" strip; the assistant is the front door, not a floating extra
+- [ ] Navigation cut to five: **Ask · Library · Talks · People · For organizations**. Library holds records, FDA devices, gear, websites and signals as tabs; People holds members and questions
+- [ ] Remove or redirect `/community` (samples), `/ai`, the public `/workspace`; hide `/opportunities` until a real listing exists
+- [ ] Stages as the guided path; topics become a filter and assistant context, not a second nav item
+- [ ] When the assistant finds no helper, it offers "post this as a question" instead of implying someone will answer
+- [ ] `robots.txt`, `sitemap.xml`, per-page metadata; privacy-friendly analytics (self-hosted, no cookies)
+- [ ] Home page static again (shuffle talks on the client)
+
+---
+
+## Phase 8 — Content engine ("most complete")
+
+- [ ] AI triage of the review queue: relevance score, record kind, a drafted summary with citations, duplicate check
+- [ ] Web review screen for editors (approve / edit / reject), replacing `scripts/approve-candidate.mjs`
+- [ ] Coverage metrics on `/about`: records by kind, FDA coverage, evidence count, last robot run
+- [ ] Problem records for the Regulatory and Validation stages (currently none), each with a verifiable source
+- [ ] Move the catalog from JSON to Postgres once approvals happen from the web (no rebuild per record); full-text search
+- [ ] Decide the fate of the unused schema tables: wire up what Phases 5–8 need, drop the rest; rewrite `ARCHITECTURE.md` and `INFORMATION_ARCHITECTURE.md` to match
+
+---
+
+## Phase 9 — Return loop
+
+- [ ] Onboarding after first sign-in: role, stage, what you can help with (one screen; skippable)
+- [ ] Email for "someone asked what you can help with", "your question was answered"; per-type settings and one-click unsubscribe
+- [ ] Weekly digest: new FDA devices, papers, trials and questions in the member's stages and topics (AI-summarised, cited)
+- [ ] Moderation basics: report button, hide, a moderator role; talks queued for moderation
+- [ ] Assistant evaluation set (50 real questions with expected sources) run before each prompt or model change
+
+---
+
+## Phase 10 — Seed the community (founder-led)
+
+Code cannot solve this one; the site can make it easy.
+
+- [ ] Invite the first 20–50 experts across the six roles; help them fill profiles
+- [ ] Editors answer questions publicly for the first 90 days
+- [ ] Partner outreach: existing conferences and societies (IEEE VR XR Health, MedXR) for satellite sessions
+- [ ] Invitation page and email template
+
+---
+
+## Phase 11 — Live sessions, projects, events (formerly Phases 5 and 6)
+
+- [ ] `live_sessions`: host, title, time, link, tags, capacity; scheduling UI; announcements and reminders
+- [ ] Member projects: claim existing research projects, create new ones, recruit roles; merge with `/opportunities`
+- [ ] Monthly online session series → annual meeting planning
 
 ---
 
@@ -118,6 +209,8 @@ Make "which gate am I stuck at" a browsable, filterable second axis.
 - [ ] Playwright hands-on run + look at screenshots (not just API responses)
 - [ ] Spot-check live after deployment
 - [ ] Clean up test data
+- [ ] Stop test servers **by their own PID only** (this host runs other sites; a name-based kill took MedTechNet down on 2026-10-10)
+- [ ] Any page or doc that describes the feature says only what the code does
 - [ ] **Check that all new UI text is English**
 - [ ] Commit + push
 
@@ -132,3 +225,7 @@ Make "which gate am I stuck at" a browsable, filterable second axis.
 | **Empty states** | Every community feature needs an honest empty state; no fake data |
 | **Language confusion** | Conversation in Chinese, site in English; check on every phase verification |
 | **Medical device advertising regulation** | Consult a lawyer before starting to charge for promotion (see Market Study section 7) |
+| **Promising more than the site does** | Found in four forms and three pages (review 2026-10-10). A call to action ships only with the thing it calls for |
+| **Silent config override** | `/etc/avrmd.env` beats project env files; happened twice. Startup env validation (Phase 6) |
+| **Single copy of everything** | No backups until Phase 5 lands; treat it as the top operational risk |
+| **Shared host** | Other sites run here; kill by PID, never by process name |
