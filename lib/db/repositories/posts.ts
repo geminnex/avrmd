@@ -146,6 +146,16 @@ export async function hasLiked(postId: string, userId: string) {
   return Boolean(row);
 }
 
+/** Which of these posts the member has liked — one query for a whole feed. */
+export async function listLikedPostIds(userId: string, postIds: string[]) {
+  if (postIds.length === 0) return new Set<string>();
+  const rows = await getDatabase()
+    .select({ postId: postLikes.postId })
+    .from(postLikes)
+    .where(and(eq(postLikes.userId, userId), inArray(postLikes.postId, postIds)));
+  return new Set(rows.map((row) => row.postId));
+}
+
 export async function addComment(postId: string, authorId: string, body: string) {
   const [comment] = await getDatabase()
     .insert(postComments)

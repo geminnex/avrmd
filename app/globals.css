@@ -6841,3 +6841,16 @@ a.workflow-submit {
   color: var(--teal-dark);
   font-weight: 700;
 }
+.error-actions {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.not-found .error-actions a,
+.not-found .error-actions button {
+  margin: 0;
+}
+.error-actions .button-primary {
+  cursor: pointer;
+}

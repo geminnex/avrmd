@@ -3,7 +3,7 @@ import { Newspaper } from "lucide-react";
 import { PostComposer } from "@/components/post-composer";
 import { PostCard } from "@/components/post-card";
 import { requireUserOrRedirect } from "@/lib/auth/session";
-import { hasLiked, listRecentPosts } from "@/lib/db/repositories/posts";
+import { listLikedPostIds, listRecentPosts } from "@/lib/db/repositories/posts";
 
 export const metadata: Metadata = { title: "Network" };
 export const dynamic = "force-dynamic";
@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 export default async function NetworkPage() {
   const user = await requireUserOrRedirect("/sign-in?next=/network");
   const posts = await listRecentPosts(25);
-  const likedStates = await Promise.all(posts.map((post) => hasLiked(post.id, user.id)));
+  const liked = await listLikedPostIds(user.id, posts.map((post) => post.id));
 
   return (
     <div className="network-page">
@@ -43,7 +43,7 @@ export default async function NetworkPage() {
                 key={post.id}
                 post={{
                   ...post,
-                  initialLiked: likedStates[index],
+                  initialLiked: liked.has(post.id),
                 }}
               />
             ))}
