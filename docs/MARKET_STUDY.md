@@ -1,213 +1,213 @@
-# AVRMD 市場研究報告
+# AVRMD Market Study Report
 
-研究日期：2026-08-24
-
----
-
-## 一、先講結論
-
-**好消息：** 醫療 XR 市場真的在成長，2026 年規模約 75–148 億美元，年成長率 30–48%。這不是泡沫，FDA 持續核准新的 XR 醫材（我們的每日探索程式這幾天就抓到 3 筆脊椎導航相關的 510(k) 核准）。
-
-**壞消息：** 市場大 ≠ 網站會成功。真正的難題不是「有沒有市場」，而是 **「這群人現在不在網路上聚集」**。
-
-**最重要的發現：**
-
-1. 已經有人做過一模一樣的事，而且失敗了 —— `vrforhealthdirectory.com`（VR 醫療廠商目錄）**網域已經失效**，連 DNS 都查不到。
-2. `vrforhealth.com` 還活著，但它**放棄了目錄模式**，改做內容媒體，背後靠一家顧問公司（Basil Strategies）養。
-3. `avrmd.com`（你自己的舊站）2023 年後就停更了 —— 有 BuddyPress 論壇、有會員系統，但論壇貼文極少。
-4. 這個領域的人**真正聚集在研討會**：IEEE VR 的 XR Health workshop、Laval Virtual、MedXR@COMPSAC、MedVR Accelerator。不是在網站上。
-
-**結論：** 不要一開始就想做「社群網站」。社群是結果，不是起點。先做「**沒有人做過的資料庫**」，用內容把人吸引進來，社群自然長出來。
+Research date: 2026-08-24
 
 ---
 
-## 二、市場有多大
+## 1. The Bottom Line First
 
-| 指標 | 數字 |
+**Good news:** The medical XR market is genuinely growing, at roughly US$7.5–14.8 billion in 2026 with 30–48% annual growth. This is not a bubble; the FDA keeps clearing new XR medical devices (our daily discovery job picked up 3 spinal-navigation 510(k) clearances in just the past few days).
+
+**Bad news:** A big market does not mean the site will succeed. The real difficulty is not "is there a market" but **"these people do not gather online today"**.
+
+**Most important findings:**
+
+1. Someone has already done exactly this and failed — `vrforhealthdirectory.com` (a VR healthcare vendor directory) has a **dead domain**; even DNS cannot resolve it.
+2. `vrforhealth.com` is still alive, but it **abandoned the directory model** and became a content media site, funded by a consulting firm (Basil Strategies).
+3. `avrmd.com` (your own old site) has not been updated since 2023 — it has a BuddyPress forum and a membership system, but very few forum posts.
+4. People in this field **really gather at conferences**: the XR Health workshop at IEEE VR, Laval Virtual, MedXR@COMPSAC, MedVR Accelerator. Not on websites.
+
+**Conclusion:** Do not start by trying to build a "community site". Community is an outcome, not a starting point. First build the **database nobody has built**, attract people with content, and the community will grow on its own.
+
+---
+
+## 2. How Big Is the Market
+
+| Metric | Figure |
 |---|---|
-| 2026 年醫療 VR 市場 | 約 75–89 億美元 |
-| 2026 年醫療 XR（含 AR/MR） | 約 148 億美元 |
-| 年複合成長率 | 30–48% |
-| 2034 年預估 | 約 669 億美元 |
+| 2026 medical VR market | About US$7.5–8.9 billion |
+| 2026 medical XR (including AR/MR) | About US$14.8 billion |
+| Compound annual growth rate | 30–48% |
+| 2034 forecast | About US$66.9 billion |
 
-**成長動力：** 模擬教學普及、微創手術增加、遠距醫療擴張、頭戴裝置變便宜。
+**Growth drivers:** wider adoption of simulation training, more minimally invasive surgery, expanding telemedicine, cheaper headsets.
 
-**但要注意：** 這是「醫療 XR 產品」的市場，不是「醫療 XR 資訊網站」的市場。賣鏟子的人賺錢，不代表賣「鏟子目錄」的人賺錢。你的收入來自那些公司的**行銷預算**，而不是市場本身。
-
----
-
-## 三、類似網站（五種模式）
-
-### 1. Doximity —— 最成功的醫療專業社群
-- 美國醫師社群，涵蓋**全美 80% 醫師**（約 180 萬人）
-- 2025 財年營收 **5.7 億美元**，年成長 20%
-- 賺錢方式：藥廠 / 醫院投放精準廣告（主要）＋ 遠距醫療工具訂閱 ＋ 徵才
-
-**學到什麼：** 這模式成立的前提是「**擁有一個藥廠付錢也接觸不到的受眾**」。Doximity 賣的不是資訊，是**通往醫師的管道**。AVRMD 要走這條路，得先有夠多醫療 XR 決策者。
-
-### 2. G2 / Capterra —— B2B 軟體目錄
-- 買方免費用，**廠商付費**
-- G2：年費約 US$2,999
-- Capterra：每次點擊 US$2 起，每月最低 US$500
-- 2026 年 G2 已收購 Capterra
-
-**學到什麼：** 目錄型網站的錢在「**名單（leads）**」。有人按下「聯絡廠商」，那個動作就值錢。這是 AVRMD 最容易複製的模式。
-
-### 3. Reality Atlas —— 最接近的結構競爭者
-- 全 XR 產業目錄：141+ 硬體、679+ 軟體、112+ 開發商、網紅、活動、職缺、募資追蹤
-- Freemium：免費瀏覽，廠商付費上架（含分析數據與名單）
-
-**學到什麼：** 結構跟 AVRMD 幾乎一樣，**但它是全 XR、不是醫療**。它沒有臨床證據、沒有 FDA 核准紀錄、沒有臨床問題分類。**這就是你的差異點。**
-
-### 4. VRforHealth —— 失敗與轉型的案例
-- 原本做 VR 醫療目錄 → **目錄網域已死**
-- 現在做內容媒體（影片＋文章），靠**贊助內容**收入，母公司是顧問公司
-
-**學到什麼：** 純目錄撐不住，內容才有持續性。這也解釋了為什麼「每日訊號（Signals）」功能是對的方向。
-
-### 5. 研討會／加速器 —— 真正的社群所在地
-- IEEE VR「XR Health」workshop、MedXR@COMPSAC、Laval Virtual、MedVR Accelerator
-- 這些地方**人是真的會出現的**
-
-**學到什麼：** 你想辦 AVRMD 研討會的直覺是對的。但順序應該相反 —— **先成為研討會之間的「線上據點」**，再辦自己的活動。
+**But note:** This is the market for "medical XR products", not for "medical XR information websites". Shovel sellers making money does not mean the people selling a "shovel directory" make money. Your revenue comes from those companies' **marketing budgets**, not from the market itself.
 
 ---
 
-## 四、使用者需求（誰、要什麼）
+## 3. Similar Sites (Five Models)
 
-| 使用者 | 他們的真實問題 | AVRMD 能給什麼 |
+### 1. Doximity — the most successful medical professional community
+- A US physician community covering **80% of US physicians** (about 1.8 million)
+- FY2025 revenue of **US$570 million**, up 20% year over year
+- How it makes money: targeted ads from pharma companies / hospitals (main), telemedicine tool subscriptions, and recruiting
+
+**Lesson:** This model works on the premise of **"owning an audience that pharma cannot reach even by paying"**. What Doximity sells is not information but **access to physicians**. For AVRMD to go this route, it first needs enough medical XR decision-makers.
+
+### 2. G2 / Capterra — B2B software directories
+- Buyers use it for free, **vendors pay**
+- G2: annual fee of about US$2,999
+- Capterra: from US$2 per click, minimum US$500 per month
+- G2 acquired Capterra in 2026
+
+**Lesson:** The money in a directory site is in **leads**. When someone clicks "Contact vendor", that action is worth money. This is the model AVRMD can replicate most easily.
+
+### 3. Reality Atlas — the closest structural competitor
+- A directory of the whole XR industry: 141+ hardware, 679+ software, 112+ developers, influencers, events, jobs, funding tracker
+- Freemium: free to browse, vendors pay to be listed (including analytics and leads)
+
+**Lesson:** The structure is almost the same as AVRMD, **but it covers all XR, not medical**. It has no clinical evidence, no FDA clearance records, and no clinical problem taxonomy. **This is your differentiator.**
+
+### 4. VRforHealth — a case of failure and pivot
+- Originally a VR healthcare directory → **the directory domain is dead**
+- Now a content media site (video + articles), earning from **sponsored content**, with a consulting firm as parent company
+
+**Lesson:** A pure directory cannot sustain itself; content gives continuity. This also explains why the "daily Signals" feature is the right direction.
+
+### 5. Conferences / accelerators — where the community really lives
+- IEEE VR "XR Health" workshop, MedXR@COMPSAC, Laval Virtual, MedVR Accelerator
+- At these places **people really do show up**
+
+**Lesson:** Your instinct to run an AVRMD conference is right. But the order should be reversed — **first become the "online home base" between conferences**, then hold your own events.
+
+---
+
+## 4. User Needs (Who, and What They Want)
+
+| User | Their real problem | What AVRMD can give |
 |---|---|---|
-| **臨床醫師 / 教育負責人** | 「我科室想導入 VR 訓練，有哪些選擇？誰用過？有效嗎？」 | 依臨床問題分類 + 證據連結 + 同儕討論 |
-| **醫院採購 / IT** | 「這東西過 FDA 了嗎？跑在什麼裝置上？誰在維護？」 | 法規紀錄、硬體層、營運狀態 |
-| **XR 廠商** | 「怎麼被對的醫院看到？」 | 認領頁面、Blog、被動曝光 |
-| **研究者** | 「這領域最新論文和試驗？」 | 每日 PubMed / ClinicalTrials 訊號 |
-| **投資人 / 分析師** | 「誰在做什麼、誰倒了？」 | 生態系地圖、營運狀態標記 |
+| **Clinician / education lead** | "My department wants to adopt VR training. What are the options? Who has used them? Do they work?" | Classification by clinical problem + evidence links + peer discussion |
+| **Hospital procurement / IT** | "Is this FDA cleared? What device does it run on? Who maintains it?" | Regulatory records, hardware layer, operating status |
+| **XR vendor** | "How do I get seen by the right hospitals?" | Claimed pages, Blog, passive exposure |
+| **Researcher** | "What are the latest papers and trials in this field?" | Daily PubMed / ClinicalTrials signals |
+| **Investor / analyst** | "Who is doing what, and who has gone under?" | Ecosystem map, operating-status flags |
 
-**最強的需求是第一個。** 「我有個臨床問題，誰能解決？」—— 這正是我們已經建好的 **problem-first 架構**。這也是 Reality Atlas 做不到的。
-
----
-
-## 五、功能：值得做 vs 不值得做
-
-### ✅ 值得做（高價值、低風險）
-
-| 功能 | 為什麼 |
-|---|---|
-| **每日訊號（已完成）** | 讓網站每天都不一樣，是回訪的唯一理由。而且是全自動的。 |
-| **臨床問題導向瀏覽（已完成）** | 唯一的真正差異化。沒有競爭者這樣做。 |
-| **證據連結 + 來源標示（已完成）** | 醫療領域的信任基礎。這是護城河。 |
-| **廠商認領頁面（已完成）** | 免費、對廠商有價值、是未來收費的入口。 |
-| **email 電子報** | 訊號已經有了，寄出去就好。**這是最被低估的功能** —— 電子報比網站更能維持關係。 |
-| **職缺 / RFP 板** | 一旦有內容就是強黏著點，且天然可收費。 |
-| **「誰用什麼解決什麼」的關聯圖（已完成）** | 別人抄不走，因為要人工整理。 |
-
-### ⚠️ 先別做（成本高、回報不確定）
-
-| 功能 | 為什麼先別做 |
-|---|---|
-| **即時聊天 / 私訊** | 沒有人潮時，訊息系統是空的。空的訊息匣比沒有更傷。 |
-| **論壇（已建好，但別強推）** | 舊站 avrmd.com 的教訓：論壇建好了，但沒人發文。**先讓內容帶人，再開論壇。** |
-| **評分 / 評論系統** | 醫材評論涉及療效宣稱，法律風險高（見第七節）。 |
-| **多語系** | 先確定英文版有人用。 |
-| **自製 App** | 網站都還沒有人流。 |
+**The strongest need is the first one.** "I have a clinical problem; who can solve it?" — this is exactly the **problem-first architecture** we have already built. It is also what Reality Atlas cannot do.
 
 ---
 
-## 六、商業模式（依可行性排序）
+## 5. Features: Worth Building vs. Not Worth Building
 
-### 階段一：先不要收錢（0–12 個月）
-目標是**流量與資料庫品質**，不是營收。這階段收錢會拖慢成長。
-- 免費開放全部內容
-- 累積電子報名單（這是未來最值錢的資產）
+### ✅ Worth building (high value, low risk)
 
-### 階段二：廠商付費曝光（最容易，仿 G2 / Reality Atlas）
+| Feature | Why |
+|---|---|
+| **Daily Signals (done)** | Makes the site different every day, the only reason to return. And it is fully automated. |
+| **Clinical-problem-oriented browsing (done)** | The only real differentiation. No competitor does this. |
+| **Evidence links + source attribution (done)** | The foundation of trust in medicine. This is the moat. |
+| **Vendor claimed pages (done)** | Free, valuable to vendors, and the entry point for future paid offerings. |
+| **Email newsletter** | Signals already exist; just send them out. **This is the most underrated feature** — a newsletter sustains a relationship better than a website. |
+| **Jobs / RFP board** | Once there is content, it is a strong stickiness point, and naturally monetizable. |
+| **"Who uses what to solve what" relationship graph (done)** | Others cannot copy it, because it requires manual curation. |
 
-| 方案 | 參考定價 | 說明 |
+### ⚠️ Don't build yet (high cost, uncertain return)
+
+| Feature | Why not yet |
+|---|---|
+| **Live chat / direct messages** | Without a crowd, a messaging system is empty. An empty inbox hurts more than none. |
+| **Forum (built, but don't push it)** | Lesson from the old site avrmd.com: the forum was built, but nobody posted. **Let content bring people first, then open the forum.** |
+| **Rating / review system** | Device reviews involve efficacy claims, with high legal risk (see section 7). |
+| **Multi-language** | First confirm that the English version gets used. |
+| **Native app** | The website does not even have traffic yet. |
+
+---
+
+## 6. Business Model (Ordered by Feasibility)
+
+### Stage 1: Don't charge yet (0–12 months)
+The goal is **traffic and database quality**, not revenue. Charging at this stage would slow growth.
+- Make all content free and open
+- Build up the newsletter list (this is the most valuable future asset)
+
+### Stage 2: Vendors pay for exposure (easiest, modeled on G2 / Reality Atlas)
+
+| Plan | Reference pricing | Description |
 |---|---|---|
-| 認領頁面 | **免費** | 永遠免費，是誘餌 |
-| 精選列表（Featured） | 年費 US$1,000–3,000 | 主題頁 / 目錄置頂，明確標示「贊助」 |
-| 活動 / 產品發表推廣 | 單次 US$300–800 | 時效性曝光 |
-| 職缺刊登 | 單則 US$200–400 | 招募預算獨立，最好賣 |
+| Claimed page | **Free** | Free forever; it is the bait |
+| Featured listing | US$1,000–3,000 per year | Pinned on topic pages / directory, clearly labeled "Sponsored" |
+| Event / product launch promotion | US$300–800 per instance | Time-limited exposure |
+| Job posting | US$200–400 per posting | Recruiting budget is separate, easiest to sell |
 
-**這是最實際的起點。** 你的網站已經把「贊助內容永不影響排序」寫進程式碼裡了 —— 這是很強的信任賣點。
+**This is the most practical starting point.** Your site already writes "sponsored content never affects ranking" into the code — a very strong trust selling point.
 
-### 階段三：名單與情報（利潤最高）
-- **名單轉介**：使用者按「聯絡廠商」→ 通知廠商（需明確告知使用者）
-- **產業報告**：每年一份「醫療 XR 現況報告」，資料庫已經有素材，可付費下載或當作換名單的誘餌
-- **研討會**：門票 + 贊助攤位。這是你原本的想法，放在這階段最合理
+### Stage 3: Leads and intelligence (highest margin)
+- **Lead referral**: user clicks "Contact vendor" → notify the vendor (users must be clearly informed)
+- **Industry report**: one "State of Medical XR" report per year; the database already has the material, and it can be a paid download or bait for exchanging for leads
+- **Conference**: tickets + sponsored booths. This was your original idea; this stage is the most sensible place for it
 
-### ❌ 不建議
-- 向醫師收費（醫師不會為資訊付錢，Doximity 對醫師永遠免費）
-- 一開始就做付費牆（會直接殺死成長）
-
----
-
-## 七、可能遇到的問題（誠實版）
-
-### 1. 冷啟動 —— 最大的風險
-**證據：** 你的 avrmd.com 有完整的會員系統和 25 個公司論壇，但論壇幾乎是空的。VRforHealthDirectory 直接倒閉。
-
-**為什麼：** 醫療 XR 從業者全球可能只有幾萬人，而且他們**已經在研討會和 LinkedIn 上有連結了**。要他們改用新平台，需要一個「只有你有」的理由。
-
-**對策：** 內容先行。每天自動更新的訊號 + 電子報，讓人「來看東西」而不是「來社交」。社群功能保持開啟但不強推。
-
-### 2. 醫療器材廣告法規 —— 真實的法律風險 ⚠️
-台灣《醫療器材管理法》規定：
-- 醫療器材廣告需**事前送件核准**（約 3–4 週，規費 NT$10,000）
-- **「訪談、新聞報導或宣傳內容，若暗示或影射療效且以促銷為目的，視為醫療器材廣告」**
-- 違規罰鍰 **NT$20 萬 – 500 萬元**
-
-**這對 AVRMD 的意義：** 目前作為「資訊目錄」風險較低，但**一旦開始賣贊助曝光給醫材廠商，且內容涉及療效，就可能觸法**。
-
-**對策：**
-- 贊助內容嚴格限制為「事實描述」（公司名稱、產品類別、連結），不得有療效宣稱
-- 現有的「贊助永遠標示、不影響排序、證據頁面不放廣告」設計方向正確，繼續保持
-- **真的要開始收費前，請諮詢熟悉醫材法規的律師**（本報告不構成法律意見）
-
-### 3. 資料維護成本
-33 筆記錄還好，300 筆就會失控。公司會倒閉、被併購、改名。
-**對策：** 已建的 `operatingStatus`（acquired / discontinued）欄位就是為此。另外每日探索程式要延伸到「檢查現有記錄是否還活著」。
-
-### 4. 一人專案的持續性
-舊站在 2023 年停更。這是最真實的風險 —— 不是技術問題，是精力問題。
-**對策：** 已經做對了：自動化（每日探索）> 手動（寫文章）。讓網站在你沒空時也能自己更新。
-
-### 5. 廣告主太少
-醫療 XR 公司大多是新創，行銷預算很少。**不要期待這是個大生意** —— 前兩年可能只有 5–10 家願意付錢。
+### ❌ Not recommended
+- Charging physicians (physicians will not pay for information; Doximity is free for physicians forever)
+- Putting up a paywall from the start (it would kill growth outright)
 
 ---
 
-## 八、好的網頁設計原則（針對這類網站）
+## 7. Likely Problems (The Honest Version)
 
-1. **首頁要每天不一樣** —— 已完成。訪客第二次來如果看到同樣的畫面，就不會有第三次。
-2. **不要一進來就要求註冊** —— 全部內容公開可讀，註冊只用來「記住你」（收藏、追蹤）。Doximity 對醫師永遠免費，就是這個道理。
-3. **誠實勝過漂亮** —— 沒有內容時就說沒有。假的活躍度（假留言、假數字）一旦被識破，信任就沒了。我們已經把「範例內容」都明確標示。
-4. **一眼看懂「這是什麼」** —— 專業使用者沒耐心。標題要直接說明用途，不要用行銷術語。
-5. **每筆資料都要有出處** —— 醫療領域尤其。已完成（每筆記錄都有來源連結與審閱日期）。
-6. **手機要能用** —— 醫師在通勤、在診間空檔滑手機。已完成。
-7. **廣告要看起來像廣告** —— 混淆廣告與內容在醫療領域是自殺行為。已完成（固定位置、明確標示、不影響排序）。
-8. **速度** —— 已完成（靜態產生，資料庫不在瀏覽路徑上）。
+### 1. Cold start — the biggest risk
+**Evidence:** Your avrmd.com has a complete membership system and 25 company forums, but the forums are nearly empty. VRforHealthDirectory simply collapsed.
+
+**Why:** Medical XR practitioners worldwide may number only in the tens of thousands, and they are **already connected at conferences and on LinkedIn**. To get them to switch to a new platform, you need a reason that "only you have".
+
+**Mitigation:** Content first. Signals that update automatically every day + a newsletter, so people "come to look at things" rather than "come to socialize". Keep community features on but don't push them.
+
+### 2. Medical device advertising regulation — a real legal risk ⚠️
+Taiwan's *Medical Devices Act* stipulates:
+- Medical device advertisements require **prior submission and approval** (about 3–4 weeks, fee NT$10,000)
+- **"Interviews, news reports, or promotional content that imply or allude to efficacy and are for promotional purposes are treated as medical device advertisements"**
+- Penalty for violations is a fine of **NT$200,000 – 5,000,000**
+
+**What this means for AVRMD:** As an "information directory" the risk is currently low, but **once we start selling sponsored exposure to device vendors, and the content touches on efficacy, we could be in violation**.
+
+**Mitigation:**
+- Strictly limit sponsored content to "factual description" (company name, product category, link), with no efficacy claims
+- The existing design direction of "sponsorship always labeled, never affects ranking, no ads on evidence pages" is correct; keep it
+- **Before actually starting to charge, consult a lawyer familiar with medical device regulation** (this report does not constitute legal advice)
+
+### 3. Data maintenance cost
+33 records is fine, but 300 will get out of control. Companies fold, get acquired, and rename.
+**Mitigation:** The `operatingStatus` (acquired / discontinued) field already built is for exactly this. In addition, the daily discovery job should be extended to "check whether existing records are still alive".
+
+### 4. Sustainability of a one-person project
+The old site stopped updating in 2023. This is the most real risk — not a technical problem but an energy problem.
+**Mitigation:** Already done right: automation (daily discovery) > manual work (writing articles). Let the site update itself even when you have no time.
+
+### 5. Too few advertisers
+Most medical XR companies are startups with small marketing budgets. **Do not expect this to be a big business** — in the first two years there may be only 5–10 willing to pay.
 
 ---
 
-## 九、建議的下一步（依優先順序）
+## 8. Good Web Design Principles (for This Kind of Site)
 
-1. **加電子報** —— 訊號資料已經有了，做個訂閱表單 + 每週自動寄送。**投資報酬率最高的一件事。**
-2. **把資料庫從 33 筆擴充到 100+ 筆** —— 舊站的 25 家公司是現成素材，加上每日探索的候選清單。資料量是可信度的基礎。
-3. **每日探索加上「連結健檢」** —— 自動偵測公司網站掛掉 / 網域失效，標記 `discontinued`。
-4. **做一份「2026 醫療 XR 現況報告」** —— 用資料庫產生。這是最好的行銷素材，也是換 email 名單的誘餌。
-5. **接觸 3–5 家廠商談免費認領** —— 不談錢，只請他們維護自己的頁面。有廠商參與，網站才活。
-6. **等有穩定流量後，再談贊助收費。**
+1. **The homepage must differ every day** — done. If a visitor sees the same screen on a second visit, there will not be a third.
+2. **Don't demand sign-up on arrival** — all content is publicly readable, and registration is only for "remembering you" (bookmarks, follows). Doximity is free for physicians forever, for this very reason.
+3. **Honesty beats polish** — when there is no content, say so. Once fake activity (fake comments, fake numbers) is spotted, trust is gone. We have already clearly labeled all "sample content".
+4. **Understand "what this is" at a glance** — professional users have no patience. Headlines should state the purpose directly, without marketing jargon.
+5. **Every piece of data needs a source** — especially in medicine. Done (every record has a source link and a review date).
+6. **Must work on mobile** — physicians scroll their phones while commuting and in gaps between clinic sessions. Done.
+7. **Ads must look like ads** — confusing ads with content is suicide in medicine. Done (fixed position, clearly labeled, no effect on ranking).
+8. **Speed** — done (static generation, the database is not on the browsing path).
 
 ---
 
-## 附錄：資料來源
+## 9. Recommended Next Steps (In Priority Order)
 
-- Doximity 商業模式與營收：[FourWeekMBA](https://fourweekmba.com/how-does-doximity-make-money/)、[The Strategy Story](https://thestrategystory.com/2023/02/18/how-does-doximity-work-make-money-business-model/)、[productmint](https://productmint.com/doximity-business-model-how-does-doximity-make-money/)
-- G2 / Capterra 定價與模式：[Blastra 廠商定價比較](https://blastra.io/blog/g2-capterra-vendor-pricing-compared/)、[Blastra 收購後指南](https://blastra.io/guides/how-to-navigate-g2-and-capterra/)
-- 市場規模：[Fortune Business Insights](https://www.fortunebusinessinsights.com/industry-reports/virtual-reality-vr-in-healthcare-market-101679)、[The Business Research Company](https://www.thebusinessresearchcompany.com/report/virtual-reality-in-healthcare-global-market-report)、[Research and Markets](https://www.researchandmarkets.com/reports/6076101/healthcare-extended-reality-market-report)
-- 競爭者：[Reality Atlas](https://www.reality-atlas.com/)、[VRforHealth](https://vrforhealth.com)
-- 社群聚集地：[XR Health @ IEEE VR](https://sites.google.com/view/xr-health-ieee-vr/home)、[MedXR @ COMPSAC 2026](https://ieeecompsac.computer.org/2026/medxr/)、[MedVR Accelerator](https://medvr.io/accelerator-program)
-- 台灣醫材廣告法規：[Taiwan FDA 醫療器材廣告要求（Asia Actual）](https://asiaactual.com/blog/taiwan-fda-medical-device-advertising-requirements/)、[醫療器材管理法（全國法規資料庫）](https://law.moj.gov.tw/ENG/LawClass/LawAll.aspx?pcode=L0030106)
+1. **Add a newsletter** — the Signals data already exists; build a subscription form + a weekly automatic send. **The single highest-ROI item.**
+2. **Expand the database from 33 records to 100+** — the 25 companies from the old site are ready-made material, plus the candidate list from daily discovery. Data volume is the basis of credibility.
+3. **Add a "link health check" to daily discovery** — automatically detect company sites that are down / domains that have expired, and mark them `discontinued`.
+4. **Produce a "2026 State of Medical XR" report** — generated from the database. It is the best marketing material and also bait for exchanging for email addresses.
+5. **Reach out to 3–5 vendors about free claiming** — don't talk money, just ask them to maintain their own pages. With vendors participating, the site comes alive.
+6. **Once there is steady traffic, then discuss sponsorship fees.**
 
-> 本報告為市場研究，不構成法律或投資建議。涉及醫療器材廣告的部分，實際執行前請諮詢專業律師。
+---
+
+## Appendix: Sources
+
+- Doximity business model and revenue: [FourWeekMBA](https://fourweekmba.com/how-does-doximity-make-money/), [The Strategy Story](https://thestrategystory.com/2023/02/18/how-does-doximity-work-make-money-business-model/), [productmint](https://productmint.com/doximity-business-model-how-does-doximity-make-money/)
+- G2 / Capterra pricing and model: [Blastra vendor pricing comparison](https://blastra.io/blog/g2-capterra-vendor-pricing-compared/), [Blastra post-acquisition guide](https://blastra.io/guides/how-to-navigate-g2-and-capterra/)
+- Market size: [Fortune Business Insights](https://www.fortunebusinessinsights.com/industry-reports/virtual-reality-vr-in-healthcare-market-101679), [The Business Research Company](https://www.thebusinessresearchcompany.com/report/virtual-reality-in-healthcare-global-market-report), [Research and Markets](https://www.researchandmarkets.com/reports/6076101/healthcare-extended-reality-market-report)
+- Competitors: [Reality Atlas](https://www.reality-atlas.com/), [VRforHealth](https://vrforhealth.com)
+- Where the community gathers: [XR Health @ IEEE VR](https://sites.google.com/view/xr-health-ieee-vr/home), [MedXR @ COMPSAC 2026](https://ieeecompsac.computer.org/2026/medxr/), [MedVR Accelerator](https://medvr.io/accelerator-program)
+- Taiwan medical device advertising regulation: [Taiwan FDA medical device advertising requirements (Asia Actual)](https://asiaactual.com/blog/taiwan-fda-medical-device-advertising-requirements/), [Medical Devices Act (Laws & Regulations Database of the Republic of China)](https://law.moj.gov.tw/ENG/LawClass/LawAll.aspx?pcode=L0030106)
+
+> This report is market research and does not constitute legal or investment advice. For anything involving medical device advertising, consult a professional lawyer before acting.

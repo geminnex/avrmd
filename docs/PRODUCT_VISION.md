@@ -1,161 +1,161 @@
-# AVRMD — 產品願景：一場永不落幕的線上研討會
+# AVRMD — Product Vision: A Conference That Never Ends
 
-## 北極星（2026-10-10 確立）
+## North Star (set 2026-10-10)
 
-> **成為世界最大、最完整的 virtual reality for medicine 社群。**
-> 讓臨床人員、學術研究、工程技術、器材提供、生產開發、商業與投資的人，在這裡找到**方向、資源、幫助**。
-> 終點：**AVRMD 年會**——讓好的技術真正被用到病人身上，也讓相關 business 有效發展。
+> **Become the largest and most complete virtual reality for medicine community in the world.**
+> Help clinicians, academic researchers, engineers, device providers, product developers, and business and investment people find **direction, resources, and help** here.
+> Destination: **the AVRMD annual conference** — so that good technology actually reaches patients, and the related business can grow effectively.
 
-### 「最大、最完整」要拆成可量測的兩件事
+### "Largest and most complete" breaks down into two measurable things
 
-| | 意思 | 為什麼做得到 | 衡量 |
+| | Meaning | Why it is achievable | Measure |
 |---|---|---|---|
-| **最完整（內容）** | 這個領域的每一家公司、每一個上市醫材、每一個臨床試驗、每一場會議，都查得到，且附來源 | 零使用者也能做；自動探索 + agents 可以規模化；**這是唯一能先贏的東西** | 記錄數、FDA AR/VR 醫材覆蓋率、試驗覆蓋率 |
-| **最大（人）** | 六種角色的人都在這裡，且彼此互相幫忙 | 只能靠內容先吸引、再靠路由讓人回來 | 有填 profile 的會員、每週被回答的問題數、問題回答率 |
+| **Most complete (content)** | Every company, every marketed medical device, every clinical trial, and every conference in the field can be looked up, with sources | Doable with zero users; automated discovery + agents can scale it; **this is the only thing we can win first** | Record count, FDA AR/VR device coverage rate, trial coverage rate |
+| **Largest (people)** | People in all six roles are here and help each other | Can only be done by attracting them with content first, then bringing them back through routing | Members with a filled-in profile, questions answered per week, question answer rate |
 
-**順序不能反**：沒有內容，人來了也會走（舊站 avrmd.com 論壇就是這樣空掉的）。
+**The order cannot be reversed**: without content, people who arrive will leave (this is exactly how the forum on the old site avrmd.com went empty).
 
-### 四個成長階段
+### Four growth stages
 
-1. **資料庫（現在 → 先贏「最完整」）**
-   目錄從 49 筆擴到上千筆：上市醫材（FDA 510(k)／De Novo 等）、臨床試驗、公司、研究團隊、會議。每筆都附來源、標臨床主題 × 管線階段。現有每日探索 job 是引擎，agents 是加速器。
-2. **社群（Phase 3–6 → 讓人回來）**
-   成員目錄、問答路由（已完成）、直播課、專案找夥伴。關鍵指標是「問題有沒有人答」。
-3. **線上活動（→ 年會的排練）**
-   定期線上場次：每月一場主題 session（例如「AR 手術導航的對位誤差」），講者從會員與 talks 投稿者邀請。**先與既有會議合作**（IEEE VR XR Health、MedXR 等）辦 satellite／meetup，不正面競爭。
-4. **AVRMD 年會 + 商業（→ 終點）**
-   線上場次累積出講者群與觀眾群後，才辦實體年會。商業模式依市場研究的順序：先免費 → 廠商認領與標示清楚的曝光 → 名單與產業情報。**收費推廣前須先諮詢醫材廣告法規。**
+1. **Database (now → win "most complete" first)**
+   Grow the catalog from 49 records to over a thousand: marketed devices (FDA 510(k) / De Novo, etc.), clinical trials, companies, research teams, conferences. Every record carries a source and is tagged with clinical topic × pipeline stage. The existing daily discovery job is the engine; agents are the accelerator.
+2. **Community (Phase 3–6 → get people to come back)**
+   Member directory, question routing (done), live classes, project partner matching. The key metric is "did anyone answer the question".
+3. **Online events (→ rehearsal for the annual conference)**
+   Regular online sessions: one themed session per month (e.g. "Registration error in AR surgical navigation"), with speakers invited from members and talk submitters. **Partner with existing conferences first** (IEEE VR XR Health, MedXR, etc.) to run satellites / meetups, rather than competing head-on.
+4. **AVRMD annual conference + business (→ destination)**
+   Hold an in-person conference only after the online sessions have built up a speaker base and an audience. The business model follows the order from the market study: free first → vendor claiming and clearly labeled exposure → leads and industry intelligence. **Consult medical device advertising regulations before charging for promotion.**
 
-### 「讓好技術真正被用」——平台的獨特價值
+### "Get good technology actually used" — the platform's unique value
 
-技術卡住多半不是技術本身，而是**跨角色斷線**：工程師不知道臨床真正的痛點、臨床人員不知道有什麼可用、新創不知道法規與採購怎麼走。兩個軸（臨床主題 × 管線階段）就是為此設計的：
+Technology usually gets stuck not because of the technology itself, but because of **disconnects between roles**: engineers do not know the real clinical pain points, clinicians do not know what is available, and startups do not know how regulation and procurement work. The two axes (clinical topic × pipeline stage) are designed for exactly this:
 
-- 臨床問題 ↔ 解決方案 ↔ 證據 互相連結（已有）
-- 「我卡在哪一關」→ 找到走過這關的人（階段頁 + 問答路由，已有）
-- 待做：**導入指南**（醫院採購、IRB、給付）、**技術成熟度與證據等級**的清楚標示、臨床試點媒合（醫院願意試 ↔ 公司需要試點）
+- Clinical problem ↔ solution ↔ evidence are linked to each other (already in place)
+- "Which gate am I stuck at" → find people who have been through that gate (stage pages + question routing, already in place)
+- To do: **adoption guides** (hospital procurement, IRB, reimbursement), clear labeling of **technology maturity and evidence level**, and clinical pilot matching (hospitals willing to trial ↔ companies needing pilot sites)
 
-### 不做的事
+### What we will not do
 
-- 不追求虛胖的數字（灌假帳號、抓不到來源的記錄）——醫療領域的信任一旦失去就回不來
-- 不在冷啟動期做需要大量人才有用的功能（排行榜、按讚經濟）
-- 不讓付費改變排序或審閱結果（已用程式碼強制）
+- Do not chase vanity numbers (fake accounts, records whose source cannot be found) — in medicine, trust once lost does not come back
+- Do not build features that only work with lots of people during the cold-start period (leaderboards, like economy)
+- Do not let payment change ranking or review results (already enforced in code)
 
 ---
 
 
-## 核心定位（2026-08 確立）
+## Core Positioning (set 2026-08)
 
-> **eventually, 成為 online, always-on 的 conference。can come visit posters, talks, exhibitions.**
+> **eventually, become an online, always-on conference. can come visit posters, talks, exhibitions.**
 
-這個 framing 比「醫療 XR 版 LinkedIn」更準確，而且它解決了市場研究裡發現的核心問題：
+This framing is more accurate than "LinkedIn for medical XR", and it solves the core problem found in the market study:
 
-**醫療 XR 的人確實會聚集，但只在研討會。**（IEEE VR 的 XR Health workshop、Laval Virtual、MedXR@COMPSAC、MedVR Accelerator）研討會一年一次，結束後大家就散了。舊站 avrmd.com 的論壇之所以是空的，不是因為功能不好，是因為**沒有節目單**——LinkedIn 是工具，研討會是有節目的目的地。
+**Medical XR people do gather, but only at conferences.** (the XR Health workshop at IEEE VR, Laval Virtual, MedXR@COMPSAC, MedVR Accelerator) Conferences happen once a year, and afterwards everyone disperses. The forum on the old site avrmd.com was empty not because the features were bad, but because **there was no program** — LinkedIn is a tool, whereas a conference is a destination with a program.
 
-### 已蓋好的東西各就各位
+### What is already built, mapped into place
 
-| 研討會的組成 | 網站上對應的東西 | 狀態 |
+| Conference component | Counterpart on the site | Status |
 |---|---|---|
-| **展覽攤位** | 公司 / 組織的 Group（論壇、Blog、媒體） | ✅ 已完成 |
-| **海報** | 證據記錄、研究計畫 | ✅ 已完成（49 筆記錄） |
-| **議程手冊** | 臨床主題 × 管線階段 | 主題✅／階段⏳ |
-| **走廊交流** | 提問、mentoring、找夥伴 | ⏳ 待建 |
-| **講座** | 使用者投稿的 talks | ⏳ 待建 |
-| **工作坊／課程** | 使用者開的線上直播課 | ⏳ 待建 |
-| **大會公告** | 系統 announcement | ⏳ 待建 |
-| **每日快報** | Signals（每日自動探索） | ✅ 已完成 |
+| **Exhibition booths** | Groups for companies / organizations (forum, Blog, media) | ✅ Done |
+| **Posters** | Evidence records, research projects | ✅ Done (49 records) |
+| **Program book** | Clinical topic × pipeline stage | Topics ✅ / Stages ⏳ |
+| **Hallway conversations** | Asking questions, mentoring, finding partners | ⏳ To build |
+| **Talks** | User-submitted talks | ⏳ To build |
+| **Workshops / courses** | Live online classes given by users | ⏳ To build |
+| **Conference announcements** | System announcements | ⏳ To build |
+| **Daily bulletin** | Signals (daily automated discovery) | ✅ Done |
 
 ---
 
-## 兩個軸
+## Two Axes
 
-| 軸 | 問題 | 狀態 |
+| Axis | Question | Status |
 |---|---|---|
-| **臨床領域** | 「要解決什麼醫療問題？」 | ✅ 6 主題、15 個臨床問題 |
-| **管線階段** | 「我卡在哪一關？」 | ✅ 資料層完成（8 階段）／⏳ UI 待建 |
+| **Clinical domain** | "What medical problem are we solving?" | ✅ 6 topics, 15 clinical problems |
+| **Pipeline stage** | "Which gate am I stuck at?" | ✅ Data layer done (8 stages) / ⏳ UI to build |
 
-**八階段**：research → technology → design → implementation → validation → regulatory → manufacturing → commercialization
-
----
-
-## 待建功能（依本次對話新增）
-
-### 1. 技術作為一級主題 ⭐ 新增
-> 「technology 可以是一個重要的話題。研發人員最大的阻礙和需要突破。軟體和硬體」
-
-**設計**：技術問題與臨床問題共用同一個 `problem` 記錄類型，但掛在**管線階段**下而非臨床主題下。例如：
-- 手部追蹤精度不足以支援精細手術動作（硬體）
-- 觸覺回饋還做不出組織的真實手感（硬體）
-- AR 疊合到病人解剖的配準誤差（軟體）
-- DICOM → 即時 3D 的效能瓶頸（軟體）
-- 長時間手術中的散熱與電池（硬體）
-- OpenXR 生態破碎、跨裝置移植成本（軟體）
-
-**需要的結構調整**：目前 `problem` 記錄強制要有 `topicSlug`（臨床主題）。要放寬成「臨床問題掛主題，技術問題掛階段」，並更新 `lib/topics.test.ts` 的覆蓋守衛。
-
-### 2. 使用者投稿 talks ⭐ 新增
-> 「user 可以加入自己的 talks、presentation 的 link，用 tag 分類。系統隨時使用 tag 提供分類搜尋。randomly showcase 這些當頭條。」
-
-- 新內容類型 `talk`：標題、講者、外部連結（YouTube/Vimeo/簡報）、tags
-- Tag 沿用現有的 **facets（59 個）＋ 8 階段 ＋ 臨床主題**——不需要新的分類系統
-- **隨機輪播上首頁頭條**：這同時解決兩件事——首頁每天不一樣，以及投稿者獲得曝光（投稿的動機）
-- 信任層級同 signals：外部連結、不是經審閱的記錄，視覺上明確區分
-
-### 3. 學習指引與線上直播課 ⭐ 新增
-> 「也提供技術的基本講解和學習指引。user 可以開線上 live 的課。可以由系統做 announcement。」
-
-- **學習指引**：每個管線階段一份入門說明（`lib/stages.ts` 裡每階段已經寫好 `question` 與 `description`，是現成的骨架）
-- **線上直播課**：使用者可排定一場 live session（標題、時間、連結、tags、人數上限）
-- **系統公告**：課程排定時自動公告；有人報名的課開始前通知
-- 這就是研討會的 workshop track
-
-### 4. Mentoring：個人頁宣告 + 問題自動路由
-- profile 寫「我可協助：法規、Unity 開發」「我需要協助：臨床試驗設計」
-- 有人發問並標記 tag 時，通知宣告可協助的人
-- **「有人需要你的協助」是最強的回訪動力**
-
-### 5. 專案：認領 + 自建
-- `claimed`：目錄裡既有的研究計畫可被認領（機制已完成，用 `organization_memberships`）
-- `created`：會員自建新專案，標記階段、所需角色、招募中
+**Eight stages**: research → technology → design → implementation → validation → regulatory → manufacturing → commercialization
 
 ---
 
-## 建議實作順序
+## Features to Build (added from this conversation)
 
-1. **個人頁擴充 + 成員目錄** — 角色、階段、專長、可協助/需協助。沒有這層，路由沒有對象。
-2. **提問 + 路由 + 通知** — 互動引擎。回訪動力最強的一塊。
-3. **Talks 投稿 + tag 搜尋 + 隨機頭條** — 相對獨立，可以早做，且立刻讓首頁變活。
-4. **技術問題（`problem` 掛階段）** — 需要小幅結構調整。
-5. **階段指引頁 + 直播課 + 公告**
-6. **專案（認領 + 自建）**
+### 1. Technology as a first-class topic ⭐ New
+> "technology can be an important topic. The biggest obstacles and breakthroughs R&D people need. Software and hardware"
+
+**Design**: Technical problems share the same `problem` record type as clinical problems, but hang under a **pipeline stage** rather than a clinical topic. For example:
+- Hand-tracking accuracy is not good enough to support fine surgical movements (hardware)
+- Haptic feedback cannot yet reproduce the real feel of tissue (hardware)
+- Registration error when overlaying AR onto patient anatomy (software)
+- Performance bottleneck for DICOM → real-time 3D (software)
+- Heat dissipation and battery during long surgeries (hardware)
+- Fragmented OpenXR ecosystem, cross-device porting cost (software)
+
+**Structural change needed**: Currently a `problem` record is required to have a `topicSlug` (clinical topic). This must be relaxed to "clinical problems attach to a topic, technical problems attach to a stage", and the coverage guard in `lib/topics.test.ts` updated.
+
+### 2. User-submitted talks ⭐ New
+> "users can add their own talks and presentation links, categorized with tags. The system can use tags to provide categorized search at any time. randomly showcase these as headlines."
+
+- New content type `talk`: title, speaker, external link (YouTube/Vimeo/slides), tags
+- Tags reuse the existing **facets (59) + 8 stages + clinical topics** — no new classification system needed
+- **Random rotation as the homepage headline**: this solves two things at once — the homepage is different every day, and submitters get exposure (their motivation to submit)
+- Same trust level as signals: external links, not reviewed records, visually distinct
+
+### 3. Learning guides and live online classes ⭐ New
+> "also provide basic explanations of the technology and learning guides. users can host live online classes. the system can make announcements."
+
+- **Learning guides**: one introductory explainer per pipeline stage (each stage in `lib/stages.ts` already has a `question` and `description` written, which is a ready-made skeleton)
+- **Live online classes**: users can schedule a live session (title, time, link, tags, attendee cap)
+- **System announcements**: automatically announce when a class is scheduled; notify before a class that has sign-ups starts
+- This is the conference's workshop track
+
+### 4. Mentoring: profile declarations + automatic question routing
+- A profile states "I can help with: regulatory, Unity development" and "I need help with: clinical trial design"
+- When someone asks a question and tags it, notify the people who declared they can help
+- **"Someone needs your help" is the strongest motivation to come back**
+
+### 5. Projects: claimed + created
+- `claimed`: existing research projects in the catalog can be claimed (mechanism done, using `organization_memberships`)
+- `created`: members create new projects, tagging stage, roles needed, and whether recruiting
 
 ---
 
-## 本輪已完成：資料搜集
+## Suggested Implementation Order
 
-| 項目 | 之前 | 現在 |
+1. **Profile expansion + member directory** — roles, stages, expertise, can help / needs help. Without this layer, routing has no targets.
+2. **Questions + routing + notifications** — the interaction engine. The strongest driver of return visits.
+3. **Talks submission + tag search + random headline** — relatively independent, can be done early, and immediately makes the homepage feel alive.
+4. **Technical problems (`problem` attached to a stage)** — needs a small structural change.
+5. **Stage guide pages + live classes + announcements**
+6. **Projects (claimed + created)**
+
+---
+
+## Completed This Round: Data Collection
+
+| Item | Before | Now |
 |---|---|---|
-| 目錄記錄 | 33 | **49** |
-| 靜態記錄頁 | 18 | **34** |
-| 參考網站 | 20 | **31** |
+| Catalog records | 33 | **49** |
+| Static record pages | 18 | **34** |
+| Reference sites | 20 | **31** |
 | Facets | 54 | **59** |
-| 測試 | 68 | **70** |
+| Tests | 68 | **70** |
 
-**新增內容涵蓋**：公司（SentiAR、Oxford VR、Floreo、Karuna Labs、VOXEL-MAN、firsthand、MindMaze、Surgical Science）、歷史公司（Limbix、Intelligent Ultrasound，皆標記 `acquired` 並附收購方公告）、大學實驗室（Stanford VHIL）、開源軟體（3D Slicer、SOFA Framework）、硬體（Magic Leap 2）、研討會（IEEE VR 2027、ISMAR 2026）、以及 11 個參考網站（PubMed、ClinicalTrials.gov、npj Digital Medicine、RSNA、DTx Alliance、openFDA 等）。
+**New content covers**: companies (SentiAR, Oxford VR, Floreo, Karuna Labs, VOXEL-MAN, firsthand, MindMaze, Surgical Science), historical companies (Limbix, Intelligent Ultrasound, both marked `acquired` with the acquirer's announcement attached), a university lab (Stanford VHIL), open-source software (3D Slicer, SOFA Framework), hardware (Magic Leap 2), conferences (IEEE VR 2027, ISMAR 2026), and 11 reference sites (PubMed, ClinicalTrials.gov, npj Digital Medicine, RSNA, DTx Alliance, openFDA, etc.).
 
-**新增 schema**：`stages`（8 階段管線）、`lib/stages.ts`。
+**New schema**: `stages` (8-stage pipeline), `lib/stages.ts`.
 
-**研究時發現並避免的錯誤**：
-- SensoryX 已轉型做國防／空間運算追蹤，**完全沒有醫療應用**——若照抄舊站 2019 年的「VRfree 醫療手套」描述就會publish 錯誤資訊，故排除
-- Intelligent Ultrasound 是**拆分出售**（臨床 AI → GE HealthCare 2024；模擬事業 → Surgical Science 2025），不是單純被收購
-- iMSTK 找不到可驗證的來源頁（官網擋 bot、Kitware 頁面只剩 2019 殘骸）→ **不收錄**，寧缺勿濫
-- floreotech.com → floreovr.com、sensoryx.com → sensoryx.tech 都有重導向，來源網址須用最終位址
+**Errors found and avoided during research**:
+- SensoryX has pivoted to defense / spatial-computing tracking and has **no medical application at all** — copying the old site's 2019 description of the "VRfree medical glove" would have published wrong information, so it was excluded
+- Intelligent Ultrasound was **split and sold** (clinical AI → GE HealthCare in 2024; simulation business → Surgical Science in 2025), not simply acquired
+- No verifiable source page could be found for iMSTK (the official site blocks bots, and the Kitware page is only 2019 remnants) → **not included**; better to have nothing than to guess
+- floreotech.com → floreovr.com and sensoryx.com → sensoryx.tech both redirect, so source URLs must use the final address
 
 ---
 
-## 驗證方式（每輪都做）
+## Verification (every round)
 
-1. `tsc --noEmit`；`vitest run`
-2. **每筆新記錄的 sourceUrl 實際 curl 一次確認回 200**
-3. `next build` — 確認 `/entities/[slug]`、`/topics/[slug]` 仍為靜態（`●`）
-4. 瀏覽器實測 + 螢幕截圖檢查
-5. 部署後線上抽查
+1. `tsc --noEmit`; `vitest run`
+2. **Actually curl each new record's sourceUrl once to confirm it returns 200**
+3. `next build` — confirm `/entities/[slug]` and `/topics/[slug]` are still static (`●`)
+4. Browser testing + screenshot check
+5. Spot-check live after deployment
