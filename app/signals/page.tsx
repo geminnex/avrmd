@@ -7,6 +7,7 @@ import {
   type SignalCategory,
 } from "@/lib/signals";
 import { daysAgo } from "@/lib/time";
+import { LibraryTabs } from "@/components/section-tabs";
 
 export const metadata: Metadata = {
   title: "Signals",
@@ -44,6 +45,7 @@ export default async function SignalsPage({ searchParams }: SignalsPageProps) {
           </p>
         </div>
       </section>
+      <LibraryTabs active="signals" />
 
       <div className="shell signals-body">
         <div className="external-note">

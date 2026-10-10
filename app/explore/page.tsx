@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { CatalogExplorer } from "@/components/catalog-explorer";
 import type { CatalogFilterKind } from "@/lib/catalog";
 import { entityKinds } from "@/lib/catalog-types";
+import { LibraryTabs } from "@/components/section-tabs";
 
 export const metadata: Metadata = {
   title: "Explore",
@@ -39,6 +40,7 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
           </p>
         </div>
       </section>
+      <LibraryTabs active="records" />
       <div className="shell">
         <CatalogExplorer
           heading="Catalog"

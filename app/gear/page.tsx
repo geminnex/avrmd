@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, CircleAlert } from "lucide-react";
 import { EntityCard } from "@/components/entity-card";
 import { getGear } from "@/lib/catalog";
+import { LibraryTabs } from "@/components/section-tabs";
 
 export const metadata: Metadata = {
   title: "Gear and hardware",
@@ -27,6 +28,7 @@ export default function GearPage() {
           </p>
         </div>
       </section>
+      <LibraryTabs active="gear" />
 
       <div className="shell gear-body">
         <div className="regulatory-note">

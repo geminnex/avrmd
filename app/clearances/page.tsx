@@ -9,6 +9,7 @@ import {
   linkedRecordSlug,
 } from "@/lib/fda-devices";
 import { toggleParam } from "@/lib/url";
+import { LibraryTabs } from "@/components/section-tabs";
 
 export const metadata: Metadata = {
   title: "FDA-authorized AR/VR devices",
@@ -56,6 +57,7 @@ export default async function ClearancesPage({ searchParams }: ClearancesPagePro
           </p>
         </div>
       </section>
+      <LibraryTabs active="fda" />
 
       <div className="shell talks-body">
         <div className="external-note">

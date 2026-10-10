@@ -15,6 +15,7 @@ import { stageLabels, stages } from "@/lib/stages";
 import { topics } from "@/lib/topics";
 import type { PipelineStage } from "@/lib/catalog-types";
 import { toggleParam } from "@/lib/url";
+import { PeopleTabs } from "@/components/section-tabs";
 
 export const metadata: Metadata = {
   title: "Members",
@@ -89,6 +90,7 @@ export default async function MembersPage({ searchParams }: MembersPageProps) {
           </p>
         </div>
       </section>
+      <PeopleTabs active="members" />
 
       <div className="shell members-body">
         <div className="talk-filters">

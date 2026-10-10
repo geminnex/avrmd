@@ -1,6 +1,8 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import Link from "next/link";
+import { notFound } from "next/navigation";
+import { getCurrentUser } from "@/lib/auth/session";
 import {
   ArrowUpRight,
   Bot,
@@ -50,13 +52,18 @@ async function readData<T>(file: string, fallback: T): Promise<T> {
 
 const lanes = [
   { icon: FileCheck2, label: "Catalog submissions", href: "/participate" },
-  { icon: MessagesSquare, label: "Community reports", href: "/community" },
+  { icon: MessagesSquare, label: "Member questions", href: "/questions" },
   { icon: Megaphone, label: "Promotion requests", href: "/for-organizations#promotion" },
   { icon: Bot, label: "AI policy", href: "/about#ai" },
 ];
 
 
+/** The review queue is internal: editors only, a 404 for everyone else. */
+const staffRoles = new Set(["editor", "moderator", "administrator"]);
+
 export default async function WorkspacePage() {
+  const user = await getCurrentUser();
+  if (!user || !staffRoles.has(user.role)) notFound();
   const candidates = await readData<Candidate[]>("candidates.json", []);
   const log = await readData<DiscoveryLog>("discovery-log.json", {});
 

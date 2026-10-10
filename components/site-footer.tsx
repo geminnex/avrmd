@@ -22,23 +22,20 @@ export function SiteFooter() {
           ))}
         </div>
         <div>
-          <h3>Directory</h3>
+          <h3>Library</h3>
+          <Link href="/explore">Records</Link>
           <Link href="/stages">Stages</Link>
-          <Link href="/explore">All records</Link>
-          <Link href="/explore?kind=organization">Organizations</Link>
-          <Link href="/explore?kind=solution">Solutions</Link>
-          <Link href="/explore?kind=evidence">Evidence</Link>
           <Link href="/clearances">FDA AR/VR devices</Link>
-          <Link href="/gear">Gear and hardware</Link>
-          <Link href="/resources">Related websites</Link>
-          <Link href="/signals">Signals</Link>
+          <Link href="/signals">Papers &amp; news</Link>
           <Link href="/talks">Talks</Link>
-          <Link href="/members">Members</Link>
+          <Link href="/gear">Gear</Link>
+          <Link href="/resources">Websites</Link>
         </div>
         <div>
           <h3>Take part</h3>
-          <Link href="/community">Community</Link>
-          <Link href="/opportunities">Opportunities</Link>
+          <Link href="/ask">Ask a question</Link>
+          <Link href="/questions">Questions</Link>
+          <Link href="/members">Members</Link>
           <Link href="/participate">Suggest a record</Link>
           <Link href="/for-organizations#claim">Claim your record</Link>
           <Link href="/for-organizations#promotion">Promotion</Link>

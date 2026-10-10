@@ -4,6 +4,7 @@ import { PostComposer } from "@/components/post-composer";
 import { PostCard } from "@/components/post-card";
 import { requireUserOrRedirect } from "@/lib/auth/session";
 import { listLikedPostIds, listRecentPosts } from "@/lib/db/repositories/posts";
+import { PeopleTabs } from "@/components/section-tabs";
 
 export const metadata: Metadata = { title: "Network" };
 export const dynamic = "force-dynamic";
@@ -26,6 +27,7 @@ export default async function NetworkPage() {
           <p>Share what you&rsquo;re working on and see what colleagues are posting.</p>
         </div>
       </section>
+      <PeopleTabs active="updates" />
 
       <div className="shell network-body">
         <PostComposer />

@@ -11,6 +11,7 @@ import { timeAgo } from "@/lib/time";
 import { QuestionTags } from "@/components/question-tags";
 import type { PipelineStage } from "@/lib/catalog-types";
 import { toggleParam } from "@/lib/url";
+import { PeopleTabs } from "@/components/section-tabs";
 
 export const metadata: Metadata = {
   title: "Questions",
@@ -78,6 +79,7 @@ export default async function QuestionsPage({ searchParams }: QuestionsPageProps
           </p>
         </div>
       </section>
+      <PeopleTabs active="questions" />
 
       <div className="shell talks-body">
         <div className="secondary-browse questions-ask-cta">

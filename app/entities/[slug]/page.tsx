@@ -291,21 +291,24 @@ export default async function EntityPage({ params }: EntityPageProps) {
               <MessageCircleQuestion size={24} />
               <span>
                 <strong>Questions about this record</strong>
-                {entityTopics.length > 0 ? (
-                  <p>
-                    Discussion is grouped by clinical topic. See what professionals are
-                    asking in{" "}
-                    <Link href={`/topics/${entityTopics[0].slug}#discussions`}>
-                      {entityTopics[0].shortName}
-                    </Link>
-                    .
-                  </p>
-                ) : (
-                  <p>
-                    Discussion is grouped by clinical topic across the{" "}
-                    <Link href="/community">community</Link>.
-                  </p>
-                )}
+                <p>
+                  Ask the members who have used or built something like it, or{" "}
+                  <Link
+                    href={`/ask${entityTopics.length > 0 ? `?topic=${entityTopics[0].slug}` : ""}`}
+                  >
+                    post a question
+                  </Link>
+                  {entityTopics.length > 0 ? (
+                    <>
+                      {" "}
+                      · see{" "}
+                      <Link href={`/questions?topic=${entityTopics[0].slug}`}>
+                        questions in {entityTopics[0].shortName}
+                      </Link>
+                    </>
+                  ) : null}
+                  .
+                </p>
               </span>
             </div>
             <FollowButton

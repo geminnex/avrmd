@@ -46,6 +46,8 @@ const nextConfig: NextConfig = {
       { source: "/advertise", destination: "/for-organizations", permanent: true },
       // The public AI research form never queued anything; the policy lives on /about.
       { source: "/ai", destination: "/about#ai", permanent: true },
+      // The topic discussions were labelled samples; real questions live here.
+      { source: "/community", destination: "/questions", permanent: true },
     ];
   },
 };

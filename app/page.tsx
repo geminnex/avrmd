@@ -1,128 +1,159 @@
 import Link from "next/link";
 import {
   ArrowRight,
+  ArrowUpRight,
   BadgeCheck,
-  Bell,
-  Briefcase,
-  CalendarDays,
   Compass,
-  ExternalLink,
+  FileText,
+  Landmark,
   MessageCircleQuestion,
-  MessagesSquare,
   Mic,
-  Newspaper,
-  Search,
+  Route,
   ShieldCheck,
 } from "lucide-react";
-import { AdSlot } from "@/components/ad-slot";
-import { SampleBadge } from "@/components/sample-badge";
-import { TopicCard } from "@/components/topic-card";
-import { catalog, entityHref, kindLabels } from "@/lib/catalog";
-import { getFeed, type FeedItem } from "@/lib/feed";
-import { getOpenOpportunities, opportunityKindLabels } from "@/lib/opportunities";
-import { signalCategoryLabels } from "@/lib/signals";
+import { HomeAsk } from "@/components/home-ask";
+import { getFdaDeviceList } from "@/lib/fda-devices";
+import { getSignals, signalCategoryLabels } from "@/lib/signals";
+import { stages } from "@/lib/stages";
 import { getAllTalks, pickShowcaseTalks } from "@/lib/talks";
-import { stageLabels } from "@/lib/stages";
-import { getThread } from "@/lib/community";
+import { daysAgo, timeAgo } from "@/lib/time";
 import { topics } from "@/lib/topics";
-import { daysAgo } from "@/lib/time";
 
-export const dynamic = "force-dynamic";
+// Rebuilt at most every five minutes instead of on every visit: the robot's
+// data, new questions and the talk shuffle are all fresh enough at that pace,
+// and the home page no longer costs a database round-trip per visitor.
+export const revalidate = 300;
 
-
-function FeedRow({ item }: { item: FeedItem }) {
-  if (item.kind === "signal") {
-    const signal = item.data;
-    return (
-      <a className="feed-row" href={signal.url} rel="noopener" target="_blank">
-        <span className="feed-tag tag-signal">{signalCategoryLabels[signal.category]}</span>
-        <span className="feed-row-body">
-          <strong>{signal.headline}</strong>
-          <small>
-            {signal.sourceLabel} · {daysAgo(signal.discoveredAt)}
-          </small>
-        </span>
-        <ExternalLink size={15} />
-      </a>
-    );
+async function recentQuestions() {
+  try {
+    const { listQuestions } = await import("@/lib/db/repositories/questions");
+    return (await listQuestions()).slice(0, 4);
+  } catch {
+    return [];
   }
-
-  if (item.kind === "record") {
-    const entity = item.data;
-    return (
-      <Link className="feed-row" href={entityHref(entity)}>
-        <span className="feed-tag tag-record">Added · {kindLabels[entity.kind]}</span>
-        <span className="feed-row-body">
-          <strong>{entity.name}</strong>
-          <small>
-            {entity.summary.slice(0, 100)}
-            {entity.summary.length > 100 ? "…" : ""}
-          </small>
-        </span>
-        <ArrowRight size={15} />
-      </Link>
-    );
-  }
-
-  if (item.kind === "discussion") {
-    const thread = item.data;
-    return (
-      <Link className="feed-row" href={`/topics/${thread.topicSlug}#discussions`}>
-        <span className="feed-tag tag-discussion">
-          <MessagesSquare size={12} />
-          Discussion
-        </span>
-        <span className="feed-row-body">
-          <strong>{thread.title}</strong>
-          <small>{thread.excerpt}</small>
-        </span>
-        <SampleBadge />
-      </Link>
-    );
-  }
-
-  const opportunity = item.data;
-  return (
-    <Link className="feed-row" href="/opportunities">
-      <span className="feed-tag tag-opportunity">{opportunityKindLabels[opportunity.kind]}</span>
-      <span className="feed-row-body">
-        <strong>{opportunity.title}</strong>
-        <small>{opportunity.organisation}</small>
-      </span>
-      <ArrowRight size={15} />
-    </Link>
-  );
 }
 
 export default async function HomePage() {
-  const feed = getFeed(20);
-  const upcomingEvents = catalog
-    .filter((entity) => entity.kind === "event" && entity.eventDate)
-    .sort((a, b) => (a.eventDate ?? "").localeCompare(b.eventDate ?? ""))
-    .slice(0, 3);
-  const openOpportunities = getOpenOpportunities();
-  // Re-drawn on every visit (this page is force-dynamic), so the talk track
-  // surfaces something different each time rather than the same three.
-  const showcaseTalks = pickShowcaseTalks(await getAllTalks(), 3);
-  const spotlightThread = getThread("what-the-relievrx-clearance-covers");
+  const devices = getFdaDeviceList().devices.slice(0, 4);
+  const research = getSignals()
+    .filter((signal) => signal.category === "research" || signal.category === "trial")
+    .sort((a, b) => b.discoveredAt.localeCompare(a.discoveredAt))
+    .slice(0, 5);
+  const questions = await recentQuestions();
+  // A new draw every revalidation window, so returning visitors see other talks.
+  const talks = pickShowcaseTalks(await getAllTalks(), 3, Math.floor(Date.now() / 300_000));
 
   return (
-    <div className="feed-page">
-      <section className="masthead">
-        <div className="shell masthead-inner">
-          <div className="masthead-copy">
-            <span className="eyebrow light">Medical XR Network</span>
-            <h1>What&rsquo;s moving in medical XR.</h1>
+    <div className="home-page">
+      <section className="home-hero">
+        <div className="page-intro-grid" aria-hidden="true" />
+        <div className="shell home-hero-inner">
+          <span className="eyebrow light">Medical VR · AR · MR</span>
+          <h1>Ask the medical XR community.</h1>
+          <p>
+            Answers drawn from FDA records, papers, trials, talks and the people who have
+            built and used these systems — each one linked to its source.
+          </p>
+          <HomeAsk />
+        </div>
+      </section>
+
+      <section className="shell home-new">
+        <div className="home-column">
+          <div className="home-column-head">
+            <span className="eyebrow">
+              <Landmark size={15} />
+              New FDA authorizations
+            </span>
+            <Link href="/clearances">All {getFdaDeviceList().devices.length}</Link>
           </div>
-          <form action="/explore" className="masthead-search">
-            <Search size={17} />
-            <input
-              aria-label="Search the AVRMD catalog"
-              name="q"
-              placeholder="Search a clinical need, product, or organisation"
-            />
-            <button type="submit">Search</button>
-          </form>
+          {devices.map((device) => (
+            <a className="home-item" href={device.fdaUrl} key={device.submission} rel="noreferrer" target="_blank">
+              <strong>{device.name}</strong>
+              <small>
+                {device.company} · {device.panel} · {device.decisionDate}
+              </small>
+            </a>
+          ))}
+        </div>
+
+        <div className="home-column">
+          <div className="home-column-head">
+            <span className="eyebrow">
+              <FileText size={15} />
+              Latest papers and trials
+            </span>
+            <Link href="/signals">All</Link>
+          </div>
+          {research.map((signal) => (
+            <a className="home-item" href={signal.url} key={signal.id} rel="noopener" target="_blank">
+              <strong>{signal.headline}</strong>
+              <small>
+                {signalCategoryLabels[signal.category]} · {signal.sourceLabel} · {daysAgo(signal.discoveredAt)}
+              </small>
+            </a>
+          ))}
+        </div>
+
+        <div className="home-column">
+          <div className="home-column-head">
+            <span className="eyebrow">
+              <MessageCircleQuestion size={15} />
+              Questions from members
+            </span>
+            <Link href="/questions">All</Link>
+          </div>
+          {questions.length === 0 ? (
+            <div className="home-empty">
+              <p>
+                No one has asked yet. Questions go straight to the members who said they can
+                help with the topic.
+              </p>
+              <Link className="primary-link" href="/ask">
+                Ask the first question
+                <ArrowRight size={15} />
+              </Link>
+            </div>
+          ) : (
+            questions.map((question) => (
+              <Link className="home-item" href={`/questions/${question.id}`} key={question.id}>
+                <strong>{question.title}</strong>
+                <small>
+                  {question.answerCount} {question.answerCount === 1 ? "answer" : "answers"} ·{" "}
+                  {timeAgo(question.createdAt)}
+                </small>
+              </Link>
+            ))
+          )}
+        </div>
+      </section>
+
+      <section className="shell home-paths">
+        <div>
+          <span className="eyebrow">
+            <Route size={15} />
+            Where are you stuck?
+          </span>
+          <div className="chip-row">
+            {stages.map((stage) => (
+              <Link className="chip" href={`/stages/${stage.slug}`} key={stage.slug}>
+                {stage.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+        <div>
+          <span className="eyebrow">
+            <Compass size={15} />
+            Clinical areas
+          </span>
+          <div className="chip-row">
+            {topics.map((topic) => (
+              <Link className="chip" href={`/topics/${topic.slug}`} key={topic.slug}>
+                {topic.shortName}
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -138,150 +169,27 @@ export default async function HomePage() {
           </Link>
         </div>
         <div className="talk-showcase-grid">
-          {showcaseTalks.map((talk) => (
-            <a
-              className="talk-card"
-              href={talk.url}
-              key={talk.slug}
-              rel="noopener"
-              target="_blank"
-            >
+          {talks.map((talk) => (
+            <a className="talk-card" href={talk.url} key={talk.slug} rel="noopener" target="_blank">
               <span className="talk-card-head">
                 <Mic size={15} />
-                <ExternalLink size={15} />
+                <ArrowUpRight size={15} />
               </span>
               <strong>{talk.title}</strong>
-              {talk.speakers.length > 0 && (
-                <small className="talk-speakers">{talk.speakers.join(", ")}</small>
-              )}
-              <span className="talk-tags">
-                {talk.stages?.slice(0, 2).map((stage) => (
-                  <span className="chip" key={stage}>
-                    {stageLabels[stage]}
-                  </span>
-                ))}
-              </span>
+              {talk.speakers.length > 0 && <small className="talk-speakers">{talk.speakers.join(", ")}</small>}
               <small className="talk-host">{talk.hostLabel}</small>
             </a>
           ))}
         </div>
       </section>
 
-      <div className="shell feed-layout">
-        <main className="feed-main">
-          <div className="section-heading feed-heading">
-            <div>
-              <span className="eyebrow">
-                <Newspaper size={15} />
-                The feed
-              </span>
-              <h2>New records, new evidence, and open discussion.</h2>
-            </div>
-            <Link className="primary-link" href="/signals">
-              Full signals archive
-              <ArrowRight size={15} />
-            </Link>
-          </div>
-
-          <div className="feed-list">
-            {feed.map((item, index) => (
-              <FeedRow item={item} key={`${item.kind}-${index}`} />
-            ))}
-          </div>
-
-          <AdSlot slot="topic-aside" />
-        </main>
-
-        <aside className="feed-aside">
-          <div className="sidebar-card">
-            <span className="eyebrow">Clinical topics</span>
-            <div className="feed-topic-list">
-              {topics.map((topic) => (
-                <Link href={`/topics/${topic.slug}`} key={topic.slug}>
-                  {topic.shortName}
-                </Link>
-              ))}
-            </div>
-            <Link className="primary-link" href="/topics">
-              Start from a clinical problem
-              <ArrowRight size={15} />
-            </Link>
-          </div>
-
-          {upcomingEvents.length > 0 && (
-            <div className="sidebar-card">
-              <span className="eyebrow">
-                <CalendarDays size={15} />
-                Upcoming events
-              </span>
-              {upcomingEvents.map((event) => (
-                <Link className="event-mini" href={`/entities/${event.slug}`} key={event.slug}>
-                  <strong>{event.name}</strong>
-                  <small>
-                    {new Date(`${event.eventDate}T00:00:00`).toLocaleDateString("en", {
-                      month: "short",
-                      day: "numeric",
-                    })}{" "}
-                    · {event.geography}
-                  </small>
-                </Link>
-              ))}
-            </div>
-          )}
-
-          {openOpportunities.length > 0 && (
-            <div className="sidebar-card">
-              <span className="eyebrow">
-                <Briefcase size={15} />
-                Opportunities
-              </span>
-              {openOpportunities.slice(0, 3).map((item) => (
-                <Link className="event-mini" href="/opportunities" key={item.slug}>
-                  <strong>{item.title}</strong>
-                  <small>{item.organisation}</small>
-                </Link>
-              ))}
-              <Link className="primary-link" href="/opportunities">
-                All opportunities
-                <ArrowRight size={15} />
-              </Link>
-            </div>
-          )}
-
-          {spotlightThread && (
-            <div className="sidebar-card">
-              <span className="eyebrow">
-                <MessageCircleQuestion size={15} />
-                Community <SampleBadge />
-              </span>
-              <p className="feed-thread-excerpt">{spotlightThread.title}</p>
-              <Link
-                className="primary-link"
-                href={`/topics/${spotlightThread.topicSlug}#discussions`}
-              >
-                Read the discussion
-                <ArrowRight size={15} />
-              </Link>
-            </div>
-          )}
-
-          <AdSlot slot="entity-contextual" />
-
-          <div className="sidebar-card conference-teaser">
-            <Bell size={18} />
-            <strong>AVRMD Conference</strong>
-            <p>Watch this space — details follow once the first event is scheduled.</p>
-          </div>
-        </aside>
-      </div>
-
       <section className="trust-strip">
         <div className="shell trust-strip-inner">
           <div>
             <ShieldCheck size={19} />
             <span>
-              <strong>Every record cites its source</strong>
-              With the date it was last reviewed.
+              <strong>Every answer cites its source</strong>
+              Records, FDA entries, papers and talks are linked.
             </span>
           </div>
           <div>
@@ -309,19 +217,13 @@ export default async function HomePage() {
         <div className="shell cta-card">
           <div>
             <span className="eyebrow">For companies and institutions</span>
-            <h2>Represent your organisation — or add what is missing.</h2>
-            <p>
-              Claiming a record is free. Paid visibility is always labelled and never
-              changes organic ranking.
-            </p>
+            <h2>Represent your organization — or add what is missing.</h2>
+            <p>Claiming a record is free. An editor confirms it and replies by email.</p>
           </div>
           <div className="cta-actions">
             <Link className="button-primary" href="/for-organizations#claim">
               Claim your record
               <ArrowRight size={17} />
-            </Link>
-            <Link className="button-secondary" href="/for-organizations#promotion">
-              Promote responsibly
             </Link>
             <Link className="button-secondary" href="/participate">
               Suggest a record

@@ -4,55 +4,34 @@ import { useState } from "react";
 import Link from "next/link";
 import { Menu, Sparkles, X } from "lucide-react";
 import { openAssistant } from "./assistant-events";
-import { topics } from "@/lib/topics";
 
 const sections = [
   {
-    heading: "Network",
+    heading: "Library",
     links: [
-      { href: "/network", label: "Updates from members" },
-      { href: "/talks", label: "Talks" },
-      { href: "/members", label: "Member directory" },
-    ],
-  },
-  {
-    heading: "Clinical topics",
-    links: [
-      ...topics.map((topic) => ({ href: `/topics/${topic.slug}`, label: topic.shortName })),
-      { href: "/topics", label: "All topics" },
+      { href: "/explore", label: "Records" },
+      { href: "/topics", label: "Clinical topics" },
       { href: "/stages", label: "Stages — where are you stuck?" },
-    ],
-  },
-  {
-    heading: "Directory",
-    links: [
-      { href: "/explore", label: "All records" },
-      { href: "/explore?kind=organization", label: "Organizations" },
-      { href: "/explore?kind=solution", label: "Solutions" },
-      { href: "/explore?kind=evidence", label: "Evidence" },
-      { href: "/explore?kind=event", label: "Events" },
       { href: "/clearances", label: "FDA-authorized AR/VR devices" },
-      { href: "/gear", label: "Gear and hardware" },
-      { href: "/resources", label: "Related websites" },
-      { href: "/signals", label: "Signals" },
+      { href: "/signals", label: "Papers & news" },
+      { href: "/talks", label: "Talks" },
     ],
   },
   {
-    heading: "Community",
+    heading: "People",
     links: [
+      { href: "/ask", label: "Ask a question" },
       { href: "/questions", label: "Questions" },
-      { href: "/ask", label: "Ask the network" },
-      { href: "/community", label: "Discussions by topic" },
-      { href: "/opportunities", label: "Opportunities" },
-      { href: "/participate", label: "Suggest a record" },
+      { href: "/members", label: "Members" },
+      { href: "/network", label: "Updates" },
     ],
   },
   {
     heading: "For organizations",
     links: [
       { href: "/for-organizations#claim", label: "Claim your record" },
+      { href: "/participate", label: "Suggest a record" },
       { href: "/for-organizations#promotion", label: "Promotion" },
-      { href: "/workspace", label: "Workspace preview" },
       { href: "/about", label: "About and how we review" },
     ],
   },

@@ -126,10 +126,10 @@ export const navIntents: NavIntent[] = [
   },
   {
     match: ["sign in", "log in", "login", "account", "register", "sign up"],
-    lead: "Accounts are not open yet — the sign-in flow is a labelled preview.",
+    lead: "Membership is free: create an account with your email and a password, or sign in with Google.",
     links: [
-      { label: "Sign-in preview", href: "/sign-in" },
-      { label: "What is live today", href: "/about#status" },
+      { label: "Create an account", href: "/sign-in?mode=register" },
+      { label: "Sign in", href: "/sign-in" },
     ],
   },
 ];

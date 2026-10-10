@@ -6,6 +6,7 @@ import {
   resourceScopeLabels,
   type ResourceScope,
 } from "@/lib/resources";
+import { LibraryTabs } from "@/components/section-tabs";
 
 export const metadata: Metadata = {
   title: "Related websites",
@@ -38,6 +39,7 @@ export default async function ResourcesPage({ searchParams }: ResourcesPageProps
           </p>
         </div>
       </section>
+      <LibraryTabs active="websites" />
 
       <div className="shell resources-body">
         <div className="external-note">

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { TopicCard } from "@/components/topic-card";
 import { topics } from "@/lib/topics";
+import { LibraryTabs } from "@/components/section-tabs";
 
 export const metadata: Metadata = {
   title: "Clinical topics",
@@ -24,6 +25,7 @@ export default function TopicsPage() {
           </p>
         </div>
       </section>
+      <LibraryTabs active="topics" />
 
       <div className="shell topics-body">
         <div className="topic-grid">

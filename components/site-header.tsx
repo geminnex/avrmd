@@ -14,13 +14,11 @@ export function SiteHeader() {
           <span className="brand-descriptor">Medical XR Network</span>
         </Link>
         <nav className="desktop-nav" aria-label="Primary navigation">
-          <Link href="/network">Network</Link>
-          <Link href="/members">Members</Link>
-          <Link href="/topics">Topics</Link>
+          <Link href="/explore">Library</Link>
           <Link href="/stages">Stages</Link>
           <Link href="/talks">Talks</Link>
-          <Link href="/explore">Records</Link>
-          <Link href="/questions">Questions</Link>
+          <Link href="/questions">People</Link>
+          <Link href="/for-organizations">For organizations</Link>
         </nav>
         <div className="header-actions">
           <AssistantTrigger />

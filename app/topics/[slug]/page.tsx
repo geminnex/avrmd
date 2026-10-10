@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, MessagesSquare, ShieldCheck } from "lucide-react";
+import { ArrowLeft, ArrowRight, MessageCircleQuestion, ShieldCheck } from "lucide-react";
 import { AdSlot } from "@/components/ad-slot";
 import { EntityCard } from "@/components/entity-card";
-import { ThreadCard } from "@/components/thread-card";
 import { kindLabels } from "@/lib/catalog";
-import { getThreadsForTopic } from "@/lib/community";
 import { getTopic, getTopicEntitiesByKind, topics } from "@/lib/topics";
 
 type TopicPageProps = {
@@ -34,7 +32,6 @@ export default async function TopicPage({ params }: TopicPageProps) {
   if (!topic) notFound();
 
   const groups = getTopicEntitiesByKind(topic);
-  const threads = getThreadsForTopic(topic.slug);
   const total = groups.reduce((sum, group) => sum + group.items.length, 0);
 
   return (
@@ -86,31 +83,23 @@ export default async function TopicPage({ params }: TopicPageProps) {
           </section>
         ))}
 
-        {threads.length > 0 && (
-          <section className="topic-section" id="discussions">
-            <div className="section-heading">
-              <div>
-                <span className="eyebrow">
-                  <MessagesSquare size={15} />
-                  Discussion
-                </span>
-                <h2>Questions professionals are asking</h2>
-              </div>
+        <section className="topic-section" id="discussions">
+          <div className="secondary-browse">
+            <div>
+              <strong>Working on {topic.shortName.toLowerCase()}?</strong>
+              <span>Ask the members who said they can help, or read what others asked.</span>
             </div>
-            {threads.map((thread) => (
-              <ThreadCard key={thread.slug} thread={thread} />
-            ))}
-            <div className="topic-discussion-cta">
-              <span>
-                These threads are illustrative examples. Accounts are not open yet.
-              </span>
-              <Link className="primary-link" href="/community">
-                All community topics
-                <ArrowRight size={16} />
+            <span className="stage-ask-links">
+              <Link className="primary-link" href={`/questions?topic=${topic.slug}`}>
+                See questions
               </Link>
-            </div>
-          </section>
-        )}
+              <Link className="button-primary" href={`/ask?topic=${topic.slug}`}>
+                <MessageCircleQuestion size={16} />
+                Ask
+              </Link>
+            </span>
+          </div>
+        </section>
 
         <AdSlot context={{ topicSlug: topic.slug }} slot="topic-aside" />
 

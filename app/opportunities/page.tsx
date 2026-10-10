@@ -9,6 +9,7 @@ import {
 } from "@/lib/opportunities";
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: "Opportunities",
   description: "RFPs, RFQs, collaboration requests, and roles in medical XR.",
 };
