@@ -370,7 +370,7 @@
   {
     "id": "evidence-k243417",
     "slug": "relievrx-k243417",
-    "name": "RelieVRx FDA 510(k) Summary \u2014 K243417",
+    "name": "RelieVRx FDA 510(k) Summary — K243417",
     "kind": "evidence",
     "typeLabel": "Regulatory record",
     "summary": "FDA summary describing RelieVRx, its intended use, device classification, and relationship to the predicate device.",
@@ -841,7 +841,7 @@
     "name": "How much realism a scenario actually needs",
     "kind": "problem",
     "typeLabel": "Clinical problem",
-    "summary": "Higher fidelity costs more and is assumed to teach better, but which cues change behaviour \u2014 and which are decoration \u2014 is rarely tested.",
+    "summary": "Higher fidelity costs more and is assumed to teach better, but which cues change behaviour — and which are decoration — is rarely tested.",
     "modalities": [
       "VR"
     ],
@@ -876,7 +876,7 @@
     "name": "Rehearsing emergencies too rare to schedule",
     "kind": "problem",
     "typeLabel": "Clinical problem",
-    "summary": "The events that most need practice \u2014 outbreaks, mass casualties, rare deteriorations \u2014 are precisely the ones a rota cannot produce on demand.",
+    "summary": "The events that most need practice — outbreaks, mass casualties, rare deteriorations — are precisely the ones a rota cannot produce on demand.",
     "modalities": [
       "VR"
     ],
@@ -1835,7 +1835,7 @@
     "aiAssisted": false,
     "lastReviewed": "2026-08-24",
     "sourceUrl": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12296264/",
-    "sourceLabel": "Cureus \u2014 AR in Spine Surgery: a narrative review",
+    "sourceLabel": "Cureus — AR in Spine Surgery: a narrative review",
     "sourceNote": "Cited review covers clinical accuracy, workflow efficiency, and the barriers still limiting adoption. The problem statement is AVRMD's framing; the cited work documents the difficulty.",
     "accent": "blue",
     "stages": [
@@ -1902,7 +1902,7 @@
     "aiAssisted": false,
     "lastReviewed": "2026-08-24",
     "sourceUrl": "https://www.nature.com/articles/s41598-025-18862-6",
-    "sourceLabel": "Scientific Reports \u2014 visual-haptic latency and fine motor performance",
+    "sourceLabel": "Scientific Reports — visual-haptic latency and fine motor performance",
     "sourceNote": "Cited study measures how haptic feedback and visual-haptic latency affect performance on a laparoscopic task. The problem statement is AVRMD's framing; the cited work documents the difficulty.",
     "accent": "violet",
     "stages": [
@@ -1917,7 +1917,7 @@
     "name": "Knowing whether an in-headset score means anything",
     "kind": "problem",
     "typeLabel": "Technical problem",
-    "summary": "Headsets record rich data \u2014 gaze, movement, timing \u2014 and it is tempting to treat it as assessment. Establishing that those numbers correspond to real clinical ability is a separate and harder task.",
+    "summary": "Headsets record rich data — gaze, movement, timing — and it is tempting to treat it as assessment. Establishing that those numbers correspond to real clinical ability is a separate and harder task.",
     "modalities": [
       "VR",
       "AR"
@@ -1936,7 +1936,7 @@
     "aiAssisted": false,
     "lastReviewed": "2026-08-24",
     "sourceUrl": "https://arxiv.org/pdf/2501.08237",
-    "sourceLabel": "arXiv \u2014 Cognitive Assessment and Training in Extended Reality",
+    "sourceLabel": "arXiv — Cognitive Assessment and Training in Extended Reality",
     "sourceNote": "Cited survey reviews multimodal XR assessment systems, clinical utility, and open challenges. The problem statement is AVRMD's framing; the cited work documents the difficulty.",
     "accent": "teal",
     "stages": [
@@ -1951,7 +1951,7 @@
     "name": "Building once and running on every headset",
     "kind": "problem",
     "typeLabel": "Technical problem",
-    "summary": "Hardware turns over faster than clinical software can be revalidated. Without a portable target, each new device risks a rebuild \u2014 a serious cost when the software is a regulated medical product.",
+    "summary": "Hardware turns over faster than clinical software can be revalidated. Without a portable target, each new device risks a rebuild — a serious cost when the software is a regulated medical product.",
     "modalities": [
       "VR",
       "AR",
@@ -1970,7 +1970,7 @@
     "aiAssisted": false,
     "lastReviewed": "2026-08-24",
     "sourceUrl": "https://www.khronos.org/openxr/",
-    "sourceLabel": "Khronos Group \u2014 OpenXR",
+    "sourceLabel": "Khronos Group — OpenXR",
     "sourceNote": "The OpenXR standard exists specifically to address cross-device fragmentation; the specification page sets out the scope of that problem. The problem statement is AVRMD's framing; the cited work documents the difficulty.",
     "accent": "gold",
     "stages": [
@@ -1979,5 +1979,200 @@
       "manufacturing"
     ],
     "relatedSlugs": []
+  },
+  {
+    "id": "prob-xr-predicate-device-selection",
+    "slug": "xr-predicate-device-selection",
+    "name": "Finding a defensible predicate for a headset-based device",
+    "kind": "problem",
+    "typeLabel": "Technical problem",
+    "summary": "A 510(k) depends on showing equivalence to a legally marketed device, but a headset-delivered therapy or overlay often differs from older products in design, display and software. Choosing a predicate that holds up, and arguing the differences do not change safety or effectiveness, is a recurring hurdle.",
+    "modalities": [
+      "VR",
+      "AR",
+      "MR"
+    ],
+    "specialties": [
+      "Medical devices"
+    ],
+    "useCases": [
+      "Regulatory reference"
+    ],
+    "geography": "United States",
+    "stage": "Open problem",
+    "reviewStatus": "source-reviewed",
+    "claimStatus": "not-claimable",
+    "aiAssisted": true,
+    "lastReviewed": "2026-10-10",
+    "sourceUrl": "https://www.fda.gov/medical-devices/premarket-notification-510k/how-find-and-effectively-use-predicate-devices",
+    "sourceLabel": "FDA — How to find and effectively use predicate devices",
+    "sourceNote": "FDA page explains that substantial equivalence is assessed against intended use, design, performance and other attributes of a predicate. The problem statement is AVRMD's framing; the cited work documents the difficulty.",
+    "accent": "teal",
+    "relatedSlugs": [],
+    "stages": [
+      "regulatory"
+    ]
+  },
+  {
+    "id": "prob-platform-update-change-control",
+    "slug": "platform-update-change-control",
+    "name": "Headset and OS updates versus change control",
+    "kind": "problem",
+    "typeLabel": "Technical problem",
+    "summary": "Medical XR software runs on consumer-grade headsets whose operating system and firmware change on the platform vendor's schedule. Each change can alter rendering, tracking or timing, and manufacturers must decide what needs re-verification and what a pre-agreed change plan can cover.",
+    "modalities": [
+      "VR",
+      "AR",
+      "MR"
+    ],
+    "specialties": [
+      "Medical devices"
+    ],
+    "useCases": [
+      "Regulatory reference"
+    ],
+    "geography": "United States",
+    "stage": "Open problem",
+    "reviewStatus": "source-reviewed",
+    "claimStatus": "not-claimable",
+    "aiAssisted": true,
+    "lastReviewed": "2026-10-10",
+    "sourceUrl": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/predetermined-change-control-plans-medical-devices",
+    "sourceLabel": "FDA — Predetermined Change Control Plans for Medical Devices (guidance)",
+    "sourceNote": "FDA guidance page describes how planned device modifications and their validation can be documented in a submission. It is a general device guidance and does not address headsets specifically; the page is a draft dated August 2024. The problem statement is AVRMD's framing; the cited work documents the difficulty.",
+    "accent": "violet",
+    "relatedSlugs": [],
+    "stages": [
+      "regulatory"
+    ]
+  },
+  {
+    "id": "prob-headset-sensor-data-privacy-security",
+    "slug": "headset-sensor-data-privacy-security",
+    "name": "Privacy and security of what a headset senses",
+    "kind": "problem",
+    "typeLabel": "Technical problem",
+    "summary": "The FDA lists cybersecurity and privacy among the probable risks of AR/VR medical devices but sets no headset-specific controls, so each manufacturer has to decide what sensor data to collect and how to protect it.",
+    "modalities": [
+      "VR",
+      "AR",
+      "MR"
+    ],
+    "specialties": [
+      "Medical devices",
+      "Cross-specialty"
+    ],
+    "useCases": [
+      "Regulatory reference"
+    ],
+    "geography": "United States",
+    "stage": "Open problem",
+    "reviewStatus": "source-reviewed",
+    "claimStatus": "not-claimable",
+    "aiAssisted": true,
+    "lastReviewed": "2026-10-10",
+    "sourceUrl": "https://www.fda.gov/medical-devices/digital-health-center-excellence/augmented-reality-and-virtual-reality-medical-devices",
+    "sourceLabel": "FDA — Augmented Reality and Virtual Reality in Medical Devices",
+    "sourceNote": "FDA page lists cybersecurity and privacy among the probable risks of AR/VR medical devices; it does not prescribe specific controls for headset sensor data. The problem statement is AVRMD's framing; the cited work documents the difficulty.",
+    "accent": "coral",
+    "relatedSlugs": [],
+    "stages": [
+      "regulatory"
+    ]
+  },
+  {
+    "id": "prob-blinding-and-sham-control-in-vr-trials",
+    "slug": "blinding-and-sham-control-in-vr-trials",
+    "name": "Blinding and sham control in VR trials",
+    "kind": "problem",
+    "typeLabel": "Technical problem",
+    "summary": "A participant inside a headset knows whether the experience is therapeutic, so convincing placebo conditions and masking are hard to build. Trials often settle for blinding only the analysts, which leaves room for expectation effects.",
+    "modalities": [
+      "VR"
+    ],
+    "specialties": [
+      "Clinical research",
+      "Cross-specialty"
+    ],
+    "useCases": [
+      "Research"
+    ],
+    "geography": "Global",
+    "stage": "Open problem",
+    "reviewStatus": "source-reviewed",
+    "claimStatus": "not-claimable",
+    "aiAssisted": true,
+    "lastReviewed": "2026-10-10",
+    "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6374734/",
+    "sourceLabel": "JMIR Mental Health — Recommendations for methodology of VR clinical trials",
+    "sourceNote": "International working group recommends blinding analysts at minimum and checking perceived group assignment, acknowledging blinding is hard in VR. The problem statement is AVRMD's framing; the cited work documents the difficulty.",
+    "accent": "blue",
+    "relatedSlugs": [],
+    "stages": [
+      "validation"
+    ]
+  },
+  {
+    "id": "prob-vr-dose-not-standardized",
+    "slug": "vr-dose-not-standardized",
+    "name": "No agreed dose for a VR therapy",
+    "kind": "problem",
+    "typeLabel": "Technical problem",
+    "summary": "Session length, weekly frequency and total course vary widely between VR trials, and the best-performing settings differ by outcome and population. Without a standard dose, studies are hard to compare and a product's labelled regimen is hard to justify.",
+    "modalities": [
+      "VR"
+    ],
+    "specialties": [
+      "Rehabilitation",
+      "Neurology"
+    ],
+    "useCases": [
+      "Therapy support"
+    ],
+    "geography": "Global",
+    "stage": "Open problem",
+    "reviewStatus": "source-reviewed",
+    "claimStatus": "not-claimable",
+    "aiAssisted": true,
+    "lastReviewed": "2026-10-10",
+    "sourceUrl": "https://www.frontiersin.org/journals/neurology/articles/10.3389/fneur.2025.1616780/full",
+    "sourceLabel": "Frontiers in Neurology — VR balance and gait training in Parkinson's disease: dose-response meta-analysis",
+    "sourceNote": "Meta-analysis of 32 trials found optimal session length and frequency differed between balance and walking outcomes and by region. The problem statement is AVRMD's framing; the cited work documents the difficulty.",
+    "accent": "gold",
+    "relatedSlugs": [],
+    "stages": [
+      "validation"
+    ]
+  },
+  {
+    "id": "prob-durability-of-vr-effect",
+    "slug": "durability-of-vr-effect",
+    "name": "Showing benefit that outlasts the headset",
+    "kind": "problem",
+    "typeLabel": "Technical problem",
+    "summary": "Many VR studies measure change during or just after exposure. Evidence that effects persist weeks later, especially for chronic conditions, is thinner and inconsistent, which limits clinical and payer confidence.",
+    "modalities": [
+      "VR"
+    ],
+    "specialties": [
+      "Pain management"
+    ],
+    "useCases": [
+      "Therapy support"
+    ],
+    "geography": "Global",
+    "stage": "Open problem",
+    "reviewStatus": "source-reviewed",
+    "claimStatus": "not-claimable",
+    "aiAssisted": true,
+    "lastReviewed": "2026-10-10",
+    "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6613199/",
+    "sourceLabel": "Journal of Pain Research — VR as an analgesic for acute and chronic pain: systematic review",
+    "sourceNote": "Review concludes VR reliably reduces acute pain but evidence for lasting chronic-pain relief is insufficient, with heterogeneous populations and doses. The problem statement is AVRMD's framing; the cited work documents the difficulty.",
+    "accent": "teal",
+    "relatedSlugs": [],
+    "stages": [
+      "validation"
+    ]
   }
 ]
