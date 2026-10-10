@@ -1,0 +1,1087 @@
+{
+  "sourceUrl": "https://www.fda.gov/medical-devices/digital-health-center-excellence/augmented-reality-and-virtual-reality-medical-devices",
+  "sourceUpdated": "2026-09-04",
+  "retrieved": "2026-10-10",
+  "devices": [
+    {
+      "submission": "K254265",
+      "name": "Helion Viewer Suite",
+      "company": "Videomed Srl ( a Baxter Healthcare Corp company)",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2026-05-27",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K254265"
+    },
+    {
+      "submission": "K252880",
+      "name": "Pytheas Your Guided Trajectory",
+      "company": "Pytheas Navigation Sas",
+      "panel": "Neurology",
+      "productCode": "OLO",
+      "decisionDate": "2026-05-11",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K252880"
+    },
+    {
+      "submission": "K253401",
+      "name": "SCRIPT™ Implant System",
+      "company": "Globus Medical, Inc.",
+      "panel": "Orthopedic",
+      "productCode": "SBF",
+      "decisionDate": "2026-04-29",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K253401"
+    },
+    {
+      "submission": "K253805",
+      "name": "Knee+",
+      "company": "Pixee Medical S.A.S.",
+      "panel": "Orthopedic",
+      "productCode": "SBF",
+      "decisionDate": "2026-04-24",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K253805"
+    },
+    {
+      "submission": "K254004",
+      "name": "VRNT",
+      "company": "Cognifisense, Inc.",
+      "panel": "Neurology",
+      "productCode": "QRA",
+      "decisionDate": "2026-04-10",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K254004"
+    },
+    {
+      "submission": "K253950",
+      "name": "Avatar Medical Vision",
+      "company": "Avatar Medical",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2026-03-30",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K253950"
+    },
+    {
+      "submission": "K252195",
+      "name": "ARTICOR planner",
+      "company": "Artiness S.R.L",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2026-03-27",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K252195"
+    },
+    {
+      "submission": "K253486",
+      "name": "SKIA-Head (Model: SKIA-ST00)",
+      "company": "Skia, Inc.",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2026-02-23",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K253486"
+    },
+    {
+      "submission": "K251577",
+      "name": "LAIA XR",
+      "company": "Augmented Reality Software S.L.",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2026-02-06",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K251577"
+    },
+    {
+      "submission": "K252091",
+      "name": "Surgical Reality Viewer",
+      "company": "Medicalvr B.V.",
+      "panel": "Radiology",
+      "productCode": "QIH",
+      "decisionDate": "2026-01-29",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K252091"
+    },
+    {
+      "submission": "K252847",
+      "name": "NextAR Hip Platform",
+      "company": "Medacta International S.A.",
+      "panel": "Neurology",
+      "productCode": "SBF",
+      "decisionDate": "2026-01-09",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K252847"
+    },
+    {
+      "submission": "K231897",
+      "name": "NeuroAlign software",
+      "company": "Medivis, Inc.",
+      "panel": "Neurology",
+      "productCode": "HAW",
+      "decisionDate": "2025-10-21",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K231897"
+    },
+    {
+      "submission": "K252476",
+      "name": "Viewer (5.4); Elements Viewer; Mixed Reality Viewer; Smart Layout; Elements Viewer Smart Layout",
+      "company": "Brainlab AG",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2025-10-16",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K252476"
+    },
+    {
+      "submission": "K251639",
+      "name": "xvision Spine system",
+      "company": "Augmedics, Ltd.",
+      "panel": "Neurology",
+      "productCode": "SBF",
+      "decisionDate": "2025-10-03",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K251639"
+    },
+    {
+      "submission": "K252054",
+      "name": "SpineAR SNAP (SyncAR Spine)",
+      "company": "Surgical Theater, Inc.",
+      "panel": "Neurology",
+      "productCode": "SBF",
+      "decisionDate": "2025-09-29",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K252054"
+    },
+    {
+      "submission": "K252530",
+      "name": "OptiVu™ Shoulder",
+      "company": "MR Surgical Solutions, LLC",
+      "panel": "Neurology",
+      "productCode": "SBF",
+      "decisionDate": "2025-09-10",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K252530"
+    },
+    {
+      "submission": "K251737",
+      "name": "NextAR(TM) Shoulder Platform",
+      "company": "Medacta International S.A.",
+      "panel": "Neurology",
+      "productCode": "SBF",
+      "decisionDate": "2025-09-04",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K251737"
+    },
+    {
+      "submission": "K243709",
+      "name": "NeuroEars-Anna™",
+      "company": "NeuroEars Inc.",
+      "panel": "Neurology",
+      "productCode": "GWN",
+      "decisionDate": "2025-08-25",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K243709"
+    },
+    {
+      "submission": "K251519",
+      "name": "RelieVRx (Pico G3)",
+      "company": "AppliedVR",
+      "panel": "Neurology",
+      "productCode": "QRA",
+      "decisionDate": "2025-08-13",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K251519"
+    },
+    {
+      "submission": "K252170",
+      "name": "OptiVu™ Shoulder",
+      "company": "MR Surgical Solutions, LLC",
+      "panel": "Neurology",
+      "productCode": "SBF",
+      "decisionDate": "2025-08-08",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K252170"
+    },
+    {
+      "submission": "K250477",
+      "name": "NextAR(TM) Spine",
+      "company": "Medacta International S.A.",
+      "panel": "Neurology",
+      "productCode": "SBF",
+      "decisionDate": "2025-07-31",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K250477"
+    },
+    {
+      "submission": "K241179",
+      "name": "Rhythm Express Remote Cardiac Monitoring System (RX-1 mini)",
+      "company": "VivaQuant, Inc.",
+      "panel": "Cardiovascular",
+      "productCode": "QYX",
+      "decisionDate": "2025-07-11",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K241179"
+    },
+    {
+      "submission": "K250108",
+      "name": "OptiVu™ Shoulder",
+      "company": "MR Surgical Solutions, LLC",
+      "panel": "Neurology",
+      "productCode": "SBF",
+      "decisionDate": "2025-07-09",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K250108"
+    },
+    {
+      "submission": "K241525",
+      "name": "ExcelsiusXR™",
+      "company": "Globus Medical, Inc.",
+      "panel": "Neurology",
+      "productCode": "SBF",
+      "decisionDate": "2025-07-08",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K241525"
+    },
+    {
+      "submission": "K243077",
+      "name": "Affirm 800",
+      "company": "Digital Surgery Systems, Inc. (D.B.A True Digital Surgery)",
+      "panel": "Radiology",
+      "productCode": "IZI",
+      "decisionDate": "2025-06-27",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K243077"
+    },
+    {
+      "submission": "K250143",
+      "name": "Digital Prism Correction Feature (DPCF)",
+      "company": "Apple Inc.",
+      "panel": "Ophthalmic",
+      "productCode": "SCW",
+      "decisionDate": "2025-06-23",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K250143"
+    },
+    {
+      "submission": "K243053",
+      "name": "Navient Image Guided Navigation System (ENT) (955-NC-NC)",
+      "company": "Claronav",
+      "panel": "Neurology",
+      "productCode": "PGW",
+      "decisionDate": "2025-06-20",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K243053"
+    },
+    {
+      "submission": "K242569",
+      "name": "Mixed Reality Spine Navigation",
+      "company": "Brainlab AG",
+      "panel": "Neurology",
+      "productCode": "SBF",
+      "decisionDate": "2025-05-16",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K242569"
+    },
+    {
+      "submission": "K243069",
+      "name": "LUMYS (V1)",
+      "company": "INTRADYS",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2025-05-02",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K243069"
+    },
+    {
+      "submission": "K243819",
+      "name": "Luminopia",
+      "company": "Luminopia, Inc.",
+      "panel": "Ophthalmic",
+      "productCode": "QQU",
+      "decisionDate": "2025-04-09",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K243819"
+    },
+    {
+      "submission": "K243980",
+      "name": "ARVIS Surgical Navigation System",
+      "company": "Kico Knee Innovation Company Pty Limited",
+      "panel": "Neurology",
+      "productCode": "SBF",
+      "decisionDate": "2025-03-21",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K243980"
+    },
+    {
+      "submission": "K243975",
+      "name": "Knee+",
+      "company": "Pixee Medical",
+      "panel": "Neurology",
+      "productCode": "SBF",
+      "decisionDate": "2025-03-20",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K243975"
+    },
+    {
+      "submission": "K250255",
+      "name": "xvision Spine system",
+      "company": "Augmedics Ltd.",
+      "panel": "Neurology",
+      "productCode": "SBF",
+      "decisionDate": "2025-03-13",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K250255"
+    },
+    {
+      "submission": "K242205",
+      "name": "SpectoMed (v1.0)",
+      "company": "Specto Medical",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2025-01-14",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K242205"
+    },
+    {
+      "submission": "K243950",
+      "name": "ARVIS® Shoulder",
+      "company": "Kico Knee Innovation Company Pty Ltd",
+      "panel": "Neurology",
+      "productCode": "SBF",
+      "decisionDate": "2025-01-13",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K243950"
+    },
+    {
+      "submission": "K243623",
+      "name": "SpineAR SNAP (SyncAR Spine)",
+      "company": "Surgical Theater, Inc.",
+      "panel": "Neurology",
+      "productCode": "SBF",
+      "decisionDate": "2024-12-24",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K243623"
+    },
+    {
+      "submission": "K243417",
+      "name": "RelieVRx",
+      "company": "AppliedVR",
+      "panel": "Neurology",
+      "productCode": "QRA",
+      "decisionDate": "2024-12-04",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K243417"
+    },
+    {
+      "submission": "K242271",
+      "name": "Caduceus S",
+      "company": "Taiwan Main Orthopaedic Biotechnology Co., Ltd.",
+      "panel": "Neurology",
+      "productCode": "SBF",
+      "decisionDate": "2024-10-30",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K242271"
+    },
+    {
+      "submission": "K242058",
+      "name": "Digital Prism Correction Feature (DPCF)",
+      "company": "Apple Inc.",
+      "panel": "Ophthalmic",
+      "productCode": "SCW",
+      "decisionDate": "2024-10-21",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K242058"
+    },
+    {
+      "submission": "K241481",
+      "name": "xvision Spine System",
+      "company": "Augmedics Ltd.",
+      "panel": "Neurology",
+      "productCode": "SBF",
+      "decisionDate": "2024-10-16",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K241481"
+    },
+    {
+      "submission": "K240094",
+      "name": "LumiNE US; Lumi",
+      "company": "Augmedit B.V.",
+      "panel": "Radiology",
+      "productCode": "QIH",
+      "decisionDate": "2024-09-10",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K240094"
+    },
+    {
+      "submission": "K241870",
+      "name": "OnPoint Augmented Reality Spine System",
+      "company": "OnPoint Surgical, Inc.",
+      "panel": "Neurology",
+      "productCode": "SBF",
+      "decisionDate": "2024-08-19",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K241870"
+    },
+    {
+      "submission": "K233315",
+      "name": "HipXpert and HipInsight System",
+      "company": "Surgical Planning Associates, Inc",
+      "panel": "Neurology",
+      "productCode": "OSF",
+      "decisionDate": "2024-08-08",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K233315"
+    },
+    {
+      "submission": "K233725",
+      "name": "Spine Navigation System",
+      "company": "Medivis, Inc.",
+      "panel": "Neurology",
+      "productCode": "OLO",
+      "decisionDate": "2024-07-26",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K233725"
+    },
+    {
+      "submission": "K232930",
+      "name": "VERVE",
+      "company": "OculoMotor Technologies",
+      "panel": "Ophthalmic",
+      "productCode": "SBN",
+      "decisionDate": "2024-06-13",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K232930"
+    },
+    {
+      "submission": "K232759",
+      "name": "Viewer (5.4); Elements Viewer; Mixed Reality Viewer; Smart Layout; Elements Viewer Smart Layout",
+      "company": "Brainlab AG",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2024-05-21",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K232759"
+    },
+    {
+      "submission": "K233172",
+      "name": "NextAR™ Spine Platform",
+      "company": "Medacta International S.A.",
+      "panel": "Neurology",
+      "productCode": "OLO",
+      "decisionDate": "2024-04-24",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K233172"
+    },
+    {
+      "submission": "K240620",
+      "name": "Cube Navigator",
+      "company": "Medical Templates AG",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2024-03-25",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K240620"
+    },
+    {
+      "submission": "K230195",
+      "name": "Neo ADVISE software",
+      "company": "Comerge AG",
+      "panel": "Neurology",
+      "productCode": "OLO",
+      "decisionDate": "2024-03-08",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K230195"
+    },
+    {
+      "submission": "K233899",
+      "name": "Knee+",
+      "company": "Pixee Medical",
+      "panel": "Neurology",
+      "productCode": "OLO",
+      "decisionDate": "2024-03-08",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K233899"
+    },
+    {
+      "submission": "K232339",
+      "name": "Augmented Reality Application",
+      "company": "Sira Medical, Inc.",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2024-02-01",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K232339"
+    },
+    {
+      "submission": "K233568",
+      "name": "Ceevra Reveal 3+",
+      "company": "Ceevra, Inc.",
+      "panel": "Radiology",
+      "productCode": "QIH",
+      "decisionDate": "2023-12-05",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K233568"
+    },
+    {
+      "submission": "K232176",
+      "name": "STELLAR Knee",
+      "company": "PolarisAR Inc.",
+      "panel": "Neurology",
+      "productCode": "OLO",
+      "decisionDate": "2023-11-02",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K232176"
+    },
+    {
+      "submission": "K230814",
+      "name": "VRNT",
+      "company": "CognifiSense, Inc.",
+      "panel": "Neurology",
+      "productCode": "QRA",
+      "decisionDate": "2023-10-31",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K230814"
+    },
+    {
+      "submission": "K232280",
+      "name": "NextAR™ TSA Platform",
+      "company": "Medacta International S.A.",
+      "panel": "Neurology",
+      "productCode": "OLO",
+      "decisionDate": "2023-10-29",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K232280"
+    },
+    {
+      "submission": "K230249",
+      "name": "Ikshana",
+      "company": "ImmersiveTouch",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2023-10-16",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K230249"
+    },
+    {
+      "submission": "K230825",
+      "name": "Smileyscope System (Therapy Mode)",
+      "company": "Smileyscope Holding Inc.",
+      "panel": "Neurology",
+      "productCode": "QRA",
+      "decisionDate": "2023-09-25",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K230825"
+    },
+    {
+      "submission": "K232189",
+      "name": "OrionXR",
+      "company": "Hoth Intelligence Inc.",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2023-09-14",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K232189"
+    },
+    {
+      "submission": "K231284",
+      "name": "OnPoint Augmented Reality Spine System",
+      "company": "OnPoint Surgical, Inc.",
+      "panel": "Neurology",
+      "productCode": "OLO",
+      "decisionDate": "2023-09-08",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K231284"
+    },
+    {
+      "submission": "K231611",
+      "name": "HOLO Portal™ Surgical Guidance System",
+      "company": "Surgalign Spine Technologies",
+      "panel": "Neurology",
+      "productCode": "OLO",
+      "decisionDate": "2023-08-31",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K231611"
+    },
+    {
+      "submission": "K223769",
+      "name": "NextAR™ Spine Platform",
+      "company": "Medacta International S.A.",
+      "panel": "Neurology",
+      "productCode": "OLO",
+      "decisionDate": "2023-07-21",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K223769"
+    },
+    {
+      "submission": "K223290",
+      "name": "CommandEP Data Manager PC (DPC02), CommandEP HMD (HMD02)",
+      "company": "SentiAR, Inc.",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2023-07-14",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K223290"
+    },
+    {
+      "submission": "K223125",
+      "name": "XR90 (XR90-SYS)",
+      "company": "MediView XR, Inc.",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2023-07-13",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K223125"
+    },
+    {
+      "submission": "K230567",
+      "name": "OptiVu™ ROSA® MxR",
+      "company": "Orthosoft Inc. (d/b/a Zimmer CAS)",
+      "panel": "Neurology",
+      "productCode": "OLO",
+      "decisionDate": "2023-06-13",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K230567"
+    },
+    {
+      "submission": "K222035",
+      "name": "Avatar Medical Software V1",
+      "company": "Avatar Medical",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2023-05-24",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K222035"
+    },
+    {
+      "submission": "K221870",
+      "name": "CarnaLife Holo",
+      "company": "MedApp S.A.",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2023-05-01",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K221870"
+    },
+    {
+      "submission": "K222676",
+      "name": "Ceevra Reveal 3",
+      "company": "Ceevra, Inc.",
+      "panel": "Radiology",
+      "productCode": "QIH",
+      "decisionDate": "2023-04-25",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K222676"
+    },
+    {
+      "submission": "K230789",
+      "name": "Knee+",
+      "company": "Pixee Medical",
+      "panel": "Neurology",
+      "productCode": "OLO",
+      "decisionDate": "2023-04-21",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K230789"
+    },
+    {
+      "submission": "K222757",
+      "name": "Clarus Viewer",
+      "company": "Clarus Viewer Corporation",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2023-02-24",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K222757"
+    },
+    {
+      "submission": "K222510",
+      "name": "Blueprint Mixed Reality system",
+      "company": "Tornier SAS",
+      "panel": "Neurology",
+      "productCode": "OLO",
+      "decisionDate": "2023-01-20",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K222510"
+    },
+    {
+      "submission": "K221796",
+      "name": "Cyware 4H and Cysart 4H",
+      "company": "Abys Medical",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2022-12-30",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K221796"
+    },
+    {
+      "submission": "K220554",
+      "name": "Caduceus S",
+      "company": "Taiwan Main Orthopaedic Biotechnology Co., Ltd.",
+      "panel": "Neurology",
+      "productCode": "OLO",
+      "decisionDate": "2022-12-16",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K220554"
+    },
+    {
+      "submission": "K213215",
+      "name": "VSI HoloMedicine",
+      "company": "ApoQlar GmbH",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2022-11-25",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K213215"
+    },
+    {
+      "submission": "K220905",
+      "name": "xvision Spine System",
+      "company": "Augmedics Ltd.",
+      "panel": "Neurology",
+      "productCode": "OLO",
+      "decisionDate": "2022-11-17",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K220905"
+    },
+    {
+      "submission": "K221659",
+      "name": "Luminopia One",
+      "company": "Luminopia, Inc.",
+      "panel": "Ophthalmic",
+      "productCode": "QQU",
+      "decisionDate": "2022-11-04",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K221659"
+    },
+    {
+      "submission": "K213128",
+      "name": "IntraOp VSP Software Device",
+      "company": "Xironetic, LLC",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2022-10-21",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K213128"
+    },
+    {
+      "submission": "K213034",
+      "name": "SpineAR SNAP",
+      "company": "Surgical Theater, Inc.",
+      "panel": "Neurology",
+      "productCode": "OLO",
+      "decisionDate": "2022-09-29",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K213034"
+    },
+    {
+      "submission": "K220104",
+      "name": "Knee+",
+      "company": "Pixee Medical",
+      "panel": "Neurology",
+      "productCode": "OLO",
+      "decisionDate": "2022-09-01",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K220104"
+    },
+    {
+      "submission": "K220733",
+      "name": "OptiVu ROSA MxR",
+      "company": "Orthosoft, Inc. (d/b/a Zimmer CAS)",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2022-07-29",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K220733"
+    },
+    {
+      "submission": "K221098",
+      "name": "Scopis ENT Software, Scopis ENT Software with TGS, Scopis Planning Software, Electromagnetic Navigation Unit",
+      "company": "Stryker Corporation",
+      "panel": "Neurology",
+      "productCode": "PGW",
+      "decisionDate": "2022-07-12",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K221098"
+    },
+    {
+      "submission": "K213684",
+      "name": "SurgiCase Viewer",
+      "company": "Materialise NV",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2022-06-15",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K213684"
+    },
+    {
+      "submission": "K220146",
+      "name": "VisAR",
+      "company": "Novarad Corporation",
+      "panel": "Neurology",
+      "productCode": "OLO",
+      "decisionDate": "2022-05-27",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K220146"
+    },
+    {
+      "submission": "K213751",
+      "name": "NextAR™ TKA Platform My Knee PPS",
+      "company": "Medacta International S.A.",
+      "panel": "Neurology",
+      "productCode": "OLO",
+      "decisionDate": "2022-03-10",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K213751"
+    },
+    {
+      "submission": "K211254",
+      "name": "ARAI Surgical Navigation System",
+      "company": "Surgalign Spine Technologies",
+      "panel": "Neurology",
+      "productCode": "OLO",
+      "decisionDate": "2022-01-14",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K211254"
+    },
+    {
+      "submission": "DEN210014",
+      "name": "EaseVRx",
+      "company": "AppliedVR, Inc.",
+      "panel": "Neurology",
+      "productCode": "QRA",
+      "decisionDate": "2021-11-16",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/denovo.cfm?ID=DEN210014"
+    },
+    {
+      "submission": "K210344",
+      "name": "inVisionOS",
+      "company": "PrecisionOS Technology Inc.",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2021-11-10",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K210344"
+    },
+    {
+      "submission": "K210859",
+      "name": "NextAR™ Spine Platform",
+      "company": "Medacta International, SA",
+      "panel": "Neurology",
+      "productCode": "OLO",
+      "decisionDate": "2021-11-05",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K210859"
+    },
+    {
+      "submission": "DEN210005",
+      "name": "Luminopia One",
+      "company": "Luminopia, Inc.",
+      "panel": "Ophthalmic",
+      "productCode": "QQU",
+      "decisionDate": "2021-10-20",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/denovo.cfm?ID=DEN210005"
+    },
+    {
+      "submission": "K202927",
+      "name": "EYE-SYNC",
+      "company": "SyncThink, Inc.",
+      "panel": "Neurology",
+      "productCode": "QEA",
+      "decisionDate": "2021-10-02",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K202927"
+    },
+    {
+      "submission": "K210726",
+      "name": "ImmersiveTouch",
+      "company": "ImmersiveTouch, Inc.",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2021-09-29",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K210726"
+    },
+    {
+      "submission": "K211188",
+      "name": "xvision Spine system (XVS)",
+      "company": "Augmedics Ltd",
+      "panel": "Neurology",
+      "productCode": "OLO",
+      "decisionDate": "2021-07-19",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K211188"
+    },
+    {
+      "submission": "K203115",
+      "name": "ARVIS Surgical Navigation System",
+      "company": "Insight Medical Systems Inc.",
+      "panel": "Neurology",
+      "productCode": "OLO",
+      "decisionDate": "2021-07-14",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K203115"
+    },
+    {
+      "submission": "K210072",
+      "name": "HOLOSCOPE-i",
+      "company": "Real View Imaging Ltd.",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2021-05-14",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K210072"
+    },
+    {
+      "submission": "K210153",
+      "name": "NextAR RSA Platform",
+      "company": "Medacta International SA",
+      "panel": "Neurology",
+      "productCode": "OLO",
+      "decisionDate": "2021-05-12",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K210153"
+    },
+    {
+      "submission": "K202750",
+      "name": "Knee+",
+      "company": "Pixee Medical",
+      "panel": "Neurology",
+      "productCode": "OLO",
+      "decisionDate": "2021-04-21",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K202750"
+    },
+    {
+      "submission": "K200384",
+      "name": "HipXpert 3D Display and Anchoring Application",
+      "company": "Surgical Planning Associates, Inc",
+      "panel": "Neurology",
+      "productCode": "OSF",
+      "decisionDate": "2021-01-28",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K200384"
+    },
+    {
+      "submission": "K202152",
+      "name": "NextAR TKA Platform",
+      "company": "Medacta International SA",
+      "panel": "Neurology",
+      "productCode": "OLO",
+      "decisionDate": "2020-10-27",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K202152"
+    },
+    {
+      "submission": "K192890",
+      "name": "SentEP",
+      "company": "SentiAR, Inc",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2020-09-18",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K192890"
+    },
+    {
+      "submission": "K201465",
+      "name": "SuRgical Planner (SRP) BrainStorm",
+      "company": "Surgical Theater, Inc.",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2020-07-17",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K201465"
+    },
+    {
+      "submission": "K193559",
+      "name": "NextAR TKA Platform",
+      "company": "Medacta Inernational SA",
+      "panel": "Orthopedic",
+      "productCode": "PBF",
+      "decisionDate": "2020-07-10",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K193559"
+    },
+    {
+      "submission": "K191014",
+      "name": "Elements Viewer",
+      "company": "Brainlab AG",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2020-01-23",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K191014"
+    },
+    {
+      "submission": "K190929",
+      "name": "xvision Spine system (XVS)",
+      "company": "Augmedics Ltd.",
+      "panel": "Neurology",
+      "productCode": "OLO",
+      "decisionDate": "2019-12-20",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K190929"
+    },
+    {
+      "submission": "K192186",
+      "name": "I-Portal Neuro Otologic Test Center, I-Portal Video Nystagmography System, I-Portal Portable Assessment System - Nysragmograph",
+      "company": "Neurolign USA, LLC",
+      "panel": "Neurology",
+      "productCode": "GWN",
+      "decisionDate": "2019-11-29",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K192186"
+    },
+    {
+      "submission": "K183489",
+      "name": "D2P",
+      "company": "3D Systems, Inc.",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2019-08-29",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K183489"
+    },
+    {
+      "submission": "K190764",
+      "name": "SurgicalAR",
+      "company": "MEDIVIS, Inc.",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2019-05-13",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K190764"
+    },
+    {
+      "submission": "K183296",
+      "name": "REAL Immersive System",
+      "company": "Penumbra, Inc.",
+      "panel": "Physical Medicine",
+      "productCode": "ISD",
+      "decisionDate": "2019-03-18",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K183296"
+    },
+    {
+      "submission": "K182643",
+      "name": "IRIS 1.0 System",
+      "company": "Intuitive Surgical",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2019-02-22",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K182643"
+    },
+    {
+      "submission": "K190074",
+      "name": "Presero 3D Scanning System",
+      "company": "Certis Health",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2019-02-14",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K190074"
+    },
+    {
+      "submission": "K172418",
+      "name": "OpenSight",
+      "company": "Novarad Corporation",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2018-09-21",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K172418"
+    },
+    {
+      "submission": "K173274",
+      "name": "Ceevra Reveal 2.0",
+      "company": "Ceevra, Inc.",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2018-07-10",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K173274"
+    },
+    {
+      "submission": "K170793",
+      "name": "SuRgical Planner (SRP)",
+      "company": "Surgical Theater, LLC",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2018-02-12",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K170793"
+    },
+    {
+      "submission": "K171356",
+      "name": "Clarity Reveal",
+      "company": "Ceevra, Inc.",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2017-08-03",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K171356"
+    },
+    {
+      "submission": "K162748",
+      "name": "MindMotionPRO",
+      "company": "MindMaze SA",
+      "panel": "Physical Medicine",
+      "productCode": "LXJ",
+      "decisionDate": "2017-04-24",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K162748"
+    },
+    {
+      "submission": "K170167",
+      "name": "True 3D Viewer Software",
+      "company": "EchoPixel Inc.",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2017-03-03",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K170167"
+    },
+    {
+      "submission": "K163245",
+      "name": "Virtual Occupational Therapy Application (VOTA)",
+      "company": "Barron Associates, Inc.",
+      "panel": "Physical Medicine",
+      "productCode": "LXJ",
+      "decisionDate": "2017-02-28",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K163245"
+    },
+    {
+      "submission": "K160584",
+      "name": "Surgical Navigation Advanced Platform (SNAP)",
+      "company": "SURGICAL THEATER, LLC",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2016-06-28",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K160584"
+    },
+    {
+      "submission": "K153004",
+      "name": "Clear Guide SCENERGY",
+      "company": "CLEAR GUIDE MEDICAL",
+      "panel": "Radiology",
+      "productCode": "JAK",
+      "decisionDate": "2016-02-12",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K153004"
+    },
+    {
+      "submission": "K151955",
+      "name": "YuGo System",
+      "company": "BIOGAMING LTD.",
+      "panel": "Physical Medicine",
+      "productCode": "LXJ",
+      "decisionDate": "2016-02-05",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K151955"
+    },
+    {
+      "submission": "K152915",
+      "name": "EYE-SYNC",
+      "company": "SyncThink, Inc.",
+      "panel": "Neurology",
+      "productCode": "GWN",
+      "decisionDate": "2016-01-29",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K152915"
+    },
+    {
+      "submission": "K142107",
+      "name": "ECHO TRUE 3D VIEWER",
+      "company": "ECHO PIXEL INC.",
+      "panel": "Radiology",
+      "productCode": "LLZ",
+      "decisionDate": "2015-01-21",
+      "fdaUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K142107"
+    }
+  ]
+}

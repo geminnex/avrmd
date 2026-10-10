@@ -28,6 +28,7 @@ export function SiteFooter() {
           <Link href="/explore?kind=organization">Organizations</Link>
           <Link href="/explore?kind=solution">Solutions</Link>
           <Link href="/explore?kind=evidence">Evidence</Link>
+          <Link href="/clearances">FDA AR/VR devices</Link>
           <Link href="/gear">Gear and hardware</Link>
           <Link href="/resources">Related websites</Link>
           <Link href="/signals">Signals</Link>

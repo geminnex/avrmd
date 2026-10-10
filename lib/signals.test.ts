@@ -5,8 +5,10 @@ import {
   getRecentSignals,
   getSignalsByCategory,
   signalCategories,
-  signals,
+  getSignals,
 } from "./signals";
+
+const signals = getSignals();
 
 describe("signals", () => {
   it("carries none of a reviewed record's trust fields", () => {

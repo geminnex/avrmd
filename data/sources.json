@@ -1,5 +1,15 @@
 [
   {
+    "id": "fda-xr-device-list",
+    "kind": "fdaxrlist",
+    "label": "FDA AR/VR medical device list",
+    "entityKindHint": "solution",
+    "rightsBasis": "US FDA public web page; US government work, public domain.",
+    "signalOnly": true,
+    "limit": 0,
+    "enabled": true
+  },
+  {
     "id": "pubmed-medical-xr",
     "kind": "pubmed",
     "label": "PubMed",
@@ -37,6 +47,63 @@
     "entityKindHint": "project",
     "rightsBasis": "ClinicalTrials.gov API v2; public registry metadata.",
     "query": "virtual reality OR augmented reality",
+    "limit": 15,
+    "enabled": true
+  },
+  {
+    "id": "auganix-healthcare",
+    "kind": "rss",
+    "label": "Auganix (healthcare)",
+    "feedUrl": "https://auganix.org/category/healthcare/feed/",
+    "signalCategory": "industry",
+    "signalOnly": true,
+    "rightsBasis": "Public RSS feed; headline, link and date only.",
+    "limit": 10,
+    "enabled": true
+  },
+  {
+    "id": "jmir-xr",
+    "kind": "rss",
+    "label": "JMIR XR and Spatial Computing",
+    "feedUrl": "https://xr.jmir.org/feed/atom",
+    "signalCategory": "research",
+    "signalOnly": true,
+    "rightsBasis": "Publisher's public Atom feed; citation metadata only.",
+    "limit": 10,
+    "enabled": true
+  },
+  {
+    "id": "jmir-serious-games-xr",
+    "kind": "rss",
+    "label": "JMIR Serious Games",
+    "feedUrl": "https://games.jmir.org/feed/atom",
+    "mustMatch": "virtual reality|augmented reality|mixed reality|extended reality|\\bVR\\b|\\bAR\\b|\\bXR\\b|immersive|head-mounted",
+    "signalCategory": "research",
+    "signalOnly": true,
+    "rightsBasis": "Publisher's public Atom feed; citation metadata only.",
+    "limit": 10,
+    "enabled": true
+  },
+  {
+    "id": "frontiers-vr-medical",
+    "kind": "rss",
+    "label": "Frontiers in Virtual Reality",
+    "feedUrl": "https://www.frontiersin.org/journals/virtual-reality/rss",
+    "mustMatch": "patient|clinic|surg|rehab|therap|pain|medical|medicine|health|hospital|nurs|anxiety|stroke|dementia|autism|anatom|diagnos",
+    "signalCategory": "research",
+    "signalOnly": true,
+    "rightsBasis": "Publisher's public RSS feed; citation metadata only.",
+    "limit": 10,
+    "enabled": true
+  },
+  {
+    "id": "arxiv-medical-xr",
+    "kind": "rss",
+    "label": "arXiv",
+    "feedUrl": "https://export.arxiv.org/api/query?search_query=%28abs%3A%22virtual+reality%22+OR+abs%3A%22augmented+reality%22+OR+abs%3A%22mixed+reality%22%29+AND+%28abs%3Asurgical+OR+abs%3Asurgery+OR+abs%3Aclinical+OR+abs%3Amedical+OR+abs%3Arehabilitation+OR+abs%3Apatient%29&sortBy=submittedDate&sortOrder=descending&max_results=15",
+    "signalCategory": "research",
+    "signalOnly": true,
+    "rightsBasis": "arXiv API; metadata is CC0.",
     "limit": 15,
     "enabled": true
   }

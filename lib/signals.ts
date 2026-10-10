@@ -1,4 +1,4 @@
-import signalData from "../data/signals.json";
+import { readDataFile } from "./data-file";
 
 /**
  * A signal is a headline pointing at an external source — never a reviewed
@@ -24,7 +24,10 @@ export type Signal = {
   promotedSlug?: string;
 };
 
-export const signals = signalData as Signal[];
+/** Read per request: the discovery robot rewrites the file every day. */
+export function getSignals() {
+  return readDataFile<Signal[]>("signals.json", []);
+}
 
 export const signalCategoryLabels: Record<SignalCategory, string> = {
   regulatory: "Regulatory",
@@ -34,7 +37,7 @@ export const signalCategoryLabels: Record<SignalCategory, string> = {
 };
 
 export function getRecentSignals(limit?: number) {
-  const sorted = [...signals].sort((a, b) => b.discoveredAt.localeCompare(a.discoveredAt));
+  const sorted = [...getSignals()].sort((a, b) => b.discoveredAt.localeCompare(a.discoveredAt));
   return limit ? sorted.slice(0, limit) : sorted;
 }
 

@@ -12,6 +12,7 @@ import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { refreshFdaXrDevices } from "./import-fda-xr.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const dataDir = join(root, "data");
@@ -158,6 +159,9 @@ async function fromClinicalTrials(source) {
   });
 }
 
+// RSS and Atom (journals and the arXiv API publish Atom). `mustMatch` is a
+// case-insensitive pattern a title or summary must contain — for feeds that
+// mix medical XR in with everything else.
 async function fromRss(source) {
   const response = await fetch(source.feedUrl, {
     headers: { "User-Agent": userAgent },
@@ -166,34 +170,69 @@ async function fromRss(source) {
   if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
   const xml = await response.text();
 
-  const items = [...xml.matchAll(/<item[\s\S]*?<\/item>/g)].slice(0, source.limit);
-  const pick = (block, tag) => {
-    const match = block.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`));
-    if (!match) return null;
-    return match[1]
-      .replace(/<!\[CDATA\[|\]\]>/g, "")
-      .replace(/<[^>]+>/g, "")
-      .trim();
+  const pick = (block, ...tags) => {
+    for (const tag of tags) {
+      const match = block.match(new RegExp(`<${tag}(?:\\s[^>]*)?>([\\s\\S]*?)</${tag}>`));
+      if (match) {
+        return match[1]
+          .replace(/<!\[CDATA\[|\]\]>/g, "")
+          .replace(/<[^>]+>/g, "")
+          .replace(/&amp;/g, "&")
+          .replace(/&lt;/g, "<")
+          .replace(/&gt;/g, ">")
+          .replace(/&quot;/g, '"')
+          .replace(/&#0?39;|&apos;/g, "'")
+          .replace(/\s+/g, " ")
+          .trim();
+      }
+    }
+    return null;
   };
+  const atomLink = (block) =>
+    block.match(/<link[^>]*rel="alternate"[^>]*href="([^"]+)"/)?.[1] ??
+    block.match(/<link[^>]*href="([^"]+)"[^>]*rel="alternate"/)?.[1] ??
+    block.match(/<link[^>]*href="([^"]+)"/)?.[1] ??
+    null;
 
-  return items
+  const filter = source.mustMatch ? new RegExp(source.mustMatch, "i") : null;
+
+  return [...xml.matchAll(/<(item|entry)[\s>][\s\S]*?<\/\1>/g)]
     .map((match) => match[0])
     .map((block) => {
-      const link = pick(block, "link");
-      if (!link) return null;
+      const link = pick(block, "link") || atomLink(block);
+      if (!link || !/^https?:\/\//.test(link)) return null;
+      const title = pick(block, "title") ?? "Untitled";
+      if (filter && !filter.test(`${title} ${pick(block, "description", "summary") ?? ""}`)) return null;
       return {
         key: `url:${fingerprint(link)}`,
-        title: pick(block, "title") ?? "Untitled",
-        sourceUrl: link,
+        title,
+        sourceUrl: link.replace(/^http:/, "https:"),
         sourceLabel: source.label,
-        published: pick(block, "pubDate"),
+        published: pick(block, "pubDate", "published", "dc:date", "updated"),
         raw: {},
       };
     })
-    .filter(Boolean);
+    .filter(Boolean)
+    .slice(0, source.limit);
+}
+
+// Refreshes data/fda-xr-devices.json (the /clearances page) and reports only
+// devices the FDA added since the last run. Keyed like the openFDA adapter,
+// so a clearance already announced from there is not announced twice.
+async function fromFdaXrList() {
+  const { added } = await refreshFdaXrDevices({ write: !dryRun, userAgent });
+  return added.map((device) => ({
+    key: device.submission.startsWith("K") ? `k:${device.submission}` : `fda:${device.submission}`,
+    title: `FDA lists ${device.name} (${device.company}) as an AR/VR medical device — ${device.submission}`,
+    sourceUrl: device.fdaUrl,
+    sourceLabel: "FDA AR/VR medical device list",
+    published: device.decisionDate,
+    raw: { ...device },
+  }));
 }
 
 const adapters = {
+  fdaxrlist: fromFdaXrList,
   pubmed: fromPubmed,
   europepmc: fromEuropePmc,
   openfda: fromOpenFda,
@@ -204,6 +243,7 @@ const adapters = {
 // A signal is a headline, not a reviewed record, so it can auto-publish with
 // no editor in the loop. This is the only place its category is decided.
 const signalCategoryBySourceKind = {
+  fdaxrlist: "regulatory",
   openfda: "regulatory",
   clinicaltrials: "trial",
   pubmed: "research",
@@ -251,7 +291,9 @@ async function main() {
         if (known.has(key)) continue;
         known.add(key);
         added += 1;
-        fresh.push({
+        // Signal-only sources are already published elsewhere on the site
+        // (e.g. /clearances), so they never enter the review queue.
+        if (!source.signalOnly) fresh.push({
           id: fingerprint(`${key}:${startedAt}`),
           key,
           status: "pending",
@@ -270,7 +312,7 @@ async function main() {
           headline: item.title,
           url: item.sourceUrl,
           sourceLabel: item.sourceLabel,
-          category: signalCategoryBySourceKind[source.kind] ?? "industry",
+          category: source.signalCategory ?? signalCategoryBySourceKind[source.kind] ?? "industry",
           publishedAt: item.published ?? null,
           discoveredAt: startedAt,
           sourceId: source.id,

@@ -31,6 +31,7 @@ const sections = [
       { href: "/explore?kind=solution", label: "Solutions" },
       { href: "/explore?kind=evidence", label: "Evidence" },
       { href: "/explore?kind=event", label: "Events" },
+      { href: "/clearances", label: "FDA-authorized AR/VR devices" },
       { href: "/gear", label: "Gear and hardware" },
       { href: "/resources", label: "Related websites" },
       { href: "/signals", label: "Signals" },

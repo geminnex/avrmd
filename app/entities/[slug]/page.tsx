@@ -30,6 +30,7 @@ import {
 } from "@/lib/catalog";
 import { getTopicsForEntity } from "@/lib/topics";
 import { getStagesForEntity } from "@/lib/stages";
+import { getFdaDevicesForRecord } from "@/lib/fda-devices";
 
 type EntityPageProps = {
   params: Promise<{ slug: string }>;
@@ -59,6 +60,7 @@ export default async function EntityPage({ params }: EntityPageProps) {
   // Problems have their own page and layout at /problems/[slug].
   if (!entity || entity.kind === "problem") notFound();
   const relatedGroups = getRelatedEntitiesByKind(entity);
+  const fdaDevices = getFdaDevicesForRecord(entity.slug);
   const ownerEntity = getOwnerEntity(entity);
   const entityTopics = getTopicsForEntity(entity);
   const entityStages = getStagesForEntity(entity);
@@ -241,6 +243,31 @@ export default async function EntityPage({ params }: EntityPageProps) {
                   recommendation.
                 </small>
               </div>
+            </section>
+          )}
+
+          {fdaDevices.length > 0 && (
+            <section className="detail-section fda-panel" id="fda">
+              <span className="eyebrow">Regulatory record</span>
+              <h2>
+                On the FDA&apos;s AR/VR device list ({fdaDevices.length})
+              </h2>
+              <ul className="fda-mini-list">
+                {fdaDevices.map((device) => (
+                  <li key={device.submission}>
+                    <a href={device.fdaUrl} rel="noreferrer" target="_blank">
+                      <strong>{device.name}</strong>
+                      <small>
+                        {device.submission} · {device.panel} · {device.decisionDate}
+                      </small>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <small className="fda-panel-note">
+                As published by the FDA. Authorization is a regulatory decision, not evidence
+                of clinical effectiveness. <Link href="/clearances">All AR/VR devices</Link>
+              </small>
             </section>
           )}
 
