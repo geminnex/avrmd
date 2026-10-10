@@ -1,0 +1,11 @@
+# User unit (no sudo): ~/.config/systemd/user/avrmd-backup.timer
+[Unit]
+Description=Run the AVRMD backup nightly
+
+[Timer]
+OnCalendar=*-*-* 02:40:00 UTC
+RandomizedDelaySec=10m
+Persistent=true
+
+[Install]
+WantedBy=timers.target

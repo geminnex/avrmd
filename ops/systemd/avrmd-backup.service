@@ -1,0 +1,9 @@
+# User unit (no sudo): ~/.config/systemd/user/avrmd-backup.service
+[Unit]
+Description=AVRMD nightly backup (Postgres, data/, media)
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/projects/avrmd2607
+Environment=PATH=%h/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=%h/projects/avrmd2607/scripts/backup.sh
