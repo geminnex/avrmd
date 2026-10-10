@@ -19,3 +19,8 @@ data/candidates.json
 data/signals.json
 data/seen.json
 data/discovery-log.json
+.next-release
+.next-prev
+.next-failed-*
+.next-rolled-back-*
+.next-verify

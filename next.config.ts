@@ -32,7 +32,9 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
-  output: "standalone",
+  // Verification builds go to their own directory (NEXT_DIST_DIR) so they
+  // never overwrite the .next the live server is reading; see scripts/deploy.sh.
+  distDir: process.env.NEXT_DIST_DIR || ".next",
   poweredByHeader: false,
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
