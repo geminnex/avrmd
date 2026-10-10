@@ -251,3 +251,12 @@ export async function listDirectoryMembers(): Promise<DirectoryMember[]> {
     profile: readMemberProfile(user),
   }));
 }
+
+/**
+ * Deletes the account. Sessions, profile, posts, comments, likes, follows,
+ * questions, answers, notifications, talks and contributions go with it
+ * (foreign keys cascade).
+ */
+export async function deleteUser(id: string) {
+  await getDatabase().delete(users).where(eq(users.id, id));
+}

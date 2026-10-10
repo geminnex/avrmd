@@ -1,5 +1,5 @@
 import { createHmac, randomUUID } from "node:crypto";
-import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { DeleteObjectsCommand, ListObjectsV2Command, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 
 /**
  * Uploads relay through this server rather than a presigned direct-to-browser
@@ -121,4 +121,22 @@ export function ownUploadMimeType(url: string, userId: string) {
   if (!url.startsWith(prefix)) return null;
   const match = url.slice(prefix.length).match(/^[0-9a-f-]{36}\.(png|jpg|webp)$/);
   return match ? extensionTypes[match[1]] : null;
+}
+
+/**
+ * Removes every image a member uploaded, for account deletion. Covers both
+ * key layouts: the owner-hash prefix and the older user-id prefix.
+ */
+export async function deleteUserUploads(userId: string) {
+  const client = getClient();
+  const bucket = process.env.S3_BUCKET;
+  let removed = 0;
+  for (const prefix of [`posts/${ownerTag(userId)}/`, `posts/${userId}/`]) {
+    const listed = await client.send(new ListObjectsV2Command({ Bucket: bucket, Prefix: prefix }));
+    const keys = (listed.Contents ?? []).map((object) => ({ Key: object.Key! }));
+    if (keys.length === 0) continue;
+    await client.send(new DeleteObjectsCommand({ Bucket: bucket, Delete: { Objects: keys } }));
+    removed += keys.length;
+  }
+  return removed;
 }

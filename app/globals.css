@@ -6752,3 +6752,48 @@ a.workflow-submit {
   letter-spacing: normal;
   text-transform: none;
 }
+
+.danger-zone {
+  border: 1px solid #f1c9c1;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 40px;
+  padding: 22px 24px;
+}
+.danger-zone h2 {
+  font-size: 17px;
+  margin: 0;
+}
+.danger-zone p {
+  color: var(--ink-soft);
+  font-size: 13.5px;
+  line-height: 1.55;
+  margin: 0;
+}
+.danger-zone form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.danger-zone .button-secondary {
+  align-self: flex-start;
+}
+.danger-actions {
+  display: flex;
+  gap: 10px;
+}
+.danger-button {
+  align-items: center;
+  background: #b4412f;
+  border: 0;
+  border-radius: 10px;
+  color: white;
+  display: inline-flex;
+  font-size: 14px;
+  font-weight: 800;
+  gap: 8px;
+  height: 44px;
+  padding: 0 17px;
+}
