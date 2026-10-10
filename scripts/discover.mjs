@@ -8,7 +8,7 @@
  *
  *   node scripts/discover.mjs [--dry-run]
  */
-import { readFileSync, writeFileSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync, renameSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -27,9 +27,13 @@ function readJson(file, fallback) {
   return JSON.parse(readFileSync(path, "utf8"));
 }
 
+// Write to a temp file and rename: the site reads these files per request,
+// and a half-written file would parse as nothing.
 function writeJson(file, value) {
   if (dryRun) return;
-  writeFileSync(join(dataDir, file), `${JSON.stringify(value, null, 2)}\n`);
+  const path = join(dataDir, file);
+  writeFileSync(`${path}.tmp`, `${JSON.stringify(value, null, 2)}\n`);
+  renameSync(`${path}.tmp`, path);
 }
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));

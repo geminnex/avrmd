@@ -1,0 +1,11 @@
+# User unit (no sudo): ~/.config/systemd/user/avrmd-monitor.timer
+[Unit]
+Description=Run the AVRMD health check hourly
+
+[Timer]
+OnCalendar=hourly
+RandomizedDelaySec=5m
+Persistent=true
+
+[Install]
+WantedBy=timers.target

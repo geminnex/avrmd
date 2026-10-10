@@ -5,7 +5,7 @@
 //
 // The FDA list is the source of truth: rows are copied as published, never
 // rewritten. The daily discovery robot calls refreshFdaXrDevices() too.
-import { readFile, writeFile } from "node:fs/promises";
+import { readFile, rename, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -79,14 +79,16 @@ export async function refreshFdaXrDevices({ write = true, userAgent = "Mozilla/5
   const [m, d, y] = updated ? updated.split("/") : [];
   const sourceUpdated = updated ? `${y}-${m}-${d}` : null;
   if (write) {
+    // Temp file + rename, so a request never reads a half-written list.
     await writeFile(
-      outFile,
+      `${outFile}.tmp`,
       `${JSON.stringify(
         { sourceUrl, sourceUpdated, retrieved: new Date().toISOString().slice(0, 10), devices },
         null,
         2,
       )}\n`,
     );
+    await rename(`${outFile}.tmp`, outFile);
   }
   return { sourceUrl, sourceUpdated, devices, added };
 }

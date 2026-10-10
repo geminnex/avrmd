@@ -1,0 +1,10 @@
+# User unit (no sudo): ~/.config/systemd/user/avrmd-monitor.service
+[Unit]
+Description=AVRMD health check (site, database, robot, backups, disk)
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/projects/avrmd2607
+ExecStart=%h/.nvm/versions/node/v22.23.2/bin/node scripts/monitor.mjs
+# A failing check exits 1 by design; that is reported by email, not a unit failure.
+SuccessExitStatus=1

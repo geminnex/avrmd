@@ -24,3 +24,4 @@ data/discovery-log.json
 .next-failed-*
 .next-rolled-back-*
 .next-verify
+data/*.tmp
