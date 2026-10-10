@@ -1,9 +1,13 @@
 import { NextResponse } from "next/server";
+import { rateLimiter } from "@/lib/rate-limit";
+import { clientIp } from "@/lib/auth/flow";
 import { consumeVerificationToken } from "@/lib/db/repositories/verification-tokens";
 import { confirmRegisteredEmail, findOrCreateUser } from "@/lib/db/repositories/users";
 import { createSession } from "@/lib/db/repositories/sessions";
 import { sessionCookieName, sessionCookieOptions } from "@/lib/auth/session";
 import { isCrossSite, safeNextPath } from "@/lib/auth/guards";
+
+const perIp = rateLimiter("verify", 20, 15 * 60_000);
 
 // Behind Caddy, request.url's origin is the internal proxy target, so
 // AUTH_URL is the source of truth for redirects.
@@ -22,6 +26,7 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   const base = baseUrl(request);
   if (isCrossSite(request)) return NextResponse.redirect(`${base}/sign-in?error=invalid_request`, 303);
+  if (await perIp(clientIp(request))) return NextResponse.redirect(`${base}/sign-in?error=rate_limited`, 303);
 
   const form = await request.formData().catch(() => null);
   const token = form?.get("token");

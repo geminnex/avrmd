@@ -1,8 +1,11 @@
 import { NextResponse } from "next/server";
+import { rateLimiter } from "@/lib/rate-limit";
 import { z } from "zod";
 import { getCurrentUser } from "@/lib/auth/session";
 import { getAnswer, getQuestion, setAcceptedAnswer } from "@/lib/db/repositories/questions";
 import { createNotifications } from "@/lib/db/repositories/notifications";
+
+const rateLimited = rateLimiter("accept", 20, 60_000);
 
 const bodySchema = z.object({ answerId: z.string() });
 
@@ -11,6 +14,9 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
   const user = await getCurrentUser();
   if (!user) {
     return NextResponse.json({ ok: false, message: "Sign in first." }, { status: 401 });
+  }
+  if (await rateLimited(user.id)) {
+    return NextResponse.json({ ok: false, message: "Too many requests. Wait a minute." }, { status: 429 });
   }
 
   const { id } = await params;

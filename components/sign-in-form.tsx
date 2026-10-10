@@ -16,6 +16,7 @@ const errorMessages: Record<string, string> = {
   expired_link: "That link has expired or was already used.",
   missing_token: "That link is incomplete.",
   invalid_request: "That request didn't come from this site. Try again from here.",
+  rate_limited: "Too many attempts from here. Wait a few minutes and try again.",
   google_unavailable: "Google sign-in isn't available right now. Use your email and password.",
   google_cancelled: "Google sign-in was cancelled.",
   google_failed: "Google sign-in didn't complete. Try again, or use your email and password.",

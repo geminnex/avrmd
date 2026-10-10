@@ -11,12 +11,18 @@ import {
   type CorpusItem,
   type QuestionDoc,
 } from "@/lib/assistant/retrieve";
-import { createRateLimiter } from "@/lib/rate-limit";
+import { rateLimiter } from "@/lib/rate-limit";
 import { getStage, getTechnicalProblems } from "@/lib/stages";
 import { getAllTalks } from "@/lib/talks";
 import { topics } from "@/lib/topics";
 
-const rateLimited = createRateLimiter(20);
+const rateLimited = rateLimiter("assist:rateLimited", 20, 60_000);
+
+/**
+ * Model answers per visitor per day. Under the site-wide cap below, so one
+ * visitor can't spend everyone's budget; past it they still get sources.
+ */
+const perVisitorModel = rateLimiter("assist-model", 40, 24 * 60 * 60_000);
 
 /** Model calls per rolling 24 hours, site-wide. Past it, answers are retrieval-only. */
 const dailyModelLimit = Number(process.env.ASSISTANT_DAILY_LIMIT ?? 400);
@@ -105,7 +111,7 @@ function pageContext(
 
 export async function POST(request: Request) {
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "local";
-  if (rateLimited(ip)) {
+  if (await rateLimited(ip)) {
     return NextResponse.json({ ok: false, message: "Too many questions. Wait a minute." }, { status: 429 });
   }
 
@@ -123,7 +129,8 @@ export async function POST(request: Request) {
   const [talks, questions] = await Promise.all([getAllTalks(), loadQuestions()]);
   const corpus = buildCorpus({ talks, questions });
   const context = pageContext(body.path, corpus);
-  const modelAvailable = Boolean(process.env.OPENROUTER_API_KEY) && (await underDailyLimit());
+  const modelAvailable =
+    Boolean(process.env.OPENROUTER_API_KEY) && (await underDailyLimit()) && !(await perVisitorModel(ip));
 
   let searchText = query;
   let items = retrieve(searchText, corpus, { pinned: context.pinned });

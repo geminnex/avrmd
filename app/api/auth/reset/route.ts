@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { rateLimiter } from "@/lib/rate-limit";
+import { clientIp } from "@/lib/auth/flow";
 import { z } from "zod";
 import { signedInJson } from "@/lib/auth/flow";
 import { hashPassword, passwordProblem } from "@/lib/auth/password";
@@ -6,9 +8,14 @@ import { destroyUserSessions } from "@/lib/db/repositories/sessions";
 import { setPasswordAfterReset } from "@/lib/db/repositories/users";
 import { consumeVerificationToken, peekVerificationToken } from "@/lib/db/repositories/verification-tokens";
 
+const perIp = rateLimiter("reset", 10, 15 * 60_000);
+
 const bodySchema = z.object({ token: z.string().min(10), password: z.string() });
 
 export async function POST(request: Request) {
+  if (await perIp(clientIp(request))) {
+    return NextResponse.json({ ok: false, message: "Too many attempts. Try again later." }, { status: 429 });
+  }
   const parsed = bodySchema.safeParse(await request.json().catch(() => null));
   if (!parsed.success) return NextResponse.json({ ok: false, message: "Invalid request." }, { status: 400 });
 

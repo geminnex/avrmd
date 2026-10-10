@@ -85,6 +85,13 @@
       "when": 1791648744409,
       "tag": "0011_contributions",
       "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1791651607488,
+      "tag": "0012_rate_limits",
+      "breakpoints": true
     }
   ]
 }

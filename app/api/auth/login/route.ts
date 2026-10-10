@@ -3,15 +3,15 @@ import { z } from "zod";
 import { safeNextPath } from "@/lib/auth/guards";
 import { clientIp, signedInJson, siteUrl } from "@/lib/auth/flow";
 import { burnPasswordCheck, verifyPassword } from "@/lib/auth/password";
-import { createRateLimiter } from "@/lib/rate-limit";
+import { rateLimiter } from "@/lib/rate-limit";
 import { getUserByEmail } from "@/lib/db/repositories/users";
 import { createVerificationToken } from "@/lib/db/repositories/verification-tokens";
 import { sendConfirmEmail } from "@/lib/mail";
 
 // Per address and per IP, so one account can't be guessed at from many
 // places and one place can't spray many accounts.
-const perEmail = createRateLimiter(8, 15 * 60_000);
-const perIp = createRateLimiter(30, 15 * 60_000);
+const perEmail = rateLimiter("login:perEmail", 8, 15 * 60_000);
+const perIp = rateLimiter("login:perIp", 30, 15 * 60_000);
 
 const bodySchema = z.object({
   email: z.string().trim().max(254),
@@ -27,7 +27,7 @@ export async function POST(request: Request) {
   if (!parsed.success) return wrong();
   const email = parsed.data.email.toLowerCase();
 
-  if (perEmail(email) || perIp(clientIp(request))) {
+  if (await perEmail(email) || await perIp(clientIp(request))) {
     return NextResponse.json({ ok: false, message: "Too many attempts. Wait 15 minutes, or reset your password." }, { status: 429 });
   }
 

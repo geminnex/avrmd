@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { rateLimiter } from "@/lib/rate-limit";
 import { z } from "zod";
 import { getCurrentUser } from "@/lib/auth/session";
 import { getUserByHandle, reservedHandles, updateUserProfile } from "@/lib/db/repositories/users";
@@ -9,6 +10,8 @@ import {
   isProfessionalRole,
   isTopicSlug,
 } from "@/lib/member-profile";
+
+const rateLimited = rateLimiter("profile", 20, 60_000);
 
 const handlePattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
@@ -48,6 +51,9 @@ export async function POST(request: Request) {
   const user = await getCurrentUser();
   if (!user) {
     return NextResponse.json({ ok: false, message: "Sign in required." }, { status: 401 });
+  }
+  if (await rateLimited(user.id)) {
+    return NextResponse.json({ ok: false, message: "Too many requests. Wait a minute." }, { status: 429 });
   }
 
   let body: unknown;

@@ -8,7 +8,7 @@ import {
   questionTagLimits,
   routeQuestion,
 } from "@/lib/questions";
-import { createRateLimiter } from "@/lib/rate-limit";
+import { rateLimiter } from "@/lib/rate-limit";
 import {
   createQuestion,
   findQuestionByTitle,
@@ -19,7 +19,7 @@ import {
   findRoutingSaturated,
 } from "@/lib/db/repositories/notifications";
 
-const rateLimited = createRateLimiter(3);
+const rateLimited = rateLimiter("question:rateLimited", 3, 60_000);
 
 const bodySchema = z.object({
   title: z
@@ -39,7 +39,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, message: "Sign in to ask." }, { status: 401 });
   }
 
-  if (rateLimited(user.id)) {
+  if (await rateLimited(user.id)) {
     return NextResponse.json(
       { ok: false, message: "Too many questions. Wait a minute." },
       { status: 429 },

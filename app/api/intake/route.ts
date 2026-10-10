@@ -5,10 +5,10 @@ import { createContribution } from "@/lib/db/repositories/contributions";
 import { getMembersForEntity } from "@/lib/db/repositories/memberships";
 import { getUserById } from "@/lib/db/repositories/users";
 import { sendMail } from "@/lib/mail";
-import { createRateLimiter } from "@/lib/rate-limit";
+import { rateLimiter } from "@/lib/rate-limit";
 import { intakeLabels, validateIntake, type IntakeRequest } from "@/lib/workflows";
 
-const rateLimited = createRateLimiter(5, 60 * 60_000);
+const rateLimited = rateLimiter("intake:rateLimited", 5, 60 * 60_000);
 
 /** Where submissions, claims and promotion enquiries are sent. */
 function editorAddress() {
@@ -33,7 +33,7 @@ export async function POST(request: Request) {
   if (!user) {
     return NextResponse.json({ ok: false, message: "Sign in to send this." }, { status: 401 });
   }
-  if (rateLimited(user.id)) {
+  if (await rateLimited(user.id)) {
     return NextResponse.json({ ok: false, message: "Too many requests. Try again later." }, { status: 429 });
   }
 

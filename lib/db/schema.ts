@@ -824,3 +824,14 @@ export const contributions = pgTable(
   },
   (table) => [index("contributions_status_idx").on(table.status, table.createdAt)],
 );
+
+/**
+ * Fixed-window request counters, shared by every server process and kept
+ * across restarts (the in-memory limiters reset on each deploy). One row per
+ * limiter key; rows older than a day are swept opportunistically.
+ */
+export const rateLimits = pgTable("rate_limits", {
+  key: text("key").primaryKey(),
+  windowStart: timestamp("window_start", { withTimezone: true }).notNull(),
+  hits: integer("hits").notNull(),
+});

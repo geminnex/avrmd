@@ -1,9 +1,12 @@
 import { NextResponse } from "next/server";
+import { rateLimiter } from "@/lib/rate-limit";
 import { z } from "zod";
 import { getCurrentUser } from "@/lib/auth/session";
 import { follow, isFollowing, unfollow } from "@/lib/db/repositories/follows";
 import { getEntity } from "@/lib/catalog";
 import { getUserById } from "@/lib/db/repositories/users";
+
+const rateLimited = rateLimiter("follow", 30, 60_000);
 
 const bodySchema = z.object({
   followingType: z.enum(["user", "entity"]),
@@ -41,6 +44,9 @@ export async function POST(request: Request) {
   if (!user) {
     return NextResponse.json({ ok: false, message: "Sign in to follow." }, { status: 401 });
   }
+  if (await rateLimited(user.id)) {
+    return NextResponse.json({ ok: false, message: "Too many requests. Wait a minute." }, { status: 429 });
+  }
 
   let body: unknown;
   try {
@@ -72,6 +78,9 @@ export async function DELETE(request: Request) {
   const user = await getCurrentUser();
   if (!user) {
     return NextResponse.json({ ok: false, message: "Sign in required." }, { status: 401 });
+  }
+  if (await rateLimited(user.id)) {
+    return NextResponse.json({ ok: false, message: "Too many requests. Wait a minute." }, { status: 429 });
   }
 
   let body: unknown;

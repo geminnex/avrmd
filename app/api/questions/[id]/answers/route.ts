@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { getCurrentUser } from "@/lib/auth/session";
-import { createRateLimiter } from "@/lib/rate-limit";
+import { rateLimiter } from "@/lib/rate-limit";
 import { createAnswer, getQuestion } from "@/lib/db/repositories/questions";
 import { createNotifications } from "@/lib/db/repositories/notifications";
 
-const rateLimited = createRateLimiter(5);
+const rateLimited = rateLimiter("answer:rateLimited", 5, 60_000);
 
 const bodySchema = z.object({
   body: z
@@ -21,7 +21,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     return NextResponse.json({ ok: false, message: "Sign in to answer." }, { status: 401 });
   }
 
-  if (rateLimited(user.id)) {
+  if (await rateLimited(user.id)) {
     return NextResponse.json(
       { ok: false, message: "Too many answers. Wait a minute." },
       { status: 429 },

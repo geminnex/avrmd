@@ -3,13 +3,13 @@ import { z } from "zod";
 import { safeNextPath } from "@/lib/auth/guards";
 import { clientIp, devLink, siteUrl } from "@/lib/auth/flow";
 import { hashPassword, passwordProblem } from "@/lib/auth/password";
-import { createRateLimiter } from "@/lib/rate-limit";
+import { rateLimiter } from "@/lib/rate-limit";
 import { registerPasswordUser } from "@/lib/db/repositories/users";
 import { createVerificationToken } from "@/lib/db/repositories/verification-tokens";
 import { sendAlreadyRegistered, sendConfirmEmail } from "@/lib/mail";
 
-const perIp = createRateLimiter(10, 15 * 60_000);
-const perEmail = createRateLimiter(3, 15 * 60_000);
+const perIp = rateLimiter("register:perIp", 10, 15 * 60_000);
+const perEmail = rateLimiter("register:perEmail", 3, 15 * 60_000);
 
 const bodySchema = z.object({
   email: z.string().trim().email("Enter a valid email address.").max(254),
@@ -31,7 +31,7 @@ export async function POST(request: Request) {
   const problem = passwordProblem(parsed.data.password, email);
   if (problem) return NextResponse.json({ ok: false, message: problem }, { status: 422 });
 
-  if (perIp(clientIp(request)) || perEmail(email)) {
+  if (await perIp(clientIp(request)) || await perEmail(email)) {
     return NextResponse.json({ ok: false, message: "Too many attempts. Try again in a few minutes." }, { status: 429 });
   }
 
