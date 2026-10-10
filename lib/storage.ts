@@ -1,4 +1,4 @@
-import { randomUUID } from "node:crypto";
+import { createHmac, randomUUID } from "node:crypto";
 import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 
 /**
@@ -76,7 +76,10 @@ export async function uploadPostImage(
     return { ok: false, error: "Only PNG, JPEG, and WEBP images are accepted." };
   }
 
-  const key = `posts/${ownerId}/${randomUUID()}.${allowedTypes[detected].ext}`;
+  // The path carries a keyed hash of the owner, never the user id: listing
+  // or guessing paths reveals nothing, yet a post can prove an image is the
+  // poster's own (see ownUploadMimeType).
+  const key = `posts/${ownerTag(ownerId)}/${randomUUID()}.${allowedTypes[detected].ext}`;
 
   await getClient().send(
     new PutObjectCommand({
@@ -96,4 +99,26 @@ export async function uploadPostImage(
     "",
   );
   return { ok: true, url: `${publicBase}/${process.env.S3_BUCKET}/${key}`, mimeType: detected };
+}
+
+/** Keyed, one-way: the same member always gets the same tag; nobody can reverse it. */
+export function ownerTag(userId: string) {
+  const secret = process.env.AUTH_SECRET;
+  if (!secret) throw new Error("AUTH_SECRET is required to sign uploads.");
+  return createHmac("sha256", secret).update(`upload:${userId}`).digest("hex").slice(0, 20);
+}
+
+const extensionTypes: Record<string, string> = { png: "image/png", jpg: "image/jpeg", webp: "image/webp" };
+
+/**
+ * The MIME type of an image this member uploaded, or null for any other URL
+ * — someone else's upload, an external tracking pixel, anything. The type
+ * comes from our own key, never from the client.
+ */
+export function ownUploadMimeType(url: string, userId: string) {
+  const publicBase = (process.env.S3_PUBLIC_URL ?? process.env.S3_ENDPOINT ?? "").replace(/\/$/, "");
+  const prefix = `${publicBase}/${process.env.S3_BUCKET}/posts/${ownerTag(userId)}/`;
+  if (!url.startsWith(prefix)) return null;
+  const match = url.slice(prefix.length).match(/^[0-9a-f-]{36}\.(png|jpg|webp)$/);
+  return match ? extensionTypes[match[1]] : null;
 }

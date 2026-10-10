@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { isUuid } from "@/lib/ids";
 import { z } from "zod";
 import { getCurrentUser } from "@/lib/auth/session";
 import { addComment, getPost, listComments } from "@/lib/db/repositories/posts";
@@ -9,6 +10,7 @@ const bodySchema = z.object({ body: z.string().trim().min(1).max(1000) });
 
 export async function GET(_request: Request, { params }: Params) {
   const { id } = await params;
+  if (!isUuid(id)) return NextResponse.json({ ok: false, message: "Not found." }, { status: 404 });
   const comments = await listComments(id);
   return NextResponse.json({ ok: true, comments });
 }
@@ -20,6 +22,8 @@ export async function POST(request: Request, { params }: Params) {
   }
 
   const { id } = await params;
+
+  if (!isUuid(id)) return NextResponse.json({ ok: false, message: "Not found." }, { status: 404 });
   if (!(await getPost(id))) {
     return NextResponse.json({ ok: false, message: "Post not found." }, { status: 404 });
   }

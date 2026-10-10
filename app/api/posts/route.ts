@@ -4,6 +4,7 @@ import { getCurrentUser } from "@/lib/auth/session";
 import { createPost, listRecentPosts } from "@/lib/db/repositories/posts";
 import { getUserMembership } from "@/lib/db/repositories/memberships";
 import { getEntity } from "@/lib/catalog";
+import { ownUploadMimeType } from "@/lib/storage";
 
 const windowMs = 60_000;
 const maxPerWindow = 6;
@@ -25,7 +26,7 @@ const bodySchema = z.object({
   entitySlug: z.string().trim().max(180).optional(),
   kind: z.enum(["update", "blog"]).optional(),
   media: z
-    .array(z.object({ url: z.string().url(), mimeType: z.string() }))
+    .array(z.object({ url: z.string().url(), mimeType: z.string().optional() }))
     .max(4)
     .optional(),
 });
@@ -86,12 +87,25 @@ export async function POST(request: Request) {
     }
   }
 
+  // Only images this member uploaded here; the type comes from our own key.
+  const media: { url: string; mimeType: string }[] = [];
+  for (const item of parsed.data.media ?? []) {
+    const mimeType = ownUploadMimeType(item.url, user.id);
+    if (!mimeType) {
+      return NextResponse.json(
+        { ok: false, message: "Images must be uploaded here first." },
+        { status: 422 },
+      );
+    }
+    media.push({ url: item.url, mimeType });
+  }
+
   const post = await createPost({
     authorId: user.id,
     body: parsed.data.body,
     entitySlug: parsed.data.entitySlug,
     kind: parsed.data.kind,
-    mediaUrls: parsed.data.media,
+    mediaUrls: media,
   });
 
   return NextResponse.json({ ok: true, post });

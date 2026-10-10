@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { isUuid } from "@/lib/ids";
 import { z } from "zod";
 import { getCurrentUser } from "@/lib/auth/session";
 import { addThreadPost, getThread, listThreadPosts } from "@/lib/db/repositories/community";
@@ -9,6 +10,7 @@ const bodySchema = z.object({ body: z.string().trim().min(1).max(2000) });
 
 export async function GET(_request: Request, { params }: Params) {
   const { threadId } = await params;
+  if (!isUuid(threadId)) return NextResponse.json({ ok: false, message: "Not found." }, { status: 404 });
   const posts = await listThreadPosts(threadId);
   return NextResponse.json({ ok: true, posts });
 }
@@ -20,6 +22,8 @@ export async function POST(request: Request, { params }: Params) {
   }
 
   const { slug, threadId } = await params;
+
+  if (!isUuid(threadId)) return NextResponse.json({ ok: false, message: "Not found." }, { status: 404 });
   const thread = await getThread(threadId);
   if (!thread || thread.entitySlug !== slug) {
     return NextResponse.json({ ok: false, message: "Thread not found." }, { status: 404 });

@@ -1,3 +1,4 @@
+import { isUuid } from "@/lib/ids";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { PostCard } from "@/components/post-card";
@@ -11,6 +12,7 @@ export const dynamic = "force-dynamic";
 
 export default async function PostPage({ params }: PostPageProps) {
   const { id } = await params;
+  if (!isUuid(id)) notFound();
   const [post, viewer] = await Promise.all([getPost(id), getCurrentUser()]);
   if (!post) notFound();
 

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { isUuid } from "@/lib/ids";
 import { getCurrentUser } from "@/lib/auth/session";
 import { getPost, hasLiked, likePost, unlikePost } from "@/lib/db/repositories/posts";
 
@@ -11,6 +12,8 @@ export async function POST(_request: Request, { params }: Params) {
   }
 
   const { id } = await params;
+
+  if (!isUuid(id)) return NextResponse.json({ ok: false, message: "Not found." }, { status: 404 });
   if (!(await getPost(id))) {
     return NextResponse.json({ ok: false, message: "Post not found." }, { status: 404 });
   }

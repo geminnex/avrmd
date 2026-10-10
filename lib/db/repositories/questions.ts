@@ -24,12 +24,8 @@ export type QuestionListItem = {
   author: QuestionAuthor;
 };
 
-const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-
-/** A malformed id is a 404, not a Postgres cast error. */
-export function isUuid(value: string) {
-  return uuidPattern.test(value);
-}
+export { isUuid } from "@/lib/ids";
+import { isUuid } from "@/lib/ids";
 
 export async function createQuestion(params: {
   authorId: string;
