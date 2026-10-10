@@ -796,3 +796,31 @@ export const auditEvents = pgTable(
   },
   (table) => [index("audit_events_resource_idx").on(table.resourceType, table.resourceId)],
 );
+
+export const contributionKind = pgEnum("contribution_kind", [
+  "submission",
+  "claim",
+  "advertising",
+  "inquiry",
+]);
+
+/**
+ * Everything people send the editors (or, for an inquiry, a record's verified
+ * representatives) through the site's forms. One table rather than one per
+ * form: until the review screen exists, these are read from email and here.
+ */
+export const contributions = pgTable(
+  "contributions",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    kind: contributionKind("kind").notNull(),
+    entitySlug: text("entity_slug"),
+    payload: jsonb("payload").$type<Record<string, unknown>>().notNull(),
+    status: workflowStatus("status").notNull().default("submitted"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [index("contributions_status_idx").on(table.status, table.createdAt)],
+);

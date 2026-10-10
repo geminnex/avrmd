@@ -1,6 +1,8 @@
 "use client";
 
-import { FormEvent, useId, useState } from "react";
+import { FormEvent, useEffect, useId, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ArrowRight, CheckCircle2, LoaderCircle, ShieldAlert } from "lucide-react";
 import type { IntakeType } from "@/lib/workflows";
 
@@ -10,38 +12,55 @@ type WorkflowFormProps = {
   compact?: boolean;
 };
 
-const copy: Record<IntakeType, { title: string; description: string; submit: string }> = {
+const copy: Record<IntakeType, { eyebrow: string; title: string; description: string; submit: string }> = {
   submission: {
-    title: "Submit a missing record",
-    description: "Provide metadata and a source. An editor must approve every publication.",
-    submit: "Validate submission",
+    eyebrow: "Suggest a record",
+    title: "Add something missing",
+    description: "An editor checks the source and replies by email. Nothing is published until it has been checked.",
+    submit: "Send suggestion",
   },
   claim: {
-    title: "Claim an operational page",
-    description: "Claims are free and require a work-domain email plus staff review.",
-    submit: "Validate claim",
+    eyebrow: "Claim a record",
+    title: "Represent your organization",
+    description: "Free. An editor confirms you work there, usually through your work-domain email, and replies by email.",
+    submit: "Send claim",
   },
   advertising: {
-    title: "Request a managed campaign",
-    description: "Every campaign is reviewed, labeled, invoiced offline, and scheduled by staff.",
-    submit: "Validate campaign request",
+    eyebrow: "Promotion enquiry",
+    title: "Ask about a placement",
+    description: "An editor replies by email with what is possible and a quote. Placements are always labelled Sponsored.",
+    submit: "Send enquiry",
   },
   inquiry: {
-    title: "Contact the verified owner",
-    description: "A private professional inquiry—not a clinical consultation or support channel.",
-    submit: "Validate inquiry",
-  },
-  ai_job: {
-    title: "Queue an AI research job",
-    description: "Only allowlisted public sources. Suggestions always wait for human approval.",
-    submit: "Validate research job",
+    eyebrow: "Private message",
+    title: "Contact the verified representative",
+    description: "A private professional message, not a clinical consultation or support channel.",
+    submit: "Send message",
   },
 };
 
-const booleanFields = ["attestation", "noPhi", "humanReview"] as const;
+const booleanFields = ["attestation", "noPhi"] as const;
 
 export function WorkflowForm({ mode, entitySlug, compact = false }: WorkflowFormProps) {
   const formId = useId();
+  const pathname = usePathname() ?? "/";
+  const [signedIn, setSignedIn] = useState<boolean | null>(null);
+
+  // Ask before they type: the form only sends for signed-in members.
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/auth/me")
+      .then((response) => (response.ok ? response.json() : { user: null }))
+      .then((payload) => {
+        if (!cancelled) setSignedIn(Boolean(payload.user));
+      })
+      .catch(() => {
+        if (!cancelled) setSignedIn(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
   const [state, setState] = useState<
     | { status: "idle" }
     | { status: "loading" }
@@ -95,7 +114,7 @@ export function WorkflowForm({ mode, entitySlug, compact = false }: WorkflowForm
     } catch {
       setState({
         status: "error",
-        message: "The validation service is unavailable. No request was stored or sent.",
+        message: "Could not reach the server. Nothing was sent; try again.",
         issues: [],
       });
     }
@@ -103,13 +122,28 @@ export function WorkflowForm({ mode, entitySlug, compact = false }: WorkflowForm
 
   const details = copy[mode];
 
+  if (signedIn === false) {
+    return (
+      <div className={`workflow-form${compact ? " compact" : ""}`}>
+        <div className="workflow-form-heading">
+          <span className="eyebrow">{details.eyebrow}</span>
+          <h2>{details.title}</h2>
+          <p>{details.description}</p>
+        </div>
+        <Link className="workflow-submit" href={`/sign-in?next=${encodeURIComponent(pathname)}`}>
+          Sign in or create a free account to send this
+        </Link>
+      </div>
+    );
+  }
+
   return (
     <form
       className={`workflow-form${compact ? " compact" : ""}`}
       onSubmit={handleSubmit}
     >
       <div className="workflow-form-heading">
-        <span className="eyebrow">Validated preview</span>
+        <span className="eyebrow">{details.eyebrow}</span>
         <h2>{details.title}</h2>
         <p>{details.description}</p>
       </div>
@@ -260,50 +294,13 @@ export function WorkflowForm({ mode, entitySlug, compact = false }: WorkflowForm
         </>
       )}
 
-      {mode === "ai_job" && (
-        <>
-          <FormField id={`${formId}-ai-source`} label="Allowlisted public source URL">
-            <input
-              id={`${formId}-ai-source`}
-              name="sourceUrl"
-              type="url"
-              placeholder="https://"
-              required
-            />
-          </FormField>
-          <FormField id={`${formId}-job-type`} label="Research task">
-            <select
-              id={`${formId}-job-type`}
-              name="jobType"
-              defaultValue="extract_metadata"
-            >
-              <option value="extract_metadata">Extract structured metadata</option>
-              <option value="check_freshness">Check a record for freshness</option>
-              <option value="suggest_relationships">Suggest related records</option>
-            </select>
-          </FormField>
-          <FormField id={`${formId}-ai-rights`} label="Source rights basis">
-            <textarea
-              id={`${formId}-ai-rights`}
-              name="rightsBasis"
-              placeholder="Official domain, open metadata API, or documented permission"
-              required
-            />
-          </FormField>
-          <CheckField
-            name="humanReview"
-            label="I understand AI output is a suggestion and cannot publish without human approval."
-          />
-        </>
-      )}
 
       {state.status === "success" && (
         <div className="form-message success" role="status">
           <CheckCircle2 size={18} />
           <span>
-            <strong>Validation passed</strong>
+            <strong>Sent</strong>
             {state.message}
-            <small>Preview reference: {state.requestId.slice(0, 8)}</small>
           </span>
         </div>
       )}
@@ -312,7 +309,7 @@ export function WorkflowForm({ mode, entitySlug, compact = false }: WorkflowForm
         <div className="form-message error" role="alert">
           <ShieldAlert size={18} />
           <span>
-            <strong>Validation needs attention</strong>
+            <strong>Not sent</strong>
             {state.message}
             {state.issues.map((issue) => (
               <small key={issue}>{issue}</small>
@@ -325,7 +322,7 @@ export function WorkflowForm({ mode, entitySlug, compact = false }: WorkflowForm
         {state.status === "loading" ? (
           <>
             <LoaderCircle className="spin" size={17} />
-            Validating
+            Sending
           </>
         ) : (
           <>

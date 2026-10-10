@@ -55,9 +55,9 @@ export default function ParticipatePage() {
       <section className="shell submission-section">
         <div className="submission-layout">
           <div>
-            <PreviewNote title="Preview">
-              Submissions are validated against the catalog contract, then stop — nothing
-              is stored or published while accounts and review queues are being connected.
+            <PreviewNote title="What happens next">
+              Your suggestion is stored and sent to the editors, who check the source and
+              reply by email. It is published only once it has been checked.
             </PreviewNote>
             <WorkflowForm mode="submission" />
           </div>

@@ -32,11 +32,13 @@ describe("AVRMD intake validation", () => {
 
   it("rejects non-web source URLs", () => {
     const result = validateIntake({
-      type: "ai_job",
+      type: "submission",
+      name: "Private trial",
+      kind: "evidence",
       sourceUrl: "file:///private/research.pdf",
-      jobType: "extract_metadata",
       rightsBasis: "Editor supplied source with permission.",
-      humanReview: true,
+      contactEmail: "editor@example.org",
+      attestation: true,
     });
 
     expect(result.success).toBe(false);

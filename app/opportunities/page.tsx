@@ -49,10 +49,11 @@ export default function OpportunitiesPage() {
               a real one.
             </p>
             <PreviewNote title="Posting">
-              Posting a listing needs an account, which is not open yet.
+              Posting a listing from the site isn&apos;t built yet. If you have one, send it
+              as a suggestion and an editor will add it.
             </PreviewNote>
-            <Link className="primary-link" href="/for-organizations">
-              Claim your organisation to be ready
+            <Link className="primary-link" href="/participate">
+              Suggest a listing
               <ArrowRight size={16} />
             </Link>
           </div>

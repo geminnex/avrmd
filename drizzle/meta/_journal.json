@@ -78,6 +78,13 @@
       "when": 1791648289942,
       "tag": "0010_password_accounts",
       "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1791648744409,
+      "tag": "0011_contributions",
+      "breakpoints": true
     }
   ]
 }

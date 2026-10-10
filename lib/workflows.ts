@@ -52,20 +52,12 @@ const inquiryRequest = z.object({
   noPhi: z.literal(true),
 });
 
-const aiJobRequest = z.object({
-  type: z.literal("ai_job"),
-  sourceUrl: httpsUrl,
-  jobType: z.enum(["extract_metadata", "check_freshness", "suggest_relationships"]),
-  rightsBasis: z.string().trim().min(10).max(500),
-  humanReview: z.literal(true),
-});
 
 export const intakeSchema = z.discriminatedUnion("type", [
   submissionRequest,
   claimRequest,
   advertisingRequest,
   inquiryRequest,
-  aiJobRequest,
 ]);
 
 export type IntakeRequest = z.infer<typeof intakeSchema>;
@@ -76,7 +68,6 @@ export const intakeLabels: Record<IntakeType, string> = {
   claim: "Ownership claim",
   advertising: "Campaign request",
   inquiry: "Private inquiry",
-  ai_job: "AI research job",
 };
 
 export function validateIntake(input: unknown) {

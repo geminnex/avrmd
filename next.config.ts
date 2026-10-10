@@ -42,6 +42,8 @@ const nextConfig: NextConfig = {
       // /advertise was published before promotion merged into the wider
       // organisation journey.
       { source: "/advertise", destination: "/for-organizations", permanent: true },
+      // The public AI research form never queued anything; the policy lives on /about.
+      { source: "/ai", destination: "/about#ai", permanent: true },
     ];
   },
 };

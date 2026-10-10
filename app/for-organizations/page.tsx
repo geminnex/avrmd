@@ -29,13 +29,13 @@ const claimSteps = [
   },
   {
     icon: MailCheck,
-    title: "Verify with a work email",
-    description: "A claim is checked against your organisation's own domain.",
+    title: "Send a claim",
+    description: "An editor confirms you work there, usually through your work-domain email, and replies by email.",
   },
   {
     icon: PencilLine,
-    title: "Maintain the official facts",
-    description: "Keep the description, updates, events, and inquiry routing current.",
+    title: "Speak for your organization",
+    description: "Post official updates, run the record's forum, blog and media, and receive private messages.",
   },
 ];
 
@@ -111,8 +111,8 @@ export default function ForOrganizationsPage() {
               <div className="status-line">
                 <PencilLine size={17} />
                 <span>
-                  <strong>You maintain</strong>
-                  Official description, updates, events, and where inquiries go.
+                  <strong>Once confirmed</strong>
+                  Official updates, the record&apos;s group, and private messages from members. Corrections to the description go to an editor.
                 </span>
               </div>
               <div className="status-line">

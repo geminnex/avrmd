@@ -251,32 +251,40 @@ export default function AboutPage() {
               <div>
                 <strong>Working now</strong>
                 <ul>
-                  <li>The full catalog, topic hubs, directory, gear, and related websites.</li>
-                  <li>Search, filters, and the assistant, which run against real records.</li>
-                  <li>A daily check that looks for new records to review.</li>
+                  <li>The catalog, topic hubs, stage guides, talks, gear and related websites.</li>
+                  <li>
+                    The FDA&rsquo;s list of authorized AR/VR devices and a daily feed of new
+                    papers, trials and news, both refreshed by a robot every day.
+                  </li>
+                  <li>Ask AVRMD, which answers from those sources and cites them.</li>
+                  <li>
+                    Accounts (email and password, or Google), member profiles, the member
+                    directory, questions and answers with notifications, and posts.
+                  </li>
+                  <li>
+                    Suggesting a record, claiming one, and promotion enquiries: stored and
+                    sent to the editors, who reply by email.
+                  </li>
                 </ul>
               </div>
               <div>
-                <strong>Not connected yet</strong>
+                <strong>Not built yet</strong>
                 <ul>
                   <li>
-                    Accounts and sign-in. Forms validate what you enter and then stop —
-                    nothing is stored, emailed, or published.
+                    A review screen: robot-found candidates and your suggestions are
+                    reviewed by an editor outside the site, so publishing takes time.
                   </li>
+                  <li>Email notifications and digests; notifications are on the site only.</li>
+                  <li>Posting opportunities and live sessions.</li>
                   <li>
-                    Community posting. The discussions shown are illustrative examples,
-                    labelled as samples.
-                  </li>
-                  <li>
-                    Owner inquiry delivery, campaign scheduling, and the workspace queues
-                    beyond the discovery feed.
+                    The topic discussions on the Community page, which are labelled samples.
                   </li>
                 </ul>
               </div>
             </div>
             <p>
-              Where a page shows example content, it says so on the page. Where a form
-              cannot yet do anything, it says that before you submit it.
+              Where a page shows example content, it says so on the page. Everything else on
+              this list is checked against the code each time it changes.
             </p>
           </section>
         </div>
