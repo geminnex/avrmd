@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { catalog, kindLabels } from "@/lib/catalog";
+import { readDataFile } from "@/lib/data-file";
+import { getFdaDeviceList } from "@/lib/fda-devices";
+import { getSignals } from "@/lib/signals";
+import { curatedTalks } from "@/lib/talks";
+import { daysAgo } from "@/lib/time";
+import sources from "@/data/sources.json";
 import {
   BadgeCheck,
   Bot,
@@ -9,6 +16,34 @@ import {
   ShieldAlert,
   ShieldCheck,
 } from "lucide-react";
+
+// Coverage numbers come from the robot's files; refresh them hourly.
+export const revalidate = 3600;
+
+function Coverage() {
+  const byKind = new Map<string, number>();
+  for (const entity of catalog) byKind.set(entity.kind, (byKind.get(entity.kind) ?? 0) + 1);
+  const signals = getSignals();
+  const log = readDataFile<{ lastRunAt?: string }>("discovery-log.json", {});
+  const rows: [string, string][] = [
+    ["Catalog records", `${catalog.length} (${[...byKind.entries()].map(([kind, count]) => `${count} ${kindLabels[kind as keyof typeof kindLabels]?.toLowerCase() ?? kind}`).join(", ")})`],
+    ["FDA-authorized AR/VR devices", `${getFdaDeviceList().devices.length}, the FDA's full published list`],
+    ["Papers, trials and news in the feed", `${signals.length} most recent`],
+    ["Recorded talks", `${curatedTalks.length} curated, plus member submissions`],
+    ["Sources checked daily", `${(sources as { enabled: boolean }[]).filter((source) => source.enabled).length}`],
+    ["Last robot run", log.lastRunAt ? daysAgo(log.lastRunAt) : "unknown"],
+  ];
+  return (
+    <dl className="about-coverage">
+      {rows.map(([label, value]) => (
+        <div key={label}>
+          <dt>{label}</dt>
+          <dd>{value}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
 
 export const metadata: Metadata = {
   title: "About and how AVRMD works",
@@ -243,6 +278,7 @@ export default function AboutPage() {
           <section className="detail-section about-status" id="status">
             <span className="eyebrow">Status</span>
             <h2>What is live today</h2>
+            <Coverage />
             <p>
               AVRMD is being built in the open, and it is more useful to say plainly which
               parts are real than to imply that everything is.

@@ -7285,3 +7285,32 @@ a.workflow-submit {
     grid-template-columns: 1fr;
   }
 }
+.about-coverage {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 16px 0 22px;
+  overflow: hidden;
+}
+.about-coverage div {
+  border-bottom: 1px solid var(--line);
+  padding: 12px 16px;
+}
+.about-coverage dt {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.about-coverage dd {
+  color: var(--ink);
+  font-size: 14px;
+  margin: 3px 0 0;
+}
+@media (max-width: 700px) {
+  .about-coverage {
+    grid-template-columns: 1fr;
+  }
+}
