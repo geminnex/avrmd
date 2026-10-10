@@ -153,17 +153,17 @@ Nothing new is built until the site stops discarding input and the security medi
 
 ---
 
-## Phase 7 — Simplify, assistant first
+## Phase 7 — Simplify, assistant first ✅ Done (awaiting deploy)
 
 The owner's direction: not complex; don't make people fish in an ocean; the assistant brings in the right link or feature at the right moment.
 
-- [ ] Home page: one ask box with role chips (clinician, researcher, engineer, industry) above a short "what's new" strip; the assistant is the front door, not a floating extra
-- [ ] Navigation cut to five: **Ask · Library · Talks · People · For organizations**. Library holds records, FDA devices, gear, websites and signals as tabs; People holds members and questions
-- [ ] Remove or redirect `/community` (samples), `/ai`, the public `/workspace`; hide `/opportunities` until a real listing exists
-- [ ] Stages as the guided path; topics become a filter and assistant context, not a second nav item
-- [ ] When the assistant finds no helper, it offers "post this as a question" instead of implying someone will answer
-- [ ] `robots.txt`, `sitemap.xml`, per-page metadata; privacy-friendly analytics (self-hosted, no cookies)
-- [ ] Home page static again (shuffle talks on the client)
+- [x] Home page: one ask box with role chips (clinician, researcher, engineer, industry) opening Ask AVRMD; below it, new FDA authorizations, latest papers and trials, member questions
+- [x] Navigation cut to five: **Library · Stages · Talks · People · For organizations** (+ Ask AVRMD). Library and People are tab bars across their pages; mobile menu and footer follow
+- [x] `/community` (samples) redirects to `/questions`; sample threads removed from topic pages and the home feed; `/workspace` editors only; `/opportunities` out of menus and noindexed
+- [x] Stages are a primary nav item; clinical topics live under Library and as assistant/question context
+- [x] When nobody has offered help, the assistant offers "Post this as a question to the community"
+- [x] `robots.txt`, `sitemap.xml` (84 URLs); cookie-free page-view counts per page per day (DNT/GPC honoured)
+- [x] Home page static again (ISR, 5 minutes)
 
 ---
 
