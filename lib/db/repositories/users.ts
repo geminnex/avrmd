@@ -66,14 +66,31 @@ async function generateUniqueHandle() {
 }
 
 /**
+ * Proof of the address by any route other than the registration link (a
+ * sign-in link, Google, a password reset) on a still-unverified account
+ * discards that account's password. Otherwise someone could register a
+ * victim's address with a password of their own and wait for the victim to
+ * prove the address for them — account pre-hijacking.
+ */
+async function claimUnverified(user: UserRecord) {
+  if (user.emailVerifiedAt) return user;
+  const [updated] = await getDatabase()
+    .update(users)
+    .set({ emailVerifiedAt: new Date(), passwordHash: null, updatedAt: new Date() })
+    .where(eq(users.id, user.id))
+    .returning();
+  return updated;
+}
+
+/**
  * Idempotent: returns the existing user if the email is already registered.
- * Called only once an address is proven (a used magic link, or Google's
- * verified email), so unverified addresses never create accounts.
+ * Called only once an address is proven (a used sign-in link, or Google's
+ * verified email).
  */
 export async function findOrCreateUser(email: string, details: { displayName?: string } = {}) {
   const normalized = email.toLowerCase().trim();
   const existing = await getUserByEmail(normalized);
-  if (existing) return existing;
+  if (existing) return claimUnverified(existing);
 
   const [created] = await getDatabase()
     .insert(users)
@@ -97,13 +114,13 @@ export async function findOrCreateGoogleUser(claims: { sub: string; email: strin
   const [bySub] = await database.select().from(users).where(eq(users.googleSub, claims.sub)).limit(1);
   if (bySub) return bySub;
 
-  const existing = await getUserByEmail(claims.email);
-  if (existing) {
+  const found = await getUserByEmail(claims.email);
+  if (found) {
+    const existing = await claimUnverified(found);
     const [linked] = await database
       .update(users)
       .set({
         googleSub: claims.sub,
-        emailVerifiedAt: existing.emailVerifiedAt ?? new Date(),
         displayName: existing.displayName ?? claims.name ?? null,
         updatedAt: new Date(),
       })
@@ -119,6 +136,55 @@ export async function findOrCreateGoogleUser(claims: { sub: string; email: strin
     .where(eq(users.id, created.id))
     .returning();
   return linked;
+}
+
+/**
+ * Registration with a password. An unverified account for the same address
+ * takes the newest password (the person who can read that inbox decides);
+ * a verified account is never touched here — the caller emails its owner.
+ */
+export async function registerPasswordUser(email: string, passwordHash: string) {
+  const normalized = email.toLowerCase().trim();
+  const existing = await getUserByEmail(normalized);
+  if (existing?.emailVerifiedAt) return { status: "exists" as const, user: existing };
+  if (existing) {
+    const [updated] = await getDatabase()
+      .update(users)
+      .set({ passwordHash, updatedAt: new Date() })
+      .where(eq(users.id, existing.id))
+      .returning();
+    return { status: "pending" as const, user: updated };
+  }
+  const [created] = await getDatabase()
+    .insert(users)
+    .values({ email: normalized, handle: await generateUniqueHandle(), passwordHash })
+    .returning();
+  return { status: "pending" as const, user: created };
+}
+
+/** The registration link: proves the address and keeps the password chosen with it. */
+export async function confirmRegisteredEmail(email: string) {
+  const user = await getUserByEmail(email);
+  if (!user) return undefined;
+  if (user.emailVerifiedAt) return user;
+  const [updated] = await getDatabase()
+    .update(users)
+    .set({ emailVerifiedAt: new Date(), updatedAt: new Date() })
+    .where(eq(users.id, user.id))
+    .returning();
+  return updated;
+}
+
+/** A reset link proves the address too, so it also settles an unverified account. */
+export async function setPasswordAfterReset(email: string, passwordHash: string) {
+  const user = await getUserByEmail(email);
+  if (!user) return undefined;
+  const [updated] = await getDatabase()
+    .update(users)
+    .set({ passwordHash, emailVerifiedAt: user.emailVerifiedAt ?? new Date(), updatedAt: new Date() })
+    .where(eq(users.id, user.id))
+    .returning();
+  return updated;
 }
 
 export async function updateUserProfile(

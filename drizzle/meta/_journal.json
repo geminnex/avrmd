@@ -71,6 +71,13 @@
       "when": 1791647548160,
       "tag": "0009_google_sign_in",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1791648289942,
+      "tag": "0010_password_accounts",
+      "breakpoints": true
     }
   ]
 }

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { consumeVerificationToken } from "@/lib/db/repositories/verification-tokens";
-import { findOrCreateUser, markEmailVerified } from "@/lib/db/repositories/users";
+import { confirmRegisteredEmail, findOrCreateUser } from "@/lib/db/repositories/users";
 import { createSession } from "@/lib/db/repositories/sessions";
 import { sessionCookieName, sessionCookieOptions } from "@/lib/auth/session";
 import { isCrossSite, safeNextPath } from "@/lib/auth/guards";
@@ -30,11 +30,14 @@ export async function POST(request: Request) {
     return NextResponse.redirect(`${base}/sign-in?error=missing_token`, 303);
   }
 
-  const email = await consumeVerificationToken(token);
-  if (!email) return NextResponse.redirect(`${base}/sign-in?error=expired_link`, 303);
+  const used = await consumeVerificationToken(token, ["verify_email", "sign_in"]);
+  if (!used) return NextResponse.redirect(`${base}/sign-in?error=expired_link`, 303);
 
-  const user = await findOrCreateUser(email);
-  if (!user.emailVerifiedAt) await markEmailVerified(user.id);
+  // A registration link keeps the password chosen with it; an older
+  // sign-in link proves the address another way (see claimUnverified).
+  const user =
+    used.purpose === "verify_email" ? await confirmRegisteredEmail(used.email) : await findOrCreateUser(used.email);
+  if (!user) return NextResponse.redirect(`${base}/sign-in?error=expired_link`, 303);
   const { raw, expiresAt } = await createSession(user.id);
 
   const response = NextResponse.redirect(`${base}${next}`, 303);

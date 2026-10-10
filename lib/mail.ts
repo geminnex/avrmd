@@ -27,28 +27,69 @@ export function mailFrom() {
   return process.env.SMTP_FROM ?? "AVRMD <hello@localhost>";
 }
 
-/**
- * Sends over the SMTP env vars when they're configured and reachable.
- * Otherwise — unset, or the send itself fails — returns `sent: false` rather
- * than throwing, so the caller can fall back to showing the link on-screen.
- */
-export async function sendMagicLink(email: string, url: string) {
-  const transport = createMailTransport();
-  if (!transport) return { sent: false as const };
+function escapeHtml(value: string) {
+  return value.replace(/[&<>"']/g, (char) => `&#${char.charCodeAt(0)};`);
+}
 
+/**
+ * Sends one plain message. Returns false instead of throwing when SMTP is
+ * missing or the send fails; the failure is logged so a misconfigured
+ * provider shows up in the service journal.
+ */
+export async function sendMail(message: { to: string; subject: string; lines: string[]; link?: { label: string; url: string }; replyTo?: string }) {
+  const transport = createMailTransport();
+  if (!transport) return false;
+  const text = [...message.lines, ...(message.link ? ["", `${message.link.label}: ${message.link.url}`] : [])].join("\n");
+  const html = [
+    ...message.lines.map((line) => (line ? `<p>${escapeHtml(line)}</p>` : "")),
+    message.link
+      ? `<p><a href="${escapeHtml(message.link.url)}">${escapeHtml(message.link.label)}</a></p><p style="color:#6f8792;font-size:12px">${escapeHtml(message.link.url)}</p>`
+      : "",
+  ].join("");
   try {
-    await transport.sendMail({
-      from: mailFrom(),
-      to: email,
-      subject: "Sign in to AVRMD",
-      text: `Sign in to AVRMD by opening this link (valid 15 minutes):\n\n${url}\n\nIf you didn't request this, ignore it.`,
-      html: `<p>Sign in to AVRMD by opening this link (valid 15 minutes):</p><p><a href="${url}">${url}</a></p><p>If you didn't request this, ignore it.</p>`,
-    });
-    return { sent: true as const };
+    await transport.sendMail({ from: mailFrom(), to: message.to, subject: message.subject, text, html, replyTo: message.replyTo });
+    return true;
   } catch (error) {
-    // Logged so a misconfigured provider shows up in the service journal
-    // instead of silently degrading to on-screen links.
-    console.error("Magic link email failed", error);
-    return { sent: false as const };
+    console.error(`Email "${message.subject}" failed`, error);
+    return false;
   }
+}
+
+export function sendConfirmEmail(email: string, url: string) {
+  return sendMail({
+    to: email,
+    subject: "Confirm your AVRMD account",
+    lines: [
+      "Confirm this address to finish creating your AVRMD account. The link works for 24 hours.",
+      "",
+      "If you didn't sign up, ignore this email and nothing will happen.",
+    ],
+    link: { label: "Confirm my email", url },
+  });
+}
+
+export function sendAlreadyRegistered(email: string, signInUrl: string, resetUrl: string) {
+  return sendMail({
+    to: email,
+    subject: "You already have an AVRMD account",
+    lines: [
+      "Someone (probably you) tried to create an AVRMD account with this address, but it already has one.",
+      `Sign in at ${signInUrl}, or set a new password at ${resetUrl}.`,
+      "",
+      "If it wasn't you, no action is needed; your account was not changed.",
+    ],
+  });
+}
+
+export function sendPasswordReset(email: string, url: string) {
+  return sendMail({
+    to: email,
+    subject: "Reset your AVRMD password",
+    lines: [
+      "Use this link to choose a new password. It works once, for 30 minutes, and signs you out everywhere else.",
+      "",
+      "If you didn't ask for this, ignore this email; your password stays the same.",
+    ],
+    link: { label: "Choose a new password", url },
+  });
 }

@@ -33,3 +33,8 @@ export async function getSessionUser(rawToken: string) {
 export async function destroySession(rawToken: string) {
   await getDatabase().delete(sessions).where(eq(sessions.tokenHash, hashToken(rawToken)));
 }
+
+/** After a password change: every device signs in again. */
+export async function destroyUserSessions(userId: string) {
+  await getDatabase().delete(sessions).where(eq(sessions.userId, userId));
+}

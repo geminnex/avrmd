@@ -18,8 +18,14 @@ export default async function ConfirmSignInPage({ searchParams }: ConfirmPagePro
   const params = await searchParams;
   const token = params.token ?? "";
   let email: string | undefined;
+  let purpose: string | undefined;
   try {
-    email = token ? await peekVerificationToken(token) : undefined;
+    const row = token ? await peekVerificationToken(token) : undefined;
+    // Reset links have their own page.
+    if (row && row.purpose !== "reset_password") {
+      email = row.email;
+      purpose = row.purpose;
+    }
   } catch {
     email = undefined;
   }
@@ -33,7 +39,7 @@ export default async function ConfirmSignInPage({ searchParams }: ConfirmPagePro
             <form action="/api/auth/verify" method="POST">
               <div className="workflow-form-heading">
                 <span className="eyebrow">One more step</span>
-                <h2>Sign in to AVRMD</h2>
+                <h2>{purpose === "verify_email" ? "Confirm your email" : "Sign in to AVRMD"}</h2>
                 <p>
                   as <strong>{email}</strong>
                 </p>
@@ -54,11 +60,11 @@ export default async function ConfirmSignInPage({ searchParams }: ConfirmPagePro
                 <ShieldAlert size={18} />
                 <span>
                   <strong>This link can&apos;t be used</strong>
-                  It has expired (links last 15 minutes) or was already used.
+                  It has expired or was already used. Sign in, or create your account again to get a new one.
                 </span>
               </div>
               <Link className="workflow-submit" href="/sign-in">
-                Get a new link
+                Go to sign in
                 <ArrowRight size={17} />
               </Link>
             </>

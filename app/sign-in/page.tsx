@@ -6,13 +6,13 @@ import { safeNextPath } from "@/lib/auth/guards";
 
 export const metadata: Metadata = {
   title: "Sign in",
-  description: "Sign in to AVRMD with Google or an email link. No password.",
+  description: "Sign in to AVRMD, or create a free account.",
 };
 
 // Reads ?next= and ?error=, and whether Google is configured on this server.
 export const dynamic = "force-dynamic";
 
-type SignInPageProps = { searchParams: Promise<{ next?: string; error?: string }> };
+type SignInPageProps = { searchParams: Promise<{ next?: string; error?: string; mode?: string }> };
 
 export default async function SignInPage({ searchParams }: SignInPageProps) {
   const params = await searchParams;
@@ -60,6 +60,7 @@ export default async function SignInPage({ searchParams }: SignInPageProps) {
         <SignInForm
           googleEnabled={Boolean(googleConfig())}
           initialError={params.error}
+          initialMode={params.mode === "register" || params.mode === "forgot" ? params.mode : "signin"}
           next={safeNextPath(params.next)}
         />
       </section>

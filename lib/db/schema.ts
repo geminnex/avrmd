@@ -67,6 +67,8 @@ export const users = pgTable(
     /** A catalog organization slug — loose, like posts.entitySlug. */
     affiliationSlug: text("affiliation_slug"),
     emailVerifiedAt: timestamp("email_verified_at", { withTimezone: true }),
+    /** scrypt hash ("scrypt$N$r$p$salt$hash"); null for Google-only accounts. */
+    passwordHash: text("password_hash"),
     /** Google's stable account id (`sub`), once someone signs in with Google. */
     googleSub: text("google_sub"),
     profile: jsonb("profile").$type<Record<string, unknown>>().notNull().default({}),
@@ -80,11 +82,21 @@ export const users = pgTable(
   ],
 );
 
+export const tokenPurpose = pgEnum("token_purpose", [
+  // Emailed one-time sign-in link (still accepted; no longer offered).
+  "sign_in",
+  // Proves a newly registered address.
+  "verify_email",
+  // Sets a new password.
+  "reset_password",
+]);
+
 export const verificationTokens = pgTable(
   "verification_tokens",
   {
     id: uuid("id").defaultRandom().primaryKey(),
     email: text("email").notNull(),
+    purpose: tokenPurpose("purpose").notNull().default("sign_in"),
     tokenHash: text("token_hash").notNull(),
     expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
     consumedAt: timestamp("consumed_at", { withTimezone: true }),
