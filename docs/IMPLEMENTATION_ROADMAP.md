@@ -140,16 +140,16 @@ Nothing new is built until the site stops discarding input and the security medi
 
 ---
 
-## Phase 6 — Operations (deploys that can't break the live site)
+## Phase 6 — Operations (deploys that can't break the live site) ✅ Done
 
-- [ ] Deploy script: build into a new release directory, health-check it, switch, restart, keep the last 3 for rollback
-- [ ] Remove the dead Cloudflare/OpenNext `postbuild` path and `output: "standalone"`
-- [ ] Robot: atomic writes (temp file + rename), robot data moved out of the git tree, `OnFailure=` alert by email
-- [ ] One rate limiter backed by Postgres for sign-in, posting and the assistant; a per-visitor assistant quota under the global cap
-- [ ] Validate env at startup and log which file each setting came from (two silent misconfigurations so far)
-- [ ] `error.tsx`, DB-down handling on `/posts/[id]`, `/members/[handle]`, `/network`; structured server logs for failures
-- [ ] Uptime and freshness check (site up, robot ran in the last 26 hours) with an email alert
-- [ ] Pin dependency versions (no `latest`); unify the duplicated helpers
+- [x] `scripts/deploy.sh prepare | activate | rollback`: build into `.next-release`, smoke-test 12 routes on a spare port, swap with `.next-prev` kept, restart, live check, automatic rollback on failure
+- [x] Dead Cloudflare/OpenNext path and `output: "standalone"` removed; `latest` dependency pins fixed to installed versions
+- [x] Robot writes atomically (temp file + rename). Robot data stays in `data/` (`fda-xr-devices.json` tracked as a public-data snapshot; the rest gitignored and backed up nightly)
+- [x] Postgres-backed rate limiter for every limited route (atomic; parallel bursts can't overshoot); limits added to 11 unprotected routes; per-visitor assistant quota (review M5)
+- [x] Startup configuration check in `instrumentation.ts` (logs missing, empty-override and suspicious settings) and one log line per unhandled server error
+- [x] `app/error.tsx` for any failing page (DB down included); `/network` likes in one query
+- [x] Hourly health check with email alerts (site, Postgres, robot freshness and sources, backup age, disk) — `scripts/monitor.mjs`, user systemd timer
+- [x] Duplicated helpers unified (`lib/time.ts`, `lib/url.ts`)
 
 ---
 
