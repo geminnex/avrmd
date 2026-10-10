@@ -2,7 +2,7 @@ import { and, count, eq, gte } from "drizzle-orm";
 import { getDatabase } from "../client";
 import { aiJobs, aiRuns } from "../schema";
 
-const jobType = "assistant_answer";
+const assistantJob = "assistant_answer";
 
 /**
  * One row per model call, as the AI governance policy requires: provider,
@@ -10,6 +10,8 @@ const jobType = "assistant_answer";
  * not stored.
  */
 export async function recordAssistantRun(run: {
+  /** Separate ledgers: only assistant answers count against its daily cap. */
+  jobType?: "assistant_answer" | "candidate_triage";
   model: string;
   promptVersion: string;
   inputTokens?: number;
@@ -22,7 +24,7 @@ export async function recordAssistantRun(run: {
   const [job] = await database
     .insert(aiJobs)
     .values({
-      jobType,
+      jobType: run.jobType ?? assistantJob,
       status: run.error ? "failed" : "completed",
       promptVersion: run.promptVersion,
       schemaVersion: "1",
@@ -47,6 +49,6 @@ export async function countAssistantRunsSince(since: Date) {
     .select({ total: count() })
     .from(aiRuns)
     .innerJoin(aiJobs, eq(aiJobs.id, aiRuns.jobId))
-    .where(and(eq(aiJobs.jobType, jobType), gte(aiRuns.createdAt, since)));
+    .where(and(eq(aiJobs.jobType, assistantJob), gte(aiRuns.createdAt, since)));
   return row?.total ?? 0;
 }

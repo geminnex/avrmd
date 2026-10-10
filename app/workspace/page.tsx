@@ -1,78 +1,61 @@
-import { readFile } from "node:fs/promises";
-import { join } from "node:path";
-import Link from "next/link";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Bot, Clock3, FileCheck2, Inbox, Radar, ShieldCheck } from "lucide-react";
 import { getCurrentUser } from "@/lib/auth/session";
-import {
-  ArrowUpRight,
-  Bot,
-  Clock3,
-  FileCheck2,
-  Megaphone,
-  MessagesSquare,
-  Radar,
-  ShieldCheck,
-} from "lucide-react";
-import { PreviewNote } from "@/components/preview-note";
+import { isStaff } from "@/lib/auth/roles";
+import { modalities, specialties, useCases } from "@/lib/catalog";
+import { entityKinds } from "@/lib/catalog-types";
+import { readDataFile } from "@/lib/data-file";
+import { initialFields } from "@/lib/review";
+import { readQueue } from "@/lib/review-store";
+import { stages } from "@/lib/stages";
 import { timeAgo } from "@/lib/time";
+import { ContributionActions, RestoreButton, ReviewCard } from "@/components/review-card";
 
-export const metadata = {
-  title: "Workspace preview",
-  description: "The editorial queue of records discovered by the daily source check.",
-};
-
-/** The discovery job writes between builds, so read it per request. */
+export const metadata: Metadata = { title: "Editorial workspace", robots: { index: false } };
 export const dynamic = "force-dynamic";
 
-type Candidate = {
-  id: string;
-  status: string;
-  discoveredAt: string;
-  sourceId: string;
-  entityKindHint?: string;
-  title: string;
-  sourceUrl: string;
-  sourceLabel: string;
-  published?: string | null;
-};
+type Contribution = Awaited<ReturnType<typeof import("@/lib/db/repositories/contributions").listContributions>>[number];
 
-type DiscoveryLog = {
-  lastRunAt?: string;
-  totalNew?: number;
-  runs?: { source: string; fetched?: number; added?: number; error?: string }[];
-};
-
-async function readData<T>(file: string, fallback: T): Promise<T> {
+async function loadContributions(): Promise<Contribution[]> {
   try {
-    return JSON.parse(await readFile(join(process.cwd(), "data", file), "utf8")) as T;
+    const { listContributions } = await import("@/lib/db/repositories/contributions");
+    return await listContributions();
   } catch {
-    return fallback;
+    return [];
   }
 }
 
-const lanes = [
-  { icon: FileCheck2, label: "Catalog submissions", href: "/participate" },
-  { icon: MessagesSquare, label: "Member questions", href: "/questions" },
-  { icon: Megaphone, label: "Promotion requests", href: "/for-organizations#promotion" },
-  { icon: Bot, label: "AI policy", href: "/about#ai" },
-];
+function describeContribution(payload: Record<string, unknown>) {
+  const name = payload.name ?? payload.entityName ?? payload.organizationName ?? payload.entitySlug ?? "";
+  const detail = payload.sourceUrl ?? payload.relationship ?? payload.campaignGoal ?? payload.message ?? "";
+  return { name: String(name), detail: String(detail) };
+}
 
-
-/** The review queue is internal: editors only, a 404 for everyone else. */
-const staffRoles = new Set(["editor", "moderator", "administrator"]);
-
+/** Editors only: the AI-triaged discovery queue and what people sent in. */
 export default async function WorkspacePage() {
   const user = await getCurrentUser();
-  if (!user || !staffRoles.has(user.role)) notFound();
-  const candidates = await readData<Candidate[]>("candidates.json", []);
-  const log = await readData<DiscoveryLog>("discovery-log.json", {});
+  if (!isStaff(user)) notFound();
 
-  const pending = candidates.filter((item) => item.status === "pending");
-  const approved = candidates.filter((item) => item.status === "approved");
-  const bySource = new Map<string, number>();
-  for (const item of pending) {
-    bySource.set(item.sourceId, (bySource.get(item.sourceId) ?? 0) + 1);
-  }
+  const queue = readQueue();
+  const log = readDataFile<{ lastRunAt?: string }>("discovery-log.json", {});
+  const recommended = queue
+    .filter((item) => item.status === "pending")
+    .sort((a, b) => (b.triage?.confidence ?? -1) - (a.triage?.confidence ?? -1));
+  const dismissed = queue
+    .filter((item) => item.status === "dismissed")
+    .sort((a, b) => (b.decidedAt ?? "").localeCompare(a.decidedAt ?? ""));
+  const approved = queue.filter((item) => item.status === "approved");
+  const contributions = await loadContributions();
+  const openContributions = contributions.filter((row) => row.contribution.status === "submitted");
+
+  const vocab = {
+    kinds: [...entityKinds],
+    specialties: specialties.map((value) => ({ value, label: value })),
+    useCases: useCases.map((value) => ({ value, label: value })),
+    modalities: modalities.map((value) => ({ value, label: value })),
+    stages: stages.map((stage) => ({ value: stage.slug, label: stage.name })),
+  };
 
   return (
     <div className="workspace-page">
@@ -83,128 +66,115 @@ export default async function WorkspacePage() {
               <Radar size={15} />
               Editorial workspace
             </span>
-            <h1>Discovery queue</h1>
+            <h1>Review queue</h1>
             <p>
-              A daily check reads allowlisted research, regulatory, and registry sources
-              and lists what is not yet in the catalog. Nothing is published without a
-              person approving it.
+              The daily robot finds papers, trials, filings and news; AI sets aside the
+              routine and off-topic ones and drafts a record for the rest. You decide what
+              enters the catalog. Approved records publish with the next deploy.
             </p>
           </div>
         </div>
       </section>
 
-      <div className="shell workspace-grid">
-        <div className="workspace-main">
-          <PreviewNote title="Real data, preview interface">
-            The queue below is genuine output from the daily job. Approving from the
-            browser needs accounts, which are not connected — today approval runs from the
-            command line.
-          </PreviewNote>
-
-          <div className="metric-grid">
-            <div>
-              <ShieldCheck size={19} />
-              <strong>{pending.length}</strong>
-              <span>Awaiting review</span>
-            </div>
-            <div>
-              <FileCheck2 size={19} />
-              <strong>{approved.length}</strong>
-              <span>Approved to date</span>
-            </div>
-            <div>
-              <Radar size={19} />
-              <strong>{bySource.size}</strong>
-              <span>Sources reporting</span>
-            </div>
-            <div>
-              <Clock3 size={19} />
-              <strong>{log.lastRunAt ? timeAgo(log.lastRunAt) : "—"}</strong>
-              <span>Last check</span>
-            </div>
+      <div className="shell review-body">
+        <div className="metric-grid">
+          <div>
+            <ShieldCheck size={19} />
+            <strong>{recommended.length}</strong>
+            <span>To review</span>
           </div>
-
-          <div className="queue-panel">
-            <div className="queue-head">
-              <h2>Pending candidates</h2>
-              <span>{pending.length} in queue</span>
-            </div>
-
-            {pending.length === 0 ? (
-              <p className="queue-empty">
-                Nothing waiting. The next check runs within a day.
-              </p>
-            ) : (
-              pending.slice(0, 12).map((item) => (
-                <a
-                  className="candidate-row"
-                  href={item.sourceUrl}
-                  key={item.id}
-                  rel="noopener"
-                  target="_blank"
-                >
-                  <span className="candidate-kind">{item.entityKindHint ?? "record"}</span>
-                  <span className="candidate-body">
-                    <strong>{item.title}</strong>
-                    <small>
-                      {item.sourceLabel}
-                      {item.published ? ` · ${item.published}` : ""}
-                    </small>
-                  </span>
-                  <span className="candidate-age">{timeAgo(item.discoveredAt)}</span>
-                  <ArrowUpRight size={16} />
-                </a>
-              ))
-            )}
-
-            {pending.length > 12 && (
-              <p className="queue-more">and {pending.length - 12} more in the queue</p>
-            )}
+          <div>
+            <Inbox size={19} />
+            <strong>{openContributions.length}</strong>
+            <span>Contributions open</span>
+          </div>
+          <div>
+            <FileCheck2 size={19} />
+            <strong>{approved.length}</strong>
+            <span>Approved</span>
+          </div>
+          <div>
+            <Clock3 size={19} />
+            <strong>{log.lastRunAt ? timeAgo(log.lastRunAt) : "—"}</strong>
+            <span>Last robot run</span>
           </div>
         </div>
 
-        <aside className="workspace-aside">
-          <div className="sidebar-card">
-            <span className="eyebrow">Sources checked</span>
-            {log.runs?.length ? (
-              <ul className="source-run-list">
-                {log.runs.map((run) => (
-                  <li key={run.source}>
-                    <span>{run.source}</span>
-                    <strong>{run.error ? "error" : `${run.added ?? 0} new`}</strong>
+        <section className="review-section">
+          <h2>Contributions</h2>
+          {contributions.length === 0 ? (
+            <p className="queue-empty">Nothing sent in yet.</p>
+          ) : (
+            <ul className="contribution-list">
+              {contributions.map(({ contribution, email }) => {
+                const { name, detail } = describeContribution(contribution.payload);
+                return (
+                  <li className={contribution.status === "submitted" ? "open" : ""} key={contribution.id}>
+                    <span>
+                      <small>
+                        {contribution.kind} · {email} · {timeAgo(contribution.createdAt)} · {contribution.status}
+                      </small>
+                      <strong>{name}</strong>
+                      {detail && <em>{detail.slice(0, 200)}</em>}
+                    </span>
+                    <ContributionActions id={contribution.id} status={contribution.status} />
                   </li>
-                ))}
-              </ul>
-            ) : (
-              <p>No run recorded yet.</p>
-            )}
-            <Link className="primary-link" href="/about#sources">
-              Source policy
-            </Link>
-          </div>
-
-          <div className="sidebar-card">
-            <span className="eyebrow">Other queues</span>
-            <ul className="lane-list">
-              {lanes.map(({ icon: Icon, label, href }) => (
-                <li key={label}>
-                  <Link href={href}>
-                    <Icon size={16} />
-                    {label}
-                  </Link>
-                </li>
-              ))}
+                );
+              })}
             </ul>
-          </div>
+          )}
+        </section>
 
-          <div className="sidebar-card professional-note">
-            <strong>Nothing publishes automatically</strong>
-            <p>
-              Discovery only proposes. Every catalog change is reviewed by a person before
-              it appears on the site.
-            </p>
-          </div>
-        </aside>
+        <section className="review-section">
+          <h2>
+            Recommended for the catalog <span>{recommended.length}</span>
+          </h2>
+          {recommended.length === 0 ? (
+            <p className="queue-empty">Nothing waiting. The robot runs daily.</p>
+          ) : (
+            recommended.slice(0, 25).map((item) => (
+              <ReviewCard
+                confidence={item.triage?.confidence}
+                id={item.id}
+                initial={initialFields(item)}
+                key={item.id}
+                published={item.published}
+                reason={item.triage?.reason}
+                sourceLabel={item.sourceLabel}
+                sourceUrl={item.sourceUrl}
+                title={item.title}
+                vocab={vocab}
+              />
+            ))
+          )}
+          {recommended.length > 25 && <p className="queue-empty">Showing the 25 highest-confidence; decide these to see more.</p>}
+        </section>
+
+        <section className="review-section">
+          <h2>
+            <Bot size={18} /> Set aside by AI <span>{dismissed.length}</span>
+          </h2>
+          <p className="queue-empty">
+            Routine or off-topic items stay in the papers &amp; news feed (or out of it, if off
+            topic). Restore any that deserve a record.
+          </p>
+          <ul className="dismissed-list">
+            {dismissed.slice(0, 40).map((item) => (
+              <li key={item.id}>
+                <span>
+                  <a href={item.sourceUrl} rel="noopener" target="_blank">
+                    {item.title}
+                  </a>
+                  <small>
+                    {item.triage?.recommendation === "off_topic" ? "Off topic" : "Signal only"} ·{" "}
+                    {item.triage?.reason}
+                  </small>
+                </span>
+                <RestoreButton id={item.id} />
+              </li>
+            ))}
+          </ul>
+        </section>
       </div>
     </div>
   );

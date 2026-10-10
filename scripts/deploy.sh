@@ -38,6 +38,15 @@ restart_and_check() {
 
 case "${1:-}" in
   prepare)
+    # Editors approve records from /workspace, which writes data/catalog.json;
+    # the robot refreshes the FDA list. Commit that content so every release
+    # is reproducible from git.
+    if ! git diff --quiet -- data/catalog.json data/fda-xr-devices.json; then
+      added=$(git diff -U0 -- data/catalog.json | grep -c '^+    "slug"' || true)
+      git add data/catalog.json data/fda-xr-devices.json
+      git commit -q -m "Publish content: ${added} approved record(s) and data refresh" -m "Committed by scripts/deploy.sh prepare from editor approvals in /workspace and the daily robot."
+      echo "== committed content changes (${added} new record(s)); push when ready"
+    fi
     echo "== $(git rev-parse --short HEAD) $(git log -1 --format=%s)"
     [[ -z "$(git status --porcelain)" ]] || echo "warning: uncommitted changes are included"
     corepack pnpm install --frozen-lockfile

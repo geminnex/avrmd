@@ -13,6 +13,7 @@ import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { refreshFdaXrDevices } from "./import-fda-xr.mjs";
+import { spawnSync } from "node:child_process";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const dataDir = join(root, "data");
@@ -356,8 +357,21 @@ async function main() {
   );
 
   console.log(
-    `${dryRun ? "[dry run] " : ""}${fresh.length} new candidate(s); ${candidates.length} already pending; ${freshSignals.length} new signal(s).`,
+    `${dryRun ? "[dry run] " : ""}${fresh.length} new candidate(s); ${candidates.filter((item) => item.status === "pending").length} already pending; ${freshSignals.length} new signal(s).`,
   );
 }
 
 await main();
+
+// New candidates go straight to AI triage (scripts/triage-candidates.ts), so
+// editors find a short, drafted list instead of the raw queue. Run with this
+// same Node binary: the systemd unit has no nvm PATH.
+if (!dryRun && !process.argv.includes("--no-triage")) {
+  const triage = spawnSync(
+    process.execPath,
+    [join(root, "node_modules", "tsx", "dist", "cli.mjs"), "--tsconfig", join(root, "tsconfig.json"), join(root, "scripts", "triage-candidates.ts")],
+    { cwd: root, encoding: "utf8", timeout: 15 * 60_000 },
+  );
+  const last = `${triage.stdout ?? ""}${triage.stderr ?? ""}`.trim().split("\n").slice(-1)[0];
+  console.log(`triage: ${triage.status === 0 ? last : `failed (${triage.status}): ${last}`}`);
+}
