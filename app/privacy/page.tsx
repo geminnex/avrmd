@@ -46,7 +46,10 @@ export default function PrivacyPage() {
         </li>
       </ul>
       <p>
-        We do not use analytics, advertising trackers or third-party cookies. Do not post
+        We do not use advertising trackers or third-party cookies. We count how often each
+        page is viewed per day, using no cookies and nothing that identifies a visitor: no IP
+        address and no device or browser details are stored. We honour Do Not Track and
+        Global Privacy Control, and send no count when either is on. Do not post
         patient information or personal health information anywhere on AVRMD; the terms
         prohibit it.
       </p>

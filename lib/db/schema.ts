@@ -1,10 +1,12 @@
 import {
   boolean,
+  date,
   index,
   integer,
   jsonb,
   pgEnum,
   pgTable,
+  primaryKey,
   text,
   timestamp,
   unique,
@@ -835,3 +837,18 @@ export const rateLimits = pgTable("rate_limits", {
   windowStart: timestamp("window_start", { withTimezone: true }).notNull(),
   hits: integer("hits").notNull(),
 });
+
+/**
+ * Anonymous page-view counters: one row per page per UTC day. Nothing about
+ * the visitor (IP, device, cookie) is ever stored, only how often a page was
+ * opened.
+ */
+export const pageViews = pgTable(
+  "page_views",
+  {
+    day: date("day").notNull(),
+    path: text("path").notNull(),
+    views: integer("views").notNull().default(0),
+  },
+  (table) => [primaryKey({ columns: [table.day, table.path] })],
+);

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { AiAssistant } from "@/components/ai-assistant";
+import { PageView } from "@/components/page-view";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <main>{children}</main>
         <SiteFooter />
         <AiAssistant />
+        <PageView />
       </body>
     </html>
   );
