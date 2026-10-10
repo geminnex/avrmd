@@ -1,6 +1,6 @@
 // Verifies the SMTP settings in the environment and sends one test message.
 //
-//   sudo sh -c 'set -a; . /etc/avrmd.env; set +a; node scripts/check-mail.mjs you@example.com'
+//   set -a; . ./.env.production.local; set +a; node scripts/check-mail.mjs you@example.com
 //
 // Mirrors createMailTransport() in lib/mail.ts.
 import nodemailer from "nodemailer";
