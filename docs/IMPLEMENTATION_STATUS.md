@@ -1,6 +1,6 @@
 # AVRMD Implementation Status
 
-Updated: 2026-10-10, after the [full review](REVIEW_2026-10-10.md). This page describes
+Updated: 2026-10-10, after the [full review](REVIEW_2026-10-10.md) and the Phase 5 code work. This page describes
 what the code does today. The plan is in [IMPLEMENTATION_ROADMAP.md](IMPLEMENTATION_ROADMAP.md).
 
 ## Live and working
@@ -14,7 +14,8 @@ what the code does today. The plan is in [IMPLEMENTATION_ROADMAP.md](IMPLEMENTAT
 - `/gear`, `/resources`, `/explore` with filters.
 
 **Accounts and community (persisting)**
-- Passwordless email sign-in through Purelymail; database sessions. Magic links are never shown on screen in production.
+- Accounts: email + password (scrypt) confirmed by email, Google sign-in when configured, password reset that signs out other devices, account deletion. Database sessions. Mail through Purelymail.
+- Contributions: suggest a record, claim a record, promotion enquiry — stored and emailed to the editors; private messages to verified representatives.
 - Member profiles (role, stages, can-help-with, looking-for, interests, affiliation) and a member directory listing only members who declared something.
 - Questions and answers. A new question notifies members whose can-help-with matches its tags (at most 8 per question, at most 5 per member per day). The asker can mark the answer that helped.
 - In-app notifications with a header bell.
@@ -30,26 +31,25 @@ what the code does today. The plan is in [IMPLEMENTATION_ROADMAP.md](IMPLEMENTAT
 - 10 sources: the FDA AR/VR device list, openFDA 510(k), PubMed, Europe PMC, ClinicalTrials.gov, arXiv, JMIR XR, JMIR Serious Games, Frontiers in VR, Auganix.
 - Writes signals and review candidates. Publication into the catalog still requires `scripts/approve-candidate.mjs`.
 
-## Not working, or promising more than it does
+## Not working yet
 
 | Surface | Reality | Plan |
 |---|---|---|
-| Claim a record, suggest a record, promotion request, AI research form | Validate and then **discard** the input (`/api/intake` → `validated_preview`) | Phase 5 |
-| `/community` | Sample threads only | Phase 7 (remove / redirect) |
-| `/opportunities` | Empty data file | Phase 7 (hide) |
-| `/workspace` | Shows 761 pending candidates; no way to act | Phase 8 (review screen) |
-| `/about` → "What is live today" | Out of date in both directions | Phase 5 |
-| Email notifications and digests | Not built (SMTP works) | Phase 9 |
-| Privacy policy, terms, takedown, account deletion | Missing | Phase 5 |
+| `/community` | Sample threads only (labelled) | Phase 7 (remove / redirect) |
+| `/opportunities` | Empty; posting not built (the page says so) | Phase 7 (hide) |
+| `/workspace` | Shows pending candidates; no way to act | Phase 8 (review screen) |
+| Review of contributions | By email; no in-site screen | Phase 8 |
+| Email notifications and digests | Not built | Phase 9 |
 | `robots.txt`, `sitemap.xml`, analytics | Missing | Phase 7 |
-| Backups | **None** for Postgres or robot data | Phase 5 |
+| Off-site backups | Local nightly backups only | Owner decision |
+| Live assistant | Retrieval-only until `/etc/avrmd.env` stops overriding the key | Owner action |
 
-## Known security issues (all medium or lower)
+## Security
 
-There are no critical or high findings. Six medium issues are open: missing security
-headers, a publicly listable media bucket, handles derived from email, post media
-accepting any URL, weak rate limits, and a racy magic-link GET. Details and fixes are in
-the review §2, and all are scheduled in Phase 5.
+All six medium findings from the review except M5 (rate limiting, Phase 6) are fixed:
+security headers and CSP, closed media listing, neutral handles, own-upload-only post media,
+a confirm-step magic link with atomic consumption, 404 for malformed ids, and an Origin
+check on every state-changing API request.
 
 ## Docs known to be out of date
 
@@ -62,8 +62,10 @@ Both are rewritten in Phase 8, once the data model settles.
 
 1 account · 0 member profiles · 0 questions · 0 member talks · 0 posts · 761 candidates pending review.
 
+**Host:** `/home` is 97% full (4.9 GB free).
+
 ## Verification at this update
 
-- `tsc --noEmit` is clean and 107 tests pass across 16 files.
+- `tsc --noEmit` is clean and 137 tests pass.
 - The production build passes, and entity, topic, stage and problem pages are static.
 - Live checks for every public route: all return 200, except `/network`, which sends signed-out visitors to the sign-in page (307).

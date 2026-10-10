@@ -106,30 +106,37 @@ Make "which gate am I stuck at" a browsable, filterable second axis.
 
 Nothing new is built until the site stops discarding input and the security mediums are closed.
 
+**Added during Phase 5 (owner request)**
+- [x] Sign-in rewritten: email + password with email confirmation (the email is the account), Google sign-in, forgot/reset password; scrypt hashes; enumeration-safe responses; pre-hijacking closed; rate limits
+
 **Owner actions (need sudo)**
 - [ ] Remove the `OPENROUTER_*` lines from `/etc/avrmd.env` and restart (the live assistant is retrieval-only until then)
 - [ ] Add the sudoers rule allowing `systemctl restart avrmd.service`, so deploys don't wait on a person
 - [ ] Decide where off-site backups go (another host, S3-compatible bucket, or Google Drive)
+- [ ] Create a Google OAuth client and put `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` in `.env.production.local` (the Google button appears once both are set)
+- [ ] Supply the legal entity, governing law and public contact address (`CONTACT_EMAIL`) for `/privacy` and `/terms`
+- [ ] Free disk space: `/home` is 97% full (4.9 GB left) — a full disk stops Postgres and the site
 
 **Forms and claims**
-- [ ] One real **Contribute** flow replacing the four discarding forms: claim a record, suggest a record or correction, promotion enquiry. It stores to Postgres (`catalog_submissions`, `ownership_claims`) and emails the editors.
-- [ ] Until each one is real, remove its calls to action from the home page, footer and record pages
-- [ ] Rewrite `/about` "What is live today" from the code, not from memory; no superlatives, live counts instead
-- [ ] Fix copy that promises review queues or replies that don't exist (`/for-organizations`, `/participate`, `/opportunities`)
+- [x] Every form real: suggestion, claim and promotion enquiry are stored (`contributions`) and emailed to the editors with reply-to; private messages go to a record's verified representatives or are refused; the AI-job form is removed (`/ai` → `/about#ai`). Signed-in members only
+- [x] Signed-out visitors see a sign-in prompt in place of a form, before typing
+- [x] `/about` "What is live today" rewritten from the code
+- [x] Over-promising copy fixed on `/for-organizations`, `/participate`, `/opportunities`, `/sign-in`
 
 **Security (from the review)**
-- [ ] M1 Security headers in `next.config.ts`: CSP, HSTS, `frame-ancestors 'none'`, nosniff, Referrer-Policy, Permissions-Policy
-- [ ] M2 Media bucket: GetObject only, no anonymous listing; upload keys without user ids
-- [ ] M3 Neutral generated handles (never from the email address); reserved handles
-- [ ] M4 Post media restricted to the member's own uploads
-- [ ] M6 Magic link: a confirm page that POSTs; atomic `UPDATE … RETURNING` consumption
-- [ ] L1 Validate ids everywhere: a malformed id is a 404, never a 500
-- [ ] L3 Origin check on state-changing routes (sign-out included)
+- [x] M1 Security headers in `next.config.ts`: CSP, HSTS, `frame-ancestors 'none'`, nosniff, Referrer-Policy, Permissions-Policy
+- [x] M2 Media bucket: GetObject only, no anonymous listing; upload keys without user ids
+- [x] M3 Neutral generated handles (never from the email address); reserved handles
+- [x] M4 Post media restricted to the member's own uploads
+- [x] M6 Magic link: a confirm page that POSTs; atomic `UPDATE … RETURNING` consumption
+- [x] L1 Validate ids everywhere: a malformed id is a 404, never a 500
+- [x] L3 Origin check on state-changing routes (sign-out included)
 
 **Legal and data**
-- [ ] Privacy policy, terms of use, copyright contact and takedown procedure (required by `TRUST_SAFETY_IP.md` before launch)
-- [ ] Account deletion from settings
-- [ ] Nightly `pg_dump` plus `data/` snapshot, kept 14 days locally and copied off the host; a tested restore
+- [x] Privacy policy and terms with copyright takedown procedure (`/privacy`, `/terms`) — legal entity, governing law and contact address still to be supplied by the owner
+- [x] Account deletion from settings (rows and uploaded images)
+- [x] Nightly `pg_dump`, `data/` and media mirror to `~/avrmd-backups`, 14 days, restore verified (user systemd timer)
+- [ ] Off-site copy of the backups (waits on the owner's choice of destination)
 
 ---
 
