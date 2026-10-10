@@ -6797,3 +6797,47 @@ a.workflow-submit {
   height: 44px;
   padding: 0 17px;
 }
+
+/* ---------- Legal pages ---------- */
+
+.legal-page {
+  max-width: 760px;
+  padding-bottom: 80px;
+  padding-top: 48px;
+}
+.legal-page h1 {
+  font-size: clamp(30px, 4vw, 42px);
+  margin: 0 0 6px;
+}
+.legal-page h2 {
+  font-size: 19px;
+  margin: 32px 0 8px;
+}
+.legal-page p,
+.legal-page li {
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.7;
+}
+.legal-page ul {
+  padding-left: 20px;
+}
+.legal-page a {
+  color: var(--teal-dark);
+  font-weight: 700;
+}
+.legal-updated {
+  color: var(--muted) !important;
+  font-size: 13px !important;
+}
+.sign-in-legal {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 0;
+  text-align: center;
+}
+.sign-in-legal a {
+  color: var(--teal-dark);
+  font-weight: 700;
+}

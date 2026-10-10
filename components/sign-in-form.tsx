@@ -191,6 +191,12 @@ export function SignInForm({
             {heading.submit}
             {state.status !== "loading" && <ArrowRight size={17} />}
           </button>
+          {mode === "register" && (
+            <p className="sign-in-legal">
+              By creating an account you agree to the <a href="/terms">terms</a> and{" "}
+              <a href="/privacy">privacy policy</a>.
+            </p>
+          )}
         </form>
       )}
 

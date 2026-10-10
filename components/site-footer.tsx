@@ -47,7 +47,10 @@ export function SiteFooter() {
       </div>
       <div className="shell footer-bottom">
         <span>© 2026 AVRMD</span>
-        <span>Professional information only — not medical advice.</span>
+        <span>
+          Professional information only — not medical advice. <Link href="/privacy">Privacy</Link>{" "}
+          · <Link href="/terms">Terms</Link>
+        </span>
       </div>
     </footer>
   );
