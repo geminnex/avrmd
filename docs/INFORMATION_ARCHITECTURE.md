@@ -1,75 +1,75 @@
 # Information Architecture
 
-## Primary navigation
+The site as it is today. Navigation lives in `components/site-header.tsx`, `mobile-menu.tsx`, `site-footer.tsx` and `section-tabs.tsx`.
 
-Four items, matching the three product pillars.
+## Header
 
-### Topics (primary browse path)
+Five items plus the assistant:
 
-Clinical need comes first: surgical training, clinical simulation, pain management,
-rehabilitation, medical education, and surgical planning. Each hub gathers the solutions,
-organizations, evidence, projects, and events belonging to that need, plus its
-discussions. Empty sections are not rendered.
+- **Library** `/explore`
+- **Stages** `/stages`
+- **Talks** `/talks`
+- **People** `/questions`
+- **For organizations** `/for-organizations`
+- **Ask AVRMD**: opens the assistant from any page.
 
-### Directory (secondary browse path)
+The mobile menu groups the same destinations: Library (Records, Clinical topics, Stages, FDA devices, Papers & news, Talks), People (Ask a question, Questions, Members, Updates) and Organizations (Claim your record, Suggest a record, Promotion, About). It also holds the sign-in button.
 
-The record-type view — organizations, solutions, evidence, events, projects — with
-filters for record type, modality, and clinical specialty. Gear and hardware, and the
-curated list of related websites, sit alongside it.
+The footer repeats these, lists the six topics, and adds Gear, Websites, Privacy and Terms, with a "professional information only, not medical advice" notice.
 
-### Community
+## Section tabs
 
-Discussion scoped to the same clinical topics, so a question sits with the area it
-belongs to.
+Pages under a header item share a tab row (`section-tabs.tsx`).
 
-### For organizations
+- **Library tabs**: Records `/explore`, Clinical topics `/topics`, FDA devices `/clearances`, Papers & news `/signals`, Gear `/gear`, Websites `/resources`.
+- **People tabs**: Questions `/questions`, Members `/members`, Updates `/network`.
 
-Free ownership claims, what stewardship does and does not cover, and labelled promotion
-placements.
+## Home page (`app/page.tsx`)
 
-`/about` (footer and inline trust links) consolidates review states, sources, ownership,
-advertising, AI, community rules, the safety boundary, and what is live today. The
-member dashboard remains a preview at `/workspace`, currently showing the discovery queue.
+1. Hero with the ask box: "Ask the medical XR community."
+2. Three columns: new FDA authorizations (links to `/clearances`), latest papers and news (`/signals`), recent community questions (`/questions`, with an Ask link).
+3. Browse chips: the eight stages and the six clinical topics.
+4. Talks showcase: three talks, rotated every five minutes.
+5. Trust strip linking to `/about`.
+6. Call to action for companies and institutions: claim a record (`/for-organizations#claim`) or suggest one (`/participate`).
 
-## Homepage
+## Canonical record page (`/entities/[slug]`)
 
-1. Two doorways: "I have a clinical problem to solve" and "I track the medical XR
-   industry", beside universal search.
-2. The six clinical topics.
-3. The ecosystem by record type, including gear and related websites; zero-count kinds are
-   hidden.
-4. Featured reviewed records.
-5. Community questions.
-6. A compact trust strip linking to `/about`.
-7. A call to action for companies and institutions.
+One statically generated page per record. Problems live at `/problems/[slug]` instead.
 
-Sponsored placements appear only in fixed, labelled slots and never in this organic
-sequence.
+1. Hero: back link to the Library filtered by kind, type label, name, summary, topics ("Appears in"), stage, and claim / correction actions.
+2. In-page anchors: Overview, Sources, Community, Group, and Connected records when present.
+3. "What this record covers": owner or developer, event date and other facts.
+4. Clinical areas: specialties and use cases.
+5. Regulatory note, when the record has one.
+6. FDA panel, when the record matches devices on the FDA AR/VR list.
+7. Primary source and source note.
+8. Questions about this record: ask a question, topic questions, Follow this record.
+9. The record's group: forum threads, posts and media (`EntityGroupPanel`).
+10. Inquiry form, only when the record is claimed.
+11. "Follow the evidence and ecosystem": connected records grouped by kind, from `data/relations.json`.
 
-## Canonical entity page
+Sections without content are not rendered.
 
-Each record receives one canonical page:
+## Taxonomy actually used
 
-1. Header: name, type, concise description, geography, modality, and trust labels.
-2. Structured facts: specialties, use cases, setting, intended users, supported hardware, maturity, and dated regulatory statements.
-3. Relationships: owner, developer, supported devices, evidence, projects, and events.
-4. Sources and field provenance.
-5. Official updates and media.
-6. Discussions and Q&A scoped through the shared community engine.
-7. Private inquiry call to action for verified members.
+- **Record kinds** (7): problem, organization, solution, evidence, event, project, group. Gear is a filter value on top of these.
+- **Clinical topics** (6, `lib/topics.ts`): surgical training, clinical simulation, pain management, rehabilitation, medical education, surgical planning. Each has a hub at `/topics/[slug]`.
+- **Pipeline stages** (8, `lib/stages.ts`): research, technology, design, implementation, validation, regulatory, manufacturing, commercialization. Each has a guide at `/stages/[slug]`.
+- **Facets** (`data/facets.json`, 59 entries) with kinds: specialty (23), method (25), technology (6), modality (5). Used by questions, member profiles and the assistant.
+- **On catalog records**: `specialties`, `useCases`, `modalities`, optional `stages`, plus geography and maturity. Explorer filters: kind, modality, specialty, stage.
+- Record review state (`source-reviewed`, `metadata-reviewed`, `needs-review`), claim status (`claimed`, `unclaimed`, `not-claimable`) and operating status (acquired, discontinued) show as trust labels.
 
-Unused contextual tabs are hidden rather than shown as empty forums.
+## Redirects (`next.config.ts`, permanent)
 
-## Taxonomy
+- `/community` to `/questions`
+- `/ai` to `/about#ai`
+- `/advertise` to `/for-organizations`
 
-- XR modality: VR, AR, MR, spatial computing, haptics, simulation.
-- Specialty: surgery, rehabilitation, behavioral health, pain, emergency care, radiology, nursing, dentistry, and others.
-- Use case: education, skills training, planning, visualization, assessment, therapy support, remote collaboration.
-- Setting: hospital, clinic, home, laboratory, classroom, simulation center.
-- Intended user: clinician, trainee, patient-facing professional, researcher, buyer, developer.
-- Geography and regulatory region.
-- Deployment and supported devices.
-- Product maturity and evidence level.
+## Not in the public navigation
 
-All taxonomy values use stable identifiers, human-readable labels, aliases, and editorial definitions.
-
+- `/workspace`: editors only (editor, moderator, administrator; others get 404). Discovery queue and contribution review. Disallowed in `robots.txt`, `noindex`.
+- `/opportunities`: no link from the header, menu or footer, and `noindex`; `data/opportunities.json` is empty.
+- `/settings`, `/notifications` and the sign-in confirm and reset pages are account pages, disallowed in `robots.txt`.
+- `/about` is reached from the footer and inline trust links; it holds review states, sources, ownership, advertising and AI policy.
+- `sitemap.ts` lists the static pages plus every record, topic and stage. Member profiles and individual questions are left out.

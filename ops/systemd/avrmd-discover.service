@@ -1,0 +1,14 @@
+# System unit (installed by the owner, needs sudo): /etc/systemd/system/avrmd-discover.service
+# Copied here for reference; the live copy is the source of truth.
+[Unit]
+Description=AVRMD daily source discovery
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=openclaw
+Group=openclaw
+WorkingDirectory=/home/openclaw/projects/avrmd2607
+ExecStart=/home/openclaw/.nvm/versions/node/v22.23.2/bin/node scripts/discover.mjs
+TimeoutStartSec=600

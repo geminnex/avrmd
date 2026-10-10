@@ -1,0 +1,11 @@
+# System unit (installed by the owner, needs sudo): /etc/systemd/system/avrmd-discover.timer
+[Unit]
+Description=Run AVRMD source discovery daily
+
+[Timer]
+OnCalendar=daily
+RandomizedDelaySec=45m
+Persistent=true
+
+[Install]
+WantedBy=timers.target
