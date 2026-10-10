@@ -7,6 +7,7 @@ import {
   pgTable,
   text,
   timestamp,
+  unique,
   uniqueIndex,
   uuid,
 } from "drizzle-orm/pg-core";
@@ -248,6 +249,96 @@ export const talks = pgTable(
     uniqueIndex("talks_slug_idx").on(table.slug),
     index("talks_status_idx").on(table.status, table.createdAt),
     index("talks_submitter_idx").on(table.submittedBy),
+  ],
+);
+
+export const qaStatus = pgEnum("qa_status", ["visible", "hidden"]);
+
+/**
+ * Member questions — the hallway conversation. Tagged with the same
+ * file-based vocabularies as talks and profiles (hence text arrays), because
+ * those tags are what route a question to the members who said they can
+ * help with it. See lib/questions.ts.
+ */
+export const questions = pgTable(
+  "questions",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    authorId: uuid("author_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    title: text("title").notNull(),
+    body: text("body").notNull().default(""),
+    topicSlugs: jsonb("topic_slugs").$type<string[]>().notNull().default([]),
+    stages: jsonb("stages").$type<string[]>().notNull().default([]),
+    facets: jsonb("facets").$type<string[]>().notNull().default([]),
+    // No FK: answers reference questions, and a cycle buys nothing here —
+    // the accept route checks the answer belongs to this question.
+    acceptedAnswerId: uuid("accepted_answer_id"),
+    // Live on arrival; `hidden` is the takedown path until moderation exists.
+    status: qaStatus("status").notNull().default("visible"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("questions_status_idx").on(table.status, table.createdAt),
+    index("questions_author_idx").on(table.authorId),
+  ],
+);
+
+export const answers = pgTable(
+  "answers",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    questionId: uuid("question_id")
+      .notNull()
+      .references(() => questions.id, { onDelete: "cascade" }),
+    authorId: uuid("author_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    body: text("body").notNull(),
+    status: qaStatus("status").notNull().default("visible"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [index("answers_question_idx").on(table.questionId, table.createdAt)],
+);
+
+export const notificationKind = pgEnum("notification_kind", [
+  // A question matched what you said you can help with.
+  "question_routed",
+  // Someone answered your question.
+  "answer_posted",
+  // Your answer was marked as the one that helped.
+  "answer_accepted",
+]);
+
+/**
+ * In-app only for now. `reason` records why it was sent (the matched tags),
+ * so a recipient can always see what they declared that caused it.
+ */
+export const notifications = pgTable(
+  "notifications",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    kind: notificationKind("kind").notNull(),
+    actorId: uuid("actor_id").references(() => users.id, { onDelete: "set null" }),
+    questionId: uuid("question_id")
+      .notNull()
+      .references(() => questions.id, { onDelete: "cascade" }),
+    answerId: uuid("answer_id").references(() => answers.id, { onDelete: "cascade" }),
+    reason: jsonb("reason").$type<{ matched?: string[] }>().notNull().default({}),
+    readAt: timestamp("read_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("notifications_user_idx").on(table.userId, table.createdAt),
+    // Re-accepting the same answer, or a retried request, must not notify twice.
+    unique("notifications_dedupe")
+      .on(table.userId, table.kind, table.questionId, table.answerId)
+      .nullsNotDistinct(),
   ],
 );
 

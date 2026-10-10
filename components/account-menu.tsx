@@ -20,6 +20,7 @@ export function AccountMenu({ label, handle }: { label: string; handle: string |
     <div className="account-menu" ref={ref}>
       <button
         aria-expanded={open}
+        aria-label={`Account menu, ${label}`}
         className="account-trigger"
         onClick={() => setOpen((value) => !value)}
         type="button"

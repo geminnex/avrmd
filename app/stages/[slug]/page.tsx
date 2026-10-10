@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, Route, Wrench } from "lucide-react";
+import { ArrowLeft, ArrowRight, MessageCircleQuestion, Route, Wrench } from "lucide-react";
 import { EntityCard } from "@/components/entity-card";
 import { kindLabels } from "@/lib/catalog";
 import {
@@ -106,6 +106,22 @@ export default async function StagePage({ params }: StagePageProps) {
             </div>
           </section>
         ))}
+
+        <div className="secondary-browse">
+          <div>
+            <strong>Stuck at this stage?</strong>
+            <span>Ask the members who work here — questions go to the people who can help.</span>
+          </div>
+          <span className="stage-ask-links">
+            <Link className="primary-link" href={`/questions?stage=${stage.slug}`}>
+              See questions
+            </Link>
+            <Link className="button-primary" href={`/ask?stage=${stage.slug}`}>
+              <MessageCircleQuestion size={16} />
+              Ask
+            </Link>
+          </span>
+        </div>
 
         <nav className="stage-nav" aria-label="Adjacent stages">
           {previous ? (

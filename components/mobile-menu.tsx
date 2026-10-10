@@ -39,7 +39,9 @@ const sections = [
   {
     heading: "Community",
     links: [
-      { href: "/community", label: "Discussions" },
+      { href: "/questions", label: "Questions" },
+      { href: "/ask", label: "Ask the network" },
+      { href: "/community", label: "Discussions by topic" },
       { href: "/opportunities", label: "Opportunities" },
       { href: "/participate", label: "Suggest a record" },
     ],

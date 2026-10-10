@@ -74,14 +74,21 @@
 
 ---
 
-## Phase 4 — 問答與路由（「走廊交流」）⭐ 回訪動力最強
+## Phase 4 — 問答與路由（「走廊交流」）✅ 已完成（Email 除外）
 
-- [ ] `questions`、`answers`、`notifications` 三張表
-- [ ] `/ask` — 發問並標記主題／階段／技術
-- [ ] `/questions`、`/questions/[id]`
-- [ ] **路由**：發問時比對 `canHelpWith` → 寫入通知
-- [ ] Header 通知鈴鐺（client island，勿破壞靜態產生）
-- [ ] ⛔ Email 通知**卡在你提供正式 SMTP 憑證**（目前只有本機 Mailpit）
+- [x] `questions`、`answers`、`notifications` 三張表（`drizzle/0008_questions_and_notifications.sql`，已套用）
+- [x] `/ask` — 發問並標記主題／階段／技術（靜態頁 + client island；支援 `?facet=`／`?stage=`／`?topic=` 預選）
+- [x] `/questions`（篩選：未回答、階段、臨床領域、tag、**Matched to me**）、`/questions/[id]`（回答、發問者標記 "This helped"）
+- [x] **路由**：發問時比對 `canHelpWith` → 寫入通知（`lib/questions.ts`，有測試）
+  - 只通知「宣告可協助該 facet」的人；階段／臨床興趣相同只影響排序，不構成通知理由
+  - 每題最多通知 8 人；每人每 24 小時最多收 5 則路由通知（避免疲乏）
+  - 通知記錄「為何收到」（Matched on …），收件者看得到是哪項宣告觸發
+  - 發問時即時顯示「將通知 N 位成員」，讓使用者知道 facet 才是觸達關鍵
+- [x] 回答 → 通知發問者；被標記有幫助 → 通知回答者（唯一約束防重複）
+- [x] Header 通知鈴鐺（併入 AccountSlot island，`/api/auth/me` 順帶回傳未讀數，切回分頁時重新整理）
+- [x] `/notifications` — 開啟即標為已讀
+- [x] **額外**：Header 導覽 Community → Questions（Community 頁仍全是範例討論，已加連結導向真正的問答）
+- [ ] ⛔ Email 通知**卡在你提供正式 SMTP 憑證**（目前只有本機 Mailpit）；另需先做退訂／通知偏好設定
 
 ---
 

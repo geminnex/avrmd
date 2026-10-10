@@ -20,7 +20,7 @@ export function SiteHeader() {
           <Link href="/stages">Stages</Link>
           <Link href="/talks">Talks</Link>
           <Link href="/explore">Records</Link>
-          <Link href="/community">Community</Link>
+          <Link href="/questions">Questions</Link>
         </nav>
         <div className="header-actions">
           <AssistantTrigger />

@@ -32,8 +32,9 @@ export default function CommunityPage() {
       <div className="shell community-layout">
         <div className="community-main">
           <PreviewNote title="Examples">
-            The discussions below are illustrative samples showing how topic-scoped Q&amp;A
-            will work. Posting opens with accounts.
+            The discussions below are illustrative samples. Real member questions live
+            under <Link href="/questions">Questions</Link> — or{" "}
+            <Link href="/ask">ask your own</Link>.
           </PreviewNote>
 
           {groups.map((group) => (
