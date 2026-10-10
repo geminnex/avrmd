@@ -10,6 +10,7 @@ import { topics } from "@/lib/topics";
 import { timeAgo } from "@/lib/time";
 import { QuestionTags } from "@/components/question-tags";
 import type { PipelineStage } from "@/lib/catalog-types";
+import { toggleParam } from "@/lib/url";
 
 export const metadata: Metadata = {
   title: "Questions",
@@ -28,16 +29,6 @@ type QuestionsPageProps = {
   }>;
 };
 
-function queryString(current: Record<string, string | undefined>, key: string, value?: string) {
-  const next = { ...current };
-  if (!value || next[key] === value) delete next[key];
-  else next[key] = value;
-  const params = new URLSearchParams(
-    Object.entries(next).filter(([, item]) => Boolean(item)) as [string, string][],
-  );
-  const encoded = params.toString();
-  return encoded ? `/questions?${encoded}` : "/questions";
-}
 
 export default async function QuestionsPage({ searchParams }: QuestionsPageProps) {
   const params = await searchParams;
@@ -103,19 +94,19 @@ export default async function QuestionsPage({ searchParams }: QuestionsPageProps
         <div className="talk-filters">
           <div className="talk-filter-group">
             <span className="talk-filter-label">Show</span>
-            <Link className={`chip${!params.show ? " chip-active" : ""}`} href={queryString(linkParams, "show")}>
+            <Link className={`chip${!params.show ? " chip-active" : ""}`} href={toggleParam("/questions", linkParams, "show")}>
               All
             </Link>
             <Link
               className={`chip${params.show === "unanswered" ? " chip-active" : ""}`}
-              href={queryString(linkParams, "show", "unanswered")}
+              href={toggleParam("/questions", linkParams, "show", "unanswered")}
             >
               Unanswered
             </Link>
             {viewer && (
               <Link
                 className={`chip${forMe ? " chip-active" : ""}`}
-                href={queryString(linkParams, "show", "for-me")}
+                href={toggleParam("/questions", linkParams, "show", "for-me")}
                 title="Questions about something you said you can help with"
               >
                 Matched to me
@@ -131,7 +122,7 @@ export default async function QuestionsPage({ searchParams }: QuestionsPageProps
                 .map((stage) => (
                   <Link
                     className={`chip${params.stage === stage.slug ? " chip-active" : ""}`}
-                    href={queryString(linkParams, "stage", stage.slug)}
+                    href={toggleParam("/questions", linkParams, "stage", stage.slug)}
                     key={stage.slug}
                   >
                     {stage.name}
@@ -148,7 +139,7 @@ export default async function QuestionsPage({ searchParams }: QuestionsPageProps
                 .map((topic) => (
                   <Link
                     className={`chip${params.topic === topic.slug ? " chip-active" : ""}`}
-                    href={queryString(linkParams, "topic", topic.slug)}
+                    href={toggleParam("/questions", linkParams, "topic", topic.slug)}
                     key={topic.slug}
                   >
                     {topic.shortName}
@@ -160,7 +151,7 @@ export default async function QuestionsPage({ searchParams }: QuestionsPageProps
           {params.facet && (
             <div className="talk-filter-group">
               <span className="talk-filter-label">Tag</span>
-              <Link className="chip chip-active" href={queryString(linkParams, "facet")}>
+              <Link className="chip chip-active" href={toggleParam("/questions", linkParams, "facet")}>
                 {params.facet} ×
               </Link>
             </div>

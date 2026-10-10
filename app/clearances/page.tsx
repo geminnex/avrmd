@@ -8,6 +8,7 @@ import {
   getFdaDeviceList,
   linkedRecordSlug,
 } from "@/lib/fda-devices";
+import { toggleParam } from "@/lib/url";
 
 export const metadata: Metadata = {
   title: "FDA-authorized AR/VR devices",
@@ -22,16 +23,6 @@ type ClearancesPageProps = {
   searchParams: Promise<{ panel?: string; year?: string; q?: string }>;
 };
 
-function href(current: Record<string, string | undefined>, key: string, value?: string) {
-  const next = { ...current };
-  if (!value || next[key] === value) delete next[key];
-  else next[key] = value;
-  const params = new URLSearchParams(
-    Object.entries(next).filter(([, item]) => Boolean(item)) as [string, string][],
-  );
-  const encoded = params.toString();
-  return encoded ? `/clearances?${encoded}` : "/clearances";
-}
 
 export default async function ClearancesPage({ searchParams }: ClearancesPageProps) {
   const params = await searchParams;
@@ -95,7 +86,7 @@ export default async function ClearancesPage({ searchParams }: ClearancesPagePro
         <div className="talk-filters">
           <div className="talk-filter-group">
             <span className="talk-filter-label">FDA panel</span>
-            <Link className={`chip${!params.panel ? " chip-active" : ""}`} href={href(linkParams, "panel")}>
+            <Link className={`chip${!params.panel ? " chip-active" : ""}`} href={toggleParam("/clearances", linkParams, "panel")}>
               All
             </Link>
             {[...panels.entries()]
@@ -103,7 +94,7 @@ export default async function ClearancesPage({ searchParams }: ClearancesPagePro
               .map(([panel, count]) => (
                 <Link
                   className={`chip${params.panel === panel ? " chip-active" : ""}`}
-                  href={href(linkParams, "panel", panel)}
+                  href={toggleParam("/clearances", linkParams, "panel", panel)}
                   key={panel}
                 >
                   {panel} ({count})
@@ -112,7 +103,7 @@ export default async function ClearancesPage({ searchParams }: ClearancesPagePro
           </div>
           <div className="talk-filter-group">
             <span className="talk-filter-label">Year</span>
-            <Link className={`chip${!params.year ? " chip-active" : ""}`} href={href(linkParams, "year")}>
+            <Link className={`chip${!params.year ? " chip-active" : ""}`} href={toggleParam("/clearances", linkParams, "year")}>
               All
             </Link>
             {[...years.entries()]
@@ -120,7 +111,7 @@ export default async function ClearancesPage({ searchParams }: ClearancesPagePro
               .map(([year, count]) => (
                 <Link
                   className={`chip${params.year === year ? " chip-active" : ""}`}
-                  href={href(linkParams, "year", year)}
+                  href={toggleParam("/clearances", linkParams, "year", year)}
                   key={year}
                 >
                   {year} ({count})

@@ -12,6 +12,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { PreviewNote } from "@/components/preview-note";
+import { timeAgo } from "@/lib/time";
 
 export const metadata = {
   title: "Workspace preview",
@@ -54,14 +55,6 @@ const lanes = [
   { icon: Bot, label: "AI policy", href: "/about#ai" },
 ];
 
-function timeAgo(iso: string) {
-  const diff = Date.now() - new Date(iso).getTime();
-  const hours = Math.round(diff / 3_600_000);
-  if (hours < 1) return "just now";
-  if (hours < 24) return `${hours} hr ago`;
-  const days = Math.round(hours / 24);
-  return `${days} day${days === 1 ? "" : "s"} ago`;
-}
 
 export default async function WorkspacePage() {
   const candidates = await readData<Candidate[]>("candidates.json", []);

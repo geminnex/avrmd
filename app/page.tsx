@@ -25,20 +25,10 @@ import { getAllTalks, pickShowcaseTalks } from "@/lib/talks";
 import { stageLabels } from "@/lib/stages";
 import { getThread } from "@/lib/community";
 import { topics } from "@/lib/topics";
+import { daysAgo } from "@/lib/time";
 
 export const dynamic = "force-dynamic";
 
-function timeAgo(iso: string) {
-  // Handles both date-only strings (catalog.lastReviewed) and full ISO
-  // timestamps (signal.discoveredAt) — appending a time part to an already-
-  // complete timestamp produces an invalid date.
-  const date = iso.length > 10 ? new Date(iso) : new Date(`${iso}T00:00:00Z`);
-  const days = Math.round((Date.now() - date.getTime()) / 86_400_000);
-  if (days <= 0) return "today";
-  if (days === 1) return "yesterday";
-  if (days < 30) return `${days}d ago`;
-  return `${Math.round(days / 30)}mo ago`;
-}
 
 function FeedRow({ item }: { item: FeedItem }) {
   if (item.kind === "signal") {
@@ -49,7 +39,7 @@ function FeedRow({ item }: { item: FeedItem }) {
         <span className="feed-row-body">
           <strong>{signal.headline}</strong>
           <small>
-            {signal.sourceLabel} · {timeAgo(signal.discoveredAt)}
+            {signal.sourceLabel} · {daysAgo(signal.discoveredAt)}
           </small>
         </span>
         <ExternalLink size={15} />

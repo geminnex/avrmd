@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { MessageCircle } from "lucide-react";
 import { LikeButton } from "./like-button";
+import { timeAgo } from "@/lib/time";
 
 export type PostCardData = {
   id: string;
@@ -17,13 +18,6 @@ export type PostCardData = {
   initialLiked?: boolean;
 };
 
-function timeAgo(date: Date | string) {
-  const hours = Math.round((Date.now() - new Date(date).getTime()) / 3_600_000);
-  if (hours < 1) return "just now";
-  if (hours < 24) return `${hours}h ago`;
-  const days = Math.round(hours / 24);
-  return `${days}d ago`;
-}
 
 export function PostCard({ post, linkToPermalink = true }: { post: PostCardData; linkToPermalink?: boolean }) {
   const author = post.authorDisplayName || (post.authorHandle ? `@${post.authorHandle}` : "A member");

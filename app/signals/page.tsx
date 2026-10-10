@@ -6,6 +6,7 @@ import {
   signalCategoryLabels,
   type SignalCategory,
 } from "@/lib/signals";
+import { daysAgo } from "@/lib/time";
 
 export const metadata: Metadata = {
   title: "Signals",
@@ -19,14 +20,6 @@ type SignalsPageProps = {
   searchParams: Promise<{ category?: string }>;
 };
 
-function timeAgo(iso: string | null) {
-  if (!iso) return null;
-  const diff = Date.now() - new Date(iso).getTime();
-  const days = Math.round(diff / 86_400_000);
-  if (days <= 0) return "today";
-  if (days === 1) return "yesterday";
-  return `${days} days ago`;
-}
 
 export default async function SignalsPage({ searchParams }: SignalsPageProps) {
   const params = await searchParams;
@@ -99,7 +92,7 @@ export default async function SignalsPage({ searchParams }: SignalsPageProps) {
                   <strong>{signal.headline}</strong>
                   <small>
                     {signal.sourceLabel}
-                    {timeAgo(signal.discoveredAt) ? ` · ${timeAgo(signal.discoveredAt)}` : ""}
+                    {` · ${daysAgo(signal.discoveredAt)}`}
                   </small>
                 </span>
                 <ArrowUpRight size={16} />

@@ -14,6 +14,7 @@ import { listDirectoryMembers } from "@/lib/db/repositories/users";
 import { stageLabels, stages } from "@/lib/stages";
 import { topics } from "@/lib/topics";
 import type { PipelineStage } from "@/lib/catalog-types";
+import { toggleParam } from "@/lib/url";
 
 export const metadata: Metadata = {
   title: "Members",
@@ -27,16 +28,6 @@ type MembersPageProps = {
   searchParams: Promise<{ role?: string; stage?: string; help?: string; topic?: string }>;
 };
 
-function queryString(current: Record<string, string | undefined>, key: string, value?: string) {
-  const next = { ...current };
-  if (!value || next[key] === value) delete next[key];
-  else next[key] = value;
-  const params = new URLSearchParams(
-    Object.entries(next).filter(([, item]) => Boolean(item)) as [string, string][],
-  );
-  const encoded = params.toString();
-  return encoded ? `/members?${encoded}` : "/members";
-}
 
 export default async function MembersPage({ searchParams }: MembersPageProps) {
   const params = await searchParams;
@@ -103,13 +94,13 @@ export default async function MembersPage({ searchParams }: MembersPageProps) {
         <div className="talk-filters">
           <div className="talk-filter-group">
             <span className="talk-filter-label">Role</span>
-            <Link className={`chip${!params.role ? " chip-active" : ""}`} href={queryString(linkParams, "role")}>
+            <Link className={`chip${!params.role ? " chip-active" : ""}`} href={toggleParam("/members", linkParams, "role")}>
               Any
             </Link>
             {professionalRoles.map((role) => (
               <Link
                 className={`chip${params.role === role ? " chip-active" : ""}`}
-                href={queryString(linkParams, "role", role)}
+                href={toggleParam("/members", linkParams, "role", role)}
                 key={role}
                 title={professionalRoleHints[role]}
               >
@@ -120,13 +111,13 @@ export default async function MembersPage({ searchParams }: MembersPageProps) {
 
           <div className="talk-filter-group">
             <span className="talk-filter-label">Stage</span>
-            <Link className={`chip${!params.stage ? " chip-active" : ""}`} href={queryString(linkParams, "stage")}>
+            <Link className={`chip${!params.stage ? " chip-active" : ""}`} href={toggleParam("/members", linkParams, "stage")}>
               Any
             </Link>
             {stages.map((stage) => (
               <Link
                 className={`chip${params.stage === stage.slug ? " chip-active" : ""}`}
-                href={queryString(linkParams, "stage", stage.slug)}
+                href={toggleParam("/members", linkParams, "stage", stage.slug)}
                 key={stage.slug}
               >
                 {stage.name}
@@ -140,7 +131,7 @@ export default async function MembersPage({ searchParams }: MembersPageProps) {
               {helpOptions.map(([name, count]) => (
                 <Link
                   className={`chip${params.help === name ? " chip-active" : ""}`}
-                  href={queryString(linkParams, "help", name)}
+                  href={toggleParam("/members", linkParams, "help", name)}
                   key={name}
                 >
                   {name} ({count})
@@ -249,7 +240,7 @@ export default async function MembersPage({ searchParams }: MembersPageProps) {
           {topics.map((topic) => (
             <Link
               className={`chip${params.topic === topic.slug ? " chip-active" : ""}`}
-              href={queryString(linkParams, "topic", topic.slug)}
+              href={toggleParam("/members", linkParams, "topic", topic.slug)}
               key={topic.slug}
             >
               {topic.shortName}
