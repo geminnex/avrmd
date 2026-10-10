@@ -167,14 +167,14 @@ The owner's direction: not complex; don't make people fish in an ocean; the assi
 
 ---
 
-## Phase 8 — Content engine ("most complete")
+## Phase 8 — Content engine ("most complete") ✅ Done (awaiting deploy)
 
-- [ ] AI triage of the review queue: relevance score, record kind, a drafted summary with citations, duplicate check
-- [ ] Web review screen for editors (approve / edit / reject), replacing `scripts/approve-candidate.mjs`
-- [ ] Coverage metrics on `/about`: records by kind, FDA coverage, evidence count, last robot run
-- [ ] Problem records for the Regulatory and Validation stages (currently none), each with a verifiable source
-- [ ] Move the catalog from JSON to Postgres once approvals happen from the web (no rebuild per record); full-text search
-- [ ] Decide the fate of the unused schema tables: wire up what Phases 5–8 need, drop the rest; rewrite `ARCHITECTURE.md` and `INFORMATION_ARCHITECTURE.md` to match
+- [x] AI triage of the review queue (`scripts/triage-candidates.ts`, runs after every robot pass): add a record / signal only / off topic, with a vocabulary-checked draft. First run: 761 → 106 to review, 655 set aside (reversible), about US$0.06
+- [x] Review screen in `/workspace` (editors only): edit the AI draft, approve (schema-validated record written to the catalog), reject, restore set-aside items; contributions with Done / Decline. The owner's account is an administrator
+- [x] Coverage numbers on `/about` (records by kind, FDA devices, feed size, talks, sources, last robot run)
+- [x] Problem records for the Regulatory (3) and Validation (+3) stages, each with a verified primary source
+- [x] `ARCHITECTURE.md` and `INFORMATION_ARCHITECTURE.md` rewritten from the code; unused tables listed as reserved
+- [x] **Decision: the catalog stays JSON for now.** At 60 records (and hundreds soon) static pages built from `data/catalog.json` are fast and simple; approvals publish with the next deploy, which `deploy.sh prepare` commits. Revisit when approvals need to go live without a deploy or the catalog passes ~2,000 records — then move it to Postgres with full-text search
 
 ---
 
