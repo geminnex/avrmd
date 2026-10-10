@@ -53,13 +53,21 @@ export async function POST(request: Request) {
 
   const result = await sendMagicLink(parsed.data.email, url);
 
+  // The on-screen link is a local-development convenience only. Showing it
+  // in production would let anyone sign in as anyone just by typing their
+  // address, so there a failed send is an error, never a fallback.
+  if (!result.sent && process.env.NODE_ENV === "production") {
+    return NextResponse.json(
+      { ok: false, message: "We couldn't send the sign-in email. Try again in a few minutes." },
+      { status: 503 },
+    );
+  }
+
   return NextResponse.json({
     ok: true,
     message: result.sent
       ? "Check your email for a sign-in link. It expires in 15 minutes."
-      : "Email delivery isn't configured yet, so here is your link directly.",
-    // Only present when nothing could be sent — never logged, never stored,
-    // shown once to the person who just proved they control this session.
+      : "Email delivery isn't configured in development, so here is your link directly.",
     devLink: result.sent ? undefined : url,
   });
 }
