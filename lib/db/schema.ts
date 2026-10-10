@@ -67,6 +67,8 @@ export const users = pgTable(
     /** A catalog organization slug — loose, like posts.entitySlug. */
     affiliationSlug: text("affiliation_slug"),
     emailVerifiedAt: timestamp("email_verified_at", { withTimezone: true }),
+    /** Google's stable account id (`sub`), once someone signs in with Google. */
+    googleSub: text("google_sub"),
     profile: jsonb("profile").$type<Record<string, unknown>>().notNull().default({}),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
@@ -74,6 +76,7 @@ export const users = pgTable(
   (table) => [
     uniqueIndex("users_email_unique").on(table.email),
     uniqueIndex("users_handle_unique").on(table.handle),
+    uniqueIndex("users_google_sub_unique").on(table.googleSub),
   ],
 );
 

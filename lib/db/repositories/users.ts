@@ -1,3 +1,4 @@
+import { randomBytes } from "node:crypto";
 import { eq, sql } from "drizzle-orm";
 import { getDatabase } from "../client";
 import { users } from "../schema";
@@ -46,37 +47,78 @@ export async function getUserByHandle(handle: string) {
   return user;
 }
 
-function slugifyHandle(value: string) {
-  return value
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "")
-    .slice(0, 40);
-}
+/** Words a member can't take as a handle — they would read as the site speaking. */
+export const reservedHandles = new Set([
+  "admin", "administrator", "avrmd", "editor", "editors", "help", "moderator", "official",
+  "root", "staff", "support", "system", "team", "me", "settings", "api",
+]);
 
-/** A profile page needs somewhere to live from the first sign-in, not just after a settings visit. */
-async function generateUniqueHandle(email: string) {
-  const base = slugifyHandle(email.split("@")[0]) || "member";
-
+/**
+ * A neutral handle for a new account. Never derived from the email address:
+ * the handle is public, the address is not. Members choose their own later.
+ */
+async function generateUniqueHandle() {
   for (let attempt = 0; attempt < 25; attempt += 1) {
-    const candidate = attempt === 0 ? base : `${base}-${attempt + 1}`;
+    const candidate = `member-${randomBytes(4).toString("hex").slice(0, 6)}`;
     if (!(await getUserByHandle(candidate))) return candidate;
   }
-
-  return `${base}-${Date.now().toString(36)}`;
+  return `member-${Date.now().toString(36)}`;
 }
 
-/** Idempotent: returns the existing user if the email is already registered. */
-export async function findOrCreateUser(email: string) {
+/**
+ * Idempotent: returns the existing user if the email is already registered.
+ * Called only once an address is proven (a used magic link, or Google's
+ * verified email), so unverified addresses never create accounts.
+ */
+export async function findOrCreateUser(email: string, details: { displayName?: string } = {}) {
   const normalized = email.toLowerCase().trim();
   const existing = await getUserByEmail(normalized);
   if (existing) return existing;
 
   const [created] = await getDatabase()
     .insert(users)
-    .values({ email: normalized, handle: await generateUniqueHandle(normalized) })
+    .values({
+      email: normalized,
+      handle: await generateUniqueHandle(),
+      displayName: details.displayName ?? null,
+      emailVerifiedAt: new Date(),
+    })
     .returning();
   return created;
+}
+
+/**
+ * Google sign-in. The Google account id is the key; failing that, a matching
+ * verified email links Google to the existing account, so a member who
+ * started with a magic link keeps one account.
+ */
+export async function findOrCreateGoogleUser(claims: { sub: string; email: string; name?: string }) {
+  const database = getDatabase();
+  const [bySub] = await database.select().from(users).where(eq(users.googleSub, claims.sub)).limit(1);
+  if (bySub) return bySub;
+
+  const existing = await getUserByEmail(claims.email);
+  if (existing) {
+    const [linked] = await database
+      .update(users)
+      .set({
+        googleSub: claims.sub,
+        emailVerifiedAt: existing.emailVerifiedAt ?? new Date(),
+        displayName: existing.displayName ?? claims.name ?? null,
+        updatedAt: new Date(),
+      })
+      .where(eq(users.id, existing.id))
+      .returning();
+    return linked;
+  }
+
+  const created = await findOrCreateUser(claims.email, { displayName: claims.name });
+  const [linked] = await database
+    .update(users)
+    .set({ googleSub: claims.sub })
+    .where(eq(users.id, created.id))
+    .returning();
+  return linked;
 }
 
 export async function updateUserProfile(

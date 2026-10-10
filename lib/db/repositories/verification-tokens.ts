@@ -16,29 +16,40 @@ export async function createVerificationToken(email: string) {
   return { raw, expiresAt };
 }
 
-/** Consumes the token: a magic link works exactly once. */
-export async function consumeVerificationToken(rawToken: string) {
-  const database = getDatabase();
-  const tokenHash = hashToken(rawToken);
-
-  const [row] = await database
-    .select()
+/**
+ * Which address a link was sent to, without using it up — the confirm page
+ * shows it so a person can see whose account they are about to enter.
+ */
+export async function peekVerificationToken(rawToken: string) {
+  const [row] = await getDatabase()
+    .select({ email: verificationTokens.email })
     .from(verificationTokens)
     .where(
       and(
-        eq(verificationTokens.tokenHash, tokenHash),
+        eq(verificationTokens.tokenHash, hashToken(rawToken)),
         gt(verificationTokens.expiresAt, new Date()),
         isNull(verificationTokens.consumedAt),
       ),
     )
     .limit(1);
+  return row?.email;
+}
 
-  if (!row) return undefined;
-
-  await database
+/**
+ * Consumes the token: a magic link works exactly once. One conditional
+ * UPDATE, so two simultaneous requests can't both win.
+ */
+export async function consumeVerificationToken(rawToken: string) {
+  const [row] = await getDatabase()
     .update(verificationTokens)
     .set({ consumedAt: new Date() })
-    .where(eq(verificationTokens.id, row.id));
-
-  return row.email;
+    .where(
+      and(
+        eq(verificationTokens.tokenHash, hashToken(rawToken)),
+        gt(verificationTokens.expiresAt, new Date()),
+        isNull(verificationTokens.consumedAt),
+      ),
+    )
+    .returning({ email: verificationTokens.email });
+  return row?.email;
 }

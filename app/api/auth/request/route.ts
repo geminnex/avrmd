@@ -1,10 +1,13 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { findOrCreateUser } from "@/lib/db/repositories/users";
+import { isCrossSite, safeNextPath } from "@/lib/auth/guards";
 import { createVerificationToken } from "@/lib/db/repositories/verification-tokens";
 import { sendMagicLink } from "@/lib/mail";
 
-const requestSchema = z.object({ email: z.string().trim().email().max(254) });
+const requestSchema = z.object({
+  email: z.string().trim().email().max(254),
+  next: z.string().optional(),
+});
 
 const windowMs = 60_000;
 const maxPerWindow = 5;
@@ -22,6 +25,9 @@ function rateLimited(key: string) {
 }
 
 export async function POST(request: Request) {
+  if (isCrossSite(request)) {
+    return NextResponse.json({ ok: false, message: "Invalid request." }, { status: 403 });
+  }
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "local";
 
   let body: unknown;
@@ -45,11 +51,15 @@ export async function POST(request: Request) {
     );
   }
 
-  await findOrCreateUser(parsed.data.email);
+  // No account is created here: an address becomes an account only once the
+  // link is used, so typing someone else's email leaves nothing behind.
   const { raw } = await createVerificationToken(parsed.data.email);
 
   const base = process.env.AUTH_URL ?? new URL(request.url).origin;
-  const url = `${base}/api/auth/verify?token=${raw}`;
+  const next = safeNextPath(parsed.data.next);
+  // The link opens a confirm page; nothing is consumed by merely visiting it,
+  // so mail scanners that prefetch links can't burn it.
+  const url = `${base}/sign-in/confirm?token=${raw}${next !== "/" ? `&next=${encodeURIComponent(next)}` : ""}`;
 
   const result = await sendMagicLink(parsed.data.email, url);
 

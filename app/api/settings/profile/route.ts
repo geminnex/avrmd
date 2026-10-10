@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { getCurrentUser } from "@/lib/auth/session";
-import { getUserByHandle, updateUserProfile } from "@/lib/db/repositories/users";
+import { getUserByHandle, reservedHandles, updateUserProfile } from "@/lib/db/repositories/users";
 import { getEntity } from "@/lib/catalog";
 import {
   isFacetName,
@@ -96,6 +96,10 @@ export async function POST(request: Request) {
         { status: 422 },
       );
     }
+  }
+
+  if (reservedHandles.has(handle) && handle !== user.handle) {
+    return NextResponse.json({ ok: false, message: "That handle is reserved." }, { status: 409 });
   }
 
   const existing = await getUserByHandle(handle);

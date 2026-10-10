@@ -6655,3 +6655,60 @@ button {
 .assistant-followups button {
   text-align: left;
 }
+
+/* ---------- Sign-in ---------- */
+
+.sign-in-panel form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.google-button {
+  align-items: center;
+  background: white;
+  border: 1px solid #c9d6d9;
+  border-radius: 9px;
+  color: var(--ink);
+  display: flex;
+  font-size: 14px;
+  font-weight: 750;
+  gap: 10px;
+  height: 45px;
+  justify-content: center;
+  width: 100%;
+}
+.google-button:hover {
+  background: var(--surface);
+  border-color: var(--teal);
+}
+.sign-in-divider {
+  align-items: center;
+  color: var(--muted);
+  display: flex;
+  font-size: 12px;
+  gap: 10px;
+  margin: 6px 0 4px;
+}
+.sign-in-divider::before,
+.sign-in-divider::after {
+  background: var(--line);
+  content: "";
+  flex: 1;
+  height: 1px;
+}
+.sign-in-fineprint {
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.5;
+  margin: 0;
+}
+.auth-card.auth-card-single {
+  grid-template-columns: minmax(0, 440px);
+  justify-content: center;
+}
+.auth-card.auth-card-single .workflow-form {
+  border-radius: 20px;
+}
+a.workflow-submit {
+  margin-top: 12px;
+}
