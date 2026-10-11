@@ -1,6 +1,6 @@
 # AVRMD Implementation Status
 
-Updated: 2026-10-11, after Phases 5–9 and the Phase 10 invitation tools (all awaiting deploy; the live site still runs the 2026-10-10 15:10 build). This page describes
+Updated: 2026-10-11, after Phases 5–9 and the Phase 10 invitation tools (live since 2026-10-11; Google sign-in and AI answers enabled in production). This page describes
 what the code does today. The plan is in [IMPLEMENTATION_ROADMAP.md](IMPLEMENTATION_ROADMAP.md).
 
 ## Live and working
@@ -29,7 +29,6 @@ what the code does today. The plan is in [IMPLEMENTATION_ROADMAP.md](IMPLEMENTAT
 - Server-side retrieval over records, FDA devices, signals, talks, stage and topic guides, websites and member questions.
 - A model (OpenRouter, Claude Haiku 5.5) writes a short answer that cites only those sources and picks next steps the site generated. It falls back to retrieval-only without a key, budget or working model.
 - Usage is recorded in `ai_jobs`/`ai_runs` without the question text. See `AI_GOVERNANCE.md`.
-- ⚠️ In production it is **retrieval-only until `/etc/avrmd.env` stops overriding the key** (Phase 5, owner action).
 
 **Daily discovery robot** (`avrmd-discover.timer`)
 - 10 sources: the FDA AR/VR device list, openFDA 510(k), PubMed, Europe PMC, ClinicalTrials.gov, arXiv, JMIR XR, JMIR Serious Games, Frontiers in VR, Auganix.
@@ -42,8 +41,6 @@ what the code does today. The plan is in [IMPLEMENTATION_ROADMAP.md](IMPLEMENTAT
 | `/opportunities` | Empty; posting not built (the page says so) | Phase 11 (member projects) |
 | Live sessions, events, annual meeting | Not built | Phase 11 |
 | Off-site backups | Local nightly backups only | Owner decision |
-| Google sign-in in production | Needs `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | Owner action |
-| Live assistant | Retrieval-only until `/etc/avrmd.env` stops overriding the key | Owner action |
 
 ## Security
 

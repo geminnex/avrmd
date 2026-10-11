@@ -153,7 +153,7 @@ Nothing new is built until the site stops discarding input and the security medi
 
 ---
 
-## Phase 7 — Simplify, assistant first ✅ Done (awaiting deploy)
+## Phase 7 — Simplify, assistant first ✅ Done (live 2026-10-11)
 
 The owner's direction: not complex; don't make people fish in an ocean; the assistant brings in the right link or feature at the right moment.
 
@@ -167,7 +167,7 @@ The owner's direction: not complex; don't make people fish in an ocean; the assi
 
 ---
 
-## Phase 8 — Content engine ("most complete") ✅ Done (awaiting deploy)
+## Phase 8 — Content engine ("most complete") ✅ Done (live 2026-10-11)
 
 - [x] AI triage of the review queue (`scripts/triage-candidates.ts`, runs after every robot pass): add a record / signal only / off topic, with a vocabulary-checked draft. First run: 761 → 106 to review, 655 set aside (reversible), about US$0.06
 - [x] Review screen in `/workspace` (editors only): edit the AI draft, approve (schema-validated record written to the catalog), reject, restore set-aside items; contributions with Done / Decline. The owner's account is an administrator
@@ -178,7 +178,7 @@ The owner's direction: not complex; don't make people fish in an ocean; the assi
 
 ---
 
-## Phase 9 — Return loop ✅ Done (awaiting deploy)
+## Phase 9 — Return loop ✅ Done (live 2026-10-11)
 
 - [x] Welcome step after the first sign-in (role, stages, can help with, clinical areas; skippable, shown once) — `/welcome`
 - [x] Email for "someone asked what you can help with", "your question was answered", "your answer helped"; per-type settings in profile; signed one-click unsubscribe (RFC 8058 headers + `/unsubscribe` page)
@@ -197,7 +197,7 @@ Code cannot solve this one; the site can make it easy.
 - [ ] Invite the first 20–50 experts across the six roles; help them fill profiles
 - [ ] Editors answer questions publicly for the first 90 days
 - [ ] Partner outreach: existing conferences and societies (IEEE VR XR Health, MedXR) for satellite sessions
-- [x] Invitation page and email template — `/workspace#invite` sends a personal invitation (reply-to the editor); `/join` creates a confirmed account in one step (awaiting deploy)
+- [x] Invitation page and email template — `/workspace#invite` sends a personal invitation (reply-to the editor); `/join` creates a confirmed account in one step (live)
 
 ---
 
