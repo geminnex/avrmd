@@ -197,7 +197,7 @@ Code cannot solve this one; the site can make it easy.
 - [ ] Invite the first 20–50 experts across the six roles; help them fill profiles
 - [ ] Editors answer questions publicly for the first 90 days
 - [ ] Partner outreach: existing conferences and societies (IEEE VR XR Health, MedXR) for satellite sessions
-- [ ] Invitation page and email template
+- [x] Invitation page and email template — `/workspace#invite` sends a personal invitation (reply-to the editor); `/join` creates a confirmed account in one step (awaiting deploy)
 
 ---
 

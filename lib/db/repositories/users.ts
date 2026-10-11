@@ -175,6 +175,41 @@ export async function confirmRegisteredEmail(email: string) {
   return updated;
 }
 
+/**
+ * Accepting an invitation: the emailed link proves the address, so the
+ * account is confirmed at once. An unverified account for the address takes
+ * the new password, as with a reset (see claimUnverified). A confirmed
+ * account is never touched here; the caller sends its owner to sign in.
+ */
+export async function acceptInvitedUser(email: string, passwordHash: string, displayName?: string | null) {
+  const existing = await getUserByEmail(email);
+  if (existing?.emailVerifiedAt) return undefined;
+  if (existing) {
+    const [updated] = await getDatabase()
+      .update(users)
+      .set({
+        passwordHash,
+        emailVerifiedAt: new Date(),
+        displayName: existing.displayName ?? displayName ?? null,
+        updatedAt: new Date(),
+      })
+      .where(eq(users.id, existing.id))
+      .returning();
+    return updated;
+  }
+  const [created] = await getDatabase()
+    .insert(users)
+    .values({
+      email: email.toLowerCase().trim(),
+      handle: await generateUniqueHandle(),
+      displayName: displayName ?? null,
+      passwordHash,
+      emailVerifiedAt: new Date(),
+    })
+    .returning();
+  return created;
+}
+
 /** A reset link proves the address too, so it also settles an unverified account. */
 export async function setPasswordAfterReset(email: string, passwordHash: string) {
   const user = await getUserByEmail(email);

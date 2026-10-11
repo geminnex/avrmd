@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { type FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowUpRight, Check, LoaderCircle, RotateCcw, ShieldAlert, X } from "lucide-react";
+import { ArrowUpRight, Check, LoaderCircle, RotateCcw, Send, ShieldAlert, X } from "lucide-react";
 import { TagPicker, type TagOption } from "./tag-picker";
 import type { ReviewFields } from "@/lib/review";
 
@@ -212,5 +212,62 @@ export function ReportActions({ id }: { id: string }) {
         Dismiss
       </button>
     </span>
+  );
+}
+
+/** Editors invite people by email, with a personal note. */
+export function InviteForm() {
+  const router = useRouter();
+  const [pending, setPending] = useState(false);
+  const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null);
+
+  async function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
+    setPending(true);
+    setMessage(null);
+    const result = await post("/api/workspace/invitations", {
+      email: String(form.get("email") ?? ""),
+      name: String(form.get("name") ?? ""),
+      note: String(form.get("note") ?? ""),
+    });
+    setPending(false);
+    setMessage({ ok: result.ok, text: result.payload.message ?? (result.ok ? "Sent." : "Couldn't send that.") });
+    if (result.ok) {
+      formElement.reset();
+      router.refresh();
+    }
+  }
+
+  return (
+    <form className="review-card invite-form" onSubmit={submit}>
+      <div className="review-grid invite-grid">
+        <label className="form-field">
+          <span>Email</span>
+          <input maxLength={254} name="email" required type="email" />
+        </label>
+        <label className="form-field">
+          <span>Name (optional)</span>
+          <input maxLength={120} name="name" placeholder="Dr. Jane Smith" />
+        </label>
+      </div>
+      <label className="form-field">
+        <span>Personal note (optional, shown at the top of the email and on the join page)</span>
+        <textarea maxLength={1500} name="note" placeholder="I saw your work on VR for burn wound care and think members would value your answers." rows={3} />
+      </label>
+      {message && (
+        <div className={`form-message ${message.ok ? "success" : "error"}`} role={message.ok ? "status" : "alert"}>
+          {message.ok ? <Check size={16} /> : <ShieldAlert size={16} />}
+          <span>{message.text}</span>
+        </div>
+      )}
+      <footer>
+        <button className="button-primary" disabled={pending} type="submit">
+          {pending ? <LoaderCircle className="spin" size={15} /> : <Send size={15} />}
+          Send invitation
+        </button>
+      </footer>
+    </form>
   );
 }

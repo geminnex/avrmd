@@ -7407,3 +7407,15 @@ a.workflow-submit {
   color: #b4412f;
   font-size: 12px;
 }
+.invite-grid {
+  grid-template-columns: 1fr 1fr;
+}
+.join-note {
+  border-left: 3px solid #5bd7bc;
+  color: #d5e5e7;
+  font-size: 14px;
+  line-height: 1.65;
+  margin: -12px 0 24px;
+  padding: 4px 0 4px 14px;
+  white-space: pre-line;
+}

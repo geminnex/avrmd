@@ -1,6 +1,6 @@
 # AVRMD Implementation Status
 
-Updated: 2026-10-10, after the [full review](REVIEW_2026-10-10.md) and the Phase 5 code work. This page describes
+Updated: 2026-10-11, after Phases 5–9 and the Phase 10 invitation tools (all awaiting deploy; the live site still runs the 2026-10-10 15:10 build). This page describes
 what the code does today. The plan is in [IMPLEMENTATION_ROADMAP.md](IMPLEMENTATION_ROADMAP.md).
 
 ## Live and working
@@ -18,7 +18,11 @@ what the code does today. The plan is in [IMPLEMENTATION_ROADMAP.md](IMPLEMENTAT
 - Contributions: suggest a record, claim a record, promotion enquiry — stored and emailed to the editors; private messages to verified representatives.
 - Member profiles (role, stages, can-help-with, looking-for, interests, affiliation) and a member directory listing only members who declared something.
 - Questions and answers. A new question notifies members whose can-help-with matches its tags (at most 8 per question, at most 5 per member per day). The asker can mark the answer that helped.
-- In-app notifications with a header bell.
+- In-app notifications with a header bell, and email notifications (routed questions, answers, accepted answers) with per-kind opt-out and one-click unsubscribe.
+- A one-time welcome step after the first sign-in (role, stages, can-help-with, topics).
+- A weekly digest email (`avrmd-digest.timer`): matching new FDA authorizations, papers, trials and open questions; nothing is sent when nothing is new.
+- Reporting of questions, answers and posts; editors hide or dismiss from `/workspace`.
+- Editor invitations: an editor sends a personal invitation from `/workspace`; the `/join` link creates a confirmed account in one step (30 days, single use).
 - Network posts, comments, likes and image uploads; organization groups (forum, blog, media) for claimed records.
 
 **Ask AVRMD (assistant)**
@@ -35,37 +39,20 @@ what the code does today. The plan is in [IMPLEMENTATION_ROADMAP.md](IMPLEMENTAT
 
 | Surface | Reality | Plan |
 |---|---|---|
-| `/community` | Sample threads only (labelled) | Phase 7 (remove / redirect) |
-| `/opportunities` | Empty; posting not built (the page says so) | Phase 7 (hide) |
-| `/workspace` | Shows pending candidates; no way to act | Phase 8 (review screen) |
-| Review of contributions | By email; no in-site screen | Phase 8 |
-| Email notifications and digests | Not built | Phase 9 |
-| `robots.txt`, `sitemap.xml`, analytics | Missing | Phase 7 |
+| `/opportunities` | Empty; posting not built (the page says so) | Phase 11 (member projects) |
+| Live sessions, events, annual meeting | Not built | Phase 11 |
 | Off-site backups | Local nightly backups only | Owner decision |
+| Google sign-in in production | Needs `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | Owner action |
 | Live assistant | Retrieval-only until `/etc/avrmd.env` stops overriding the key | Owner action |
 
 ## Security
 
-All six medium findings from the review except M5 (rate limiting, Phase 6) are fixed:
-security headers and CSP, closed media listing, neutral handles, own-upload-only post media,
-a confirm-step magic link with atomic consumption, 404 for malformed ids, and an Origin
-check on every state-changing API request.
+All six medium findings from the review are fixed: security headers and CSP, closed media
+listing, neutral handles, own-upload-only post media, single-use confirm-step email links,
+404 for malformed ids, an Origin check on every state-changing API request, and
+Postgres-backed rate limits on sign-in, registration, posting, questions, reports, the
+assistant and invitations.
 
-## Docs known to be out of date
+## Docs
 
-- `ARCHITECTURE.md` claims Auth.js, async jobs, Postgres full-text search, startup env validation and a Sites deploy; none exist.
-- `INFORMATION_ARCHITECTURE.md` describes a four-item navigation; the header has seven.
-
-Both are rewritten in Phase 8, once the data model settles.
-
-## Usage (2026-10-10)
-
-1 account · 0 member profiles · 0 questions · 0 member talks · 0 posts · 761 candidates pending review.
-
-**Host:** `/home` is 97% full (4.9 GB free).
-
-## Verification at this update
-
-- `tsc --noEmit` is clean and 137 tests pass.
-- The production build passes, and entity, topic, stage and problem pages are static.
-- Live checks for every public route: all return 200, except `/network`, which sends signed-out visitors to the sign-in page (307).
+`ARCHITECTURE.md` and `INFORMATION_ARCHITECTURE.md` were rewritten from the code in Phase 8.

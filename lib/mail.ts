@@ -122,3 +122,34 @@ export function sendPasswordReset(email: string, url: string) {
     link: { label: "Choose a new password", url },
   });
 }
+
+/**
+ * A personal invitation. It reads as from the editor who sent it (replies go
+ * to them) and says plainly what the site is and what is asked.
+ */
+export function sendInvitation(input: {
+  to: string;
+  name?: string | null;
+  inviterName: string;
+  inviterEmail: string;
+  note?: string | null;
+  url: string;
+}) {
+  return sendMail({
+    to: input.to,
+    replyTo: input.inviterEmail,
+    subject: `${input.inviterName} invited you to AVRMD`,
+    lines: [
+      input.name ? `Dear ${input.name},` : "Hello,",
+      "",
+      ...(input.note ? [input.note, ""] : []),
+      `${input.inviterName} has invited you to AVRMD, a community for people who build, test, buy and use virtual and augmented reality in medicine: clinicians, researchers, engineers, manufacturers and the business people around them.`,
+      "",
+      "As a member you can answer questions in your area, get the week's new FDA clearances, papers and trials that match your work, and be found by people who need your expertise. Membership is free.",
+      "",
+      "The link below creates your account with this address. It works once, for 30 days.",
+    ],
+    link: { label: "Accept the invitation", url: input.url },
+    footer: [`Reply to this email to reach ${input.inviterName} directly.`, "If you'd rather not join, ignore this message; we won't write again about it."],
+  });
+}

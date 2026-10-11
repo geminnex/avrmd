@@ -10,7 +10,7 @@ import { initialFields } from "@/lib/review";
 import { readQueue } from "@/lib/review-store";
 import { stages } from "@/lib/stages";
 import { timeAgo } from "@/lib/time";
-import { ContributionActions, ReportActions, RestoreButton, ReviewCard } from "@/components/review-card";
+import { ContributionActions, InviteForm, ReportActions, RestoreButton, ReviewCard } from "@/components/review-card";
 
 export const metadata: Metadata = { title: "Editorial workspace", robots: { index: false } };
 export const dynamic = "force-dynamic";
@@ -23,6 +23,15 @@ async function loadReports() {
     return { reports: await listOpenReports(), reasons: reportReasons as Record<string, string> };
   } catch {
     return { reports: [], reasons: {} as Record<string, string> };
+  }
+}
+
+async function loadInvitations() {
+  try {
+    const { listInvitations } = await import("@/lib/db/repositories/invitations");
+    return await listInvitations();
+  } catch {
+    return [];
   }
 }
 
@@ -57,6 +66,7 @@ export default async function WorkspacePage() {
   const approved = queue.filter((item) => item.status === "approved");
   const contributions = await loadContributions();
   const { reports, reasons } = await loadReports();
+  const invites = await loadInvitations();
   const openContributions = contributions.filter((row) => row.contribution.status === "submitted");
 
   const vocab = {
@@ -134,6 +144,36 @@ export default async function WorkspacePage() {
                     {report.details && <em>&ldquo;{report.details}&rdquo;</em>}
                   </span>
                   <ReportActions id={report.id} />
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+
+        <section className="review-section" id="invite">
+          <h2>
+            Invite people <span>{invites.filter((row) => row.joined).length} joined of {invites.length}</span>
+          </h2>
+          <p className="queue-empty">
+            A personal invitation from you. Replies go to your inbox; the link creates a confirmed
+            account in one step and works for 30 days.
+          </p>
+          <InviteForm />
+          {invites.length > 0 && (
+            <ul className="contribution-list">
+              {invites.map(({ invitation, inviterName, joined }) => (
+                <li className={joined ? "" : "open"} key={invitation.id}>
+                  <span>
+                    <small>
+                      {inviterName ?? "Former editor"} · {timeAgo(invitation.createdAt)} ·{" "}
+                      {joined
+                        ? "joined"
+                        : invitation.expiresAt.getTime() < Date.now()
+                          ? "expired"
+                          : "not yet joined"}
+                    </small>
+                    <strong>{invitation.name ? `${invitation.name} <${invitation.email}>` : invitation.email}</strong>
+                  </span>
                 </li>
               ))}
             </ul>

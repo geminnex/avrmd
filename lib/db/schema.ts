@@ -864,3 +864,28 @@ export const pageViews = pgTable(
   },
   (table) => [primaryKey({ columns: [table.day, table.path] })],
 );
+
+/**
+ * An editor's personal invitation. The emailed link proves the address the
+ * same way a registration link does, so accepting it creates a confirmed
+ * account in one step. Only the token's hash is stored.
+ */
+export const invitations = pgTable(
+  "invitations",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    email: text("email").notNull(),
+    name: text("name"),
+    note: text("note"),
+    // Set null: an invitation outlives the editor who sent it.
+    invitedById: uuid("invited_by_id").references(() => users.id, { onDelete: "set null" }),
+    tokenHash: text("token_hash").notNull(),
+    expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+    acceptedAt: timestamp("accepted_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    uniqueIndex("invitations_token_hash_unique").on(table.tokenHash),
+    index("invitations_email_idx").on(table.email),
+  ],
+);

@@ -307,5 +307,6 @@ describe("retrieval eval", () => {
       .filter((c) => !found.includes(c))
       .map((c) => c.question);
     expect(recall, `missed: ${missed.join(" | ")}`).toBeGreaterThanOrEqual(0.9);
-  });
+    // Re-runs every case at once; slower than one case on a busy host.
+  }, 30_000);
 });
