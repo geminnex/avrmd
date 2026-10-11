@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { WorkspaceCounts } from "@/lib/workspace-counts";
 
-export type WorkspaceTab = "overview" | "queue" | "reports" | "contributions" | "invite" | "members";
+export type WorkspaceTab = "overview" | "agents" | "queue" | "reports" | "contributions" | "invite" | "members";
 
 /** Tabs across the admin tools, each with what is waiting in it. */
 export function WorkspaceNav({
@@ -15,6 +15,7 @@ export function WorkspaceNav({
 }) {
   const tabs: { id: WorkspaceTab; label: string; href: string; count?: number }[] = [
     { id: "overview", label: "Overview", href: "/workspace" },
+    { id: "agents", label: "AI team", href: "/workspace/agents", count: counts.agents },
     { id: "queue", label: "Review queue", href: "/workspace?tab=queue", count: counts.queue },
     { id: "reports", label: "Reports", href: "/workspace?tab=reports", count: counts.reports },
     { id: "contributions", label: "Contributions", href: "/workspace?tab=contributions", count: counts.contributions },

@@ -1,0 +1,9 @@
+# User unit (no sudo): ~/.config/systemd/user/avrmd-agents.service
+[Unit]
+Description=AVRMD AI team worker (routine tasks, queued runs)
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/projects/avrmd2607
+TimeoutStartSec=900
+ExecStart=%h/.nvm/versions/node/v22.23.2/bin/node node_modules/tsx/dist/cli.mjs --tsconfig tsconfig.json scripts/agent-worker.ts

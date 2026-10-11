@@ -33,13 +33,22 @@ async function recentQuestions() {
   }
 }
 
+async function latestWeekly() {
+  try {
+    const { latestArticle } = await import("@/lib/db/repositories/articles");
+    return await latestArticle();
+  } catch {
+    return undefined;
+  }
+}
+
 export default async function HomePage() {
   const devices = getFdaDeviceList().devices.slice(0, 4);
   const research = getSignals()
     .filter((signal) => signal.category === "research" || signal.category === "trial")
     .sort((a, b) => b.discoveredAt.localeCompare(a.discoveredAt))
     .slice(0, 5);
-  const questions = await recentQuestions();
+  const [questions, weekly] = await Promise.all([recentQuestions(), latestWeekly()]);
   // A new draw every revalidation window, so returning visitors see other talks.
   const talks = pickShowcaseTalks(await getAllTalks(), 3, Math.floor(Date.now() / 300_000));
 
@@ -57,6 +66,19 @@ export default async function HomePage() {
           <HomeAsk />
         </div>
       </section>
+
+      {weekly && (
+        <div className="shell">
+          <Link className="home-weekly" href={`/weekly/${weekly.slug}`}>
+            <span>
+              <small>This week in medical XR</small>
+              <strong>{weekly.title}</strong>
+              {weekly.summary && <em>{weekly.summary}</em>}
+            </span>
+            <ArrowRight size={20} />
+          </Link>
+        </div>
+      )}
 
       <section className="shell home-new">
         <div className="home-column">

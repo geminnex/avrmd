@@ -127,6 +127,20 @@
       "when": 1791733532337,
       "tag": "0017_audit_actor_set_null",
       "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "7",
+      "when": 1791735909104,
+      "tag": "0018_agent_team",
+      "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "7",
+      "when": 1791737143950,
+      "tag": "0019_weekly_articles",
+      "breakpoints": true
     }
   ]
 }

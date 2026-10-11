@@ -123,6 +123,7 @@ async function Overview({ counts, showMembers }: { counts: Awaited<ReturnType<ty
     }
   }
   const cards = [
+    { href: "/workspace/agents", icon: <Bot size={19} />, value: counts.agents, label: "AI drafts to review" },
     { href: "/workspace?tab=reports", icon: <Flag size={19} />, value: counts.reports, label: "Open reports" },
     { href: "/workspace?tab=queue", icon: <ShieldCheck size={19} />, value: counts.queue, label: "To review" },
     { href: "/workspace?tab=contributions", icon: <Inbox size={19} />, value: counts.contributions, label: "Contributions open" },

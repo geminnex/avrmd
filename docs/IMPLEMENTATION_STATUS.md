@@ -24,6 +24,8 @@ what the code does today. The plan is in [IMPLEMENTATION_ROADMAP.md](IMPLEMENTAT
 - Reporting of questions, answers and posts; editors hide or dismiss from `/workspace`.
 - Admin (`/workspace`): tabs for Overview, Review queue, Reports, Contributions, Invitations and Members, each with what is waiting. Shown as "Admin" in the account menu for staff.
 - Member management (`/workspace/members`): search and filter every account, a detail page per member (account, profile, activity, history). Moderators suspend and restore (a suspended account is signed out, cannot sign in, and disappears from the directory, routing and email); administrators also change roles and delete accounts. Every action goes to `audit_events`.
+- `/weekly`: the Sunday article on the week in medical XR, drafted by the editor agent and published by a person; the latest is linked from the home page.
+- AI team (`/workspace/agents`): six drafting agents (the Weekly article, answers, report assessment, invitation notes, weekly site report, research briefings) with assignment, per-agent switches and daily limits, routines run by `avrmd-agents.timer`, and human review before anything is applied. See `AI_GOVERNANCE.md`.
 - `/help`: the user manual. The assistant also searches it for "how do I…" questions.
 - Editor invitations: an editor sends a personal invitation from `/workspace`; the `/join` link creates a confirmed account in one step (30 days, single use).
 - Network posts, comments, likes and image uploads; organization groups (forum, blog, media) for claimed records.

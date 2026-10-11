@@ -20,6 +20,7 @@ const staticPaths = [
   "/participate",
   "/about",
   "/help",
+  "/weekly",
   "/privacy",
   "/terms",
 ];

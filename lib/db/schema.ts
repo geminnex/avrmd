@@ -894,3 +894,84 @@ export const invitations = pgTable(
     index("invitations_email_idx").on(table.email),
   ],
 );
+
+/** Per-agent switches for the AI operations team (definitions live in lib/agents/team.ts). */
+export const agentSettings = pgTable("agent_settings", {
+  agentId: text("agent_id").primaryKey(),
+  enabled: boolean("enabled").notNull().default(true),
+  /** Lets the scheduled worker create this agent's routine tasks on its own. */
+  autoAssign: boolean("auto_assign").notNull().default(false),
+  dailyLimit: integer("daily_limit").notNull().default(20),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
+export const agentTaskStatus = pgEnum("agent_task_status", [
+  "queued",
+  "running",
+  "review",
+  "approved",
+  "rejected",
+  "failed",
+  "cancelled",
+]);
+
+/**
+ * One piece of work for an AI agent. Agents only draft: nothing reaches
+ * members until a person approves the task, which applies its output.
+ */
+export const agentTasks = pgTable(
+  "agent_tasks",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    agentId: text("agent_id").notNull(),
+    kind: text("kind").notNull(),
+    title: text("title").notNull(),
+    /** What it works on (a question id, a report id, invitee details, a topic). */
+    input: jsonb("input").$type<Record<string, unknown>>().notNull().default({}),
+    /** Extra direction from whoever assigned it. */
+    instructions: text("instructions"),
+    status: agentTaskStatus("status").notNull().default("queued"),
+    output: jsonb("output").$type<Record<string, unknown>>(),
+    error: text("error"),
+    /** Null when the scheduled worker created it. */
+    createdById: uuid("created_by_id").references(() => users.id, { onDelete: "set null" }),
+    reviewedById: uuid("reviewed_by_id").references(() => users.id, { onDelete: "set null" }),
+    reviewNote: text("review_note"),
+    model: text("model"),
+    inputTokens: integer("input_tokens"),
+    outputTokens: integer("output_tokens"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    startedAt: timestamp("started_at", { withTimezone: true }),
+    finishedAt: timestamp("finished_at", { withTimezone: true }),
+    reviewedAt: timestamp("reviewed_at", { withTimezone: true }),
+  },
+  (table) => [
+    index("agent_tasks_status_idx").on(table.status, table.createdAt),
+    index("agent_tasks_agent_idx").on(table.agentId, table.createdAt),
+  ],
+);
+
+/**
+ * The weekly article: drafted by the editor agent from the week's updates,
+ * edited and published by a person. The body is a small markdown subset
+ * (see lib/article-format.ts), rendered without raw HTML.
+ */
+export const articles = pgTable(
+  "articles",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    slug: text("slug").notNull(),
+    title: text("title").notNull(),
+    summary: text("summary").notNull().default(""),
+    body: text("body").notNull(),
+    /** The Monday that starts the week the article covers. */
+    weekOf: date("week_of").notNull(),
+    /** Which agent drafted it, if any. */
+    draftedBy: text("drafted_by"),
+    publishedById: uuid("published_by_id").references(() => users.id, { onDelete: "set null" }),
+    hidden: boolean("hidden").notNull().default(false),
+    publishedAt: timestamp("published_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [uniqueIndex("articles_slug_unique").on(table.slug), index("articles_published_idx").on(table.publishedAt)],
+);

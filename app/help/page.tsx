@@ -136,6 +136,11 @@ export default function HelpPage() {
         pain management gather everything on one subject.
       </p>
       <p>
+        To catch up quickly, read <Link href="/weekly">Weekly</Link>: every Sunday, one short article
+        on the week&apos;s FDA authorizations, papers, trials, industry news and community
+        questions, with links to the pages on AVRMD.
+      </p>
+      <p>
         Something missing or wrong? <Link href="/participate">Suggest a record</Link>. Editors
         check every suggestion against its source before it is published.
       </p>
@@ -268,6 +273,15 @@ export default function HelpPage() {
         <li>
           <strong>Invite people</strong>: send a personal invitation with an optional note.
           Replies go to your inbox; the list shows who has joined.
+        </li>
+        <li>
+          <strong>AI team</strong>: six AI agents that draft work for you. Mira writes the Sunday
+          Weekly article, Iris drafts answers to
+          member questions, Sentinel assesses reports, Echo writes invitation notes, Atlas writes a
+          weekly site report and Nova writes research briefings. Assign a task, then open it to
+          edit the draft and approve, reject or run it again. Nothing reaches members until you
+          approve; approving posts or sends it under your name. Administrators switch agents on
+          and off, let them pick up routine work on their own, and set daily limits.
         </li>
         <li>
           <strong>Members</strong> (moderators and administrators): search every account and

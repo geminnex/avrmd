@@ -11,7 +11,7 @@ const assistantJob = "assistant_answer";
  */
 export async function recordAssistantRun(run: {
   /** Separate ledgers: only assistant answers count against its daily cap. */
-  jobType?: "assistant_answer" | "candidate_triage";
+  jobType?: "assistant_answer" | "candidate_triage" | "agent_task";
   model: string;
   promptVersion: string;
   inputTokens?: number;
@@ -19,6 +19,8 @@ export async function recordAssistantRun(run: {
   latencyMs: number;
   citations: number;
   error?: string;
+  /** Which agent and kind, for the agent ledger; never the content. */
+  result?: Record<string, unknown>;
 }) {
   const database = getDatabase();
   const [job] = await database
@@ -39,7 +41,7 @@ export async function recordAssistantRun(run: {
     inputTokens: run.inputTokens ?? null,
     outputTokens: run.outputTokens ?? null,
     latencyMs: run.latencyMs,
-    result: { citations: run.citations },
+    result: { citations: run.citations, ...run.result },
     errorCode: run.error ?? null,
   });
 }
@@ -50,5 +52,14 @@ export async function countAssistantRunsSince(since: Date) {
     .from(aiRuns)
     .innerJoin(aiJobs, eq(aiJobs.id, aiRuns.jobId))
     .where(and(eq(aiJobs.jobType, assistantJob), gte(aiRuns.createdAt, since)));
+  return row?.total ?? 0;
+}
+
+export async function countRunsOfTypeSince(jobType: string, since: Date) {
+  const [row] = await getDatabase()
+    .select({ total: count() })
+    .from(aiRuns)
+    .innerJoin(aiJobs, eq(aiJobs.id, aiRuns.jobId))
+    .where(and(eq(aiJobs.jobType, jobType), gte(aiRuns.createdAt, since)));
   return row?.total ?? 0;
 }
