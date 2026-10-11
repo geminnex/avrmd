@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth/session";
+import { isStaff } from "@/lib/auth/roles";
 import { countUnreadNotifications } from "@/lib/db/repositories/notifications";
 
 /**
@@ -26,6 +27,7 @@ export async function GET() {
       displayName: user.displayName,
       email: user.email,
       handle: user.handle,
+      staff: isStaff(user),
       unreadNotifications,
     },
   });

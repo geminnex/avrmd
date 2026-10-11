@@ -6,6 +6,7 @@ import { burnPasswordCheck, verifyPassword } from "@/lib/auth/password";
 import { rateLimiter } from "@/lib/rate-limit";
 import { getUserByEmail } from "@/lib/db/repositories/users";
 import { afterSignIn } from "@/lib/onboarding";
+import { suspendedMessage } from "@/lib/auth/roles";
 import { createVerificationToken } from "@/lib/db/repositories/verification-tokens";
 import { sendConfirmEmail } from "@/lib/mail";
 
@@ -50,5 +51,6 @@ export async function POST(request: Request) {
     );
   }
 
+  if (user.suspendedAt) return NextResponse.json({ ok: false, message: suspendedMessage }, { status: 403 });
   return signedInJson(user.id, afterSignIn(user, safeNextPath(parsed.data.next)));
 }

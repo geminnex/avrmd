@@ -9,6 +9,7 @@ type Me = {
   displayName: string | null;
   email: string;
   handle: string | null;
+  staff?: boolean;
   unreadNotifications?: number;
 } | null;
 
@@ -50,7 +51,7 @@ export function AccountSlot() {
     return (
       <>
         <NotificationBell unread={me.unreadNotifications ?? 0} />
-        <AccountMenu handle={me.handle} label={me.displayName || me.email} />
+        <AccountMenu handle={me.handle} label={me.displayName || me.email} staff={Boolean(me.staff)} />
       </>
     );
   }

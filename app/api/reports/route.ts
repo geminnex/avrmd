@@ -43,7 +43,7 @@ export async function POST(request: Request) {
           "",
           target.text.slice(0, 600),
         ],
-        link: { label: "Review in the workspace", url: `${base}/workspace#reports` },
+        link: { label: "Review in the workspace", url: `${base}/workspace?tab=reports` },
       }),
     );
   }

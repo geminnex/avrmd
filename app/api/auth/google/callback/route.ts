@@ -65,6 +65,7 @@ export async function GET(request: Request) {
   if (!claims) return fail("google_failed");
 
   const user = await findOrCreateGoogleUser(claims);
+  if (user.suspendedAt) return fail("suspended");
   const { raw, expiresAt } = await createSession(user.id);
 
   const response = NextResponse.redirect(`${base}${afterSignIn(user, safeNextPath(saved.next))}`);

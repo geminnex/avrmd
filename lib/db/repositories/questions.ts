@@ -166,7 +166,7 @@ export async function listHelperCandidates(): Promise<HelperCandidateWithIdentit
     .select()
     .from(users)
     .where(
-      sql`jsonb_array_length(${users.canHelpWith}) > 0 OR jsonb_array_length(${users.stages}) > 0`,
+      sql`(jsonb_array_length(${users.canHelpWith}) > 0 OR jsonb_array_length(${users.stages}) > 0) AND ${users.suspendedAt} IS NULL`,
     );
 
   return rows.map((user) => ({

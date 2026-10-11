@@ -26,7 +26,7 @@ for (const [key, value] of Object.entries(fromFiles)) if (process.env[key] === u
 process.chdir(repo);
 
 async function main() {
-  const { isNotNull } = await import("drizzle-orm");
+  const { and, isNotNull, isNull } = await import("drizzle-orm");
   const { getDatabase, closeDatabase } = await import("../lib/db/client");
   const { users } = await import("../lib/db/schema");
   const { listQuestions } = await import("../lib/db/repositories/questions");
@@ -56,7 +56,7 @@ async function main() {
   const research = recentSignals.filter((signal) => signal.category === "research" || signal.category === "trial");
   const recentQuestions = (await listQuestions()).filter((question) => question.createdAt.getTime() >= since);
 
-  const members = await getDatabase().select().from(users).where(isNotNull(users.emailVerifiedAt));
+  const members = await getDatabase().select().from(users).where(and(isNotNull(users.emailVerifiedAt), isNull(users.suspendedAt)));
   let sent = 0;
   for (const member of members) {
     if (args.only && member.email !== args.only) continue;

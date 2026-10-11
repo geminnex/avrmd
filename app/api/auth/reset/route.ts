@@ -3,6 +3,7 @@ import { rateLimiter } from "@/lib/rate-limit";
 import { clientIp } from "@/lib/auth/flow";
 import { z } from "zod";
 import { signedInJson } from "@/lib/auth/flow";
+import { suspendedMessage } from "@/lib/auth/roles";
 import { hashPassword, passwordProblem } from "@/lib/auth/password";
 import { destroyUserSessions } from "@/lib/db/repositories/sessions";
 import { setPasswordAfterReset } from "@/lib/db/repositories/users";
@@ -36,5 +37,6 @@ export async function POST(request: Request) {
 
   // A new password ends every other session, including a thief's.
   await destroyUserSessions(user.id);
+  if (user.suspendedAt) return NextResponse.json({ ok: false, message: suspendedMessage }, { status: 403 });
   return signedInJson(user.id, "/");
 }

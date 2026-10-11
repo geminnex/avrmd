@@ -274,7 +274,7 @@ export async function listDirectoryMembers(): Promise<DirectoryMember[]> {
     .select()
     .from(users)
     .where(
-      sql`jsonb_array_length(${users.roles}) > 0 OR jsonb_array_length(${users.stages}) > 0`,
+      sql`(jsonb_array_length(${users.roles}) > 0 OR jsonb_array_length(${users.stages}) > 0) AND ${users.suspendedAt} IS NULL`,
     );
 
   return rows.map((user) => ({

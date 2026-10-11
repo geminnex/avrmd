@@ -22,6 +22,9 @@ what the code does today. The plan is in [IMPLEMENTATION_ROADMAP.md](IMPLEMENTAT
 - A one-time welcome step after the first sign-in (role, stages, can-help-with, topics).
 - A weekly digest email (`avrmd-digest.timer`): matching new FDA authorizations, papers, trials and open questions; nothing is sent when nothing is new.
 - Reporting of questions, answers and posts; editors hide or dismiss from `/workspace`.
+- Admin (`/workspace`): tabs for Overview, Review queue, Reports, Contributions, Invitations and Members, each with what is waiting. Shown as "Admin" in the account menu for staff.
+- Member management (`/workspace/members`): search and filter every account, a detail page per member (account, profile, activity, history). Moderators suspend and restore (a suspended account is signed out, cannot sign in, and disappears from the directory, routing and email); administrators also change roles and delete accounts. Every action goes to `audit_events`.
+- `/help`: the user manual. The assistant also searches it for "how do I…" questions.
 - Editor invitations: an editor sends a personal invitation from `/workspace`; the `/join` link creates a confirmed account in one step (30 days, single use).
 - Network posts, comments, likes and image uploads; organization groups (forum, blog, media) for claimed records.
 

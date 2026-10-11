@@ -44,6 +44,7 @@ export async function POST(request: Request) {
   const user =
     used.purpose === "verify_email" ? await confirmRegisteredEmail(used.email) : await findOrCreateUser(used.email);
   if (!user) return NextResponse.redirect(`${base}/sign-in?error=expired_link`, 303);
+  if (user.suspendedAt) return NextResponse.redirect(`${base}/sign-in?error=suspended`, 303);
   const { raw, expiresAt } = await createSession(user.id);
 
   const response = NextResponse.redirect(`${base}${afterSignIn(user, next)}`, 303);

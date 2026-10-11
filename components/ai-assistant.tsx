@@ -35,6 +35,7 @@ const typeLabels: Record<string, string> = {
   topic: "Topic",
   website: "Website",
   question: "Member question",
+  help: "Help",
 };
 
 /** Suggestions that fit the page the reader is on. */

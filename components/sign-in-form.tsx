@@ -19,6 +19,7 @@ const errorMessages: Record<string, string> = {
   rate_limited: "Too many attempts from here. Wait a few minutes and try again.",
   google_unavailable: "Google sign-in isn't available right now. Use your email and password.",
   google_cancelled: "Google sign-in was cancelled.",
+  suspended: "This account is suspended. If you think this is a mistake, reply to any AVRMD email.",
   google_failed: "Google sign-in didn't complete. Try again, or use your email and password.",
 };
 

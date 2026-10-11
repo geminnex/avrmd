@@ -39,6 +39,7 @@ export function SiteFooter() {
           <Link href="/participate">Suggest a record</Link>
           <Link href="/for-organizations#claim">Claim your record</Link>
           <Link href="/for-organizations#promotion">Promotion</Link>
+          <Link href="/help">Help</Link>
           <Link href="/about">About and how we review</Link>
         </div>
       </div>

@@ -26,7 +26,8 @@ export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: MemberPageProps): Promise<Metadata> {
   const { handle } = await params;
-  const user = await getUserByHandle(handle);
+  const found = await getUserByHandle(handle);
+  const user = found?.suspendedAt ? undefined : found;
   if (!user) return {};
   return { title: user.displayName || `@${user.handle}` };
 }
@@ -54,7 +55,7 @@ function FacetLinks({ names }: { names: string[] }) {
 export default async function MemberPage({ params }: MemberPageProps) {
   const { handle } = await params;
   const [user, viewer] = await Promise.all([getUserByHandle(handle), getCurrentUser()]);
-  if (!user) notFound();
+  if (!user || user.suspendedAt) notFound();
 
   const followerCount = await countFollowers("user", user.id);
   const isOwnProfile = viewer?.id === user.id;

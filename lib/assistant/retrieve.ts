@@ -1,4 +1,5 @@
 import { catalog, entityHref } from "../catalog";
+import { helpTopics } from "../help-topics";
 import { facets } from "../facets";
 import { getFdaDeviceList } from "../fda-devices";
 import { resources } from "../resources";
@@ -14,7 +15,7 @@ import type { Talk } from "../talks";
 export type CorpusItem = {
   /** Stable within one answer: what the model writes as [id]. */
   id: string;
-  type: "record" | "fda" | "signal" | "talk" | "stage" | "topic" | "website" | "question";
+  type: "record" | "fda" | "signal" | "talk" | "stage" | "topic" | "website" | "question" | "help";
   title: string;
   body: string;
   href: string;
@@ -171,6 +172,16 @@ export function buildCorpus(extra: { talks?: Talk[]; questions?: QuestionDoc[] }
       meta: "Related website",
     });
   }
+  for (const topic of helpTopics) {
+    items.push({
+      type: "help",
+      title: topic.title,
+      body: topic.body,
+      href: `/help#${topic.anchor}`,
+      external: false,
+      meta: "AVRMD help",
+    });
+  }
   for (const question of extra.questions ?? []) {
     items.push({
       type: "question",
@@ -193,6 +204,7 @@ const perTypeCap: Record<CorpusItem["type"], number> = {
   stage: 2,
   topic: 2,
   website: 2,
+  help: 2,
   question: 3,
 };
 

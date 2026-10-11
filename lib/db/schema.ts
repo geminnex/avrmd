@@ -82,6 +82,10 @@ export const users = pgTable(
       .default({ questions: true, answers: true, digest: true }),
     /** Set when the welcome step was completed or skipped. */
     onboardedAt: timestamp("onboarded_at", { withTimezone: true }),
+    /** Set by an administrator or moderator: no sign-in, every session ended. */
+    suspendedAt: timestamp("suspended_at", { withTimezone: true }),
+    /** Refreshed at most hourly from the session lookup; for the member list. */
+    lastSeenAt: timestamp("last_seen_at", { withTimezone: true }),
     /** Google's stable account id (`sub`), once someone signs in with Google. */
     googleSub: text("google_sub"),
     profile: jsonb("profile").$type<Record<string, unknown>>().notNull().default({}),
@@ -801,7 +805,8 @@ export const auditEvents = pgTable(
   "audit_events",
   {
     id: uuid("id").defaultRandom().primaryKey(),
-    actorId: uuid("actor_id").references(() => users.id),
+    // Set null: the record of what was done outlives the account that did it.
+    actorId: uuid("actor_id").references(() => users.id, { onDelete: "set null" }),
     action: text("action").notNull(),
     resourceType: text("resource_type").notNull(),
     resourceId: uuid("resource_id"),

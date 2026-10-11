@@ -1,4 +1,4 @@
-import { inArray } from "drizzle-orm";
+import { and, inArray, isNull } from "drizzle-orm";
 import { getDatabase } from "./db/client";
 import { questions, users } from "./db/schema";
 import { unsubscribeHeaders, unsubscribeUrl, type EmailKind } from "./email-prefs";
@@ -28,7 +28,7 @@ export async function emailNotifications(items: NotificationEmail[], actorName: 
   const recipients = await database
     .select({ id: users.id, email: users.email, prefs: users.emailPrefs, verified: users.emailVerifiedAt })
     .from(users)
-    .where(inArray(users.id, [...new Set(items.map((item) => item.userId))]));
+    .where(and(inArray(users.id, [...new Set(items.map((item) => item.userId))]), isNull(users.suspendedAt)));
   const titles = await database
     .select({ id: questions.id, title: questions.title })
     .from(questions)

@@ -28,6 +28,10 @@ type Case = {
 };
 
 const cases: Case[] = [
+  // the site itself
+  { question: "I forgot my password, how do I reset it?", expect: ["/help#start"] },
+  { question: "How do I stop the weekly digest emails?", expect: ["/help#email"] },
+  { question: "How can my company claim its record?", expect: ["/help#organizations"] },
   // clinical topics
   {
     question: "Is there VR for chronic low back pain?",

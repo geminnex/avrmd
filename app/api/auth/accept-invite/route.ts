@@ -6,6 +6,7 @@ import { rateLimiter } from "@/lib/rate-limit";
 import { acceptInvitation, peekInvitation } from "@/lib/db/repositories/invitations";
 import { acceptInvitedUser, getUserByEmail } from "@/lib/db/repositories/users";
 import { afterSignIn } from "@/lib/onboarding";
+import { suspendedMessage } from "@/lib/auth/roles";
 
 const perIp = rateLimiter("accept-invite:perIp", 10, 15 * 60_000);
 
@@ -44,5 +45,6 @@ export async function POST(request: Request) {
   if (!user) {
     return NextResponse.json({ ok: false, message: "This address already has an account. Sign in instead.", signIn: true }, { status: 409 });
   }
+  if (user.suspendedAt) return NextResponse.json({ ok: false, message: suspendedMessage }, { status: 403 });
   return signedInJson(user.id, afterSignIn(user, "/"));
 }

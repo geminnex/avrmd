@@ -113,6 +113,20 @@
       "when": 1791694624983,
       "tag": "0015_invitations",
       "breakpoints": true
+    },
+    {
+      "idx": 16,
+      "version": "7",
+      "when": 1791733462327,
+      "tag": "0016_member_admin",
+      "breakpoints": true
+    },
+    {
+      "idx": 17,
+      "version": "7",
+      "when": 1791733532337,
+      "tag": "0017_audit_actor_set_null",
+      "breakpoints": true
     }
   ]
 }
